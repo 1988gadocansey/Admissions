@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <RootNamespace>CleanArchitecture.Application</RootNamespace>
+        <AssemblyName>CleanArchitecture.Application</AssemblyName>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.4" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0-rc.2.22472.11" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Domain\Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="ApplicantAcademicExperience\Commands" />
+      <Folder Include="ApplicantAcademicExperience\EventHandlers" />
+      <Folder Include="ApplicantAcademicExperience\Queries" />
+      <Folder Include="ApplicantDocumentUpload\Commands" />
+      <Folder Include="ApplicantDocumentUpload\EventHandlers" />
+      <Folder Include="ApplicantDocumentUpload\Queries" />
+      <Folder Include="ApplicantForms\Commands\CreateForm" />
+      <Folder Include="ApplicantForms\Commands\DeleteForm" />
+      <Folder Include="ApplicantForms\Commands\UpdateForm" />
+      <Folder Include="ApplicantIssues\Commands" />
+      <Folder Include="ApplicantIssues\EventHandlers" />
+      <Folder Include="ApplicantIssues\Queries" />
+      <Folder Include="ApplicantReferee\Commands" />
+      <Folder Include="ApplicantReferee\EventHandlers" />
+      <Folder Include="ApplicantReferee\Queries" />
+      <Folder Include="ApplicantResults\Commands" />
+      <Folder Include="ApplicantResults\EventHandlers" />
+      <Folder Include="ApplicantResults\Queries" />
+      <Folder Include="ApplicantWorkingExperience\Commands" />
+      <Folder Include="ApplicantWorkingExperience\EventHandlers" />
+      <Folder Include="ApplicantWorkingExperience\Queries" />
+      <Folder Include="Applicant\Commands" />
+    </ItemGroup>
+
+</Project>
