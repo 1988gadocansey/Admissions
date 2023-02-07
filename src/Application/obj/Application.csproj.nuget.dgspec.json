@@ -8,7 +8,7 @@
       "version": "1.0.0",
       "restore": {
         "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Application/Application.csproj",
-        "projectName": "CleanArchitecture.Application",
+        "projectName": "OnlineApplicationSystem.Application",
         "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Application/Application.csproj",
         "packagesPath": "/Users/gadocansey/.nuget/packages/",
         "outputPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Application/obj/",
@@ -83,7 +83,7 @@
       "version": "1.0.0",
       "restore": {
         "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/Domain.csproj",
-        "projectName": "CleanArchitecture.Domain",
+        "projectName": "OnlineApplicationSystem.Domain",
         "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/Domain.csproj",
         "packagesPath": "/Users/gadocansey/.nuget/packages/",
         "outputPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/obj/",

@@ -1,6 +1,6 @@
-﻿global using CleanArchitecture.Domain.Common;
-global using CleanArchitecture.Domain.Entities;
-global using CleanArchitecture.Domain.Enums;
-global using CleanArchitecture.Domain.Events;
-global using CleanArchitecture.Domain.Exceptions;
-global using CleanArchitecture.Domain.ValueObjects;
+﻿global using OnlineApplicationSystem.Domain.Common;
+global using OnlineApplicationSystem.Domain.Entities;
+global using OnlineApplicationSystem.Domain.Enums;
+global using OnlineApplicationSystem.Domain.Events;
+global using OnlineApplicationSystem.Domain.Exceptions;
+global using OnlineApplicationSystem.Domain.ValueObjects;

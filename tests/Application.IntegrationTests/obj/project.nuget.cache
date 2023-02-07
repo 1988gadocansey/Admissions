@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rWcu4r2nB+lfjR66gL21rIBxETqw/dNA9gMfLWby9oLJtl8AO7tEFM3YzM3CKZgumkyvMQsjG3Pe0vG64ssPaQ==",
+  "dgSpecHash": "AVfwsGN23BQ2VHjyB48Fl0CZZknpUp8Y9KP1pTBihiap5V8lFRDVFkE4mJmZK0jS6J7N6S4RUhR0Q+r28m/U5g==",
   "success": true,
-  "projectFilePath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/tests/Application.IntegrationTests/Application.IntegrationTests.csproj",
+  "projectFilePath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Application.IntegrationTests/Application.IntegrationTests.csproj",
   "expectedPackageFiles": [
     "/Users/gadocansey/.nuget/packages/automapper/11.0.0/automapper.11.0.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/11.0.0/automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

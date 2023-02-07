@@ -1,5 +1,5 @@
-﻿using CleanArchitecture.Infrastructure.Identity;
-using CleanArchitecture.Infrastructure.Persistence;
+﻿using OnlineApplicationSystem.Infrastructure.Identity;
+using OnlineApplicationSystem.Infrastructure.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using Respawn;
 
-namespace CleanArchitecture.Application.IntegrationTests;
+namespace OnlineApplicationSystem.Application.IntegrationTests;
 
 [SetUpFixture]
 public partial class Testing

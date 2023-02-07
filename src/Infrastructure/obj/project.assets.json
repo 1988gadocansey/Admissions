@@ -1551,34 +1551,34 @@
           }
         }
       },
-      "CleanArchitecture.Application/1.0.0": {
+      "OnlineApplicationSystem.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
-          "CleanArchitecture.Domain": "1.0.0",
+          "OnlineApplicationSystem.Domain": "1.0.0",
           "FluentValidation.DependencyInjectionExtensions": "10.3.4",
           "MediatR.Extensions.Microsoft.DependencyInjection": "9.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.0-rc.2.22472.11"
         },
         "compile": {
-          "bin/placeholder/CleanArchitecture.Application.dll": {}
+          "bin/placeholder/OnlineApplicationSystem.Application.dll": {}
         },
         "runtime": {
-          "bin/placeholder/CleanArchitecture.Application.dll": {}
+          "bin/placeholder/OnlineApplicationSystem.Application.dll": {}
         }
       },
-      "CleanArchitecture.Domain/1.0.0": {
+      "OnlineApplicationSystem.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "MediatR": "9.0.0"
         },
         "compile": {
-          "bin/placeholder/CleanArchitecture.Domain.dll": {}
+          "bin/placeholder/OnlineApplicationSystem.Domain.dll": {}
         },
         "runtime": {
-          "bin/placeholder/CleanArchitecture.Domain.dll": {}
+          "bin/placeholder/OnlineApplicationSystem.Domain.dll": {}
         }
       }
     }
@@ -4375,12 +4375,12 @@
         "version.txt"
       ]
     },
-    "CleanArchitecture.Application/1.0.0": {
+    "OnlineApplicationSystem.Application/1.0.0": {
       "type": "project",
       "path": "../Application/Application.csproj",
       "msbuildProject": "../Application/Application.csproj"
     },
-    "CleanArchitecture.Domain/1.0.0": {
+    "OnlineApplicationSystem.Domain/1.0.0": {
       "type": "project",
       "path": "../Domain/Domain.csproj",
       "msbuildProject": "../Domain/Domain.csproj"
@@ -4388,7 +4388,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "CleanArchitecture.Application >= 1.0.0",
+      "OnlineApplicationSystem.Application >= 1.0.0",
       "CsvHelper >= 15.0.10",
       "Microsoft.AspNetCore.ApiAuthorization.IdentityServer >= 7.0.0-rc.2.22476.2",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 7.0.0-rc.2.22476.2",
@@ -4404,7 +4404,7 @@
     "version": "1.0.0",
     "restore": {
       "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Infrastructure/Infrastructure.csproj",
-      "projectName": "CleanArchitecture.Infrastructure",
+      "projectName": "OnlineApplicationSystem.Infrastructure",
       "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Infrastructure/Infrastructure.csproj",
       "packagesPath": "/Users/gadocansey/.nuget/packages/",
       "outputPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Infrastructure/obj/",

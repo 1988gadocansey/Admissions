@@ -1974,41 +1974,41 @@
           }
         }
       },
-      "CleanArchitecture.Application/1.0.0": {
+      "OnlineApplicationSystem.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
-          "CleanArchitecture.Domain": "1.0.0",
+          "OnlineApplicationSystem.Domain": "1.0.0",
           "FluentValidation.DependencyInjectionExtensions": "10.3.4",
           "MediatR.Extensions.Microsoft.DependencyInjection": "9.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.0-rc.2.22472.11"
         },
         "compile": {
-          "bin/placeholder/CleanArchitecture.Application.dll": {}
+          "bin/placeholder/OnlineApplicationSystem.Application.dll": {}
         },
         "runtime": {
-          "bin/placeholder/CleanArchitecture.Application.dll": {}
+          "bin/placeholder/OnlineApplicationSystem.Application.dll": {}
         }
       },
-      "CleanArchitecture.Domain/1.0.0": {
+      "OnlineApplicationSystem.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "MediatR": "9.0.0"
         },
         "compile": {
-          "bin/placeholder/CleanArchitecture.Domain.dll": {}
+          "bin/placeholder/OnlineApplicationSystem.Domain.dll": {}
         },
         "runtime": {
-          "bin/placeholder/CleanArchitecture.Domain.dll": {}
+          "bin/placeholder/OnlineApplicationSystem.Domain.dll": {}
         }
       },
-      "CleanArchitecture.Infrastructure/1.0.0": {
+      "OnlineApplicationSystem.Infrastructure/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "CleanArchitecture.Application": "1.0.0",
+          "OnlineApplicationSystem.Application": "1.0.0",
           "CsvHelper": "15.0.10",
           "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": "7.0.0-rc.2.22476.2",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "7.0.0-rc.2.22476.2",
@@ -2017,10 +2017,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.0-rc.2.22472.11"
         },
         "compile": {
-          "bin/placeholder/CleanArchitecture.Infrastructure.dll": {}
+          "bin/placeholder/OnlineApplicationSystem.Infrastructure.dll": {}
         },
         "runtime": {
-          "bin/placeholder/CleanArchitecture.Infrastructure.dll": {}
+          "bin/placeholder/OnlineApplicationSystem.Infrastructure.dll": {}
         }
       }
     }
@@ -5698,17 +5698,17 @@
         "version.txt"
       ]
     },
-    "CleanArchitecture.Application/1.0.0": {
+    "OnlineApplicationSystem.Application/1.0.0": {
       "type": "project",
       "path": "../../src/Application/Application.csproj",
       "msbuildProject": "../../src/Application/Application.csproj"
     },
-    "CleanArchitecture.Domain/1.0.0": {
+    "OnlineApplicationSystem.Domain/1.0.0": {
       "type": "project",
       "path": "../../src/Domain/Domain.csproj",
       "msbuildProject": "../../src/Domain/Domain.csproj"
     },
-    "CleanArchitecture.Infrastructure/1.0.0": {
+    "OnlineApplicationSystem.Infrastructure/1.0.0": {
       "type": "project",
       "path": "../../src/Infrastructure/Infrastructure.csproj",
       "msbuildProject": "../../src/Infrastructure/Infrastructure.csproj"
@@ -5716,8 +5716,8 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "CleanArchitecture.Application >= 1.0.0",
-      "CleanArchitecture.Infrastructure >= 1.0.0",
+      "OnlineApplicationSystem.Application >= 1.0.0",
+      "OnlineApplicationSystem.Infrastructure >= 1.0.0",
       "FluentAssertions >= 6.7.0",
       "Microsoft.NET.Test.Sdk >= 17.3.2",
       "Moq >= 4.18.2",
@@ -5731,11 +5731,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/tests/Application.UnitTests/Application.UnitTests.csproj",
-      "projectName": "CleanArchitecture.Application.UnitTests",
-      "projectPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/tests/Application.UnitTests/Application.UnitTests.csproj",
+      "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Application.UnitTests/Application.UnitTests.csproj",
+      "projectName": "OnlineApplicationSystem.Application.UnitTests",
+      "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Application.UnitTests/Application.UnitTests.csproj",
       "packagesPath": "/Users/gadocansey/.nuget/packages/",
-      "outputPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/tests/Application.UnitTests/obj/",
+      "outputPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Application.UnitTests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/gadocansey/.nuget/NuGet/NuGet.Config"
@@ -5750,11 +5750,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Application/Application.csproj": {
-              "projectPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Application/Application.csproj"
+            "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Application/Application.csproj": {
+              "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Application/Application.csproj"
             },
-            "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Infrastructure/Infrastructure.csproj": {
-              "projectPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Infrastructure/Infrastructure.csproj"
+            "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Infrastructure/Infrastructure.csproj": {
+              "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Infrastructure/Infrastructure.csproj"
             }
           }
         }

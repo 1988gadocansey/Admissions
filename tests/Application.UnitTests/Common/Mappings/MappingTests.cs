@@ -1,12 +1,12 @@
 ﻿using System.Runtime.Serialization;
 using AutoMapper;
-using CleanArchitecture.Application.Common.Mappings;
-using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Application.TodoLists.Queries.GetTodos;
-using CleanArchitecture.Domain.Entities;
+using OnlineApplicationSystem.Application.Common.Mappings;
+using OnlineApplicationSystem.Application.Common.Models;
+using OnlineApplicationSystem.Application.TodoLists.Queries.GetTodos;
+using OnlineApplicationSystem.Domain.Entities;
 using NUnit.Framework;
 
-namespace CleanArchitecture.Application.UnitTests.Common.Mappings;
+namespace OnlineApplicationSystem.Application.UnitTests.Common.Mappings;
 
 public class MappingTests
 {
@@ -15,7 +15,7 @@ public class MappingTests
 
     public MappingTests()
     {
-        _configuration = new MapperConfiguration(config => 
+        _configuration = new MapperConfiguration(config =>
             config.AddProfile<MappingProfile>());
 
         _mapper = _configuration.CreateMapper();

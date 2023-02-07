@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Application.Common.Interfaces;
+﻿namespace OnlineApplicationSystem.Application.Common.Interfaces;
 
 public interface IDateTime
 {

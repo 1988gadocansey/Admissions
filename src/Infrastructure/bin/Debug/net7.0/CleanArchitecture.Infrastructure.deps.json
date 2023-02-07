@@ -6,9 +6,9 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v7.0": {
-      "CleanArchitecture.Infrastructure/1.0.0": {
+      "OnlineApplicationSystem.Infrastructure/1.0.0": {
         "dependencies": {
-          "CleanArchitecture.Application": "1.0.0",
+          "OnlineApplicationSystem.Application": "1.0.0",
           "CsvHelper": "15.0.10",
           "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": "7.0.0-rc.2.22476.2",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "7.0.0-rc.2.22476.2",
@@ -17,7 +17,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.0-rc.2.22472.11"
         },
         "runtime": {
-          "CleanArchitecture.Infrastructure.dll": {}
+          "OnlineApplicationSystem.Infrastructure.dll": {}
         }
       },
       "AutoMapper/11.0.0": {
@@ -838,30 +838,30 @@
           }
         }
       },
-      "CleanArchitecture.Application/1.0.0": {
+      "OnlineApplicationSystem.Application/1.0.0": {
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
-          "CleanArchitecture.Domain": "1.0.0",
+          "OnlineApplicationSystem.Domain": "1.0.0",
           "FluentValidation.DependencyInjectionExtensions": "10.3.4",
           "MediatR.Extensions.Microsoft.DependencyInjection": "9.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.0-rc.2.22472.11"
         },
         "runtime": {
-          "CleanArchitecture.Application.dll": {}
+          "OnlineApplicationSystem.Application.dll": {}
         }
       },
-      "CleanArchitecture.Domain/1.0.0": {
+      "OnlineApplicationSystem.Domain/1.0.0": {
         "dependencies": {
           "MediatR": "9.0.0"
         },
         "runtime": {
-          "CleanArchitecture.Domain.dll": {}
+          "OnlineApplicationSystem.Domain.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "CleanArchitecture.Infrastructure/1.0.0": {
+    "OnlineApplicationSystem.Infrastructure/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -1503,12 +1503,12 @@
       "path": "system.windows.extensions/5.0.0",
       "hashPath": "system.windows.extensions.5.0.0.nupkg.sha512"
     },
-    "CleanArchitecture.Application/1.0.0": {
+    "OnlineApplicationSystem.Application/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "CleanArchitecture.Domain/1.0.0": {
+    "OnlineApplicationSystem.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

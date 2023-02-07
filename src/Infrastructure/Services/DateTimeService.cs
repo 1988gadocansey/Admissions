@@ -1,6 +1,6 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
+﻿using OnlineApplicationSystem.Application.Common.Interfaces;
 
-namespace CleanArchitecture.Infrastructure.Services;
+namespace OnlineApplicationSystem.Infrastructure.Services;
 
 public class DateTimeService : IDateTime
 {

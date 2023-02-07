@@ -27,4 +27,4 @@ do
   echo killing $child;
   kill -s KILL $child;
 done;
-rm /Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/WebUI/bin/Debug/net7.0/3efed579cffb4365a49b147aca67a40e.sh;
+rm /Users/gadocansey/Projects/TTU_ADIMISSIONS/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/3efed579cffb4365a49b147aca67a40e.sh;

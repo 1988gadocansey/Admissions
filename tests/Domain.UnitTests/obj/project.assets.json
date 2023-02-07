@@ -1025,17 +1025,17 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "CleanArchitecture.Domain/1.0.0": {
+      "OnlineApplicationSystem.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "MediatR": "9.0.0"
         },
         "compile": {
-          "bin/placeholder/CleanArchitecture.Domain.dll": {}
+          "bin/placeholder/OnlineApplicationSystem.Domain.dll": {}
         },
         "runtime": {
-          "bin/placeholder/CleanArchitecture.Domain.dll": {}
+          "bin/placeholder/OnlineApplicationSystem.Domain.dll": {}
         }
       }
     }
@@ -4052,7 +4052,7 @@
         "system.xml.xdocument.nuspec"
       ]
     },
-    "CleanArchitecture.Domain/1.0.0": {
+    "OnlineApplicationSystem.Domain/1.0.0": {
       "type": "project",
       "path": "../../src/Domain/Domain.csproj",
       "msbuildProject": "../../src/Domain/Domain.csproj"
@@ -4060,7 +4060,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "CleanArchitecture.Domain >= 1.0.0",
+      "OnlineApplicationSystem.Domain >= 1.0.0",
       "FluentAssertions >= 6.7.0",
       "Microsoft.NET.Test.Sdk >= 17.3.2",
       "NUnit3TestAdapter >= 4.2.1",
@@ -4073,11 +4073,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/tests/Domain.UnitTests/Domain.UnitTests.csproj",
-      "projectName": "CleanArchitecture.Domain.UnitTests",
-      "projectPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/tests/Domain.UnitTests/Domain.UnitTests.csproj",
+      "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Domain.UnitTests/Domain.UnitTests.csproj",
+      "projectName": "OnlineApplicationSystem.Domain.UnitTests",
+      "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Domain.UnitTests/Domain.UnitTests.csproj",
       "packagesPath": "/Users/gadocansey/.nuget/packages/",
-      "outputPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/tests/Domain.UnitTests/obj/",
+      "outputPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Domain.UnitTests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/gadocansey/.nuget/NuGet/NuGet.Config"
@@ -4092,8 +4092,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Domain/Domain.csproj": {
-              "projectPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Domain/Domain.csproj"
+            "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/Domain.csproj": {
+              "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/Domain.csproj"
             }
           }
         }

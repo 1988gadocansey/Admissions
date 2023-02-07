@@ -1,10 +1,10 @@
-﻿using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.Entities;
-using CleanArchitecture.Domain.Events;
+﻿using OnlineApplicationSystem.Application.Common.Exceptions;
+using OnlineApplicationSystem.Application.Common.Interfaces;
+using OnlineApplicationSystem.Domain.Entities;
+using OnlineApplicationSystem.Domain.Events;
 using MediatR;
 
-namespace CleanArchitecture.Application.TodoItems.Commands.DeleteTodoItem;
+namespace OnlineApplicationSystem.Application.TodoItems.Commands.DeleteTodoItem;
 
 public record DeleteTodoItemCommand(int Id) : IRequest;
 

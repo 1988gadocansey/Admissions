@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/tests/Application.IntegrationTests/Application.IntegrationTests.csproj": {}
+    "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Application.IntegrationTests/Application.IntegrationTests.csproj": {}
   },
   "projects": {
-    "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Application/Application.csproj": {
+    "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Application/Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Application/Application.csproj",
-        "projectName": "CleanArchitecture.Application",
-        "projectPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Application/Application.csproj",
+        "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Application/Application.csproj",
+        "projectName": "OnlineApplicationSystem.Application",
+        "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Application/Application.csproj",
         "packagesPath": "/Users/gadocansey/.nuget/packages/",
-        "outputPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Application/obj/",
+        "outputPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/gadocansey/.nuget/NuGet/NuGet.Config"
@@ -26,8 +26,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Domain/Domain.csproj": {
-                "projectPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Domain/Domain.csproj"
+              "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/Domain.csproj": {
+                "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/Domain.csproj"
               }
             }
           }
@@ -79,14 +79,14 @@
         }
       }
     },
-    "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Domain/Domain.csproj": {
+    "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Domain/Domain.csproj",
-        "projectName": "CleanArchitecture.Domain",
-        "projectPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Domain/Domain.csproj",
+        "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/Domain.csproj",
+        "projectName": "OnlineApplicationSystem.Domain",
+        "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/Domain.csproj",
         "packagesPath": "/Users/gadocansey/.nuget/packages/",
-        "outputPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Domain/obj/",
+        "outputPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/gadocansey/.nuget/NuGet/NuGet.Config"
@@ -138,14 +138,14 @@
         }
       }
     },
-    "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Infrastructure/Infrastructure.csproj": {
+    "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Infrastructure/Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Infrastructure/Infrastructure.csproj",
-        "projectName": "CleanArchitecture.Infrastructure",
-        "projectPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Infrastructure/Infrastructure.csproj",
+        "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Infrastructure/Infrastructure.csproj",
+        "projectName": "OnlineApplicationSystem.Infrastructure",
+        "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Infrastructure/Infrastructure.csproj",
         "packagesPath": "/Users/gadocansey/.nuget/packages/",
-        "outputPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Infrastructure/obj/",
+        "outputPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/gadocansey/.nuget/NuGet/NuGet.Config"
@@ -160,8 +160,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Application/Application.csproj": {
-                "projectPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Application/Application.csproj"
+              "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Application/Application.csproj": {
+                "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Application/Application.csproj"
               }
             }
           }
@@ -221,14 +221,14 @@
         }
       }
     },
-    "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/WebUI/WebUI.csproj": {
+    "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/WebUI/WebUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/WebUI/WebUI.csproj",
+        "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/WebUI/WebUI.csproj",
         "projectName": "WebUI",
-        "projectPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/WebUI/WebUI.csproj",
+        "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/WebUI/WebUI.csproj",
         "packagesPath": "/Users/gadocansey/.nuget/packages/",
-        "outputPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/WebUI/obj/",
+        "outputPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/WebUI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/gadocansey/.nuget/NuGet/NuGet.Config"
@@ -243,11 +243,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Application/Application.csproj": {
-                "projectPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Application/Application.csproj"
+              "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Application/Application.csproj": {
+                "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Application/Application.csproj"
               },
-              "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Infrastructure/Infrastructure.csproj": {
-                "projectPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/Infrastructure/Infrastructure.csproj"
+              "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Infrastructure/Infrastructure.csproj": {
+                "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Infrastructure/Infrastructure.csproj"
               }
             }
           }
@@ -336,14 +336,14 @@
         }
       }
     },
-    "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/tests/Application.IntegrationTests/Application.IntegrationTests.csproj": {
+    "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Application.IntegrationTests/Application.IntegrationTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/tests/Application.IntegrationTests/Application.IntegrationTests.csproj",
-        "projectName": "CleanArchitecture.Application.IntegrationTests",
-        "projectPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/tests/Application.IntegrationTests/Application.IntegrationTests.csproj",
+        "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Application.IntegrationTests/Application.IntegrationTests.csproj",
+        "projectName": "OnlineApplicationSystem.Application.IntegrationTests",
+        "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Application.IntegrationTests/Application.IntegrationTests.csproj",
         "packagesPath": "/Users/gadocansey/.nuget/packages/",
-        "outputPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/tests/Application.IntegrationTests/obj/",
+        "outputPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Application.IntegrationTests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/gadocansey/.nuget/NuGet/NuGet.Config"
@@ -358,8 +358,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/WebUI/WebUI.csproj": {
-                "projectPath": "/Users/gadocansey/Projects/TTU_ADIMISSIONS/CleanArchitecture/src/WebUI/WebUI.csproj"
+              "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/WebUI/WebUI.csproj": {
+                "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/WebUI/WebUI.csproj"
               }
             }
           }

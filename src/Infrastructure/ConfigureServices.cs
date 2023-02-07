@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Infrastructure.Files;
-using CleanArchitecture.Infrastructure.Identity;
-using CleanArchitecture.Infrastructure.Persistence;
-using CleanArchitecture.Infrastructure.Persistence.Interceptors;
-using CleanArchitecture.Infrastructure.Services;
+﻿using OnlineApplicationSystem.Application.Common.Interfaces;
+using OnlineApplicationSystem.Infrastructure.Files;
+using OnlineApplicationSystem.Infrastructure.Identity;
+using OnlineApplicationSystem.Infrastructure.Persistence;
+using OnlineApplicationSystem.Infrastructure.Persistence.Interceptors;
+using OnlineApplicationSystem.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +20,7 @@ public static class ConfigureServices
         if (configuration.GetValue<bool>("UseInMemoryDatabase"))
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseInMemoryDatabase("CleanArchitectureDb"));
+                options.UseInMemoryDatabase("OnlineApplicationSystemDb"));
         }
         else
         {

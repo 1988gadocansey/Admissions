@@ -1,7 +1,7 @@
-﻿using CleanArchitecture.Domain.Entities;
+﻿using OnlineApplicationSystem.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace CleanArchitecture.Application.Common.Interfaces;
+namespace OnlineApplicationSystem.Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {
