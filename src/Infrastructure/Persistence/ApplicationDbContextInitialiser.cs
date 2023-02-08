@@ -23,10 +23,10 @@ public class ApplicationDbContextInitialiser
 
     public async Task InitialiseAsync()
     {
-         
-                await _context.Database.MigrateAsync();
-            
-         
+
+        await _context.Database.MigrateAsync();
+
+
     }
 
     public async Task SeedAsync()
@@ -56,7 +56,7 @@ public class ApplicationDbContextInitialiser
         //var administrator = new ApplicationUser { UserName = "administrator@localhost", Email = "administrator@localhost" };
         var administrator = new ApplicationUser
         {
-            UserName = "administrator@localhost", 
+            UserName = "administrator@localhost",
             Email = "administrator@localhost",
             FormCompleted = 1,
             FormNo = "20210101",
@@ -76,7 +76,6 @@ public class ApplicationDbContextInitialiser
             FullName = "Gad Ocansey",
             Year = "2022",
             LastLogin = DateTime.UtcNow
-
 
         };
         if (_userManager.Users.All(u => u.UserName != administrator.UserName))

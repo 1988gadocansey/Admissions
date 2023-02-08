@@ -47,41 +47,28 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<ApplicantModel>
         });
         builder.OwnsOne(x => x.HallFeesPaid, nameBuilder =>
         {
-            nameBuilder.Property(p => p.Amount).HasColumnName("Amount").IsRequired();
-            nameBuilder.Property(p => p.Currency).HasColumnName("Currency").IsRequired();
+            nameBuilder.Property(p => p.Amount).HasColumnName("HallFeesPaid").IsRequired();
+            nameBuilder.Property(p => p.Currency).HasColumnName("HallFeesPaidCurrency");
 
         });
-
-        /*builder.OwnsOne(x => x.Address, nameBuilder =>
-        {
-            nameBuilder.Property(p => p.Box).HasColumnName("Box").IsRequired();
-            nameBuilder.Property(p => p.City).HasColumnName("City").IsRequired();
-            nameBuilder.Property(p => p.Street).HasColumnName("Street").IsRequired();
-            nameBuilder.Property(p => p.HouseNumber).HasColumnName("HouseNumber").IsRequired();
-            nameBuilder.Property(p => p.GPRS).HasColumnName("GPRS").IsRequired();
-            
-        });*/
 
         builder.OwnsOne(x => x.FeesPaid, nameBuilder =>
         {
-            nameBuilder.Property(p => p.Amount).HasColumnName("Amount").IsRequired();
-            nameBuilder.Property(p => p.Currency).HasColumnName("Currency").IsRequired();
+            nameBuilder.Property(p => p.Amount).HasColumnName("FeesPaid").IsRequired();
+            nameBuilder.Property(p => p.Currency).HasColumnName("FeesPaidCurrency");
 
         });
 
-
         builder.Property(x => x.Email)
             .HasColumnName("Email")
-            .HasConversion(email => email.Value, value => new EmailAddress(value))
-            .IsRequired();
+            .HasConversion(email => email.Value, value => new EmailAddress(value));
         builder.Property(x => x.Phone)
             .HasColumnName("Phone")
             .HasConversion(phone => phone.FullNumber(), value => new PhoneNumber(value, value))
             .IsRequired();
         builder.Property(x => x.AltPhone)
             .HasColumnName("AltPhone")
-            .HasConversion(phone => phone.FullNumber(), value => new PhoneNumber(value, value))
-            .IsRequired();
+            .HasConversion(phone => phone.FullNumber(), value => new PhoneNumber(value, value));
         builder.Property(x => x.GuardianPhone)
             .HasColumnName("GuardianPhone")
             .HasConversion(phone => phone.FullNumber(), value => new PhoneNumber(value, value))
@@ -104,20 +91,20 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<ApplicantModel>
             converted => new MaritalStatus()
             ); */
 
-        /*
-        builder.OwnsOne(x => x.FeesPaid, nameBuilder =>
-        {
-            nameBuilder.Property(p => p.Currency).HasColumnName("FeesPaid").IsRequired();
-            nameBuilder.Property(p => p.Amount).HasColumnName("FeesPaid").IsRequired();
-             
-        });
-        
-        builder.OwnsOne(x => x.HallFeesPaid, nameBuilder =>
-        {
-            nameBuilder.Property(p => p.Currency).HasColumnName("HallFeesPaid").IsRequired();
-            nameBuilder.Property(p => p.Amount).HasColumnName("HallFeesPaid").IsRequired();
-             
-        });*/
+
+        /*   builder.OwnsOne(x => x.FeesPaid, nameBuilder =>
+          {
+              nameBuilder.Property(p => p.Currency).HasColumnName("FeesPaid").IsRequired();
+              nameBuilder.Property(p => p.Amount).HasColumnName("FeesPaid").IsRequired();
+
+          });
+
+          builder.OwnsOne(x => x.HallFeesPaid, nameBuilder =>
+          {
+              nameBuilder.Property(p => p.Currency).HasColumnName("HallFeesPaid").IsRequired();
+              nameBuilder.Property(p => p.Amount).HasColumnName("HallFeesPaid").IsRequired();
+
+          }); */
 
 
         builder.Property(x => x.ApplicationNumber)

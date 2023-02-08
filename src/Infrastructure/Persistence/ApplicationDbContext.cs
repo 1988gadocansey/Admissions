@@ -32,7 +32,7 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
     public DbSet<ApplicantModel> ApplicantModel => Set<ApplicantModel>();
     public DbSet<ConfigurationModel> ConfigurationModel => Set<ConfigurationModel>();
     public DbSet<FormNoModel> FormNoModel => Set<FormNoModel>();
-    public DbSet<AcademicExperienceModel> AcademicExperienceModel  => Set<AcademicExperienceModel>();
+    public DbSet<AcademicExperienceModel> AcademicExperienceModel => Set<AcademicExperienceModel>();
     public DbSet<BankModel> BankModel => Set<BankModel>();
     public DbSet<FormerSchoolModel> FormerSchoolModel => Set<FormerSchoolModel>();
     public DbSet<DenominationModel> DenominationModel => Set<DenominationModel>();
@@ -54,7 +54,7 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
     public DbSet<Address> Address => Set<Address>();
     public DbSet<LanguageModel> LanguageModel => Set<LanguageModel>();
     public DbSet<ProgrammeModel> ProgrammeModel => Set<ProgrammeModel>();
-    public DbSet<ResultUploadModel> ResultUploadModel=> Set<ResultUploadModel>();
+    public DbSet<ResultUploadModel> ResultUploadModel => Set<ResultUploadModel>();
     public DbSet<WorkingExperienceModel> WorkingExperienceModel => Set<WorkingExperienceModel>();
     public DbSet<ApplicantIssueModel> ApplicantIssueModel => Set<ApplicantIssueModel>();
     public DbSet<ResearchPublication> ResearchPublications => Set<ResearchPublication>();
@@ -77,4 +77,6 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
 
         return await base.SaveChangesAsync(cancellationToken);
     }
+
+
 }
