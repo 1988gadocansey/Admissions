@@ -6,6 +6,8 @@ public enum ApplicationType
     Diploma,
     HND,
     BTECH,
+    TOPUP_DIPLOMA,
+    TOPUP_CERTIFICATE,
     MTECH,
     Degree,
     Masters,

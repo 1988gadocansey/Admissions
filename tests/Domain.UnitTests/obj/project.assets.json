@@ -73,6 +73,19 @@
           "lib/netstandard1.3/Microsoft.CSharp.dll": {}
         }
       },
+      "Microsoft.EntityFrameworkCore.Abstractions/7.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.NET.Test.Sdk/17.3.2": {
         "type": "package",
         "dependencies": {
@@ -1029,7 +1042,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "MediatR": "9.0.0"
+          "MediatR": "9.0.0",
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.1"
         },
         "compile": {
           "bin/placeholder/OnlineApplicationSystem.Domain.dll": {}
@@ -1210,6 +1224,20 @@
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.Abstractions/7.0.1": {
+      "sha512": "pPaoi2RHAkrsJ2kcGZGBiJFUXSS1LC+qET6HCn4hXP+X/kvIriJLv8lx6ddI6gTluGvm/lDgPAA0zZDXYaKf3A==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.abstractions/7.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll",
+        "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.xml",
+        "microsoft.entityframeworkcore.abstractions.7.0.1.nupkg.sha512",
+        "microsoft.entityframeworkcore.abstractions.nuspec"
       ]
     },
     "Microsoft.NET.Test.Sdk/17.3.2": {
@@ -4060,10 +4088,10 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "OnlineApplicationSystem.Domain >= 1.0.0",
       "FluentAssertions >= 6.7.0",
       "Microsoft.NET.Test.Sdk >= 17.3.2",
       "NUnit3TestAdapter >= 4.2.1",
+      "OnlineApplicationSystem.Domain >= 1.0.0",
       "nunit >= 3.13.3"
     ]
   },
@@ -4073,11 +4101,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Domain.UnitTests/Domain.UnitTests.csproj",
+      "projectUniqueName": "/Users/gadocansey/Projects/OnlineApplicationSystem/tests/Domain.UnitTests/Domain.UnitTests.csproj",
       "projectName": "OnlineApplicationSystem.Domain.UnitTests",
-      "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Domain.UnitTests/Domain.UnitTests.csproj",
+      "projectPath": "/Users/gadocansey/Projects/OnlineApplicationSystem/tests/Domain.UnitTests/Domain.UnitTests.csproj",
       "packagesPath": "/Users/gadocansey/.nuget/packages/",
-      "outputPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Domain.UnitTests/obj/",
+      "outputPath": "/Users/gadocansey/Projects/OnlineApplicationSystem/tests/Domain.UnitTests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/gadocansey/.nuget/NuGet/NuGet.Config"
@@ -4092,8 +4120,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/Domain.csproj": {
-              "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/Domain.csproj"
+            "/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/Domain.csproj": {
+              "projectPath": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/Domain.csproj"
             }
           }
         }

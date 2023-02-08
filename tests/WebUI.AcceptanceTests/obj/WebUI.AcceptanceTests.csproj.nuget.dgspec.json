@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/WebUI.AcceptanceTests/WebUI.AcceptanceTests.csproj": {}
+    "/Users/gadocansey/Projects/OnlineApplicationSystem/tests/WebUI.AcceptanceTests/WebUI.AcceptanceTests.csproj": {}
   },
   "projects": {
-    "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/WebUI.AcceptanceTests/WebUI.AcceptanceTests.csproj": {
+    "/Users/gadocansey/Projects/OnlineApplicationSystem/tests/WebUI.AcceptanceTests/WebUI.AcceptanceTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/WebUI.AcceptanceTests/WebUI.AcceptanceTests.csproj",
+        "projectUniqueName": "/Users/gadocansey/Projects/OnlineApplicationSystem/tests/WebUI.AcceptanceTests/WebUI.AcceptanceTests.csproj",
         "projectName": "OnlineApplicationSystem.WebUI.AcceptanceTests",
-        "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/WebUI.AcceptanceTests/WebUI.AcceptanceTests.csproj",
+        "projectPath": "/Users/gadocansey/Projects/OnlineApplicationSystem/tests/WebUI.AcceptanceTests/WebUI.AcceptanceTests.csproj",
         "packagesPath": "/Users/gadocansey/.nuget/packages/",
-        "outputPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/WebUI.AcceptanceTests/obj/",
+        "outputPath": "/Users/gadocansey/Projects/OnlineApplicationSystem/tests/WebUI.AcceptanceTests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/gadocansey/.nuget/NuGet/NuGet.Config"

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Domain.UnitTests/Domain.UnitTests.csproj": {}
+    "/Users/gadocansey/Projects/OnlineApplicationSystem/tests/Domain.UnitTests/Domain.UnitTests.csproj": {}
   },
   "projects": {
-    "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/Domain.csproj": {
+    "/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/Domain.csproj",
+        "projectUniqueName": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/Domain.csproj",
         "projectName": "OnlineApplicationSystem.Domain",
-        "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/Domain.csproj",
+        "projectPath": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/Domain.csproj",
         "packagesPath": "/Users/gadocansey/.nuget/packages/",
-        "outputPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/obj/",
+        "outputPath": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/gadocansey/.nuget/NuGet/NuGet.Config"
@@ -41,6 +41,10 @@
             "MediatR": {
               "target": "Package",
               "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Abstractions": {
+              "target": "Package",
+              "version": "[7.0.1, )"
             }
           },
           "imports": [
@@ -63,14 +67,14 @@
         }
       }
     },
-    "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Domain.UnitTests/Domain.UnitTests.csproj": {
+    "/Users/gadocansey/Projects/OnlineApplicationSystem/tests/Domain.UnitTests/Domain.UnitTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Domain.UnitTests/Domain.UnitTests.csproj",
+        "projectUniqueName": "/Users/gadocansey/Projects/OnlineApplicationSystem/tests/Domain.UnitTests/Domain.UnitTests.csproj",
         "projectName": "OnlineApplicationSystem.Domain.UnitTests",
-        "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Domain.UnitTests/Domain.UnitTests.csproj",
+        "projectPath": "/Users/gadocansey/Projects/OnlineApplicationSystem/tests/Domain.UnitTests/Domain.UnitTests.csproj",
         "packagesPath": "/Users/gadocansey/.nuget/packages/",
-        "outputPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/Domain.UnitTests/obj/",
+        "outputPath": "/Users/gadocansey/Projects/OnlineApplicationSystem/tests/Domain.UnitTests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/gadocansey/.nuget/NuGet/NuGet.Config"
@@ -85,8 +89,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/Domain.csproj": {
-                "projectPath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/Domain.csproj"
+              "/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/Domain.csproj": {
+                "projectPath": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/Domain.csproj"
               }
             }
           }

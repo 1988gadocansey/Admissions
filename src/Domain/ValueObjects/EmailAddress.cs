@@ -1,5 +1,9 @@
-namespace OnlineApplicationSystem.Domain.ValueObjects;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
+namespace OnlineApplicationSystem.Domain.ValueObjects;
+[Keyless]
+[NotMapped]
 public class EmailAddress : ValueObject
 {
     public string Value { get; }

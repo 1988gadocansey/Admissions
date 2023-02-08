@@ -23,18 +23,10 @@ public class ApplicationDbContextInitialiser
 
     public async Task InitialiseAsync()
     {
-        try
-        {
-            if (_context.Database.IsSqlServer())
-            {
+         
                 await _context.Database.MigrateAsync();
-            }
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "An error occurred while initialising the database.");
-            throw;
-        }
+            
+         
     }
 
     public async Task SeedAsync()
@@ -61,8 +53,32 @@ public class ApplicationDbContextInitialiser
         }
 
         // Default users
-        var administrator = new ApplicationUser { UserName = "administrator@localhost", Email = "administrator@localhost" };
+        //var administrator = new ApplicationUser { UserName = "administrator@localhost", Email = "administrator@localhost" };
+        var administrator = new ApplicationUser
+        {
+            UserName = "administrator@localhost", 
+            Email = "administrator@localhost",
+            FormCompleted = 1,
+            FormNo = "20210101",
+            Branch = "Tema C4",
+            Pin = "100010",
+            Sold = 1,
+            Started = 1,
+            PhoneNumber = "0243348522",
+            Admitted = false,
+            Teller = "Agnes Sam",
+            Type = "HND",
+            TellerPhone = "0556224022",
+            PictureUploaded = 1,
+            ResultUploaded = true,
+            Finalized = 0,
+            SoldBy = "GCB",
+            FullName = "Gad Ocansey",
+            Year = "2022",
+            LastLogin = DateTime.UtcNow
 
+
+        };
         if (_userManager.Users.All(u => u.UserName != administrator.UserName))
         {
             await _userManager.CreateAsync(administrator, "Administrator1!");

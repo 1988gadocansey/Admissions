@@ -2,7 +2,7 @@
 "SpaProxyServer": {
 "ServerUrl": "https://localhost:44447",
 "LaunchCommand": "npm start",
-"WorkingDirectory": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/WebUI/ClientApp/",
+"WorkingDirectory": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/ClientApp/",
 "MaxTimeoutInSeconds": "120"
 }
 }

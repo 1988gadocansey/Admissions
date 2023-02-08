@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dAxTxhW4urhw3UV5p90hQiH+NBxwes0y8vuTKoaR+ViNYXdlCiZnm3hTIff5B1V2DX2BuPsl1Z8U0tkdfijR3w==",
+  "dgSpecHash": "TI++qovReLnEbkHSar5SMt1ZoxR/pNBsH78EAi/WyQJOuFPLhcH++rkuZQAgYKcdXwdy7RPluaPs7B3lq2Y8Gg==",
   "success": true,
-  "projectFilePath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/tests/WebUI.AcceptanceTests/WebUI.AcceptanceTests.csproj",
+  "projectFilePath": "/Users/gadocansey/Projects/OnlineApplicationSystem/tests/WebUI.AcceptanceTests/WebUI.AcceptanceTests.csproj",
   "expectedPackageFiles": [
     "/Users/gadocansey/.nuget/packages/bodi/1.5.0/bodi.1.5.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/fluentassertions/6.2.0/fluentassertions.6.2.0.nupkg.sha512",

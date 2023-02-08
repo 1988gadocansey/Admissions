@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zq9azx/5FTUoA6PcdGbvk6vpVSp2jhOElVY1Psg21A4DtvtNCY0BUwyHTHUCuGiFjfMyJOV/N5xPT5QTvdRLZA==",
+  "dgSpecHash": "6L7xfKZak01ZcBrdfg6vAwDoviKca/ZM2hmaVDzeL9PRw/YDrqMFTO2m+5hoZkQRwfJ1y09CHRIjAa7WRAOKYA==",
   "success": true,
-  "projectFilePath": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/Application/Application.csproj",
+  "projectFilePath": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/Application/Application.csproj",
   "expectedPackageFiles": [
     "/Users/gadocansey/.nuget/packages/automapper/11.0.0/automapper.11.0.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/11.0.0/automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
@@ -12,7 +12,7 @@
     "/Users/gadocansey/.nuget/packages/mediatr.extensions.microsoft.dependencyinjection/9.0.0/mediatr.extensions.microsoft.dependencyinjection.9.0.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/microsoft.entityframeworkcore/7.0.0-rc.2.22472.11/microsoft.entityframeworkcore.7.0.0-rc.2.22472.11.nupkg.sha512",
-    "/Users/gadocansey/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.0-rc.2.22472.11/microsoft.entityframeworkcore.abstractions.7.0.0-rc.2.22472.11.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.1/microsoft.entityframeworkcore.abstractions.7.0.1.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.0-rc.2.22472.11/microsoft.entityframeworkcore.analyzers.7.0.0-rc.2.22472.11.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/microsoft.extensions.caching.abstractions/7.0.0-rc.2.22472.3/microsoft.extensions.caching.abstractions.7.0.0-rc.2.22472.3.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/microsoft.extensions.caching.memory/7.0.0-rc.2.22472.3/microsoft.extensions.caching.memory.7.0.0-rc.2.22472.3.nupkg.sha512",
@@ -21,7 +21,14 @@
     "/Users/gadocansey/.nuget/packages/microsoft.extensions.logging/7.0.0-rc.2.22472.3/microsoft.extensions.logging.7.0.0-rc.2.22472.3.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/microsoft.extensions.logging.abstractions/7.0.0-rc.2.22472.3/microsoft.extensions.logging.abstractions.7.0.0-rc.2.22472.3.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/microsoft.extensions.options/7.0.0-rc.2.22472.3/microsoft.extensions.options.7.0.0-rc.2.22472.3.nupkg.sha512",
-    "/Users/gadocansey/.nuget/packages/microsoft.extensions.primitives/7.0.0-rc.2.22472.3/microsoft.extensions.primitives.7.0.0-rc.2.22472.3.nupkg.sha512"
+    "/Users/gadocansey/.nuget/packages/microsoft.extensions.primitives/7.0.0-rc.2.22472.3/microsoft.extensions.primitives.7.0.0-rc.2.22472.3.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/microsoft.netcore.platforms/5.0.0/microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/microsoft.win32.systemevents/7.0.0/microsoft.win32.systemevents.7.0.0.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/restsharp/109.0.0-preview.1/restsharp.109.0.0-preview.1.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/sixlabors.imagesharp/2.1.3/sixlabors.imagesharp.2.1.3.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/system.drawing.common/7.0.0/system.drawing.common.7.0.0.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/system.runtime.compilerservices.unsafe/5.0.0/system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/system.text.encoding.codepages/5.0.0/system.text.encoding.codepages.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -27,7 +27,12 @@ namespace OnlineApplicationSystem.Domain.Entities
         public bool Age { set; get; }
         public bool FormCompletion { set; get; }
         public bool Qualification { set; get; }
-        public string IssuesOne { set; get; }
+        public bool? DocumentUpload { set; get; }
+        public bool? WorkingExperience { set; get; }
+        public bool? AcademicExperience { set; get; }
+        public bool? ResearchInformation { set; get; }
+        public bool? Referee { set; get; }
+
 
         public ApplicantIssueModel()
         {

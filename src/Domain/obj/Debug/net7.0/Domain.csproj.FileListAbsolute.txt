@@ -22,3 +22,15 @@
 /Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/obj/Debug/net7.0/refint/OnlineApplicationSystem.Domain.dll
 /Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/obj/Debug/net7.0/OnlineApplicationSystem.Domain.pdb
 /Users/gadocansey/Projects/TTU_ADMISSIONS/src/Domain/obj/Debug/net7.0/ref/OnlineApplicationSystem.Domain.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/bin/Debug/net7.0/OnlineApplicationSystem.Domain.deps.json
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/bin/Debug/net7.0/OnlineApplicationSystem.Domain.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/bin/Debug/net7.0/OnlineApplicationSystem.Domain.pdb
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/obj/Debug/net7.0/Domain.csproj.AssemblyReference.cache
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/obj/Debug/net7.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/obj/Debug/net7.0/Domain.AssemblyInfoInputs.cache
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/obj/Debug/net7.0/Domain.AssemblyInfo.cs
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/obj/Debug/net7.0/Domain.csproj.CoreCompileInputs.cache
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/obj/Debug/net7.0/OnlineApplicationSystem.Domain.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/obj/Debug/net7.0/refint/OnlineApplicationSystem.Domain.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/obj/Debug/net7.0/OnlineApplicationSystem.Domain.pdb
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/obj/Debug/net7.0/ref/OnlineApplicationSystem.Domain.dll

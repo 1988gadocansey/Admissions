@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fdRPhcW0yxz0Vi7quSHm79QssTpu2Xllx04wCJe0OWU=",
+  "Hash": "/GLV/bo4nB1vU3xL2xomN7ZOp1c/AiDIO+Gzr7ZWuEs=",
   "Source": "WebUI",
   "BasePath": "_content/WebUI",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "WebUI/wwwroot",
       "Source": "WebUI",
-      "ContentRoot": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/WebUI/wwwroot/",
+      "ContentRoot": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/",
       "BasePath": "_content/WebUI",
       "Pattern": "**"
     }
@@ -1037,10 +1037,10 @@
       "OriginalItemSpec": "/Users/gadocansey/.nuget/packages/microsoft.aspnetcore.identity.ui/7.0.0-rc.2.22476.2/staticwebassets/V5/lib/jquery/LICENSE.txt"
     },
     {
-      "Identity": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/WebUI/wwwroot/api/specification.json",
+      "Identity": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/api/specification.json",
       "SourceId": "WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/WebUI/wwwroot/",
+      "ContentRoot": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/",
       "BasePath": "_content/WebUI",
       "RelativePath": "api/specification.json",
       "AssetKind": "All",
@@ -1054,10 +1054,10 @@
       "OriginalItemSpec": "wwwroot/api/specification.json"
     },
     {
-      "Identity": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/WebUI/wwwroot/favicon.ico",
+      "Identity": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/favicon.ico",
       "SourceId": "WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/WebUI/wwwroot/",
+      "ContentRoot": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/",
       "BasePath": "_content/WebUI",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",

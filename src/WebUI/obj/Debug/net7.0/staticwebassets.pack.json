@@ -1,11 +1,11 @@
 {
   "Files": [
     {
-      "Id": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/WebUI/wwwroot/api/specification.json",
+      "Id": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/api/specification.json",
       "PackagePath": "staticwebassets/api/specification.json"
     },
     {
-      "Id": "/Users/gadocansey/Projects/TTU_ADMISSIONS/src/WebUI/wwwroot/favicon.ico",
+      "Id": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/favicon.ico",
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
