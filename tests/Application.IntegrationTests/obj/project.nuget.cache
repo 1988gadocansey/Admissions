@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "aPLrXYzYl6QcjWkm6FHwQ+cuq9K/4f2gooJ3Gqh85amb7u3rjTFj85JewEtjHxzn+U6roD1BOKJu08NpNl6mCQ==",
+  "dgSpecHash": "2JdqlztCko0F9cyGxAReg0wFb8VgKgoV3//UdtnU7GeqyjGd40Xwto0lCgU8h8f2Qv5YWoyu6DPIu9PZKheiHQ==",
   "success": true,
   "projectFilePath": "/Users/gadocansey/Projects/OnlineApplicationSystem/tests/Application.IntegrationTests/Application.IntegrationTests.csproj",
   "expectedPackageFiles": [
@@ -121,6 +121,8 @@
     "/Users/gadocansey/.nuget/packages/respawn/4.0.0/respawn.4.0.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/restsharp/109.0.0-preview.1/restsharp.109.0.0-preview.1.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/sixlabors.imagesharp/2.1.3/sixlabors.imagesharp.2.1.3.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/ssh.net/2020.0.2/ssh.net.2020.0.2.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/sshnet.security.cryptography/1.3.0/sshnet.security.cryptography.1.3.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/system.codedom/4.4.0/system.codedom.4.4.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/system.configuration.configurationmanager/5.0.0/system.configuration.configurationmanager.5.0.0.nupkg.sha512",

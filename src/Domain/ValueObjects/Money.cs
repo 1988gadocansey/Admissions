@@ -6,6 +6,15 @@ namespace OnlineApplicationSystem.Domain.ValueObjects;
 [NotMapped]
 public class Money : ValueObject
 {
+    public static Money Create(string currency, decimal amount)
+    {
+        if (amount < 0)
+        {
+            throw new Exception("Invalid number for a money");
+        }
+        return new Money(currency, amount);
+    }
+
     public Money(string currency, decimal amount)
     {
         if (amount < 0)

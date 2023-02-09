@@ -7,6 +7,11 @@ namespace OnlineApplicationSystem.Domain.ValueObjects;
 public class EmailAddress : ValueObject
 {
     public string Value { get; }
+
+    public static EmailAddress Create(string value)
+    {
+        return new EmailAddress(value);
+    }
     private EmailAddress() { }
     public EmailAddress(string value)
     {

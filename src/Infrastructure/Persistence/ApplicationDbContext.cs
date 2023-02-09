@@ -59,6 +59,7 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
     public DbSet<ApplicantIssueModel> ApplicantIssueModel => Set<ApplicantIssueModel>();
     public DbSet<ResearchPublication> ResearchPublications => Set<ResearchPublication>();
     public DbSet<ResearchModel> Researches => Set<ResearchModel>();
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

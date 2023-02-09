@@ -9,8 +9,11 @@ public interface IApplicationDbContext
 
     DbSet<TodoItem> TodoItems { get; }
 
+
+    public DbSet<ApplicantModel> ApplicantModel { get; }
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
-
+    // Task<int> CommitAsync(CancellationToken cancellationToken);
 
 }

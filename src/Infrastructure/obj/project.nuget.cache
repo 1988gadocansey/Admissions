@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "cWrpdOdn2cL294q5KZgQ24q3/4XNuuCfTJMo8eR/kqOYdVoklOI9EM4X8wTl3CWK6UUWlMTzsNVNlort2T+sDA==",
+  "dgSpecHash": "3CmH7y6nJuAHM/rejTvLENFxXKjpsRgLJsXS2XZrbzV/v3H2UnPp8qhXhUQ5Ll86+L2YLmDC12n6BKtnzWWJHg==",
   "success": true,
   "projectFilePath": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/Infrastructure/Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -71,6 +71,8 @@
     "/Users/gadocansey/.nuget/packages/npgsql.entityframeworkcore.postgresql/7.0.1/npgsql.entityframeworkcore.postgresql.7.0.1.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/restsharp/109.0.0-preview.1/restsharp.109.0.0-preview.1.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/sixlabors.imagesharp/2.1.3/sixlabors.imagesharp.2.1.3.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/ssh.net/2020.0.2/ssh.net.2020.0.2.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/sshnet.security.cryptography/1.3.0/sshnet.security.cryptography.1.3.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/system.configuration.configurationmanager/5.0.0/system.configuration.configurationmanager.5.0.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/system.diagnostics.diagnosticsource/5.0.0/system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",

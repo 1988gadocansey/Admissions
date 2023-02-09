@@ -31,6 +31,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public bool? WorkingExperience { set; get; }
         public bool? AcademicExperience { set; get; }
         public bool? ResearchInformation { set; get; }
+        public bool? ResearchPublication { set; get; }
         public bool? Referee { set; get; }
 
 

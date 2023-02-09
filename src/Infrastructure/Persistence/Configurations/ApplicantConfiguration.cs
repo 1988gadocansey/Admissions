@@ -22,11 +22,23 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<ApplicantModel>
         //    "PhoneNumber");
         // in case PhoneNumber property is private.*/
 
+        /*  builder.ToTable("ApplicantModel");
+         builder.HasKey(x => x.Id);
+         builder.Property(x => x.Id)
+             .HasColumnName("Id")
+             .ValueGeneratedNever(); */
+
+        // we are using value object for key read Nick Chamberlain's blog post here: https://buildplease.com/pages/vo-ids/
         builder.ToTable("ApplicantModel");
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id)
-            .HasColumnName("Id")
-            .ValueGeneratedNever();
+       .HasColumnName("Id");
+
+
+
+
+        // .ValueGeneratedOnAdd();
+
         builder.OwnsOne(x => x.ApplicantName, nameBuilder =>
         {
             nameBuilder.Property(p => p.FirstName).HasColumnName("FirstName").IsRequired();
@@ -51,6 +63,12 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<ApplicantModel>
             nameBuilder.Property(p => p.Currency).HasColumnName("HallFeesPaidCurrency");
 
         });
+        builder.OwnsOne(x => x.HallFeesPaid, nameBuilder =>
+       {
+           nameBuilder.Property(p => p.Amount).HasColumnName("HallFeesPaid").IsRequired();
+           nameBuilder.Property(p => p.Currency).HasColumnName("HallFeesPaidCurrency");
+
+       });
 
         builder.OwnsOne(x => x.FeesPaid, nameBuilder =>
         {
@@ -82,29 +100,32 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<ApplicantModel>
             .HasColumnName("Gender")
             .IsRequired()
             .HasConversion<string>();
+
+        builder.Property(x => x.AdmissionType)
+       .HasColumnName("AdmissionType")
+       .HasConversion<string>();
+
+        builder.Property(x => x.NationalIDType)
+            .HasColumnName("NationalIDType")
+            .IsRequired()
+            .HasConversion<string>();
+
         builder.Property(x => x.MaritalStatus)
             .HasColumnName("MaritalStatus")
             .HasConversion<string>()
             .IsRequired();
-        /* .HasConversion(
-            value => value.Value,
-            converted => new MaritalStatus()
-            ); */
+
+        // if you want to store all value objects in one column as json
 
 
-        /*   builder.OwnsOne(x => x.FeesPaid, nameBuilder =>
-          {
-              nameBuilder.Property(p => p.Currency).HasColumnName("FeesPaid").IsRequired();
-              nameBuilder.Property(p => p.Amount).HasColumnName("FeesPaid").IsRequired();
+        /*   builder.Property(user => user.Addresses)
+              .HasConversion(
+              a => (string)JsonConvert.SerializeObject(a),
+              a => JsonConvert.DeserializeObject<List<Address>>(a));
+          /*builder.HasData(Data.GetData<User>());*/
 
-          });
 
-          builder.OwnsOne(x => x.HallFeesPaid, nameBuilder =>
-          {
-              nameBuilder.Property(p => p.Currency).HasColumnName("HallFeesPaid").IsRequired();
-              nameBuilder.Property(p => p.Amount).HasColumnName("HallFeesPaid").IsRequired();
 
-          }); */
 
 
         builder.Property(x => x.ApplicationNumber)

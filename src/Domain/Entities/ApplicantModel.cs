@@ -7,10 +7,10 @@ namespace OnlineApplicationSystem.Domain.Entities
         public ApplicantModel()
         {
         }
-        public ApplicationNumber ApplicationNumber { get; private set; }
+        public ApplicationNumber ApplicationNumber { get; set; }
         public Title Title { set; get; }
-        public ApplicantName ApplicantName { get; private set; }
-        public ApplicantName? PreviousName { get; private set; }
+        public ApplicantName ApplicantName { get; set; }
+        public ApplicantName? PreviousName { get; set; }
         [DataType(DataType.Date)]
         public DateTime Dob { get; set; }
         public Gender Gender { get; set; }
@@ -25,7 +25,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public int? DistrictId { get; set; }
         public virtual DistrictModel? District { get; set; }
         public virtual HallModel? Hall { get; set; }
-        public string NationalIDType { get; set; }
+        public IDCards NationalIDType { get; set; }
         public string NationalIDNo { get; set; }
         public int? RegionId { get; set; }
         public virtual RegionModel? Region { get; set; }
@@ -62,7 +62,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public bool? Admitted { get; set; }
         public int? AdmittedBy { get; set; }
         public DateTime? DateAdmitted { get; set; }
-        public string? AdmissionType { get; set; }
+        public AdmissionType? AdmissionType { get; set; } = Enums.AdmissionType.Regular;
         public string? leveladmitted { get; set; }
         public string? SectionAdmitted { get; set; }
         public int? HallAdmitted { get; set; }

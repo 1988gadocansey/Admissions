@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XxmKxw0ycODDbqyUd9+pGDu9Xsg9mnKidQDdRWa8vBoravM+2H7wYySUtob4IhxNkx7SUBE9O46oy55AUIAGMA==",
+  "dgSpecHash": "yrPM9Nfpc36kiDFnKEtI9reO9/s4EZf5swjkppkkotfnojyPniz/WGbOchM4dUWwFX79+NhW5gsI0wiF7wPpfg==",
   "success": true,
   "projectFilePath": "/Users/gadocansey/Projects/OnlineApplicationSystem/tests/Domain.UnitTests/Domain.UnitTests.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,7 @@
     "/Users/gadocansey/.nuget/packages/microsoft.netcore.targets/1.0.1/microsoft.netcore.targets.1.0.1.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/microsoft.testplatform.objectmodel/17.3.2/microsoft.testplatform.objectmodel.17.3.2.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/microsoft.testplatform.testhost/17.3.2/microsoft.testplatform.testhost.17.3.2.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/microsoft.win32.systemevents/7.0.0/microsoft.win32.systemevents.7.0.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/netstandard.library/2.0.0/netstandard.library.2.0.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/newtonsoft.json/9.0.1/newtonsoft.json.9.0.1.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/nuget.frameworks/5.11.0/nuget.frameworks.5.11.0.nupkg.sha512",
@@ -23,6 +24,7 @@
     "/Users/gadocansey/.nuget/packages/system.configuration.configurationmanager/4.4.0/system.configuration.configurationmanager.4.4.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/system.diagnostics.debug/4.0.11/system.diagnostics.debug.4.0.11.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/system.diagnostics.tools/4.0.1/system.diagnostics.tools.4.0.1.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/system.drawing.common/7.0.0/system.drawing.common.7.0.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/system.dynamic.runtime/4.0.11/system.dynamic.runtime.4.0.11.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/system.globalization/4.0.11/system.globalization.4.0.11.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/system.io/4.1.0/system.io.4.1.0.nupkg.sha512",

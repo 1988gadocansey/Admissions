@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "W+4Z6fAAv7raCCgNeHPO+iF/M1w0SLfXFng48iN9oUGrR2tTrR5l8Y7eB8B5cePjno2ecqj7duBs7kFBAZXdrw==",
+  "dgSpecHash": "Zpbf5PT8SC2HUhoxx5DRKZ7WWLo5dU0LKSbTZe38nqbYrNiisKw2gf3NFuclK+NYNX3cmexi33Z3+nVJY3rywA==",
   "success": true,
   "projectFilePath": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/Domain.csproj",
   "expectedPackageFiles": [
     "/Users/gadocansey/.nuget/packages/mediatr/9.0.0/mediatr.9.0.0.nupkg.sha512",
-    "/Users/gadocansey/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.1/microsoft.entityframeworkcore.abstractions.7.0.1.nupkg.sha512"
+    "/Users/gadocansey/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.1/microsoft.entityframeworkcore.abstractions.7.0.1.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/microsoft.win32.systemevents/7.0.0/microsoft.win32.systemevents.7.0.0.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/system.drawing.common/7.0.0/system.drawing.common.7.0.0.nupkg.sha512"
   ],
   "logs": []
 }

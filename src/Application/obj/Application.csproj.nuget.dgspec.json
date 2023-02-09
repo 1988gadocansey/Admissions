@@ -132,6 +132,10 @@
             "Microsoft.EntityFrameworkCore.Abstractions": {
               "target": "Package",
               "version": "[7.0.1, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [

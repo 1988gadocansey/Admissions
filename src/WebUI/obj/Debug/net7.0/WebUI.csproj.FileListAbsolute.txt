@@ -119,3 +119,5 @@
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/obj/Debug/net7.0/WebUI.pdb
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/obj/Debug/net7.0/WebUI.genruntimeconfig.cache
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/obj/Debug/net7.0/ref/WebUI.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Renci.SshNet.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/SshNet.Security.Cryptography.dll

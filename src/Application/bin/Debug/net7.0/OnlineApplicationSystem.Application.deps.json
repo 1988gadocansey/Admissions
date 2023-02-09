@@ -261,7 +261,8 @@
       "OnlineApplicationSystem.Domain/1.0.0": {
         "dependencies": {
           "MediatR": "9.0.0",
-          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.1"
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.1",
+          "System.Drawing.Common": "7.0.0"
         },
         "runtime": {
           "OnlineApplicationSystem.Domain.dll": {}
