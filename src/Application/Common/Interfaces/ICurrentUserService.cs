@@ -1,6 +1,14 @@
-﻿namespace OnlineApplicationSystem.Application.Common.Interfaces;
+﻿using OnlineApplicationSystem.Application.User.Queries;
+
+namespace OnlineApplicationSystem.Application.Common.Interfaces;
 
 public interface ICurrentUserService
 {
-    string? UserId { get; }
+    public string? UserId { get; }
+
+    // public Task<UserDto> GetApplicationUserDetails(string? userId);
+
+
+
+
 }

@@ -11,6 +11,7 @@ const PROXY_CONFIG = [
       "/.well-known",
       "/Identity",
       "/connect",
+    
       "/ApplyDatabaseMigrations",
       "/_framework",
       "/api",

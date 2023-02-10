@@ -3,6 +3,9 @@ using OnlineApplicationSystem.Application.Common.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using OnlineApplicationSystem.Application.User.Queries;
+using AutoMapper;
+using OnlineApplicationSystem.Application.Common.Mappings;
 
 namespace OnlineApplicationSystem.Infrastructure.Identity;
 
@@ -12,14 +15,16 @@ public class IdentityService : IIdentityService
     private readonly IUserClaimsPrincipalFactory<ApplicationUser> _userClaimsPrincipalFactory;
     private readonly IAuthorizationService _authorizationService;
 
+    private readonly IMapper _mapper;
     public IdentityService(
         UserManager<ApplicationUser> userManager,
         IUserClaimsPrincipalFactory<ApplicationUser> userClaimsPrincipalFactory,
-        IAuthorizationService authorizationService)
+        IAuthorizationService authorizationService, IMapper mapper)
     {
         _userManager = userManager;
         _userClaimsPrincipalFactory = userClaimsPrincipalFactory;
         _authorizationService = authorizationService;
+        _mapper = mapper;
     }
 
     public async Task<string?> GetUserNameAsync(string userId)
@@ -48,6 +53,8 @@ public class IdentityService : IIdentityService
 
         return user != null && await _userManager.IsInRoleAsync(user, role);
     }
+
+
 
     public async Task<bool> AuthorizeAsync(string userId, string policyName)
     {
@@ -78,4 +85,12 @@ public class IdentityService : IIdentityService
 
         return result.ToApplicationResult();
     }
+    public async Task<UserDto> GetApplicationUserDetails(string? userId)
+    {
+        var user = await _userManager.Users.FirstAsync(u => u.Id == userId);
+
+        var userDetails = _mapper.Map<UserDto>(user);
+        return userDetails;
+    }
+
 }

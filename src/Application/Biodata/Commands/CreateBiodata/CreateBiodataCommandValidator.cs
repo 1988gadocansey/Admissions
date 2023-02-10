@@ -15,6 +15,12 @@ public class CreateBiodataCommandValidator : AbstractValidator<CreateBiodataRequ
         RuleFor(v => v.FirstName)
             .NotEmpty().WithMessage("First Name is required.")
             .MaximumLength(200).WithMessage("Title must not exceed 200 characters.");
+        RuleFor(v => v.LastName)
+       .NotEmpty().WithMessage("Last Name is required.")
+       .MaximumLength(200).WithMessage("Title must not exceed 200 characters.");
+        RuleFor(v => v.Email)
+          .EmailAddress().WithMessage("A valid email is required")
+          .MaximumLength(200).WithMessage("Email must not exceed 100 characters.");
 
         RuleFor(v => v.NationalIDNo)
            .NotEmpty().WithMessage("National ID No is required.")

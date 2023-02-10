@@ -8,6 +8,8 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
+
+
     }
 
     private void ApplyMappingsFromAssembly(Assembly assembly)
@@ -48,4 +50,5 @@ public class MappingProfile : Profile
             }
         }
     }
+
 }

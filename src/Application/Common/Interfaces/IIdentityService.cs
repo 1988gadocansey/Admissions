@@ -1,4 +1,5 @@
 ﻿using OnlineApplicationSystem.Application.Common.Models;
+using OnlineApplicationSystem.Application.User.Queries;
 
 namespace OnlineApplicationSystem.Application.Common.Interfaces;
 
@@ -13,4 +14,8 @@ public interface IIdentityService
     Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password);
 
     Task<Result> DeleteUserAsync(string userId);
+
+    public Task<UserDto> GetApplicationUserDetails(string? userId);
+
+
 }
