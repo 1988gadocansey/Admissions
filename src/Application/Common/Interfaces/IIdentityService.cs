@@ -15,7 +15,7 @@ public interface IIdentityService
 
     Task<Result> DeleteUserAsync(string userId);
 
-    public Task<UserDto> GetApplicationUserDetails(string? userId);
+    public Task<UserDto> GetApplicationUserDetails(string? userId, CancellationToken cancellationToken);
 
 
 }

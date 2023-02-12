@@ -1,5 +1,6 @@
 using MediatR;
 using OnlineApplicationSystem.Domain.Enums;
+using OnlineApplicationSystem.Domain.ValueObjects;
 
 namespace OnlineApplicationSystem.Application.Biodata.CreateBiodata;
 public record CreateBiodataRequest : IRequest<int>
@@ -33,6 +34,7 @@ public record CreateBiodataRequest : IRequest<int>
     public string? SourceOfFinance { get; init; }
     public int? ReligionId { get; init; }
     public string? Denomination { get; init; }
+    public IDCard? IDCard { get; init; }
     public string? Referrals { get; init; }
     public Session? EntryMode { get; init; }
     public string? FirstQualification { get; init; }

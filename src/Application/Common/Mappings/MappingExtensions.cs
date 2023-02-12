@@ -26,5 +26,16 @@ public static class MappingExtensions
 
         return map;
     }
+    public static async Task<TDest> ProjectToObjAsync<TDest>(this IQueryable source, IMapper mapper, TDest obj, CancellationToken cancellationToken = default)
+    {
+        var loadedObj = await source.ProjectTo<TDest>(mapper.ConfigurationProvider).FirstOrDefaultAsync(cancellationToken);
+
+        if (loadedObj != null)
+        {
+            mapper.Map(loadedObj, obj);
+        }
+
+        return obj;
+    }
 
 }

@@ -104,11 +104,18 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<ApplicantModel>
         builder.Property(x => x.AdmissionType)
        .HasColumnName("AdmissionType")
        .HasConversion<string>();
+        /* 
+                builder.Property(x => x.NationalIDType)
+                    .HasColumnName("NationalIDType")
+                    .IsRequired()
+                    .HasConversion<string>(); */
 
-        builder.Property(x => x.NationalIDType)
-            .HasColumnName("NationalIDType")
-            .IsRequired()
-            .HasConversion<string>();
+        builder.OwnsOne(x => x.IDCard, nameBuilder =>
+       {
+           nameBuilder.Property(p => p.NationalIDNo).HasColumnName("NationalIDNo").IsRequired();
+           nameBuilder.Property(p => p.NationalIDType).HasColumnName("NationalIDType").IsRequired();
+
+       });
 
         builder.Property(x => x.MaritalStatus)
             .HasColumnName("MaritalStatus")

@@ -4,7 +4,7 @@ using OnlineApplicationSystem.Application.User.Queries;
 
 namespace OnlineApplicationSystem.WebUI.Controllers;
 
-//[Authorize]
+[Authorize]
 public class HomeController : ApiControllerBase
 {
     [HttpGet]

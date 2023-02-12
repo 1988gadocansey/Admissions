@@ -85,12 +85,31 @@ public class IdentityService : IIdentityService
 
         return result.ToApplicationResult();
     }
-    public async Task<UserDto> GetApplicationUserDetails(string? userId)
+    public async Task<UserDto> GetApplicationUserDetails(string? userId, CancellationToken cancellationToken)
     {
-        var user = await _userManager.Users.FirstAsync(u => u.Id == userId);
 
-        var userDetails = _mapper.Map<UserDto>(user);
-        return userDetails;
+        var userdetails = await _userManager.Users.Select(b =>
+         new UserDto()
+         {
+             Id = b.Id,
+             UserName = b.UserName,
+             FormCompleted = b.FormCompleted,
+             Finalized = b.Finalized,
+             SoldBy = b.SoldBy,
+             Started = b.Started,
+             Year = b.Year,
+             PictureUploaded = b.PictureUploaded,
+             FormNo = b.FormNo,
+             FullName = b.FullName,
+             ResultUploaded = b.ResultUploaded,
+             Admitted = b.Admitted,
+             LastLogin = b.LastLogin,
+             Type = b.Type
+         }).SingleOrDefaultAsync(a => a.Id == userId, cancellationToken: cancellationToken);
+
+        // Console.WriteLine("username is "+ userdetails?.FullName);
+        return userdetails;
+
     }
 
 }

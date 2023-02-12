@@ -22,7 +22,15 @@ public class CreateBiodataCommandValidator : AbstractValidator<CreateBiodataRequ
           .EmailAddress().WithMessage("A valid email is required")
           .MaximumLength(200).WithMessage("Email must not exceed 100 characters.");
 
-        RuleFor(v => v.NationalIDNo)
+
+        RuleFor(v => v.IDCard.NationalIDType)
+         .NotEmpty().WithMessage("National Card is required.")
+         .MaximumLength(200).WithMessage("Title must not exceed 200 characters.")
+      ;
+
+
+
+        RuleFor(v => v.IDCard.NationalIDNo)
            .NotEmpty().WithMessage("National ID No is required.")
            .MaximumLength(200).WithMessage("Title must not exceed 200 characters.")
         .MustAsync(BeUniqueNationalIDNo).WithMessage("The specified ID already exists.");
@@ -31,6 +39,6 @@ public class CreateBiodataCommandValidator : AbstractValidator<CreateBiodataRequ
     public async Task<bool> BeUniqueNationalIDNo(string NationalIDNo, CancellationToken cancellationToken)
     {
         return await _context.ApplicantModel
-            .AllAsync(l => l.NationalIDNo != NationalIDNo, cancellationToken);
+            .AllAsync(l => l.IDCard.NationalIDNo != NationalIDNo, cancellationToken);
     }
 }

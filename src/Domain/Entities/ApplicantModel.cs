@@ -25,8 +25,10 @@ namespace OnlineApplicationSystem.Domain.Entities
         public int? DistrictId { get; set; }
         public virtual DistrictModel? District { get; set; }
         public virtual HallModel? Hall { get; set; }
-        public IDCards NationalIDType { get; set; }
-        public string NationalIDNo { get; set; }
+        // public IDCards NationalIDType { get; set; }
+        // public string NationalIDNo { get; set; }
+
+        public IDCard? IDCard { get; set; }
         public int? RegionId { get; set; }
         public virtual RegionModel? Region { get; set; }
         public int? NationalityId { get; set; }
@@ -94,22 +96,18 @@ namespace OnlineApplicationSystem.Domain.Entities
         public string FullName => Title +" "+ LastName + ", " + FirstName + " "+ MiddleName;
         */
 
-        public ApplicantModel(ICollection<LanguageModel?> languageModels)
-        {
-            LanguageModels = languageModels;
-        }
-        private ICollection<ProgrammeModel> Programme { get; set; }
-        private ICollection<ResultUploadModel> ResultUpload { get; set; }
-        private ICollection<WorkingExperienceModel?> WorkingExperience { get; set; }
-        private ICollection<AcademicExperienceModel?> AcademicExperience { get; set; }
-        private ICollection<DocumentUploadModel?> DocumentUpload { get; set; }
-        private ICollection<RefereeModel?> RefereeModel { get; set; }
-        private ICollection<Address?> Address { get; set; }
-        private ICollection<LanguageModel?> LanguageModels { get; set; }
-        private ICollection<SMSModel> Sms { get; set; }
-        private ICollection<ApplicantIssueModel>? ApplicantIssue { get; set; }
-        private ICollection<ResearchModel>? ResearchModels { get; set; }
-        private ICollection<ResearchPublication>? ResearchPublications { get; set; }
+        private IList<ProgrammeModel> Programme { get; set; }
+        private IList<ResultUploadModel> ResultUpload { get; set; }
+        private IList<WorkingExperienceModel?> WorkingExperience { get; set; }
+        private IList<AcademicExperienceModel?> AcademicExperience { get; set; }
+        private IList<DocumentUploadModel?> DocumentUpload { get; set; }
+        private IList<RefereeModel?> RefereeModel { get; set; }
+        private IList<Address?> Address { get; set; }
+        private IList<LanguageModel?> LanguageModels { get; set; }
+        private IList<SMSModel> Sms { get; set; }
+        private IList<ApplicantIssueModel>? ApplicantIssue { get; set; }
+        private IList<ResearchModel>? ResearchModels { get; set; }
+        private IList<ResearchPublication>? ResearchPublications { get; set; }
 
     }
 }

@@ -34,7 +34,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("character varying(200)");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Data")
                         .IsRequired()
@@ -52,7 +52,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.Property<DateTime?>("Expiration")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("SessionId")
                         .HasMaxLength(100)
@@ -83,7 +83,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("character varying(100)");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Data")
                         .IsRequired()
@@ -120,10 +120,10 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("character varying(200)");
 
                     b.Property<DateTime?>("ConsumedTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Data")
                         .IsRequired()
@@ -135,7 +135,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("character varying(200)");
 
                     b.Property<DateTime?>("Expiration")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("SessionId")
                         .HasMaxLength(100)
@@ -315,13 +315,13 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("From")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("InstitutionAddress")
                         .IsRequired()
@@ -332,7 +332,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("LastModified")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("text");
@@ -342,7 +342,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("To")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -403,7 +403,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("text");
@@ -415,7 +415,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<DateTime?>("LastModified")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("text");
@@ -432,6 +432,9 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.Property<bool?>("ResearchInformation")
                         .HasColumnType("boolean");
 
+                    b.Property<bool?>("ResearchPublication")
+                        .HasColumnType("boolean");
+
                     b.Property<bool>("Results")
                         .HasColumnType("boolean");
 
@@ -446,11 +449,15 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ApplicantModel", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("Id");
 
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
                     b.Property<string>("AdmissionType")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("AdmissionType");
 
                     b.Property<bool?>("Admitted")
                         .HasColumnType("boolean");
@@ -476,13 +483,13 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("DateAdmitted")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool?>("Disability")
                         .HasColumnType("boolean");
@@ -494,7 +501,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("Dob")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool?>("Elligible")
                         .HasColumnType("boolean");
@@ -562,7 +569,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("LastModified")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("text");
@@ -577,14 +584,6 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("MaritalStatus");
-
-                    b.Property<string>("NationalIDNo")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("NationalIDType")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<int?>("NationalityId")
                         .HasColumnType("integer");
@@ -725,25 +724,25 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("FeesDeadline")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("Matriculation")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("MedicalEnds")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("MedicalStarts")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("OrientationEnds")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("OrientationStarts")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("Reporting")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Year")
                         .IsRequired()
@@ -844,13 +843,13 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("LastModified")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("text");
@@ -1282,7 +1281,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("DateSent")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Message")
                         .IsRequired()
@@ -1361,7 +1360,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("text");
@@ -1370,7 +1369,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<DateTime?>("LastModified")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("text");
@@ -1385,7 +1384,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime?>("Reminder")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -1408,13 +1407,13 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("LastModified")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("text");
@@ -1510,7 +1509,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("LastLogin")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
@@ -1774,6 +1773,29 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                                 .HasForeignKey("ApplicantModelId");
                         });
 
+                    b.OwnsOne("OnlineApplicationSystem.Domain.ValueObjects.IDCard", "IDCard", b1 =>
+                        {
+                            b1.Property<int>("ApplicantModelId")
+                                .HasColumnType("integer");
+
+                            b1.Property<string>("NationalIDNo")
+                                .IsRequired()
+                                .HasColumnType("text")
+                                .HasColumnName("NationalIDNo");
+
+                            b1.Property<string>("NationalIDType")
+                                .IsRequired()
+                                .HasColumnType("text")
+                                .HasColumnName("NationalIDType");
+
+                            b1.HasKey("ApplicantModelId");
+
+                            b1.ToTable("ApplicantModel");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ApplicantModelId");
+                        });
+
                     b.Navigation("ApplicantName")
                         .IsRequired();
 
@@ -1786,6 +1808,8 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.Navigation("Hall");
 
                     b.Navigation("HallFeesPaid");
+
+                    b.Navigation("IDCard");
 
                     b.Navigation("Nationality");
 

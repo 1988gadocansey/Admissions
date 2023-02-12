@@ -5,6 +5,7 @@ namespace OnlineApplicationSystem.Application.User.Queries;
 
 public class UserDto
 {
+    public string? Id { get; init; }
     public string? UserName { get; init; }
 
     public string? FormNo { get; set; }
