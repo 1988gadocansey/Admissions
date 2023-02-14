@@ -2,6 +2,7 @@
 using OnlineApplicationSystem.Application.Common.Behaviours;
 using FluentValidation;
 using MediatR;
+using OnlineApplicationSystem.Application.Common.Interfaces;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -16,6 +17,8 @@ public static class ConfigureServices
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehaviour<,>));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
+        //  services.AddScoped<IPhotoUploadService, PhotoUploadService>();
+        //services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         return services;
     }

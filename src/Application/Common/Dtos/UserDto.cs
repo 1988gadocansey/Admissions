@@ -1,7 +1,7 @@
 using OnlineApplicationSystem.Application.Common.Mappings;
 using OnlineApplicationSystem.Domain.Entities;
 
-namespace OnlineApplicationSystem.Application.User.Queries;
+namespace OnlineApplicationSystem.Application.Common.Dtos;
 
 public class UserDto
 {

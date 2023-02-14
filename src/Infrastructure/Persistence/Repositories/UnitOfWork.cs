@@ -1,7 +1,7 @@
 using OnlineApplicationSystem.Application.Common.Interfaces;
 using OnlineApplicationSystem.Domain.Contracts;
 
-namespace Students.Repository;
+namespace OnlineApplicationSystem.Infrastructure.Persistence.Repositories;
 public class UnitOfWork : IUnitOfWork
 {
     private readonly IApplicationDbContext _dbContext;

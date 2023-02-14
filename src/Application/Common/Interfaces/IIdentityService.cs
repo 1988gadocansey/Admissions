@@ -1,6 +1,5 @@
 ﻿using OnlineApplicationSystem.Application.Common.Models;
-using OnlineApplicationSystem.Application.User.Queries;
-
+using OnlineApplicationSystem.Application.Common.Dtos;
 namespace OnlineApplicationSystem.Application.Common.Interfaces;
 
 public interface IIdentityService
@@ -16,6 +15,8 @@ public interface IIdentityService
     Task<Result> DeleteUserAsync(string userId);
 
     public Task<UserDto> GetApplicationUserDetails(string? userId, CancellationToken cancellationToken);
+
+    Task UpdateApplicationPictureStatus(string? userId, string? photo, CancellationToken cancellationToken);
 
 
 }

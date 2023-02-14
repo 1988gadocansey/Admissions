@@ -1,6 +1,6 @@
-﻿using OnlineApplicationSystem.Application.Common.Interfaces;
-using FluentValidation;
+﻿using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using OnlineApplicationSystem.Application.Common.Interfaces;
 
 namespace OnlineApplicationSystem.Application.TodoLists.Commands.CreateTodoList;
 

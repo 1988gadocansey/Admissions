@@ -346,7 +346,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AcademicExperienceModel");
+                    b.ToTable("AcademicExperienceModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.Address", b =>
@@ -382,7 +382,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Address");
+                    b.ToTable("Addresss");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ApplicantIssueModel", b =>
@@ -443,7 +443,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ApplicantIssueModel");
+                    b.ToTable("ApplicantIssueModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ApplicantModel", b =>
@@ -708,7 +708,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BankModel");
+                    b.ToTable("BankModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ConfigurationModel", b =>
@@ -750,7 +750,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ConfigurationModel");
+                    b.ToTable("ConfigurationModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.CountryModel", b =>
@@ -767,7 +767,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("CountryModel");
+                    b.ToTable("CountryModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.DenominationModel", b =>
@@ -784,7 +784,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("DenominationModel");
+                    b.ToTable("DenominationModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.DepartmentModel", b =>
@@ -808,7 +808,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DepartmentModel");
+                    b.ToTable("DepartmentModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.DistrictModel", b =>
@@ -828,7 +828,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("DistrictModel");
+                    b.ToTable("DistrictModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.DocumentUploadModel", b =>
@@ -864,7 +864,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DocumentUploadModel");
+                    b.ToTable("DocumentUploadModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ExamModel", b =>
@@ -885,7 +885,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ExamModel");
+                    b.ToTable("ExamModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.FacultyModel", b =>
@@ -906,7 +906,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FacultyModel");
+                    b.ToTable("FacultyModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.FormNoModel", b =>
@@ -926,7 +926,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FormNoModel");
+                    b.ToTable("FormNoModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.FormerSchoolModel", b =>
@@ -950,7 +950,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FormerSchoolModel");
+                    b.ToTable("FormerSchoolModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.GradeModel", b =>
@@ -978,7 +978,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("GradeModel");
+                    b.ToTable("GradeModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.HallModel", b =>
@@ -1001,7 +1001,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("HallModel");
+                    b.ToTable("HallModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.LanguageModel", b =>
@@ -1021,7 +1021,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LanguageModel");
+                    b.ToTable("LanguageModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ProgrammeModel", b =>
@@ -1062,7 +1062,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProgrammeModel");
+                    b.ToTable("ProgrammeModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.RegionModel", b =>
@@ -1079,7 +1079,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RegionModel");
+                    b.ToTable("RegionModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ReligionModel", b =>
@@ -1096,7 +1096,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ReligionModel");
+                    b.ToTable("ReligionModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.RequirementModel", b =>
@@ -1131,7 +1131,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RequirementModel");
+                    b.ToTable("RequirementModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ResearchModel", b =>
@@ -1159,10 +1159,10 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Researches");
+                    b.ToTable("ResearchModel");
                 });
 
-            modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ResearchPublication", b =>
+            modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ResearchPublicationModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1178,7 +1178,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ResearchPublications");
+                    b.ToTable("ResearchPublicationModel");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ResultUploadModel", b =>
@@ -1249,7 +1249,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasIndex("SubjectID");
 
-                    b.ToTable("ResultUploadModel");
+                    b.ToTable("ResultUploadModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.SHSProgrammes", b =>
@@ -1299,7 +1299,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SMSModel");
+                    b.ToTable("SMSModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.SchoolModel", b =>
@@ -1323,7 +1323,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SchoolModel");
+                    b.ToTable("SchoolModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.SubjectModel", b =>
@@ -1348,7 +1348,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SubjectModel");
+                    b.ToTable("SubjectModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.TodoItem", b =>
@@ -1465,7 +1465,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WorkingExperienceModel");
+                    b.ToTable("WorkingExperienceModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Infrastructure.Identity.ApplicationUser", b =>

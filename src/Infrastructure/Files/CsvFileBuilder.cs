@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using OnlineApplicationSystem.Application.TodoLists.Queries.ExportTodos;
 using OnlineApplicationSystem.Application.Common.Interfaces;
 using OnlineApplicationSystem.Application.TodoLists.Queries.ExportTodos;
 using OnlineApplicationSystem.Infrastructure.Files.Maps;
@@ -8,7 +9,7 @@ namespace OnlineApplicationSystem.Infrastructure.Files;
 
 public class CsvFileBuilder : ICsvFileBuilder
 {
-    public byte[] BuildTodoItemsFile(IEnumerable<TodoItemRecord> records)
+    public byte[] BuildTodoItemsFile(List<TodoItemRecord> records)
     {
         using var memoryStream = new MemoryStream();
         using (var streamWriter = new StreamWriter(memoryStream))

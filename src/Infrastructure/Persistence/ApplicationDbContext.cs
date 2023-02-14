@@ -29,35 +29,37 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
 
     public DbSet<TodoList> TodoLists => Set<TodoList>();
     public DbSet<TodoItem> TodoItems => Set<TodoItem>();
-    public DbSet<ApplicantModel> ApplicantModel => Set<ApplicantModel>();
-    public DbSet<ConfigurationModel> ConfigurationModel => Set<ConfigurationModel>();
-    public DbSet<FormNoModel> FormNoModel => Set<FormNoModel>();
-    public DbSet<AcademicExperienceModel> AcademicExperienceModel => Set<AcademicExperienceModel>();
-    public DbSet<BankModel> BankModel => Set<BankModel>();
-    public DbSet<FormerSchoolModel> FormerSchoolModel => Set<FormerSchoolModel>();
-    public DbSet<DenominationModel> DenominationModel => Set<DenominationModel>();
-    public DbSet<DepartmentModel> DepartmentModel => Set<DepartmentModel>();
-    public DbSet<DistrictModel> DistrictModel => Set<DistrictModel>();
-    public DbSet<DocumentUploadModel> DocumentUploadModel => Set<DocumentUploadModel>();
-    public DbSet<ExamModel> ExamModel => Set<ExamModel>();
-    public DbSet<FacultyModel> FacultyModel => Set<FacultyModel>();
-    public DbSet<GradeModel> GradeModel => Set<GradeModel>();
-    public DbSet<HallModel> HallModel => Set<HallModel>();
-    public DbSet<RegionModel> RegionModel => Set<RegionModel>();
-    public DbSet<ReligionModel> ReligionModel => Set<ReligionModel>();
-    public DbSet<RequirementModel> RequirementModel => Set<RequirementModel>();
-    public DbSet<SchoolModel> SchoolModel => Set<SchoolModel>();
-    public DbSet<SMSModel> SMSModel => Set<SMSModel>();
-    public DbSet<SubjectModel> SubjectModel => Set<SubjectModel>();
+    public DbSet<ApplicantModel> ApplicantModels => Set<ApplicantModel>();
+    public DbSet<ConfigurationModel> ConfigurationModels => Set<ConfigurationModel>();
+    public DbSet<ResearchPublicationModel> ResearchPublicationModels { get; }
+    public DbSet<FormNoModel> FormNoModels => Set<FormNoModel>();
+    public DbSet<AcademicExperienceModel> AcademicExperienceModels => Set<AcademicExperienceModel>();
+    public DbSet<BankModel> BankModels => Set<BankModel>();
+    public DbSet<FormerSchoolModel> FormerSchoolModels => Set<FormerSchoolModel>();
+    public DbSet<DenominationModel> DenominationModels => Set<DenominationModel>();
+    public DbSet<DepartmentModel> DepartmentModels => Set<DepartmentModel>();
+    public DbSet<DistrictModel> DistrictModels => Set<DistrictModel>();
+    public DbSet<DocumentUploadModel> DocumentUploadModels => Set<DocumentUploadModel>();
+    public DbSet<ExamModel> ExamModels => Set<ExamModel>();
+    public DbSet<FacultyModel> FacultyModels => Set<FacultyModel>();
+    public DbSet<GradeModel> GradeModels => Set<GradeModel>();
+    public DbSet<HallModel> HallModels => Set<HallModel>();
+    public DbSet<RegionModel> RegionModels => Set<RegionModel>();
+    public DbSet<ReligionModel> ReligionModels => Set<ReligionModel>();
+    public DbSet<RequirementModel> RequirementModels => Set<RequirementModel>();
+    public DbSet<SchoolModel> SchoolModels => Set<SchoolModel>();
+    public DbSet<SMSModel> SMSModels => Set<SMSModel>();
+    public DbSet<SubjectModel> SubjectModels => Set<SubjectModel>();
     public DbSet<SHSProgrammes> SHSProgrammes => Set<SHSProgrammes>();
-    public DbSet<CountryModel> CountryModel => Set<CountryModel>();
-    public DbSet<Address> Address => Set<Address>();
-    public DbSet<LanguageModel> LanguageModel => Set<LanguageModel>();
-    public DbSet<ProgrammeModel> ProgrammeModel => Set<ProgrammeModel>();
-    public DbSet<ResultUploadModel> ResultUploadModel => Set<ResultUploadModel>();
-    public DbSet<WorkingExperienceModel> WorkingExperienceModel => Set<WorkingExperienceModel>();
-    public DbSet<ApplicantIssueModel> ApplicantIssueModel => Set<ApplicantIssueModel>();
-    public DbSet<ResearchPublication> ResearchPublications => Set<ResearchPublication>();
+    public DbSet<CountryModel> CountryModels => Set<CountryModel>();
+    public DbSet<Address> Addresss => Set<Address>();
+    public DbSet<LanguageModel> LanguageModels => Set<LanguageModel>();
+    public DbSet<ProgrammeModel> ProgrammeModels => Set<ProgrammeModel>();
+    public DbSet<ResultUploadModel> ResultUploadModels=> Set<ResultUploadModel>();
+    public DbSet<WorkingExperienceModel> WorkingExperienceModels => Set<WorkingExperienceModel>();
+    public DbSet<ResearchModel> ResearchModels { get; }
+    public DbSet<ApplicantIssueModel> ApplicantIssueModels => Set<ApplicantIssueModel>();
+    public DbSet<ResearchPublicationModel> ResearchPublications => Set<ResearchPublicationModel>();
     public DbSet<ResearchModel> Researches => Set<ResearchModel>();
 
     protected override void OnModelCreating(ModelBuilder builder)

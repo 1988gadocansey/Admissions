@@ -1,4 +1,6 @@
-﻿namespace OnlineApplicationSystem.Application.TodoLists.Queries.GetTodos;
+﻿using OnlineApplicationSystem.Application.TodoLists.Queries.GetTodos;
+
+namespace OnlineApplicationSystem.Application.TodoLists.Queries.GetTodos;
 
 public class TodosVm
 {

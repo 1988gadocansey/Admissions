@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using OnlineApplicationSystem.Application.User.Queries;
 using AutoMapper;
 using OnlineApplicationSystem.Application.Common.Mappings;
+using OnlineApplicationSystem.Application.Common.Dtos;
 
 namespace OnlineApplicationSystem.Infrastructure.Identity;
 
@@ -14,27 +15,29 @@ public class IdentityService : IIdentityService
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IUserClaimsPrincipalFactory<ApplicationUser> _userClaimsPrincipalFactory;
     private readonly IAuthorizationService _authorizationService;
+    private readonly IApplicantRepository _applicantRepository;
 
     private readonly IMapper _mapper;
     public IdentityService(
         UserManager<ApplicationUser> userManager,
         IUserClaimsPrincipalFactory<ApplicationUser> userClaimsPrincipalFactory,
-        IAuthorizationService authorizationService, IMapper mapper)
+        IAuthorizationService authorizationService, IMapper mapper, IApplicantRepository applicantRepository)
     {
         _userManager = userManager;
         _userClaimsPrincipalFactory = userClaimsPrincipalFactory;
         _authorizationService = authorizationService;
         _mapper = mapper;
+        _applicantRepository = applicantRepository;
     }
 
-    public async Task<string?> GetUserNameAsync(string userId)
+    async Task<string?> IIdentityService.GetUserNameAsync(string userId)
     {
         var user = await _userManager.Users.FirstAsync(u => u.Id == userId);
 
         return user.UserName;
     }
 
-    public async Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password)
+    async Task<(Result Result, string UserId)> IIdentityService.CreateUserAsync(string userName, string password)
     {
         var user = new ApplicationUser
         {
@@ -47,7 +50,7 @@ public class IdentityService : IIdentityService
         return (result.ToApplicationResult(), user.Id);
     }
 
-    public async Task<bool> IsInRoleAsync(string userId, string role)
+    async Task<bool> IIdentityService.IsInRoleAsync(string userId, string role)
     {
         var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
 
@@ -56,7 +59,7 @@ public class IdentityService : IIdentityService
 
 
 
-    public async Task<bool> AuthorizeAsync(string userId, string policyName)
+    async Task<bool> IIdentityService.AuthorizeAsync(string userId, string policyName)
     {
         var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
 
@@ -72,7 +75,7 @@ public class IdentityService : IIdentityService
         return result.Succeeded;
     }
 
-    public async Task<Result> DeleteUserAsync(string userId)
+    async Task<Result> IIdentityService.DeleteUserAsync(string userId)
     {
         var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
 
@@ -87,7 +90,6 @@ public class IdentityService : IIdentityService
     }
     public async Task<UserDto> GetApplicationUserDetails(string? userId, CancellationToken cancellationToken)
     {
-
         var userdetails = await _userManager.Users.Select(b =>
          new UserDto()
          {
@@ -105,11 +107,21 @@ public class IdentityService : IIdentityService
              Admitted = b.Admitted,
              LastLogin = b.LastLogin,
              Type = b.Type
-         }).SingleOrDefaultAsync(a => a.Id == userId, cancellationToken: cancellationToken);
+         }).FirstOrDefaultAsync(a => a.Id == userId, cancellationToken: cancellationToken);
 
         // Console.WriteLine("username is "+ userdetails?.FullName);
         return userdetails;
 
     }
-
+    
+     public async Task UpdateApplicationPictureStatus(string? userId, string? photo, CancellationToken cancellationToken)
+    {
+        var Formno = await _applicantRepository.GetFormNo();
+        var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
+        user.PictureUploaded = 1;
+        user.Started = 1;
+        user.FormNo = Formno;
+        await _userManager.UpdateAsync(user);
+        await _applicantRepository.UpdateFormNo(cancellationToken);
+    }
 }

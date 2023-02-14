@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OnlineApplicationSystem.Domain.Entities;
 
-public class ResearchPublication
+public class ResearchPublicationModel
 {
 
     [Key]

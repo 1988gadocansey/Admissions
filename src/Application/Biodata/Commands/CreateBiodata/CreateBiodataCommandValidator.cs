@@ -1,8 +1,8 @@
-using OnlineApplicationSystem.Application.Common.Interfaces;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using OnlineApplicationSystem.Application.Common.Interfaces;
 
-namespace OnlineApplicationSystem.Application.Biodata.CreateBiodata;
+namespace OnlineApplicationSystem.Application.Biodata.Commands.CreateBiodata;
 
 public class CreateBiodataCommandValidator : AbstractValidator<CreateBiodataRequest>
 {
@@ -27,6 +27,14 @@ public class CreateBiodataCommandValidator : AbstractValidator<CreateBiodataRequ
          .NotEmpty().WithMessage("National Card is required.")
          .MaximumLength(200).WithMessage("Title must not exceed 200 characters.")
       ;
+        RuleFor(v => v.Gender)
+      .NotEmpty().WithMessage("Gender is required.");
+
+        RuleFor(v => v.Title)
+      .NotEmpty().WithMessage("Title is required.");
+
+        RuleFor(v => v.Hometown)
+        .NotEmpty().WithMessage("Hometown is required.");
 
 
 
@@ -38,7 +46,7 @@ public class CreateBiodataCommandValidator : AbstractValidator<CreateBiodataRequ
 
     public async Task<bool> BeUniqueNationalIDNo(string NationalIDNo, CancellationToken cancellationToken)
     {
-        return await _context.ApplicantModel
+        return await _context.ApplicantModels
             .AllAsync(l => l.IDCard.NationalIDNo != NationalIDNo, cancellationToken);
     }
 }

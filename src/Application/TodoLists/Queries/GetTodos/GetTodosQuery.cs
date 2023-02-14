@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using OnlineApplicationSystem.Application.TodoLists.Queries.GetTodos;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 using OnlineApplicationSystem.Application.Common.Interfaces;
 using OnlineApplicationSystem.Application.Common.Security;
 using OnlineApplicationSystem.Domain.Enums;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace OnlineApplicationSystem.Application.TodoLists.Queries.GetTodos;
 

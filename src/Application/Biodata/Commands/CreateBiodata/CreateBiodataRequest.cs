@@ -2,9 +2,67 @@ using MediatR;
 using OnlineApplicationSystem.Domain.Enums;
 using OnlineApplicationSystem.Domain.ValueObjects;
 
-namespace OnlineApplicationSystem.Application.Biodata.CreateBiodata;
+namespace OnlineApplicationSystem.Application.Biodata.Commands.CreateBiodata;
 public record CreateBiodataRequest : IRequest<int>
 {
+    public CreateBiodataRequest(long applicationNumber, string firstName, string lastName, string otherName, Gender gender, DateOnly dob, Title title, MaritalStatus? maritalStatus, string phone, string? altPhone, string? email, string? postGprs, string? emergencyContact, string? hometown, int? district, string? nationalIdNo, IDCards? nationalIdType, int? regionId, int? nationalityId, bool? residentialStatus, string? guardianName, string? guardianPhone, string? guardianOccupation, string? guardianRelationship, bool? disability, Disability? disabilityType, string? sourceOfFinance, int? religionId, string? denomination, IDCard? idCard, string? referrals, Session? entryMode, string? firstQualification, string? secondQualification, string? programmeStudied, string? formerSchool, int? formerSchoolNewId, int? programmeAdmittedId, int? lastYearInSchool, bool? awaiting, int? grade, string? preferedHall, bool? elligible, bool? admitted, int? admittedBy, string? admissionType, string? leveladmitted, int? firstChoiceId, int? secondChoiceId, int? thirdChoiceId, bool? sponsorShip, string? sponsorShipCompany, string? sponsorShipLocation, string? sponsorShipCompanyContact)
+    {
+        ApplicationNumber = applicationNumber;
+        FirstName = firstName;
+        LastName = lastName;
+        OtherName = otherName;
+        Gender = gender;
+        Dob = dob;
+        Title = title;
+        MaritalStatus = maritalStatus;
+        Phone = phone;
+        AltPhone = altPhone;
+        Email = email;
+        PostGPRS = postGprs;
+        EmergencyContact = emergencyContact;
+        Hometown = hometown;
+        District = district;
+        NationalIDNo = nationalIdNo;
+        NationalIDType = nationalIdType;
+        RegionId = regionId;
+        NationalityId = nationalityId;
+        ResidentialStatus = residentialStatus;
+        GuardianName = guardianName;
+        GuardianPhone = guardianPhone;
+        GuardianOccupation = guardianOccupation;
+        GuardianRelationship = guardianRelationship;
+        Disability = disability;
+        DisabilityType = disabilityType;
+        SourceOfFinance = sourceOfFinance;
+        ReligionId = religionId;
+        Denomination = denomination;
+        IDCard = idCard;
+        Referrals = referrals;
+        EntryMode = entryMode;
+        FirstQualification = firstQualification;
+        SecondQualification = secondQualification;
+        ProgrammeStudied = programmeStudied;
+        FormerSchool = formerSchool;
+        FormerSchoolNewId = formerSchoolNewId;
+        ProgrammeAdmittedId = programmeAdmittedId;
+        LastYearInSchool = lastYearInSchool;
+        Awaiting = awaiting;
+        Grade = grade;
+        PreferedHall = preferedHall;
+        Elligible = elligible;
+        Admitted = admitted;
+        AdmittedBy = admittedBy;
+        AdmissionType = admissionType;
+        this.leveladmitted = leveladmitted;
+        FirstChoiceId = firstChoiceId;
+        SecondChoiceId = secondChoiceId;
+        ThirdChoiceId = thirdChoiceId;
+        SponsorShip = sponsorShip;
+        SponsorShipCompany = sponsorShipCompany;
+        SponsorShipLocation = sponsorShipLocation;
+        SponsorShipCompanyContact = sponsorShipCompanyContact;
+    }
+
     public long ApplicationNumber { get; init; }
     public string FirstName { get; init; }
     public string LastName { get; init; }

@@ -1,13 +1,14 @@
-﻿using OnlineApplicationSystem.Application.Common.Models;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using OnlineApplicationSystem.Application.Common.Models;
 using OnlineApplicationSystem.Application.TodoItems.Commands.CreateTodoItem;
 using OnlineApplicationSystem.Application.TodoItems.Commands.DeleteTodoItem;
 using OnlineApplicationSystem.Application.TodoItems.Commands.UpdateTodoItem;
 using OnlineApplicationSystem.Application.TodoItems.Commands.UpdateTodoItemDetail;
 using OnlineApplicationSystem.Application.TodoItems.Queries.GetTodoItemsWithPagination;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
-namespace OnlineApplicationSystem.WebUI.Controllers;
+
+namespace WebUI.Controllers;
 
 [Authorize]
 public class TodoItemsController : ApiControllerBase

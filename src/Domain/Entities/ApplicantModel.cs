@@ -107,7 +107,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         private IList<SMSModel> Sms { get; set; }
         private IList<ApplicantIssueModel>? ApplicantIssue { get; set; }
         private IList<ResearchModel>? ResearchModels { get; set; }
-        private IList<ResearchPublication>? ResearchPublications { get; set; }
+        private IList<ResearchPublicationModel>? ResearchPublications { get; set; }
 
     }
 }

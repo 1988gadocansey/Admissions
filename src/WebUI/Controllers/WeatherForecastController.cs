@@ -1,5 +1,6 @@
 ﻿using OnlineApplicationSystem.Application.WeatherForecasts.Queries.GetWeatherForecasts;
 using Microsoft.AspNetCore.Mvc;
+using WebUI.Controllers;
 
 namespace OnlineApplicationSystem.WebUI.Controllers;
 

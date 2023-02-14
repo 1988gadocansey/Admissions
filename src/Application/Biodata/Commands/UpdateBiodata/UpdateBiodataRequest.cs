@@ -1,9 +1,66 @@
 using MediatR;
 using OnlineApplicationSystem.Domain.Enums;
+using OnlineApplicationSystem.Domain.ValueObjects;
 
-namespace OnlineApplicationSystem.Application.Biodata.UpdateBiodata;
-public record UpdateBiodataRequest : IRequest<int>
+namespace OnlineApplicationSystem.Application.Biodata.Commands.UpdateBiodata;
+public record UpdateBiodataRequest : IRequest
 {
+    public UpdateBiodataRequest(string id, long applicationNumber, string firstName, string lastName, string otherName, Gender gender, DateOnly dob, Title title, MaritalStatus? maritalStatus, string phone, string? altPhone, string? email, string? postGprs, string? emergencyContact, string? hometown, int? district, string? nationalIdNo, IDCards? nationalIdType, int? regionId, int? nationalityId, bool? residentialStatus, string? guardianName, string? guardianPhone, string? guardianOccupation, string? guardianRelationship, bool? disability, Disability? disabilityType, string? sourceOfFinance, int? religionId, string? denomination, IDCard? idCard, string? referrals, Session? entryMode, string? firstQualification, string? secondQualification, string? programmeStudied, string? formerSchool, int? formerSchoolNewId, int? programmeAdmittedId, int? lastYearInSchool, bool? awaiting, int? grade, string? preferedHall, bool? elligible, int? firstChoiceId, int? secondChoiceId, int? thirdChoiceId, bool? sponsorShip, string? sponsorShipCompany, string? sponsorShipLocation, string? sponsorShipCompanyContact)
+    {
+        Id = id;
+        ApplicationNumber = applicationNumber;
+        FirstName = firstName;
+        LastName = lastName;
+        OtherName = otherName;
+        Gender = gender;
+        Dob = dob;
+        Title = title;
+        MaritalStatus = maritalStatus;
+        Phone = phone;
+        AltPhone = altPhone;
+        Email = email;
+        PostGPRS = postGprs;
+        EmergencyContact = emergencyContact;
+        Hometown = hometown;
+        District = district;
+        NationalIDNo = nationalIdNo;
+        NationalIDType = nationalIdType;
+        RegionId = regionId;
+        NationalityId = nationalityId;
+        ResidentialStatus = residentialStatus;
+        GuardianName = guardianName;
+        GuardianPhone = guardianPhone;
+        GuardianOccupation = guardianOccupation;
+        GuardianRelationship = guardianRelationship;
+        Disability = disability;
+        DisabilityType = disabilityType;
+        SourceOfFinance = sourceOfFinance;
+        ReligionId = religionId;
+        Denomination = denomination;
+        IDCard = idCard;
+        Referrals = referrals;
+        EntryMode = entryMode;
+        FirstQualification = firstQualification;
+        SecondQualification = secondQualification;
+        ProgrammeStudied = programmeStudied;
+        FormerSchool = formerSchool;
+        FormerSchoolNewId = formerSchoolNewId;
+        ProgrammeAdmittedId = programmeAdmittedId;
+        LastYearInSchool = lastYearInSchool;
+        Awaiting = awaiting;
+        Grade = grade;
+        PreferedHall = preferedHall;
+        Elligible = elligible;
+        FirstChoiceId = firstChoiceId;
+        SecondChoiceId = secondChoiceId;
+        ThirdChoiceId = thirdChoiceId;
+        SponsorShip = sponsorShip;
+        SponsorShipCompany = sponsorShipCompany;
+        SponsorShipLocation = sponsorShipLocation;
+        SponsorShipCompanyContact = sponsorShipCompanyContact;
+    }
+
+    public string Id { get; set; }
     public long ApplicationNumber { get; init; }
     public string FirstName { get; init; }
     public string LastName { get; init; }
@@ -33,6 +90,7 @@ public record UpdateBiodataRequest : IRequest<int>
     public string? SourceOfFinance { get; init; }
     public int? ReligionId { get; init; }
     public string? Denomination { get; init; }
+    public IDCard? IDCard { get; init; }
     public string? Referrals { get; init; }
     public Session? EntryMode { get; init; }
     public string? FirstQualification { get; init; }
@@ -46,10 +104,8 @@ public record UpdateBiodataRequest : IRequest<int>
     public int? Grade { get; init; }
     public string? PreferedHall { get; init; }
     public bool? Elligible { get; init; }
-    public bool? Admitted { get; init; }
-    public int? AdmittedBy { get; init; }
-    public string? AdmissionType { get; init; }
-    public string? leveladmitted { get; init; }
+
+
     public int? FirstChoiceId { get; init; }
     public int? SecondChoiceId { get; init; }
     public int? ThirdChoiceId { get; init; }

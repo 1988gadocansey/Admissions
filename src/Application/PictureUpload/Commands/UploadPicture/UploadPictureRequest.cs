@@ -1,10 +1,17 @@
 using MediatR;
+using OnlineApplicationSystem.Application.Common.Dtos;
 using OnlineApplicationSystem.Domain.Enums;
 
-namespace OnlineApplicationSystem.Application.PictureUpload.UploadPicture;
-public record UploadPictureRequest : IRequest<int>
+namespace OnlineApplicationSystem.Application.PictureUpload.Commands.UploadPicture;
+/* public record UploadPictureRequest : IRequest
 {
-    public long ApplicationNumber { get; init; }
+    public string? UserId { get; init; }
     public string? FileName { get; init; }
 
+} */
+public class UploadPictureRequest : IRequest<UrlsDto>
+{
+    public string? UserId { get; init; }
+
+    public ICollection<FileDto> Files { get; set; } = new List<FileDto>();
 }

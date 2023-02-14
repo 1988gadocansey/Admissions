@@ -1,6 +1,6 @@
-﻿using OnlineApplicationSystem.Application.Common.Interfaces;
+﻿using MediatR;
+using OnlineApplicationSystem.Application.Common.Interfaces;
 using OnlineApplicationSystem.Domain.Entities;
-using MediatR;
 
 namespace OnlineApplicationSystem.Application.TodoLists.Commands.CreateTodoList;
 

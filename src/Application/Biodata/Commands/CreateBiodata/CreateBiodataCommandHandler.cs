@@ -2,7 +2,7 @@ using MediatR;
 using OnlineApplicationSystem.Application.Common.Interfaces;
 using OnlineApplicationSystem.Domain.Entities;
 
-namespace OnlineApplicationSystem.Application.Biodata.CreateBiodata;
+namespace OnlineApplicationSystem.Application.Biodata.Commands.CreateBiodata;
 
 public class CreateBiodataCommandHandler : IRequestHandler<CreateBiodataRequest, int>
 {
@@ -24,7 +24,7 @@ public class CreateBiodataCommandHandler : IRequestHandler<CreateBiodataRequest,
         applicant.Title = request.Title;
         applicant.Gender = request.Gender;
         applicant.Email = Domain.ValueObjects.EmailAddress.Create(request.Email);
-        _context.ApplicantModel.Add(applicant);
+        _context.ApplicantModels.Add(applicant);
         await _context.SaveChangesAsync(cancellationToken);
 
         return applicant.Id;

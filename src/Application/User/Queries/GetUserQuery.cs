@@ -1,10 +1,8 @@
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using OnlineApplicationSystem.Application.Common.Interfaces;
 using OnlineApplicationSystem.Application.Common.Security;
-using OnlineApplicationSystem.Domain.Enums;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
+using OnlineApplicationSystem.Application.Common.Dtos;
 
 namespace OnlineApplicationSystem.Application.User.Queries;
 

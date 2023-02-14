@@ -5,52 +5,143 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8480ae8b-45f7-43b8-b585-b897b0938741" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/2818973e94c2478590c67011b4dc14cb.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/2c6c451c985347f8a672921383c06418.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/45c4d38d2e09471190a5efe9ab583e93.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/576f834a2a5344f7a257e2df1f892177.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/70b32421109d4b18835344fad82a3e9b.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/981fdb4fae3d42e2ae14d6a5d0c4e0c1.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/9fe716fed17d4abb89ad650dc538a1d2.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/aa295019cd504170986e8d6e971a704d.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/c9952bced4a74613afe12e270bbfba01.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/c9bfd8ae375f49f1bce5a260969c2b81.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/d605a2ea903240fc88fdf38be8f4d2fe.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/e2e415af4c774652965f663721725149.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/e302331b845c4a59913509721b706719.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/e3b387322b1443438897278f5e1c4cd6.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Biodata/Commands/UpdateBiodata/UpdateBiodataCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Biodata/Commands/UpdateBiodata/UpdateBiodataCommandValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Biodata/EventHandlers/ApplicationCompletedEventHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Biodata/EventHandlers/BioDataCreatedEventHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Biodata/EventHandlers/FormCompletedEventHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Common/Dtos/FileDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Common/Dtos/UrlDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Common/Dtos/UserDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Common/Exceptions/InvalidMatureAgeException.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Common/Extensions/StringExtension.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Common/Interfaces/IAcademicExperienceRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Common/Interfaces/IAcademicInformationRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Common/Interfaces/IApplicantRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Common/Interfaces/IDocumentUploadRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Common/Interfaces/IGradeUploadRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Common/Interfaces/IPhotoUploadService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Common/Interfaces/IRefereeRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Common/Interfaces/IResearchPublicationRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Common/Interfaces/IResearchRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Application/Common/Interfaces/IWorkExperienceRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Infrastructure/Files/SftpStorageSettings.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Infrastructure/Migrations/20230214100949_RecreatePublicDB.Designer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Infrastructure/Migrations/20230214100949_RecreatePublicDB.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Infrastructure/Services/PhotoUploadService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/Controllers/PictureUploadController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/046a595266b14016bddec5a65c279467.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/1738b50393b548969a3f62719fd7f942.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/265b2d3339fa484f89bd21ae0ac0d07e.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/3320b040a5bd4c08aa0a35cda33b4898.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/3367b809dfbb420db8662a1537dc6841.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/461a2cce14894df1b53af48adaa3e263.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/58c1ad21e5aa4d37a4b66ee5ba13f403.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/79154e0d04cb4b65873168f1cab57f97.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/804e4dd354f844968deed3109c5bf5b1.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/822f5e7590324cf9aff5dd5dd1668606.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/83436286835149e0a83e4c6af30a6c9a.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/8e3b139c7ce94685869fe9a71acd0ec8.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/90c467b73bca44f685f08da6dd5feb70.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/aa45eadc58944c968c9604e8ac556c4e.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/c05394eab68c4aad832ccb59898937bc.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/c19018cc7ec04016a309569db5f5cbc2.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/ccd34da069824990a829d24f4df5592a.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/d567481e50784ecab804fdffe74694d1.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/f512b546e93e47c3b138384aa1022c14.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.OnlineApplicationSystem.dir/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OnlineApplicationSystem.dir/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OnlineApplicationSystem.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OnlineApplicationSystem.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client" beforeDir="false" afterPath="$PROJECT_DIR$/Client" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Biodata/Commands/CreateBiodata/CreateBiodataCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Biodata/Commands/CreateBiodata/CreateBiodataCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Biodata/Commands/CreateBiodata/CreateBiodataCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Biodata/Commands/CreateBiodata/CreateBiodataCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Biodata/Commands/CreateBiodata/CreateBiodataRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Biodata/Commands/CreateBiodata/CreateBiodataRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Biodata/Commands/UpdateBiodata/UpdateBiodataRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Biodata/Commands/UpdateBiodata/UpdateBiodataRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Biodata/EventHandlers/ApplicationCompletedEvent.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Biodata/EventHandlers/FormCompletedEvent.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Biodata/EventHandlers/FormCreatedEvent.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Common/Interfaces/IApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Common/Interfaces/IApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/Common/Interfaces/ICsvFileBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Common/Interfaces/ICsvFileBuilder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/Common/Interfaces/IIdentityService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Common/Interfaces/IIdentityService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/Common/Mappings/MappingExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/Common/Mappings/MappingExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/ConfigureServices.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/ConfigureServices.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/PictureUpload/Commands/UploadPicture/UploadPictureCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/PictureUpload/Commands/UploadPicture/UploadPictureCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/PictureUpload/Commands/UploadPicture/UploadPictureRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/PictureUpload/Commands/UploadPicture/UploadPictureRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/PictureUpload/Commands/UploadPicture/UploadPictureValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/PictureUpload/Commands/UploadPicture/UploadPictureValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/TodoLists/Commands/CreateTodoList/CreateTodoListCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/TodoLists/Commands/CreateTodoList/CreateTodoListCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/TodoLists/Commands/CreateTodoList/CreateTodoListCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/TodoLists/Commands/CreateTodoList/CreateTodoListCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/TodoLists/Queries/ExportTodos/ExportTodosQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/TodoLists/Queries/ExportTodos/ExportTodosQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/TodoLists/Queries/ExportTodos/TodoItemFileRecord.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/TodoLists/Queries/ExportTodos/TodoItemFileRecord.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/TodoLists/Queries/GetTodos/GetTodosQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/TodoLists/Queries/GetTodos/GetTodosQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/TodoLists/Queries/GetTodos/TodoListDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/TodoLists/Queries/GetTodos/TodoListDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/TodoLists/Queries/GetTodos/TodosVm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/TodoLists/Queries/GetTodos/TodosVm.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/User/Commands/UpdateUser/UpdateUserRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/User/Commands/UpdateUser/UpdateUserRequest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/User/Queries/GetUserQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/User/Queries/GetUserQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Application/User/Queries/UserDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/User/Queries/UserDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/User/Queries/UserDto.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/bin/Debug/net7.0/OnlineApplicationSystem.Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/bin/Debug/net7.0/OnlineApplicationSystem.Application.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/bin/Debug/net7.0/OnlineApplicationSystem.Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/bin/Debug/net7.0/OnlineApplicationSystem.Application.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/bin/Debug/net7.0/OnlineApplicationSystem.Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/bin/Debug/net7.0/OnlineApplicationSystem.Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/bin/Debug/net7.0/OnlineApplicationSystem.Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/bin/Debug/net7.0/OnlineApplicationSystem.Domain.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/obj/Debug/net7.0/Application.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/obj/Debug/net7.0/Application.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Application/obj/Debug/net7.0/Application.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/obj/Debug/net7.0/Application.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/obj/Debug/net7.0/OnlineApplicationSystem.Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/obj/Debug/net7.0/OnlineApplicationSystem.Application.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/obj/Debug/net7.0/OnlineApplicationSystem.Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/obj/Debug/net7.0/OnlineApplicationSystem.Application.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/obj/Debug/net7.0/ref/OnlineApplicationSystem.Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/obj/Debug/net7.0/ref/OnlineApplicationSystem.Application.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Application/obj/Debug/net7.0/refint/OnlineApplicationSystem.Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Application/obj/Debug/net7.0/refint/OnlineApplicationSystem.Application.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Contracts/IAcademicExperienceRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Contracts/IAcademicInformationRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Contracts/IApplicantRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Contracts/IDocumentUploadRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Contracts/IGradeUploadRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Contracts/IHelper.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Contracts/IRefereeRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Contracts/IResearchPublicationRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Contracts/IResearchRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Contracts/IWorkExperienceRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Entities/ApplicantModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Entities/ApplicantModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Entities/ResearchPublications.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Entities/ResearchPublications.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/bin/Debug/net7.0/OnlineApplicationSystem.Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/bin/Debug/net7.0/OnlineApplicationSystem.Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/bin/Debug/net7.0/OnlineApplicationSystem.Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/bin/Debug/net7.0/OnlineApplicationSystem.Domain.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/obj/Debug/net7.0/Domain.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/obj/Debug/net7.0/Domain.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/obj/Debug/net7.0/OnlineApplicationSystem.Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/obj/Debug/net7.0/OnlineApplicationSystem.Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/obj/Debug/net7.0/OnlineApplicationSystem.Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/obj/Debug/net7.0/OnlineApplicationSystem.Domain.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/obj/Debug/net7.0/ref/OnlineApplicationSystem.Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/obj/Debug/net7.0/ref/OnlineApplicationSystem.Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/obj/Debug/net7.0/refint/OnlineApplicationSystem.Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/obj/Debug/net7.0/refint/OnlineApplicationSystem.Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/ConfigureServices.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/ConfigureServices.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Files/CsvFileBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Files/CsvFileBuilder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Infrastructure/Identity/IdentityService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Identity/IdentityService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Migrations/ApplicationDbContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Persistence/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Persistence/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Persistence/ApplicationDbContextInitialiser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Persistence/ApplicationDbContextInitialiser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Persistence/Repositories/ApplicantRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Persistence/Repositories/ApplicantRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Persistence/Repositories/UnitOfWork.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Persistence/Repositories/UnitOfWork.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Services/HelperService.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Infrastructure/bin/Debug/net7.0/OnlineApplicationSystem.Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/bin/Debug/net7.0/OnlineApplicationSystem.Application.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Infrastructure/bin/Debug/net7.0/OnlineApplicationSystem.Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/bin/Debug/net7.0/OnlineApplicationSystem.Application.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/bin/Debug/net7.0/OnlineApplicationSystem.Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/bin/Debug/net7.0/OnlineApplicationSystem.Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/bin/Debug/net7.0/OnlineApplicationSystem.Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/bin/Debug/net7.0/OnlineApplicationSystem.Domain.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Infrastructure/bin/Debug/net7.0/OnlineApplicationSystem.Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/bin/Debug/net7.0/OnlineApplicationSystem.Infrastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Infrastructure/bin/Debug/net7.0/OnlineApplicationSystem.Infrastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/bin/Debug/net7.0/OnlineApplicationSystem.Infrastructure.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Infrastructure/obj/Debug/net7.0/Infrastructure.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/obj/Debug/net7.0/Infrastructure.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/obj/Debug/net7.0/Infrastructure.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/obj/Debug/net7.0/Infrastructure.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Infrastructure/obj/Debug/net7.0/OnlineApplicationSystem.Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/obj/Debug/net7.0/OnlineApplicationSystem.Infrastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Infrastructure/obj/Debug/net7.0/OnlineApplicationSystem.Infrastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/obj/Debug/net7.0/OnlineApplicationSystem.Infrastructure.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Infrastructure/obj/Debug/net7.0/ref/OnlineApplicationSystem.Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/obj/Debug/net7.0/ref/OnlineApplicationSystem.Infrastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Infrastructure/obj/Debug/net7.0/refint/OnlineApplicationSystem.Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/obj/Debug/net7.0/refint/OnlineApplicationSystem.Infrastructure.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebUI/Controllers/ApiControllerBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/Controllers/ApiControllerBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebUI/Controllers/ApplicantController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/Controllers/ApplicantController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WebUI/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/Controllers/HomeController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebUI/Controllers/TodoItemsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/Controllers/TodoItemsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebUI/Controllers/TodoListsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/Controllers/TodoListsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebUI/Controllers/WeatherForecastController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/Controllers/WeatherForecastController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/OnlineApplicationSystem.Application.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/OnlineApplicationSystem.Application.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/OnlineApplicationSystem.Application.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/OnlineApplicationSystem.Application.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/OnlineApplicationSystem.Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/OnlineApplicationSystem.Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/OnlineApplicationSystem.Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/OnlineApplicationSystem.Domain.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/OnlineApplicationSystem.Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/OnlineApplicationSystem.Infrastructure.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/OnlineApplicationSystem.Infrastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/OnlineApplicationSystem.Infrastructure.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/WebUI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/WebUI.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/WebUI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/bin/Debug/net7.0/WebUI.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WebUI/obj/Debug/net7.0/WebUI.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/obj/Debug/net7.0/WebUI.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebUI/obj/Debug/net7.0/WebUI.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/obj/Debug/net7.0/WebUI.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WebUI/obj/Debug/net7.0/WebUI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/obj/Debug/net7.0/WebUI.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WebUI/obj/Debug/net7.0/WebUI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/obj/Debug/net7.0/WebUI.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WebUI/obj/Debug/net7.0/project.razor.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/obj/Debug/net7.0/project.razor.json" afterDir="false" />
@@ -58,6 +149,7 @@
       <change beforePath="$PROJECT_DIR$/src/WebUI/obj/Debug/net7.0/refint/WebUI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebUI/obj/Debug/net7.0/refint/WebUI.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Application.IntegrationTests/obj/Debug/net7.0/Application.IntegrationTests.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Application.IntegrationTests/obj/Debug/net7.0/Application.IntegrationTests.csproj.AssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Application.UnitTests/obj/Debug/net7.0/Application.UnitTests.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Application.UnitTests/obj/Debug/net7.0/Application.UnitTests.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Domain.UnitTests/obj/Debug/net7.0/Domain.UnitTests.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Domain.UnitTests/obj/Debug/net7.0/Domain.UnitTests.csproj.AssemblyReference.cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,6 +221,10 @@
       <workItem from="1676067333557" duration="737000" />
       <workItem from="1676132879988" duration="1906000" />
       <workItem from="1676229157813" duration="2034000" />
+      <workItem from="1676238275411" duration="222000" />
+      <workItem from="1676364786341" duration="3619000" />
+      <workItem from="1676379347854" duration="3353000" />
+      <workItem from="1676383258739" duration="4083000" />
     </task>
     <servers />
   </component>
