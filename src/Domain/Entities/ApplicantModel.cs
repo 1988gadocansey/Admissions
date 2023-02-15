@@ -12,7 +12,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public ApplicantName ApplicantName { get; set; }
         public ApplicantName? PreviousName { get; set; }
         [DataType(DataType.Date)]
-        public DateTime Dob { get; set; }
+        public DateOnly Dob { get; set; }
         public Gender Gender { get; set; }
         public int Age { get; set; }
         public MaritalStatus? MaritalStatus { get; set; } = Enums.MaritalStatus.Single;
@@ -95,6 +95,10 @@ namespace OnlineApplicationSystem.Domain.Entities
         /*[Display(Name = "Full Name")]
         public string FullName => Title +" "+ LastName + ", " + FirstName + " "+ MiddleName;
         */
+        public string GetFullName()
+        {
+            return $"  {this.Title} ,{this.ApplicantName.LastName}, {this.ApplicantName.FirstName}, {this.ApplicantName.Othernames}";
+        }
 
         private IList<ProgrammeModel> Programme { get; set; }
         private IList<ResultUploadModel> ResultUpload { get; set; }

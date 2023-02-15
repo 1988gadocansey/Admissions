@@ -1,4 +1,11 @@
+using System.Net;
+using System.Net.Mail;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using OnlineApplicationSystem.Application.Biodata.Queries;
 using OnlineApplicationSystem.Application.Common.Interfaces;
+using OnlineApplicationSystem.Application.Common.Mappings;
+using OnlineApplicationSystem.Application.Common.Models;
 using OnlineApplicationSystem.Domain.Entities;
 
 namespace OnlineApplicationSystem.Infrastructure.Persistence.Repositories;
@@ -7,10 +14,11 @@ public class ApplicantRepository : IApplicantRepository
 {
 
     private readonly IApplicationDbContext _context;
-
-    public ApplicantRepository(IApplicationDbContext context)
+    private readonly IMapper _mapper;
+    public ApplicantRepository(IApplicationDbContext context,IMapper mapper)
     {
         _context = context;
+        _mapper = mapper;
 
     }
 
@@ -33,15 +41,22 @@ public class ApplicantRepository : IApplicantRepository
     {
         throw new NotImplementedException();
     }
-
-    Task<string> IApplicantRepository.GetApplicantCodeFromId(int id)
+    
+    public async Task<ApplicantDto> GetApplicant(int Id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
-    }
-
-    Task<ApplicantModel> IApplicantRepository.GetApplicantIdFromFormNo(string id)
-    {
-        throw new NotImplementedException();
+        var applicant = await _context.ApplicantModels.FirstOrDefaultAsync(a => a.Id == Id, cancellationToken);
+        /*var applicantDto = new ApplicantDto()
+        {
+            FirstName = applicant.ApplicantName.FirstName,
+            LastName = applicant.ApplicantName.LastName,
+            Gender = applicant.Gender,
+            OtherName = applicant.ApplicantName.Othernames,
+            Title = applicant.Title,
+            Dob = applicant.Dob,
+            MaritalStatus = applicant.MaritalStatus,
+        };*/
+        var applicantDetails = _mapper.Map<ApplicantDto>(applicant);
+        return applicantDetails;
     }
 
     Task<ConfigurationModel?> IApplicantRepository.GetConfiguration()
@@ -55,37 +70,6 @@ public class ApplicantRepository : IApplicantRepository
             .FirstOrDefault();
         var formNumber = _context.FormNoModels.First(n => n.Year == configuration.Year);
         return formNumber.No.ToString();
-    }
-
-    Task<double> IApplicantRepository.GetHallFee(int hall)
-    {
-        throw new NotImplementedException();
-    }
-
-    Task<string> IApplicantRepository.GetHallName(int hall)
-    {
-        throw new NotImplementedException();
-    }
-
-    Task<string> IApplicantRepository.GetProgrammeName(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    Task<IEnumerable<ApplicantModel>> IApplicantRepository.GetResults(ApplicantModel applicant, CancellationToken cancellationToken)
-    {
-
-        /* return await _repositoryContext.MountedCourses
-                .AsNoTracking()
-                .Where(a => a.COURSE_SEMESTER == semester)
-                .Where(a => a.PROGRAMME == programme)
-                .Where(a => a.COURSE_LEVEL == level)
-                .Where(a => a.COURSE_YEAR == years)
-                .OrderBy(c => c.Courses.COURSE_NAME)
-                .OrderBy(c => c.COURSE_TYPE)
-                .Include(a => a.Courses)
-                .ToListAsync(cancellationToken); */
-        throw new NotImplementedException();
     }
 
     Task<int> IApplicantRepository.GetTotalAggregate(int[] Cores, int[] CoreAlt, int[] Electives)
@@ -103,9 +87,38 @@ public class ApplicantRepository : IApplicantRepository
         throw new NotImplementedException();
     }
 
-    Task IApplicantRepository.SendEmailNotification(string Email, string Message)
+    public  Task  SendEmailNotification(string Email, string Message)
     {
-        throw new NotImplementedException();
+        var client = new SmtpClient("smtp.google.com");
+        client.EnableSsl = true;
+        var NetworkCred = new NetworkCredential("gadocansey@gmail.com", "031988gadocansey");
+        client.UseDefaultCredentials = true;
+        client.Credentials = NetworkCred;
+        client.Port = 587;
+        // Specify the email sender.
+        // Create a mailing address that includes a UTF8 character
+        // in the display name.
+        var from = new MailAddress("admissions@ttu.edu.gh",
+            "Admissions " + (char)0xD8 + " TTU",
+            System.Text.Encoding.UTF8);
+        // Set destinations for the email message.
+        var to = new MailAddress(Email);
+        // Specify the message content.
+        var message = new MailMessage(from, to);
+        message.Body = Message;
+        // Include some non-ASCII characters in body and subject.
+        var someArrows = new string(new char[] { '\u2190', '\u2191', '\u2192', '\u2193' });
+        message.Body += Environment.NewLine + someArrows;
+        message.BodyEncoding = System.Text.Encoding.UTF8;
+        message.Subject = "From Admissions - Takoradi Technical University" + someArrows;
+        message.SubjectEncoding = System.Text.Encoding.UTF8;
+        const string userState = "TTU Admissions";
+        // Set the method that is called back when the send operation ends.
+        client.SendAsync(message, userState);
+
+        // Clean up.
+          message.Dispose();
+          return  Task.CompletedTask;
     }
 
     Task<int> IApplicantRepository.SendFileToServer(string host, int port, string username, string password, string filePath)

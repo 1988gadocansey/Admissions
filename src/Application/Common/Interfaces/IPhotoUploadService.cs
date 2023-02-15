@@ -8,5 +8,5 @@ public interface IPhotoUploadService
     string UserId { get; set; }
     Task<UrlsDto> UploadAsync(ICollection<FileDto> files);
     Task<int> SendFileToServer(string host, int port, string username, string password, string filePath);
-
+    
 }
