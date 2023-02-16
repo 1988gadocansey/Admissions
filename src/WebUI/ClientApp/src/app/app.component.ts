@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { ThemeService } from './core/services/theme.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls:['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'app';
-  copyrightDate: any = Date()
+  title = 'TTU Application Portal';
+
+  constructor(public themeService: ThemeService) { }
 }
