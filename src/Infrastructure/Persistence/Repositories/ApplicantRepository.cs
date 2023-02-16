@@ -4,8 +4,6 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using OnlineApplicationSystem.Application.Biodata.Queries;
 using OnlineApplicationSystem.Application.Common.Interfaces;
-using OnlineApplicationSystem.Application.Common.Mappings;
-using OnlineApplicationSystem.Application.Common.Models;
 using OnlineApplicationSystem.Domain.Entities;
 
 namespace OnlineApplicationSystem.Infrastructure.Persistence.Repositories;
@@ -15,7 +13,7 @@ public class ApplicantRepository : IApplicantRepository
 
     private readonly IApplicationDbContext _context;
     private readonly IMapper _mapper;
-    public ApplicantRepository(IApplicationDbContext context,IMapper mapper)
+    public ApplicantRepository(IApplicationDbContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;
@@ -32,16 +30,30 @@ public class ApplicantRepository : IApplicantRepository
         throw new NotImplementedException();
     }
 
-    Task<bool> IApplicantRepository.ContainsDuplicates(int[] a)
+    public async Task<bool> ContainsDuplicates(int[] results)
     {
-        throw new NotImplementedException();
+        /* var duplicates = results.GroupBy(x => x)
+            .Where(g => g.Count() > 1)
+            .Select(y => y.Key)
+            .ToList(); */
+        if (results.Length != results.Distinct().Count())
+        {
+            return await Task.FromResult(true);
+        }
+        return await Task.FromResult(false);
     }
 
-    Task<int> IApplicantRepository.GetAge(DateTime dateOfBirth)
+    public Task<int> GetAge(DateOnly dateOfBirth)
     {
-        throw new NotImplementedException();
+        var today = DateTime.Today;
+
+        var a = (today.Year * 100 + today.Month) * 100 + today.Day;
+        var b = (dateOfBirth.Year * 100 + dateOfBirth.Month) * 100 + dateOfBirth.Day;
+
+        var age = (a - b) / 10000;
+        return Task.FromResult(age);
     }
-    
+
     public async Task<ApplicantDto> GetApplicant(int Id, CancellationToken cancellationToken)
     {
         var applicant = await _context.ApplicantModels.FirstOrDefaultAsync(a => a.Id == Id, cancellationToken);
@@ -87,7 +99,7 @@ public class ApplicantRepository : IApplicantRepository
         throw new NotImplementedException();
     }
 
-    public  Task  SendEmailNotification(string Email, string Message)
+    public Task SendEmailNotification(string Email, string Message)
     {
         var client = new SmtpClient("smtp.google.com");
         client.EnableSsl = true;
@@ -117,14 +129,11 @@ public class ApplicantRepository : IApplicantRepository
         client.SendAsync(message, userState);
 
         // Clean up.
-          message.Dispose();
-          return  Task.CompletedTask;
+        message.Dispose();
+        return Task.CompletedTask;
     }
 
-    Task<int> IApplicantRepository.SendFileToServer(string host, int port, string username, string password, string filePath)
-    {
-        throw new NotImplementedException();
-    }
+
 
     Task IApplicantRepository.SendSMSNotification(string PhoneNumber, string Message)
     {

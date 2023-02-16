@@ -10,7 +10,27 @@ public class PhotoUploadService : IPhotoUploadService
 
     public async Task<UrlsDto> UploadAsync(ICollection<FileDto> files)
     {
-        throw new NotImplementedException();
+        if (files == null || files.Count == 0)
+        {
+            return null;
+        }
+
+        //var containerClient = _blobServiceClient.GetBlobContainerClient("publicuploads");
+
+
+        var urls = new List<string>();
+
+
+        /* foreach (var file in files)
+        {
+            var blobClient = containerClient.GetBlobClient(file.GetPathWithFileName());
+
+            await blobClient.UploadAsync(file.Content, new BlobHttpHeaders { ContentType = file.ContentType });
+
+            urls.Add(blobClient.Uri.ToString());
+        } */
+
+        return new UrlsDto(urls);
     }
     public Task<int> SendFileToServer(string host, int port, string username, string password, string uploadFile)
     {
