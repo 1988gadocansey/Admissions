@@ -17,11 +17,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { TokenComponent } from './token/token.component';
 import { TodoComponent } from './todo/todo.component';
+import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
 
 @NgModule({
   declarations: [AppComponent, SpinnerComponent, FetchDataComponent, TokenComponent, TodoComponent],
   imports: [BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    HttpClientModule, AppRoutingModule, SharedModule, CommonModule, BrowserAnimationsModule
+    HttpClientModule, SharedModule, CommonModule, ApiAuthorizationModule, AppRoutingModule,
+    BrowserAnimationsModule
 
   ],
   providers: [

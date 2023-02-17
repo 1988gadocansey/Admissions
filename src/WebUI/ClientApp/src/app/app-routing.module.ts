@@ -11,9 +11,9 @@ import { TokenComponent } from './token/token.component';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'token', component: TokenComponent },
-  { path: 'fetch-data', component: FetchDataComponent },
-  { path: 'todo', component: TodoComponent },
+  { path: 'token', component: TokenComponent ,canActivate: [AuthorizeGuard] },
+  { path: 'fetch-data', component: FetchDataComponent,canActivate: [AuthorizeGuard]  },
+  { path: 'todo', component: TodoComponent, canActivate: [AuthorizeGuard] },
   // { path: 'biodata', component: BiodataComponent, canActivate: [AuthGuard] },
   { path: '404', component: NotFoundComponent },
 
