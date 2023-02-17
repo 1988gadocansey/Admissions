@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { InfoComponent } from './pages/info/info.component';
 import { WelcomeComponent } from './welcome.component';
 

@@ -15,6 +15,212 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
+export interface IApplicantClient {
+    create(command: CreateBiodataRequest): Observable<number>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ApplicantClient implements IApplicantClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    create(command: CreateBiodataRequest): Observable<number> {
+        let url_ = this.baseUrl + "/api/Applicant";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreate(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<number>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<number>;
+        }));
+    }
+
+    protected processCreate(response: HttpResponseBase): Observable<number> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
+export interface IHomeClient {
+    dashboard(): Observable<UserDto>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class HomeClient implements IHomeClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    dashboard(): Observable<UserDto> {
+        let url_ = this.baseUrl + "/api/Home";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDashboard(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDashboard(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<UserDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<UserDto>;
+        }));
+    }
+
+    protected processDashboard(response: HttpResponseBase): Observable<UserDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = UserDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
+export interface IPictureUploadClient {
+    uploadImages(formFiles: FileParameter[] | null | undefined): Observable<FileResponse>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class PictureUploadClient implements IPictureUploadClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    uploadImages(formFiles: FileParameter[] | null | undefined): Observable<FileResponse> {
+        let url_ = this.baseUrl + "/api/PictureUpload";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = new FormData();
+        if (formFiles !== null && formFiles !== undefined)
+            formFiles.forEach(item_ => content_.append("formFiles", item_.data, item_.fileName ? item_.fileName : "formFiles") );
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/octet-stream"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUploadImages(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUploadImages(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<FileResponse>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<FileResponse>;
+        }));
+    }
+
+    protected processUploadImages(response: HttpResponseBase): Observable<FileResponse> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200 || status === 206) {
+            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
+            const fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+            const fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+            return _observableOf({ fileName: fileName, data: responseBlob as any, status: status, headers: _headers });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
 export interface ITodoItemsClient {
     getTodoItemsWithPagination(listId: number | undefined, pageNumber: number | undefined, pageSize: number | undefined): Observable<PaginatedListOfTodoItemBriefDto>;
     create(command: CreateTodoItemCommand): Observable<number>;
@@ -653,6 +859,456 @@ export class WeatherForecastClient implements IWeatherForecastClient {
     }
 }
 
+export class CreateBiodataRequest implements ICreateBiodataRequest {
+    applicationNumber?: number;
+    firstName?: string;
+    lastName?: string;
+    otherName?: string;
+    gender?: Gender;
+    dob?: Date;
+    title?: Title;
+    maritalStatus?: MaritalStatus | undefined;
+    phone?: string;
+    altPhone?: string | undefined;
+    email?: string | undefined;
+    postGPRS?: string | undefined;
+    emergencyContact?: string | undefined;
+    hometown?: string | undefined;
+    district?: number | undefined;
+    nationalIDNo?: string | undefined;
+    nationalIDType?: IDCards | undefined;
+    regionId?: number | undefined;
+    nationalityId?: number | undefined;
+    residentialStatus?: boolean | undefined;
+    guardianName?: string | undefined;
+    guardianPhone?: string | undefined;
+    guardianOccupation?: string | undefined;
+    guardianRelationship?: string | undefined;
+    disability?: boolean | undefined;
+    disabilityType?: Disability | undefined;
+    sourceOfFinance?: string | undefined;
+    religionId?: number | undefined;
+    denomination?: string | undefined;
+    idCard?: IDCard | undefined;
+    referrals?: string | undefined;
+    entryMode?: Session | undefined;
+    firstQualification?: string | undefined;
+    secondQualification?: string | undefined;
+    programmeStudied?: string | undefined;
+    formerSchool?: string | undefined;
+    formerSchoolNewId?: number | undefined;
+    programmeAdmittedId?: number | undefined;
+    lastYearInSchool?: number | undefined;
+    awaiting?: boolean | undefined;
+    grade?: number | undefined;
+    preferedHall?: string | undefined;
+    elligible?: boolean | undefined;
+    admitted?: boolean | undefined;
+    admittedBy?: number | undefined;
+    admissionType?: string | undefined;
+    leveladmitted?: string | undefined;
+    firstChoiceId?: number | undefined;
+    secondChoiceId?: number | undefined;
+    thirdChoiceId?: number | undefined;
+    sponsorShip?: boolean | undefined;
+    sponsorShipCompany?: string | undefined;
+    sponsorShipLocation?: string | undefined;
+    sponsorShipCompanyContact?: string | undefined;
+
+    constructor(data?: ICreateBiodataRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.applicationNumber = _data["applicationNumber"];
+            this.firstName = _data["firstName"];
+            this.lastName = _data["lastName"];
+            this.otherName = _data["otherName"];
+            this.gender = _data["gender"];
+            this.dob = _data["dob"] ? new Date(_data["dob"].toString()) : <any>undefined;
+            this.title = _data["title"];
+            this.maritalStatus = _data["maritalStatus"];
+            this.phone = _data["phone"];
+            this.altPhone = _data["altPhone"];
+            this.email = _data["email"];
+            this.postGPRS = _data["postGPRS"];
+            this.emergencyContact = _data["emergencyContact"];
+            this.hometown = _data["hometown"];
+            this.district = _data["district"];
+            this.nationalIDNo = _data["nationalIDNo"];
+            this.nationalIDType = _data["nationalIDType"];
+            this.regionId = _data["regionId"];
+            this.nationalityId = _data["nationalityId"];
+            this.residentialStatus = _data["residentialStatus"];
+            this.guardianName = _data["guardianName"];
+            this.guardianPhone = _data["guardianPhone"];
+            this.guardianOccupation = _data["guardianOccupation"];
+            this.guardianRelationship = _data["guardianRelationship"];
+            this.disability = _data["disability"];
+            this.disabilityType = _data["disabilityType"];
+            this.sourceOfFinance = _data["sourceOfFinance"];
+            this.religionId = _data["religionId"];
+            this.denomination = _data["denomination"];
+            this.idCard = _data["idCard"] ? IDCard.fromJS(_data["idCard"]) : <any>undefined;
+            this.referrals = _data["referrals"];
+            this.entryMode = _data["entryMode"];
+            this.firstQualification = _data["firstQualification"];
+            this.secondQualification = _data["secondQualification"];
+            this.programmeStudied = _data["programmeStudied"];
+            this.formerSchool = _data["formerSchool"];
+            this.formerSchoolNewId = _data["formerSchoolNewId"];
+            this.programmeAdmittedId = _data["programmeAdmittedId"];
+            this.lastYearInSchool = _data["lastYearInSchool"];
+            this.awaiting = _data["awaiting"];
+            this.grade = _data["grade"];
+            this.preferedHall = _data["preferedHall"];
+            this.elligible = _data["elligible"];
+            this.admitted = _data["admitted"];
+            this.admittedBy = _data["admittedBy"];
+            this.admissionType = _data["admissionType"];
+            this.leveladmitted = _data["leveladmitted"];
+            this.firstChoiceId = _data["firstChoiceId"];
+            this.secondChoiceId = _data["secondChoiceId"];
+            this.thirdChoiceId = _data["thirdChoiceId"];
+            this.sponsorShip = _data["sponsorShip"];
+            this.sponsorShipCompany = _data["sponsorShipCompany"];
+            this.sponsorShipLocation = _data["sponsorShipLocation"];
+            this.sponsorShipCompanyContact = _data["sponsorShipCompanyContact"];
+        }
+    }
+
+    static fromJS(data: any): CreateBiodataRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateBiodataRequest();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["applicationNumber"] = this.applicationNumber;
+        data["firstName"] = this.firstName;
+        data["lastName"] = this.lastName;
+        data["otherName"] = this.otherName;
+        data["gender"] = this.gender;
+        data["dob"] = this.dob ? formatDate(this.dob) : <any>undefined;
+        data["title"] = this.title;
+        data["maritalStatus"] = this.maritalStatus;
+        data["phone"] = this.phone;
+        data["altPhone"] = this.altPhone;
+        data["email"] = this.email;
+        data["postGPRS"] = this.postGPRS;
+        data["emergencyContact"] = this.emergencyContact;
+        data["hometown"] = this.hometown;
+        data["district"] = this.district;
+        data["nationalIDNo"] = this.nationalIDNo;
+        data["nationalIDType"] = this.nationalIDType;
+        data["regionId"] = this.regionId;
+        data["nationalityId"] = this.nationalityId;
+        data["residentialStatus"] = this.residentialStatus;
+        data["guardianName"] = this.guardianName;
+        data["guardianPhone"] = this.guardianPhone;
+        data["guardianOccupation"] = this.guardianOccupation;
+        data["guardianRelationship"] = this.guardianRelationship;
+        data["disability"] = this.disability;
+        data["disabilityType"] = this.disabilityType;
+        data["sourceOfFinance"] = this.sourceOfFinance;
+        data["religionId"] = this.religionId;
+        data["denomination"] = this.denomination;
+        data["idCard"] = this.idCard ? this.idCard.toJSON() : <any>undefined;
+        data["referrals"] = this.referrals;
+        data["entryMode"] = this.entryMode;
+        data["firstQualification"] = this.firstQualification;
+        data["secondQualification"] = this.secondQualification;
+        data["programmeStudied"] = this.programmeStudied;
+        data["formerSchool"] = this.formerSchool;
+        data["formerSchoolNewId"] = this.formerSchoolNewId;
+        data["programmeAdmittedId"] = this.programmeAdmittedId;
+        data["lastYearInSchool"] = this.lastYearInSchool;
+        data["awaiting"] = this.awaiting;
+        data["grade"] = this.grade;
+        data["preferedHall"] = this.preferedHall;
+        data["elligible"] = this.elligible;
+        data["admitted"] = this.admitted;
+        data["admittedBy"] = this.admittedBy;
+        data["admissionType"] = this.admissionType;
+        data["leveladmitted"] = this.leveladmitted;
+        data["firstChoiceId"] = this.firstChoiceId;
+        data["secondChoiceId"] = this.secondChoiceId;
+        data["thirdChoiceId"] = this.thirdChoiceId;
+        data["sponsorShip"] = this.sponsorShip;
+        data["sponsorShipCompany"] = this.sponsorShipCompany;
+        data["sponsorShipLocation"] = this.sponsorShipLocation;
+        data["sponsorShipCompanyContact"] = this.sponsorShipCompanyContact;
+        return data;
+    }
+}
+
+export interface ICreateBiodataRequest {
+    applicationNumber?: number;
+    firstName?: string;
+    lastName?: string;
+    otherName?: string;
+    gender?: Gender;
+    dob?: Date;
+    title?: Title;
+    maritalStatus?: MaritalStatus | undefined;
+    phone?: string;
+    altPhone?: string | undefined;
+    email?: string | undefined;
+    postGPRS?: string | undefined;
+    emergencyContact?: string | undefined;
+    hometown?: string | undefined;
+    district?: number | undefined;
+    nationalIDNo?: string | undefined;
+    nationalIDType?: IDCards | undefined;
+    regionId?: number | undefined;
+    nationalityId?: number | undefined;
+    residentialStatus?: boolean | undefined;
+    guardianName?: string | undefined;
+    guardianPhone?: string | undefined;
+    guardianOccupation?: string | undefined;
+    guardianRelationship?: string | undefined;
+    disability?: boolean | undefined;
+    disabilityType?: Disability | undefined;
+    sourceOfFinance?: string | undefined;
+    religionId?: number | undefined;
+    denomination?: string | undefined;
+    idCard?: IDCard | undefined;
+    referrals?: string | undefined;
+    entryMode?: Session | undefined;
+    firstQualification?: string | undefined;
+    secondQualification?: string | undefined;
+    programmeStudied?: string | undefined;
+    formerSchool?: string | undefined;
+    formerSchoolNewId?: number | undefined;
+    programmeAdmittedId?: number | undefined;
+    lastYearInSchool?: number | undefined;
+    awaiting?: boolean | undefined;
+    grade?: number | undefined;
+    preferedHall?: string | undefined;
+    elligible?: boolean | undefined;
+    admitted?: boolean | undefined;
+    admittedBy?: number | undefined;
+    admissionType?: string | undefined;
+    leveladmitted?: string | undefined;
+    firstChoiceId?: number | undefined;
+    secondChoiceId?: number | undefined;
+    thirdChoiceId?: number | undefined;
+    sponsorShip?: boolean | undefined;
+    sponsorShipCompany?: string | undefined;
+    sponsorShipLocation?: string | undefined;
+    sponsorShipCompanyContact?: string | undefined;
+}
+
+export enum Gender {
+    Male = 0,
+    Female = 1,
+}
+
+export enum Title {
+    Mr = 0,
+    Miss = 1,
+    Mrs = 2,
+    Rev = 3,
+    Dr = 4,
+    PhD = 5,
+    Ms = 6,
+}
+
+export enum MaritalStatus {
+    Married = 0,
+    Divorced = 1,
+    Single = 2,
+    Seperated = 3,
+}
+
+export enum IDCards {
+    GhanaCard = 0,
+    VotersCard = 1,
+    NHIS = 2,
+    PassPort = 3,
+    DriversLicense = 4,
+    Other = 5,
+}
+
+export enum Disability {
+    Blind = 0,
+    Deaf_One_Ear = 1,
+    Deaf_Dump = 2,
+    Amputee = 3,
+    Normal = 4,
+    Crippled = 5,
+    Blind_One_Eye = 6,
+    Deaf = 7,
+}
+
+export abstract class ValueObject implements IValueObject {
+
+    constructor(data?: IValueObject) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+    }
+
+    static fromJS(data: any): ValueObject {
+        data = typeof data === 'object' ? data : {};
+        throw new Error("The abstract class 'ValueObject' cannot be instantiated.");
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        return data;
+    }
+}
+
+export interface IValueObject {
+}
+
+export class IDCard extends ValueObject implements IIDCard {
+    nationalIDType?: string;
+    nationalIDNo?: string;
+
+    constructor(data?: IIDCard) {
+        super(data);
+    }
+
+    override init(_data?: any) {
+        super.init(_data);
+        if (_data) {
+            this.nationalIDType = _data["nationalIDType"];
+            this.nationalIDNo = _data["nationalIDNo"];
+        }
+    }
+
+    static override fromJS(data: any): IDCard {
+        data = typeof data === 'object' ? data : {};
+        let result = new IDCard();
+        result.init(data);
+        return result;
+    }
+
+    override toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["nationalIDType"] = this.nationalIDType;
+        data["nationalIDNo"] = this.nationalIDNo;
+        super.toJSON(data);
+        return data;
+    }
+}
+
+export interface IIDCard extends IValueObject {
+    nationalIDType?: string;
+    nationalIDNo?: string;
+}
+
+export enum Session {
+    Regular = 0,
+    Evening = 1,
+    Sandwich = 2,
+    Distance = 3,
+}
+
+export class UserDto implements IUserDto {
+    id?: string | undefined;
+    userName?: string | undefined;
+    formNo?: string | undefined;
+    started?: number | undefined;
+    fullName?: string | undefined;
+    type?: string | undefined;
+    soldBy?: string | undefined;
+    formCompleted?: number | undefined;
+    pictureUploaded?: number | undefined;
+    finalized?: number | undefined;
+    year?: string | undefined;
+    resultUploaded?: boolean | undefined;
+    admitted?: boolean | undefined;
+    lastLogin?: Date | undefined;
+
+    constructor(data?: IUserDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.userName = _data["userName"];
+            this.formNo = _data["formNo"];
+            this.started = _data["started"];
+            this.fullName = _data["fullName"];
+            this.type = _data["type"];
+            this.soldBy = _data["soldBy"];
+            this.formCompleted = _data["formCompleted"];
+            this.pictureUploaded = _data["pictureUploaded"];
+            this.finalized = _data["finalized"];
+            this.year = _data["year"];
+            this.resultUploaded = _data["resultUploaded"];
+            this.admitted = _data["admitted"];
+            this.lastLogin = _data["lastLogin"] ? new Date(_data["lastLogin"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): UserDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UserDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["userName"] = this.userName;
+        data["formNo"] = this.formNo;
+        data["started"] = this.started;
+        data["fullName"] = this.fullName;
+        data["type"] = this.type;
+        data["soldBy"] = this.soldBy;
+        data["formCompleted"] = this.formCompleted;
+        data["pictureUploaded"] = this.pictureUploaded;
+        data["finalized"] = this.finalized;
+        data["year"] = this.year;
+        data["resultUploaded"] = this.resultUploaded;
+        data["admitted"] = this.admitted;
+        data["lastLogin"] = this.lastLogin ? this.lastLogin.toISOString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IUserDto {
+    id?: string | undefined;
+    userName?: string | undefined;
+    formNo?: string | undefined;
+    started?: number | undefined;
+    fullName?: string | undefined;
+    type?: string | undefined;
+    soldBy?: string | undefined;
+    formCompleted?: number | undefined;
+    pictureUploaded?: number | undefined;
+    finalized?: number | undefined;
+    year?: string | undefined;
+    resultUploaded?: boolean | undefined;
+    admitted?: boolean | undefined;
+    lastLogin?: Date | undefined;
+}
+
 export class PaginatedListOfTodoItemBriefDto implements IPaginatedListOfTodoItemBriefDto {
     items?: TodoItemBriefDto[];
     pageNumber?: number;
@@ -1234,6 +1890,17 @@ export interface IWeatherForecast {
     temperatureC?: number;
     temperatureF?: number;
     summary?: string | undefined;
+}
+
+function formatDate(d: Date) {
+    return d.getFullYear() + '-' + 
+        (d.getMonth() < 9 ? ('0' + (d.getMonth()+1)) : (d.getMonth()+1)) + '-' +
+        (d.getDate() < 10 ? ('0' + d.getDate()) : d.getDate());
+}
+
+export interface FileParameter {
+    data: any;
+    fileName: string;
 }
 
 export interface FileResponse {

@@ -71,4 +71,12 @@
       </ResolvedFileToPublish>
     </ItemGroup>
   </Target>
+  
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+</PropertyGroup>
+<!-- when you get migration error disable the below target -->
+<Target Name="NSwag" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
+    <Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Net60) run nswag.json /variables:Configuration=$(Configuration)" />
+</Target>
 </Project>

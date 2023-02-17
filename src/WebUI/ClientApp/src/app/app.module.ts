@@ -12,10 +12,17 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { LoadingInterceptor } from './core/interceptor/loading.interceptor';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { TokenComponent } from './token/token.component';
+import { TodoComponent } from './todo/todo.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, SpinnerComponent],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule, SharedModule
+  declarations: [AppComponent, SpinnerComponent, FetchDataComponent, TokenComponent, TodoComponent],
+  imports: [BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    HttpClientModule, AppRoutingModule, SharedModule, CommonModule, BrowserAnimationsModule
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }

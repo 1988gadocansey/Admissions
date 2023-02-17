@@ -1,4 +1,4 @@
-import { AuthResponseDto } from '../../core/models/response/authResponseDto.model';
+/* import { AuthResponseDto } from '../../core/models/response/authResponseDto.model';
 import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -69,13 +69,7 @@ export class AuthenticationService {
     return token && !this.jwtHelper.isTokenExpired(token);
   }
 
-  /*  public isUserAdmin = (): boolean => {
-     const token = localStorage.getItem("token");
-     const decodedToken = this.jwtHelper.decodeToken(token);
-     const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
- 
-     return role === 'Administrator';
-   } */
+
 
   public signInWithGoogle = () => {
     this.externalAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
@@ -94,3 +88,4 @@ export class AuthenticationService {
     return `${envAddress}/${route}`;
   }
 }
+ */

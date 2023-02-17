@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { HomeClient } from 'src/app/web-api-client';
 
 import { RepositoryService } from '../../../../core/services/repository.service';
 
@@ -10,21 +11,13 @@ import { RepositoryService } from '../../../../core/services/repository.service'
   styleUrls: ['./topinfo.component.scss']
 })
 export class TopinfoComponent {
-  public profile: any = [];
-  constructor(private repository: RepositoryService) { }
-
-  ngOnInit(): void {
-    this.getProfile();
-  }
-  getProfile = () => {
-    const apiAddress: string = "api/dashboard";
-    this.repository.getDashboard(apiAddress)
-      .subscribe(data => {
-        this.profile = data,
-          console.log(this.profile)
-
-
-      })
+  public profile: HomeClient |any;
+  constructor(private client: HomeClient) {
+    client. dashboard().subscribe(result => {
+      this.profile = result;
+    }, error => console.error(error));
 
   }
+
+
 }

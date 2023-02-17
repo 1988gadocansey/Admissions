@@ -6,6 +6,114 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/api/Applicant": {
+      "post": {
+        "tags": [
+          "Applicant"
+        ],
+        "operationId": "Applicant_Create",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBiodataRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/api/Home": {
+      "get": {
+        "tags": [
+          "Home"
+        ],
+        "operationId": "Home_Dashboard",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/api/PictureUpload": {
+      "post": {
+        "tags": [
+          "PictureUpload"
+        ],
+        "operationId": "PictureUpload_UploadImages",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "formFiles": {
+                    "type": "array",
+                    "nullable": true,
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
     "/api/TodoItems": {
       "get": {
         "tags": [
@@ -440,6 +548,455 @@
   },
   "components": {
     "schemas": {
+      "CreateBiodataRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "applicationNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "otherName": {
+            "type": "string"
+          },
+          "gender": {
+            "$ref": "#/components/schemas/Gender"
+          },
+          "dob": {
+            "type": "string",
+            "format": "date"
+          },
+          "title": {
+            "$ref": "#/components/schemas/Title"
+          },
+          "maritalStatus": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MaritalStatus"
+              }
+            ]
+          },
+          "phone": {
+            "type": "string"
+          },
+          "altPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "postGPRS": {
+            "type": "string",
+            "nullable": true
+          },
+          "emergencyContact": {
+            "type": "string",
+            "nullable": true
+          },
+          "hometown": {
+            "type": "string",
+            "nullable": true
+          },
+          "district": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "nationalIDNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "nationalIDType": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IDCards"
+              }
+            ]
+          },
+          "regionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "nationalityId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "residentialStatus": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "guardianName": {
+            "type": "string",
+            "nullable": true
+          },
+          "guardianPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "guardianOccupation": {
+            "type": "string",
+            "nullable": true
+          },
+          "guardianRelationship": {
+            "type": "string",
+            "nullable": true
+          },
+          "disability": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "disabilityType": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Disability"
+              }
+            ]
+          },
+          "sourceOfFinance": {
+            "type": "string",
+            "nullable": true
+          },
+          "religionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "denomination": {
+            "type": "string",
+            "nullable": true
+          },
+          "idCard": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IDCard"
+              }
+            ]
+          },
+          "referrals": {
+            "type": "string",
+            "nullable": true
+          },
+          "entryMode": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Session"
+              }
+            ]
+          },
+          "firstQualification": {
+            "type": "string",
+            "nullable": true
+          },
+          "secondQualification": {
+            "type": "string",
+            "nullable": true
+          },
+          "programmeStudied": {
+            "type": "string",
+            "nullable": true
+          },
+          "formerSchool": {
+            "type": "string",
+            "nullable": true
+          },
+          "formerSchoolNewId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "programmeAdmittedId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "lastYearInSchool": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "awaiting": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "grade": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "preferedHall": {
+            "type": "string",
+            "nullable": true
+          },
+          "elligible": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "admitted": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "admittedBy": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "admissionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "leveladmitted": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstChoiceId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "secondChoiceId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "thirdChoiceId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "sponsorShip": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "sponsorShipCompany": {
+            "type": "string",
+            "nullable": true
+          },
+          "sponsorShipLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "sponsorShipCompanyContact": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Gender": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Male",
+          "Female"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "Title": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Mr",
+          "Miss",
+          "Mrs",
+          "Rev",
+          "Dr",
+          "PhD",
+          "Ms"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "MaritalStatus": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Married",
+          "Divorced",
+          "Single",
+          "Seperated"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "IDCards": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "GhanaCard",
+          "VotersCard",
+          "NHIS",
+          "PassPort",
+          "DriversLicense",
+          "Other"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "Disability": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Blind",
+          "Deaf_One_Ear",
+          "Deaf_Dump",
+          "Amputee",
+          "Normal",
+          "Crippled",
+          "Blind_One_Eye",
+          "Deaf"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "IDCard": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ValueObject"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "nationalIDType": {
+                "type": "string"
+              },
+              "nationalIDNo": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "ValueObject": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false
+      },
+      "Session": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Regular",
+          "Evening",
+          "Sandwich",
+          "Distance"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "UserDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "formNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "started": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "soldBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "formCompleted": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pictureUploaded": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "finalized": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "year": {
+            "type": "string",
+            "nullable": true
+          },
+          "resultUploaded": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "admitted": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "lastLogin": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
       "PaginatedListOfTodoItemBriefDto": {
         "type": "object",
         "additionalProperties": false,
