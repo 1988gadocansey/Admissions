@@ -8,12 +8,11 @@ export class Menu {
       items: [
         {
           icon: 'assets/icons/outline/chart-pie.svg',
-          label: 'Dashboard',
+          label: 'Profile',
           route: '/dashboard',
           children: [
-            { label: 'Biodata', route: '/dashboard/nfts' },
-            { label: 'Biometric Registration', route: '/dashboard/nfts' },
-            { label: 'Alumni Details', route: '/dashboard/nfts' }
+            { label: 'Upload Passport Photo', route: '/dashboard/nfts' },
+            { label: 'Change Form', route: '/dashboard/nfts' },
 
           ],
         },
@@ -21,18 +20,24 @@ export class Menu {
       ],
     },
     {
-      group: 'Academics',
+      group: 'Forms',
       separator: false,
       items: [
         {
           icon: 'assets/icons/outline/chart-pie.svg',
-          label: 'Academics',
+          label: 'Steps',
           route: '/academics',
           children: [
-            { label: 'Course Registration', route: '/academics/registration' },
-            { label: 'Option Change', route: '/download', },
-            { label: 'Statement of Result', route: '/download', }
-
+            { label: 'Biodata', route: '/academics/registration' },
+            { label: 'Educational Background', route: '/download', },
+            { label: 'Programme Information', route: '/download', },
+            { label: 'Upload of Result', route: '/download', },
+            { label: 'Research Information', route: '/download', },
+            { label: 'List of Referees', route: '/download', },
+            { label: 'Supporting Documents', route: '/download', },
+            { label: 'Application Summary', route: '/download', },
+            { label: 'Proof of Application', route: '/download', },
+            { label: 'Application Status', route: '/download', },
           ],
         },
 
@@ -75,27 +80,7 @@ export class Menu {
 
       ],
     }, */
-    {
-      group: 'Liaison',
-      separator: true,
-      items: [
-        {
-          icon: 'assets/icons/outline/download.svg',
-          label: 'Attachment Letter',
-          route: '/download',
-        },
-        {
-          icon: 'assets/icons/outline/gift.svg',
-          label: 'Semester Out',
-          route: '/gift',
-        },
-        {
-          icon: 'assets/icons/outline/users.svg',
-          label: 'Assumption of Duty',
-          route: '/users',
-        },
-      ],
-    },
+
     {
       group: 'Finance',
       separator: false,

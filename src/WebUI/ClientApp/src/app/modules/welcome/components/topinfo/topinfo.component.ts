@@ -22,7 +22,7 @@ export class TopinfoComponent {
         this.profile?.formNo + ".jpg";
       this.imgurlAlt = "https://photos.ttuportal.com/public/albums/thumbnails/" +
         this.profile?.formNo + ".jpeg";
-      console.log("user is " + this.imgurl);
+      // console.log("user is " + this.imgurl);
     }, error => console.error(error));
 
   }

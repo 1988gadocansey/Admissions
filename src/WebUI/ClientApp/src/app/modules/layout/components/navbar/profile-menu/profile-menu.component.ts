@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-profile-menu',
@@ -8,10 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileMenuComponent implements OnInit {
   public isMenuOpen = false;
-  public profilePicture: string | any;
-  public name: string | any
-  public email: string | any
-  public isUserAuthenticated: boolean | any = false;
+  @Input() userName: string | any
+  @Input() isUserAuthenticated: boolean | any = false;
   /*  constructor(private authService: AuthenticationService, private router: Router) {
      this.authService.authChanged
        .subscribe(res => {
@@ -20,16 +18,11 @@ export class ProfileMenuComponent implements OnInit {
    } */
   constructor(private router: Router) {
 
+
   }
 
   ngOnInit(): void {
-    /*   this.authService.authChanged
-        .subscribe(res => {
-          this.isUserAuthenticated = res;
-        })
-      this.name = localStorage.getItem("name");
-      this.profilePicture = localStorage.getItem("picture");
-      this.email = localStorage.getItem("email"); */
+
   }
 
 
@@ -38,11 +31,8 @@ export class ProfileMenuComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
   public logout = () => {
-    /* this.authService.logout();
 
-    if (this.authService.isExternalAuth)
-      this.authService.signOutExternal();
 
-    this.router.navigate(["/"]); */
+    this.router.navigate(["/authentication/logout"]);
   }
 }

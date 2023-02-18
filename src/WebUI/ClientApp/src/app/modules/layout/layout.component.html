@@ -1,13 +1,19 @@
 <div class="flex h-screen w-full overflow-hidden">
   <!-- Sidebar -->
-  <app-sidebar></app-sidebar>
+  <app-sidebar
+    [userName]="userName"
+    [authenticated]="isAuthenticated"
+  ></app-sidebar>
 
   <div class="grid flex-grow content-start bg-gray-100 dark:bg-night-800">
     <!-- Header -->
-    <app-navbar></app-navbar>
+    <app-navbar
+      [authenticated]="isAuthenticated"
+      [userName]="userName"
+    ></app-navbar>
     <!-- main content -->
     <div
-      class="scrollbar-thumb-rounded scrollbar-track-rounded overflow-auto scrollbar-thin scrollbar-thumb-white scrollbar-track-gray-100 dark:scrollbar-thumb-night-700 dark:scrollbar-track-night-800"
+      class="overflow-auto scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-white scrollbar-track-rounded scrollbar-thumb-rounded dark:scrollbar-track-night-800 dark:scrollbar-thumb-night-700"
     >
       <router-outlet></router-outlet>
     </div>

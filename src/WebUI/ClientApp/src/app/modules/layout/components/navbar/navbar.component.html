@@ -28,7 +28,7 @@
           </svg-icon>
         </a>
         <b class="hidden pl-3 text-sm font-bold dark:text-night-50 sm:block"
-          >TTU Portal
+          >TTU Online Application
         </b>
       </div>
 
@@ -39,7 +39,10 @@
 
       <!-- Profile menu -->
       <div class="items-center justify-end sm:order-4 md:flex md:flex-1 lg:w-0">
-        <app-profile-menu></app-profile-menu>
+        <app-profile-menu
+          [userName]="userName"
+          [isUserAuthenticated]="authenticated"
+        ></app-profile-menu>
       </div>
     </div>
   </div>

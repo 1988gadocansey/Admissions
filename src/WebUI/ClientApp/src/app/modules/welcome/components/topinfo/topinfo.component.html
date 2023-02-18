@@ -68,13 +68,10 @@
                 <h3
                   class="text-sm leading-tight text-gray-500 dark:text-slate-400"
                 >
-                  Form Status
+                  Status
                 </h3>
                 <h1 class="text-1xl font-semibold leading-tight">
-                  <div>
-
-                    started
-                  </div>
+                  <div>started</div>
                 </h1>
               </div>
               &nbsp; &nbsp; &nbsp;
@@ -82,10 +79,10 @@
                 <h3
                   class="text-sm leading-tight text-gray-500 dark:text-slate-400"
                 >
-                  QA
+                  Form No.
                 </h3>
                 <h5 class="font-semibold leading-tight">
-                  <div>lecturer assed</div>
+                  <div>{{ profile?.formNo }}</div>
                 </h5>
               </div>
             </div>
@@ -160,10 +157,10 @@
                 <h3
                   class="text-sm leading-tight text-gray-500 dark:text-slate-400"
                 >
-                  Programme
+                  Form Type
                 </h3>
                 <h1 class="text-1xl font-semibold leading-tight">
-                  <div>programme</div>
+                  <div>{{ profile?.type }}</div>
                 </h1>
               </div>
               &nbsp; &nbsp; &nbsp;
@@ -366,19 +363,23 @@
         >
           <div class="mb-6 flex items-center justify-center md:mb-0">
             <div class="lg:mx-12">
-              <ng-container *ngIf="profile?.formNo != 0 || profile?.formNo! == ''">
+              <ng-container
+                *ngIf="profile?.formNo != 0 || profile?.formNo! == ''"
+              >
                 <img
-                  src="{{imgurl}}"
-                  alt="{{imgurlAlt}}"
+                  src="{{ imgurl }}"
+                  alt="{{ imgurlAlt }}"
                   class="block h-auto w-full max-w-full rounded-full bg-gray-100 dark:bg-slate-800"
                 />
               </ng-container>
-              <ng-container *ngIf="profile?.formNo == 0 || profile?.formNo == ''">
-              <img
-                src="https://srms.ttuportal.com/public/albums/students/USER.JPG"
-                alt="passport photo"
-                class="block h-auto w-full max-w-full rounded-full bg-gray-100 dark:bg-slate-800"
-              />
+              <ng-container
+                *ngIf="profile?.formNo == 0 || profile?.formNo == ''"
+              >
+                <img
+                  src="https://srms.ttuportal.com/public/albums/students/USER.JPG"
+                  alt="passport photo"
+                  class="block h-auto w-full max-w-full rounded-full bg-gray-100 dark:bg-slate-800"
+                />
               </ng-container>
             </div>
           </div>
@@ -394,7 +395,10 @@
                   ><span class="pl-2">Notifications</span></label
                 >
               </div>
-              <h1 class="text-1xl">Howdy, <b> {{profile?.fullName}}</b>!</h1>
+              <h1 class="text-1xl">
+                Howdy, <b> {{ profile?.fullName }}</b
+                >!
+              </h1>
               <p class="text-1xl">
                 ID:
                 <b>39393 StudNo: ueueue </b>

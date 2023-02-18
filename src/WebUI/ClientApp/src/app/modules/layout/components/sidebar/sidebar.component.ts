@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
+import { map, Observable } from 'rxjs';
 import { MenuItem } from 'src/app/core/models/menu.model';
 import { ThemeService } from 'src/app/core/services/theme.service';
 //import packageJson from '.';
 import { MenuService } from '../../services/menu.service';
-
+import { AuthorizeService } from '../../../../../api-authorization/authorize.service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -13,6 +13,8 @@ import { MenuService } from '../../services/menu.service';
 export class SidebarComponent implements OnInit {
   public showSideBar$: Observable<boolean> = new Observable<boolean>();
   public pagesMenu$: Observable<MenuItem[]> = new Observable<MenuItem[]>();
+  @Input() userName: any;
+  @Input() authenticated: any;
   //public appJson: any = packageJson;
 
   constructor(public themeService: ThemeService, private menuService: MenuService) {
@@ -20,7 +22,9 @@ export class SidebarComponent implements OnInit {
     this.pagesMenu$ = this.menuService.pagesMenu$;
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+
+  }
 
   public toggleSidebar() {
     this.menuService.toggleSidebar();

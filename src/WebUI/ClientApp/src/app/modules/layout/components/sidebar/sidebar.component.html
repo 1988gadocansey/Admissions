@@ -1,6 +1,6 @@
 <nav
   [ngClass]="(showSideBar$ | async) ? 'w-52 xl:w-64' : 'w-[70px]'"
-  class="scrollbar-thumb-rounded scrollbar-track-rounded scrollbar-thin scrollbar-track-gray-50 scrollbar-thumb-gray-100 dark:bg-night-700 dark:scrollbar-thumb-night-500 dark:scrollbar-track-night-600 hidden h-full flex-col justify-between overflow-auto bg-white pt-3 transition-all duration-300 lg:flex"
+  class="hidden h-full flex-col justify-between overflow-auto bg-white pt-3 transition-all duration-300 scrollbar-thin scrollbar-track-gray-50 scrollbar-thumb-gray-100 scrollbar-track-rounded scrollbar-thumb-rounded dark:bg-night-700 dark:scrollbar-track-night-600 dark:scrollbar-thumb-night-500 lg:flex"
 >
   <div class="px-4">
     <!-- Logo -->
@@ -64,7 +64,7 @@
       </div>
       <button
         (click)="toggleSidebar()"
-        class="dark:text-night-400 dark:hover:text-night-300 absolute top-2 right-2 flex h-5 w-5 items-center justify-center rounded text-gray-400 transition-all duration-200 hover:text-gray-500 focus:outline-none"
+        class="absolute top-2 right-2 flex h-5 w-5 items-center justify-center rounded text-gray-400 transition-all duration-200 focus:outline-none hover:text-gray-500 dark:text-night-400 dark:hover:text-night-300"
         [ngClass]="{ 'rotate-180': !(showSideBar$ | async) }"
       >
         <svg-icon src="assets/icons/solid/chevron-double-left.svg">
@@ -75,7 +75,7 @@
 
     <!-- Separator -->
     <div class="pt-3">
-      <hr class="dark:border-night-500 border-dashed border-gray-200" />
+      <hr class="border-dashed border-gray-200 dark:border-night-500" />
     </div>
 
     <!-- Menu Items -->
@@ -86,7 +86,7 @@
     <!-- Dark Theme -->
     <div
       (click)="toggleTheme()"
-      class="dark:hover:bg-night-600 group flex h-9 cursor-pointer items-center justify-start rounded p-2 hover:bg-gray-100"
+      class="group flex h-9 cursor-pointer items-center justify-start rounded p-2 hover:bg-gray-100 dark:hover:bg-night-600"
     >
       <svg-icon
         [src]="
@@ -99,14 +99,14 @@
       </svg-icon>
 
       <a
-        class="dark:text-night-100 ml-3 truncate text-xs font-semibold tracking-wide text-gray-600 focus:outline-none"
+        class="ml-3 truncate text-xs font-semibold tracking-wide text-gray-600 focus:outline-none dark:text-night-100"
       >
         {{ themeService.isDark ? "Light Theme" : "Dark Theme" }}
       </a>
 
       <div class="fixed w-full" *ngIf="!(showSideBar$ | async)">
         <span
-          class="z-1 dark:text-night-900 absolute left-12 -top-4 w-auto min-w-max origin-left scale-0 rounded-md bg-black p-2 text-xs font-bold text-white shadow-md transition-all duration-200 group-hover:scale-100 dark:bg-white"
+          class="z-1 absolute left-12 -top-4 w-auto min-w-max origin-left scale-0 rounded-md bg-black p-2 text-xs font-bold text-white shadow-md transition-all duration-200 group-hover:scale-100 dark:bg-white dark:text-night-900"
         >
           Theme
         </span>
@@ -114,7 +114,7 @@
     </div>
     <!-- Sign out -->
     <div
-      class="dark:hover:bg-night-600 group flex h-9 cursor-pointer items-center justify-start rounded p-2 hover:bg-gray-100"
+      class="group flex h-9 cursor-pointer items-center justify-start rounded p-2 hover:bg-gray-100 dark:hover:bg-night-600"
     >
       <svg-icon
         src="assets/icons/outline/logout.svg"
@@ -123,15 +123,16 @@
       </svg-icon>
 
       <a
-        routerLink="/auth"
-        class="dark:text-night-100 ml-3 truncate text-xs font-semibold tracking-wide text-gray-600 focus:outline-none"
+        *ngIf="authenticated | async"
+        routerLink="/authentication/logout"
+        class="ml-3 truncate text-xs font-semibold tracking-wide text-gray-600 focus:outline-none dark:text-night-100"
       >
         Sign out
       </a>
 
       <div class="fixed w-full" *ngIf="!(showSideBar$ | async)">
         <span
-          class="z-1 dark:text-night-900 absolute left-12 -top-4 w-auto min-w-max origin-left scale-0 rounded-md bg-black p-2 text-xs font-bold text-white shadow-md transition-all duration-200 group-hover:scale-100 dark:bg-white"
+          class="z-1 absolute left-12 -top-4 w-auto min-w-max origin-left scale-0 rounded-md bg-black p-2 text-xs font-bold text-white shadow-md transition-all duration-200 group-hover:scale-100 dark:bg-white dark:text-night-900"
         >
           Sign out
         </span>
@@ -139,7 +140,7 @@
     </div>
     <!-- Version -->
     <div
-      class="dark:hover:bg-night-600 group flex h-9 cursor-pointer items-center justify-start rounded p-2 hover:bg-gray-100"
+      class="group flex h-9 cursor-pointer items-center justify-start rounded p-2 hover:bg-gray-100 dark:hover:bg-night-600"
     >
       <svg-icon
         src="assets/icons/outline/information-circle.svg"
@@ -149,8 +150,8 @@
 
       <a
         target="_blank"
-        href="https://github.com/luciano-work/angular-tailwind"
-        class="dark:text-night-100 ml-3 truncate text-[10px] font-semibold tracking-wide text-gray-600 focus:outline-none"
+        href="#"
+        class="ml-3 truncate text-[10px] font-semibold tracking-wide text-gray-600 focus:outline-none dark:text-night-100"
       >
         <span
           class="rounded-lg bg-yellow-400/10 px-2 font-semibold text-yellow-500"
@@ -160,7 +161,7 @@
 
       <div class="fixed w-full" *ngIf="!(showSideBar$ | async)">
         <span
-          class="z-1 dark:text-night-900 absolute left-12 -top-4 w-auto min-w-max origin-left scale-0 rounded-md bg-black p-2 text-xs font-bold text-white shadow-md transition-all duration-200 group-hover:scale-100 dark:bg-white"
+          class="z-1 absolute left-12 -top-4 w-auto min-w-max origin-left scale-0 rounded-md bg-black p-2 text-xs font-bold text-white shadow-md transition-all duration-200 group-hover:scale-100 dark:bg-white dark:text-night-900"
         >
           2.0
         </span>
