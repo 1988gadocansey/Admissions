@@ -11,6 +11,7 @@ import { TopinfoComponent } from './components/topinfo/topinfo.component';
 
 import { UpcominglecturesComponent } from './components/upcominglectures/upcominglectures.component';
 import { IssuesComponent } from './components/issues/issues.component';
+import { DateAsAgoPipe } from 'src/app/core/pipes/datePipe';
 
 
 
@@ -19,7 +20,7 @@ import { IssuesComponent } from './components/issues/issues.component';
     WelcomeComponent,
     InfoComponent,
     TopinfoComponent,
-
+    DateAsAgoPipe,
     UpcominglecturesComponent,
     IssuesComponent
 
@@ -33,5 +34,6 @@ import { IssuesComponent } from './components/issues/issues.component';
     NgApexchartsModule,
     AngularSvgIconModule.forRoot(),
   ]
+
 })
 export class WelcomeModule { }

@@ -13,6 +13,8 @@ export class Menu {
           children: [
             { label: 'Upload Passport Photo', route: '/dashboard/nfts' },
             { label: 'Change Form', route: '/dashboard/nfts' },
+            { label: 'Report Issue', route: '/dashboard/nfts' },
+            { label: 'Announcements', route: '/dashboard/nfts' },
 
           ],
         },

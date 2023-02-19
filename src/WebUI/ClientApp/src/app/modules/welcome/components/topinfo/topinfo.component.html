@@ -71,7 +71,9 @@
                   Status
                 </h3>
                 <h1 class="text-1xl font-semibold leading-tight">
-                  <div>started</div>
+                  <div>
+                    {{ profile?.admitted == true ? "Admitted" : "Applicant" }}
+                  </div>
                 </h1>
               </div>
               &nbsp; &nbsp; &nbsp;
@@ -157,7 +159,7 @@
                 <h3
                   class="text-sm leading-tight text-gray-500 dark:text-slate-400"
                 >
-                  Form Type
+                  Type
                 </h3>
                 <h1 class="text-1xl font-semibold leading-tight">
                   <div>{{ profile?.type }}</div>
@@ -168,10 +170,10 @@
                 <h3
                   class="text-sm leading-tight text-gray-500 dark:text-slate-400"
                 >
-                  Level
+                  Sold By
                 </h3>
                 <h5 class="font-semibold leading-tight">
-                  <div>{{ profile?.formNo }}</div>
+                  <div>{{ profile?.soldBy }}</div>
                 </h5>
               </div>
             </div>
@@ -189,8 +191,7 @@
                     d="M17,18A2,2 0 0,1 19,20A2,2 0 0,1 17,22C15.89,22 15,21.1 15,20C15,18.89 15.89,18 17,18M1,2H4.27L5.21,4H20A1,1 0 0,1 21,5C21,5.17 20.95,5.34 20.88,5.5L17.3,11.97C16.96,12.58 16.3,13 15.55,13H8.1L7.2,14.63L7.17,14.75A0.25,0.25 0 0,0 7.42,15H19V17H7C5.89,17 5,16.1 5,15C5,14.65 5.09,14.32 5.24,14.04L6.6,11.59L3,4H1V2M7,18A2,2 0 0,1 9,20A2,2 0 0,1 7,22C5.89,22 5,21.1 5,20C5,18.89 5.89,18 7,18M16,11L18.78,6H6.14L8.5,11H16Z"
                   ></path>
                 </svg>
-                ></span
-              >
+              </span>
             </div>
           </div>
         </div>
@@ -248,10 +249,12 @@
                 <h3
                   class="text-sm leading-tight text-gray-500 dark:text-slate-400"
                 >
-                  Cgpa
+                  Photo
                 </h3>
                 <h1 class="text-1xl font-semibold leading-tight">
-                  <div>sss</div>
+                  <div>
+                    {{ profile?.pictureUploaded == 1 ? "uploaded" : "pending" }}
+                  </div>
                 </h1>
               </div>
               &nbsp; &nbsp; &nbsp;
@@ -259,10 +262,10 @@
                 <h3
                   class="text-sm leading-tight text-gray-500 dark:text-slate-400"
                 >
-                  Class
+                  Year
                 </h3>
                 <h5 class="font-semibold leading-tight">
-                  <div>dkskkskdkd</div>
+                  <div>{{ profile?.year }}</div>
                 </h5>
               </div>
             </div>
@@ -283,7 +286,6 @@
             </div>
           </div>
         </div>
-        <!---->
       </div>
     </div>
     <div class="col-span-12 sm:col-span-6 xl:col-span-3">
@@ -294,7 +296,7 @@
               <div
                 class="inline-flex items-center rounded-full border border-blue-500 bg-blue-500 py-1 px-3 text-xs capitalize leading-none text-white"
               >
-                <!----><span>Calender</span>
+                <!----><span>notice</span>
               </div>
             </div>
             <div class="flex items-center justify-center">
@@ -324,11 +326,15 @@
               <div>
                 <h3
                   class="text-lg leading-tight text-gray-500 dark:text-slate-400"
-                >
-                  Academic Year
-                </h3>
+                ></h3>
                 <h1 class="text-1xl font-semibold leading-tight">
-                  <div>year</div>
+                  <div>
+                    {{
+                      profile?.formCompleted == 1
+                        ? "Form Completed"
+                        : "Form incomplete"
+                    }}
+                  </div>
                 </h1>
               </div>
             </div>
@@ -400,12 +406,19 @@
                 >!
               </h1>
               <p class="text-1xl">
-                ID:
-                <b>39393 StudNo: ueueue </b>
+                Form No:
+                <b>{{ profile?.formNo }} </b>
               </p>
-              <p class="text-1xl">Dob, <b>12/12/1209</b></p>
+              <p class="text-1xl">
+                Application Type
+                <b>{{
+                  profile?.type != "MTECH" ? "Undergraduate" : "Postgraduate"
+                }}</b>
+              </p>
 
-              <p>Last login <b>12 mins ago</b> from <b>127.0.0.1</b></p>
+              <p>
+                Last login <b>{{ profile?.lastLogin | dateAsAgo }}</b>
+              </p>
               <div class="flex justify-center md:block">
                 <div
                   class="inline-flex items-center rounded-full border border-blue-500 bg-blue-500 py-1.5 px-4 text-sm capitalize leading-none text-white"
@@ -421,10 +434,13 @@
                       <path
                         fill="currentColor"
                         d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z"
-                      ></path></svg></span
-                  ><span *ngIf="1; else templateName">Registered!</span>
+                      ></path></svg
+                  ></span>
+                  <span *ngIf="profile?.admitted; else templateName"
+                    >Admitted!</span
+                  >
 
-                  <ng-template #templateName> Not Registered! </ng-template>
+                  <ng-template #templateName> Not Admitted </ng-template>
                 </div>
               </div>
             </div>
@@ -436,5 +452,5 @@
     <app-upcominglectures [lectures]="profile"></app-upcominglectures>
   </div>
 
-  <app-issues [issues]="profile" [accounting]="profile"></app-issues>
+  <!-- <app-issues [issues]="profile" [accounting]="profile"></app-issues> -->
 </section>
