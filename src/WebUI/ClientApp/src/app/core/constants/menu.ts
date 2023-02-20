@@ -8,13 +8,14 @@ export class Menu {
       items: [
         {
           icon: 'assets/icons/outline/chart-pie.svg',
-          label: 'Profile',
+          label: 'My Profile',
           route: '/dashboard',
           children: [
-            { label: 'Upload Passport Photo', route: '/dashboard/nfts' },
+            { label: 'Home', route: '/welcome/live' },
+            { label: 'Upload Passport Photo', route: '/upload/passport' },
             { label: 'Change Form', route: '/dashboard/nfts' },
             { label: 'Report Issue', route: '/dashboard/nfts' },
-            { label: 'Announcements', route: '/dashboard/nfts' },
+            { label: 'Announcements', route: '/announcements/index' },
 
           ],
         },

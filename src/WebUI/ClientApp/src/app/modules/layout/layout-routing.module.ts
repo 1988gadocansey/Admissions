@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout.component';
-import {AuthorizeGuard} from "../../../api-authorization/authorize.guard";
+import { AuthorizeGuard } from "../../../api-authorization/authorize.guard";
+import { PassportpicComponent } from '../passportpic/passportpic.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,24 @@ const routes: Routes = [
     component: LayoutComponent,
     canActivate: [AuthorizeGuard],
     loadChildren: () => import('../academics/academics.module').then((m) => m.AcademicsModule),
+  },
+  {
+    path: 'announcements',
+    component: LayoutComponent,
+    canActivate: [AuthorizeGuard],
+    loadChildren: () => import('../announcements/announcements.module').then((m) => m.AnnouncementsModule),
+  },
+  {
+    path: 'faq',
+    component: LayoutComponent,
+    canActivate: [AuthorizeGuard],
+    loadChildren: () => import('../faq/faq.module').then((m) => m.FaqModule),
+  },
+  {
+    path: 'upload',
+    component: LayoutComponent,
+    canActivate: [AuthorizeGuard],
+    loadChildren: () => import('../passportpic/passportpic.module').then((m) => m.PassportpicModule),
   },
   {
     path: 'welcome',
