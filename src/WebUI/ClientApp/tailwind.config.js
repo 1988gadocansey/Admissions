@@ -8,6 +8,7 @@ module.exports = {
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
+
       keyframes: {
         wiggle: {
           '0%, 100%': { transform: 'rotate(-3deg)' },
@@ -65,7 +66,9 @@ module.exports = {
         custom: '0px 0px 50px 0px rgb(82 63 105 / 15%)',
       },
       colors: {
-        primary: colors.green,
+        //primary: colors.green,
+        primary: {"50":"#eff6ff","100":"#dbeafe","200":"#bfdbfe","300":"#93c5fd","400":"#60a5fa","500":"#3b82f6","600":"#2563eb","700":"#1d4ed8","800":"#1e40af","900":"#1e3a8a"},
+
         night: {
           50: '#e4e4eb',
           100: '#bbbace',
@@ -81,9 +84,41 @@ module.exports = {
       },
     },
     fontFamily: {
-      poppins: ['Poppins', 'system-ui', 'sans-serif'],
-      nunito: ['Nunito Sans', 'sans-serif'],
-    },
+      'body': [
+        'Open Sans',
+        'ui-sans-serif',
+        'system-ui',
+        '-apple-system',
+        'system-ui',
+        'Segoe UI',
+        'Roboto',
+        'Helvetica Neue',
+        'Arial',
+        'Noto Sans',
+        'sans-serif',
+        'Apple Color Emoji',
+        'Segoe UI Emoji',
+        'Segoe UI Symbol',
+        'Noto Color Emoji'
+      ],
+          'sans': [
+        'Open Sans',
+        'ui-sans-serif',
+        'system-ui',
+        '-apple-system',
+        'system-ui',
+        'Segoe UI',
+        'Roboto',
+        'Helvetica Neue',
+        'Arial',
+        'Noto Sans',
+        'sans-serif',
+        'Apple Color Emoji',
+        'Segoe UI Emoji',
+        'Segoe UI Symbol',
+        'Noto Color Emoji'
+      ]
+    }
   },
   variants: {
     extend: {},
