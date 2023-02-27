@@ -71,16 +71,17 @@ public class ApplicantRepository : IApplicantRepository
         return applicantDetails;
     }
 
-    Task<ConfigurationModel?> IApplicantRepository.GetConfiguration()
+    public async Task<ConfigurationModel?> GetConfiguration()
     {
-        throw new NotImplementedException();
+        return await _context.ConfigurationModels.OrderByDescending(b => b.Id)
+            .FirstOrDefaultAsync();
     }
 
     public async Task<string> GetFormNo()
     {
-        var configuration = _context.ConfigurationModels.OrderByDescending(b => b.Id)
-            .FirstOrDefault();
-        var formNumber = _context.FormNoModels.First(n => n.Year == configuration.Year);
+        var configuration = await _context.ConfigurationModels.OrderByDescending(b => b.Id)
+            .FirstOrDefaultAsync();
+        var formNumber = await _context.FormNoModels.FirstAsync(n => n.Year == configuration.Year);
         return formNumber.No.ToString();
     }
 

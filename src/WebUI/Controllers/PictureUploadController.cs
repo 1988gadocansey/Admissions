@@ -27,16 +27,26 @@ public class PictureUploadController : ApiControllerBase
     {
         var uploadImagesCommand = new UploadPictureRequest();
 
+
         foreach (var formFile in formFiles)
         {
-            var file = new FileDto
+            if (formFile.Length <= 250000)
             {
-                Content = formFile.OpenReadStream(),
-                Name = formFile.FileName,
-                UserId = null,
-                ContentType = formFile.ContentType,
-            };
-            uploadImagesCommand.Files.Add(file);
+                var file = new FileDto
+                {
+                    Content = formFile.OpenReadStream(),
+                    Name = formFile.FileName,
+                    UserId = null,
+                    ContentType = formFile.ContentType,
+                };
+                uploadImagesCommand.Files.Add(file);
+
+            }
+            else
+            {
+                return BadRequest("File size must be less than or equal to 250KB");
+            }
+
         }
 
         var response = await Mediator.Send(uploadImagesCommand);

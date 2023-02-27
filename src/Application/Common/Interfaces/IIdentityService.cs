@@ -16,7 +16,7 @@ public interface IIdentityService
 
     public Task<UserDto> GetApplicationUserDetails(string? userId, CancellationToken cancellationToken);
 
-    Task UpdateApplicationPictureStatus(string? userId, string? photo, CancellationToken cancellationToken);
+    Task UpdateApplicationPictureStatus(string? userId, ICollection<FileDto> photo, CancellationToken cancellationToken);
 
 
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/GLV/bo4nB1vU3xL2xomN7ZOp1c/AiDIO+Gzr7ZWuEs=",
+  "Hash": "v9TMd6c1lZumpMwMzgiE62PJH5XjwRen88SQxWzmokg=",
   "Source": "WebUI",
   "BasePath": "_content/WebUI",
   "Mode": "Default",
@@ -1037,6 +1037,23 @@
       "OriginalItemSpec": "/Users/gadocansey/.nuget/packages/microsoft.aspnetcore.identity.ui/7.0.0-rc.2.22476.2/staticwebassets/V5/lib/jquery/LICENSE.txt"
     },
     {
+      "Identity": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/.DS_Store",
+      "SourceId": "WebUI",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/",
+      "BasePath": "_content/WebUI",
+      "RelativePath": ".DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/.DS_Store"
+    },
+    {
       "Identity": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/api/specification.json",
       "SourceId": "WebUI",
       "SourceType": "Discovered",
@@ -1069,6 +1086,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/pictures/2010001..jpg",
+      "SourceId": "WebUI",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/",
+      "BasePath": "_content/WebUI",
+      "RelativePath": "pictures/2010001..jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/pictures/2010001..jpg"
+    },
+    {
+      "Identity": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/pictures/2010001.jpeg",
+      "SourceId": "WebUI",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/",
+      "BasePath": "_content/WebUI",
+      "RelativePath": "pictures/2010001.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/pictures/2010001.jpeg"
     }
   ]
 }

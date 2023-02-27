@@ -32,7 +32,9 @@ public class UploadPictureCommand : IRequestHandler<UploadPictureRequest, UrlsDt
     public async Task<UrlsDto> Handle(UploadPictureRequest request, CancellationToken cancellationToken)
     {
         var urls = await _photoUploadService.UploadAsync(request.Files);
-        await _identityService.UpdateApplicationPictureStatus(request.UserId, request.Files.ToString(), cancellationToken);
+        var PictureUpload = await _photoUploadService.SendFileToServer(_currentUserService.UserId, request.Files, cancellationToken);
+        await _identityService.UpdateApplicationPictureStatus(_currentUserService.UserId, request.Files, cancellationToken);
+
         return urls;
     }
 }

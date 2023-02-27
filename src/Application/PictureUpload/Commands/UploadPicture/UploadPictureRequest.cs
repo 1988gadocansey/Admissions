@@ -12,6 +12,5 @@ namespace OnlineApplicationSystem.Application.PictureUpload.Commands.UploadPictu
 public class UploadPictureRequest : IRequest<UrlsDto>
 {
     public string? UserId { get; init; }
-
     public ICollection<FileDto> Files { get; set; } = new List<FileDto>();
 }

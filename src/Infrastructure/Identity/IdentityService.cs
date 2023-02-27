@@ -90,38 +90,51 @@ public class IdentityService : IIdentityService
     }
     public async Task<UserDto> GetApplicationUserDetails(string? userId, CancellationToken cancellationToken)
     {
-        var userdetails = await _userManager.Users.Select(b =>
-         new UserDto()
-         {
-             Id = b.Id,
-             UserName = b.UserName,
-             FormCompleted = b.FormCompleted,
-             Finalized = b.Finalized,
-             SoldBy = b.SoldBy,
-             Started = b.Started,
-             Year = b.Year,
-             PictureUploaded = b.PictureUploaded,
-             FormNo = b.FormNo,
-             FullName = b.FullName,
-             ResultUploaded = b.ResultUploaded,
-             Admitted = b.Admitted,
-             LastLogin = b.LastLogin,
-             Type = b.Type
-         }).FirstOrDefaultAsync(a => a.Id == userId, cancellationToken: cancellationToken);
 
-        // Console.WriteLine("username is "+ userdetails?.FullName);
+        // now lets generate application number give the application and update his status as started
+        var Formno = await _applicantRepository.GetFormNo();
+        var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
+        var calender = await _applicantRepository.GetConfiguration();
+        user.FormNo = calender.Year + Formno;
+        user.Started = 1;
+        if (user.PictureUploaded == 0)
+        {
+            await _userManager.UpdateAsync(user);
+            await _applicantRepository.UpdateFormNo(cancellationToken);
+        }
+        else if (user.Admitted)
+        {
+            // put admission letter and fees info here
+        }
+        var userdetails = await _userManager.Users.Select(b =>
+        new UserDto()
+        {
+            Id = b.Id,
+            UserName = b.UserName,
+            FormCompleted = b.FormCompleted,
+            Finalized = b.Finalized,
+            SoldBy = b.SoldBy,
+            Started = b.Started,
+            Year = b.Year,
+            PictureUploaded = b.PictureUploaded,
+            FormNo = b.FormNo,
+            FullName = b.FullName,
+            ResultUploaded = b.ResultUploaded,
+            Admitted = b.Admitted,
+            LastLogin = b.LastLogin,
+            Type = b.Type
+        }).FirstOrDefaultAsync(a => a.Id == userId, cancellationToken: cancellationToken);
+
         return userdetails;
 
     }
-    
-     public async Task UpdateApplicationPictureStatus(string? userId, string? photo, CancellationToken cancellationToken)
+
+    public async Task UpdateApplicationPictureStatus(string? userId, ICollection<FileDto> photo, CancellationToken cancellationToken)
     {
-        var Formno = await _applicantRepository.GetFormNo();
+
         var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
         user.PictureUploaded = 1;
-        user.Started = 1;
-        user.FormNo = Formno;
+
         await _userManager.UpdateAsync(user);
-        await _applicantRepository.UpdateFormNo(cancellationToken);
     }
 }

@@ -83,6 +83,18 @@ export class Menu {
 
       ],
     }, */
+    {
+      group: 'Accomodation',
+      separator: false,
+      items: [
+        {
+          icon: 'assets/icons/outline/cog.svg',
+          label: 'Book Room',
+          route: '/accomodation/book',
+        }
+
+      ],
+    },
 
     {
       group: 'Finance',

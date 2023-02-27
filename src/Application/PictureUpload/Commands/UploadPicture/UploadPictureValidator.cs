@@ -13,38 +13,24 @@ public class UploadPictureValidator : AbstractValidator<UploadPictureRequest>
         RuleFor(v => v.Files)
             .Must(IsValidContentType)
             .WithMessage("Invalid file type. Only '.jpg' and '.jpeg' files are allowed");
+
+
     }
 
-    private bool FilesNotEmpty(ICollection<FileDto> files)
+    private static bool FilesNotEmpty(ICollection<FileDto>? files)
     {
         if (files == null || files.Count == 0)
         {
             return false;
         }
 
-        foreach (var file in files)
-        {
-            if (file.Content.Length == 0)
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return files.All(file => file.Content.Length != 0);
     }
-
-    private bool IsValidContentType(ICollection<FileDto> files)
+    
+    private static bool IsValidContentType(ICollection<FileDto> files)
     {
         var validContentTypes = new string[] { "image/jpeg", "image/jpg" };
 
-        foreach (var file in files)
-        {
-            if (!validContentTypes.Contains(file.ContentType))
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return files.All(file => validContentTypes.Contains(file.ContentType));
     }
 }

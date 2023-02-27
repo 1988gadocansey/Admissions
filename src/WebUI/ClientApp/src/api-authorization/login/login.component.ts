@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
         break;
       case AuthenticationResultStatus.Success:
         await this.navigateToReturnUrl(returnUrl);
-        //  await this.router.navigate(['/welcome']);
+        // await this.router.navigate(['/welcome']);
         break;
       case AuthenticationResultStatus.Fail:
         await this.router.navigate(ApplicationPaths.LoginFailedPathComponents, {
