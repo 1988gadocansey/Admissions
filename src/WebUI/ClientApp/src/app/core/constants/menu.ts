@@ -13,8 +13,8 @@ export class Menu {
           children: [
             { label: 'Home', route: '/welcome/live' },
             { label: 'Upload Passport Photo', route: '/upload/passport' },
-            { label: 'Change Form', route: '/dashboard/nfts' },
-            { label: 'Report Issue', route: '/dashboard/nfts' },
+            { label: 'Change Form', route: '/changes/form' },
+            { label: 'Report Issue', route: '/issues/report' },
             { label: 'Announcements', route: '/announcements/index' },
 
           ],
@@ -31,16 +31,16 @@ export class Menu {
           label: 'Steps',
           route: '/academics',
           children: [
-            { label: 'Biodata', route: '/academics/registration' },
+            { label: 'Biodata', route: '/forms/biodata' },
             { label: 'Educational Background', route: '/download', },
             { label: 'Programme Information', route: '/download', },
             { label: 'Upload of Result', route: '/download', },
             { label: 'Research Information', route: '/download', },
             { label: 'List of Referees', route: '/download', },
             { label: 'Supporting Documents', route: '/download', },
-            { label: 'Application Summary', route: '/download', },
+            // { label: 'Application Summary', route: '/download', },
             { label: 'Proof of Application', route: '/download', },
-            { label: 'Application Status', route: '/download', },
+            // { label: 'Application Status', route: '/download', },
           ],
         },
 

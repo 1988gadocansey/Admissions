@@ -15,6 +15,7 @@ public interface IApplicationDbContext
     DbSet<ResearchModel> ResearchModels { get; }
     DbSet<ResearchPublicationModel> ResearchPublicationModels { get; }
 
+    DbSet<ApplicantIssueModel> ApplicantIssueModels { get; }
     DbSet<FormNoModel> FormNoModels { get; }
     public Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 

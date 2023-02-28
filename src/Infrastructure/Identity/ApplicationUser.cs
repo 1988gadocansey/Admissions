@@ -20,5 +20,6 @@ public class ApplicationUser : IdentityUser
     public virtual bool ResultUploaded { get; set; }
     public virtual bool Admitted { get; set; }
     public virtual string Pin { get; set; }
-    public virtual  DateTime LastLogin { set; get; }
+    public virtual DateTime LastLogin { set; get; }
+
 }

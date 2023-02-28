@@ -1119,7 +1119,8 @@ export enum Title {
     Rev = 3,
     Dr = 4,
     PhD = 5,
-    Ms = 6,
+    Imam = 6,
+    Prof = 7,
 }
 
 export enum MaritalStatus {

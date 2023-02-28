@@ -13,7 +13,7 @@ namespace OnlineApplicationSystem.Infrastructure.Services;
 
 public class PhotoUploadService : IPhotoUploadService
 {
-    private string serverUrl = "https://photos.ttuportal.com/public/albums/thumbnails";
+    private string _serverUrl = "https://photos.ttuportal.com/public/albums/thumbnails";
     private readonly IConfiguration _configuration;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IWebHostEnvironment _hostingEnvironment;
@@ -30,11 +30,11 @@ public class PhotoUploadService : IPhotoUploadService
 
     string IPhotoUploadService.UserId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-    public async Task<UrlsDto> UploadAsync(ICollection<FileDto> files)
+    public Task<UrlsDto> UploadAsync(ICollection<FileDto> files)
     {
         if (files == null || files.Count == 0)
         {
-            return null;
+            return Task.FromResult<UrlsDto>(null);
         }
 
         //var containerClient = _blobServiceClient.GetBlobContainerClient("publicuploads");
@@ -52,7 +52,7 @@ public class PhotoUploadService : IPhotoUploadService
             urls.Add(blobClient.Uri.ToString());
         } */
 
-        return new UrlsDto(urls);
+        return Task.FromResult(new UrlsDto(urls));
     }
     public async Task<int> SendFileToServer(string applicant, IEnumerable<FileDto> files, CancellationToken cancellationToken)
     {
@@ -88,9 +88,9 @@ public class PhotoUploadService : IPhotoUploadService
             var host = _configuration["sftphost"];
             var username = _configuration["sftpusername"];
             var password = _configuration["sftppassword"];
-            var image = Image.Load(formFile.Content);
+            var image = await Image.LoadAsync(formFile.Content, cancellationToken);
             image.Mutate(img => img.AutoOrient());
-            image.Mutate(x => x.Resize(413, 413));
+            image.Mutate(x => x.Resize(413, 531));
             try
             {
                 image.Save(fileLocation);
@@ -98,6 +98,8 @@ public class PhotoUploadService : IPhotoUploadService
             catch (Exception exp)
             {
                 System.Console.WriteLine("Exception generated when uploading file - " + exp.Message);
+
+                return await Task.FromResult(0);
             }
 
             using var client = new SftpClient(host, port, username, password);
@@ -111,11 +113,14 @@ public class PhotoUploadService : IPhotoUploadService
                     client.BufferSize = 4 * 1024; // bypass Payload error large files
                     client.UploadFile(fileStream, Path.GetFileName(fileLocation));
                 }
-                return await Task.FromResult(1);
+
             }
             var fileInfo = new FileInfo(fileLocation);
             fileInfo.Delete();
+
+            return await Task.FromResult(1);
         }
+        // now lets create an issue for picture upload
         Console.WriteLine("I couldn't connect");
         return await Task.FromResult(0);
 

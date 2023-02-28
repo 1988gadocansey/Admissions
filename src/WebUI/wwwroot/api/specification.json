@@ -818,7 +818,8 @@
           "Rev",
           "Dr",
           "PhD",
-          "Ms"
+          "Imam",
+          "Prof"
         ],
         "enum": [
           0,
@@ -827,7 +828,8 @@
           3,
           4,
           5,
-          6
+          6,
+          7
         ]
       },
       "MaritalStatus": {

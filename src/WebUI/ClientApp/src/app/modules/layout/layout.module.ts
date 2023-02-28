@@ -17,6 +17,8 @@ import { SidebarSubmenuComponent } from './components/sidebar/sidebar-submenu/si
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     LayoutComponent,
@@ -33,6 +35,15 @@ import { LayoutComponent } from './layout.component';
     NavbarMobileMenuComponent,
     NavbarMobileSubmenuComponent
   ],
-  imports: [CommonModule, LayoutRoutingModule, HttpClientModule, AngularSvgIconModule.forRoot(), SharedModule],
+  imports: [CommonModule, LayoutRoutingModule, HttpClientModule, AngularSvgIconModule.forRoot(), SharedModule, ReactiveFormsModule,
+    NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.wanderingCubes,
+      backdropBackgroundColour: "rgba(0,0,0,0.1)",
+      backdropBorderRadius: "4px",
+      primaryColour: "#ffffff",
+      secondaryColour: "#ffffff",
+      tertiaryColour: "#ffffff",
+    }),
+  ],
 })
 export class LayoutModule { }

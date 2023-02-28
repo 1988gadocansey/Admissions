@@ -1,0 +1,269 @@
+<div class="flex items-center justify-start">
+  <span
+    class="mr-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-black dark:bg-slate-900/70 dark:text-white"
+    ><svg viewBox="0 0 24 24" width="24" height="24" class="inline-block">
+      <path
+        fill="currentColor"
+        d="M13,7.5H18V9.5H13V7.5M13,14.5H18V16.5H13V14.5M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M19,19V5H5V19H19M11,6V11H6V6H11M10,10V7H7V10H10M11,13V18H6V13H11M10,17V14H7V17H10Z"
+      ></path>
+    </svg>
+  </span>
+  <h1 class="text-2xl leading-tight">Biodata Collection Step - II</h1>
+</div>
+<span>&nbsp;</span>
+
+<div
+  class="mb-4 rounded-lg bg-green-50 p-4 text-center text-sm text-green-800 dark:bg-gray-800 dark:text-green-400"
+  role="alert"
+>
+  Form Status: {{ biodataForm.status }}
+</div>
+<section class="bg-white dark:bg-gray-900">
+  <div class="mx-auto max-w-screen-xl py-8 px-4 lg:py-16 lg:px-6">
+    <p class="text-center text-sm">
+      <em class="text-red-500">PLEASE NOTE</em> : All fields marked with
+      <em class="text-red-500">*</em> are required to be filled.
+    </p>
+    <form
+      (ngSubmit)="onSubmit()"
+      [formGroup]="biodataForm"
+      class="ng-untouched ng-pristine ng-valid container mx-auto flex flex-col space-y-12"
+    >
+      <fieldset
+        class="grid grid-cols-4 gap-6 rounded-md p-6 shadow-sm dark:bg-gray-900"
+      >
+        <div class="col-span-full space-y-2 lg:col-span-1">
+          <p class="font-medium">Personal Inormation</p>
+          <p class="text-xs">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci
+            fuga autem eum!
+          </p>
+        </div>
+
+        <div class="col-span-full grid grid-cols-6 gap-4 lg:col-span-3">
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm">Title</label>
+            <select
+              formControlName="title"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select title</option>
+              <option *ngFor="let name of titleKeys" [value]="name">
+                {{ titles[name] }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                biodataForm.controls['title'].invalid &&
+                (biodataForm.controls['title'].dirty ||
+                  biodataForm.controls['title'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['title'].errors.required"
+              >
+                Title is required
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm">First Name</label>
+            <input
+              type="text"
+              required=""
+              formControlName="firstName"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                biodataForm.controls['firstName'].invalid &&
+                (biodataForm.controls['firstName'].dirty ||
+                  biodataForm.controls['firstName'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['firstName'].errors.required"
+              >
+                First Name is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="state" class="text-sm">Last Name</label>
+            <input
+              oninput="this.value = this.value.toUpperCase()"
+              required=""
+              type="text"
+              formControlName="lastName"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                biodataForm.controls['lastName'].invalid &&
+                (biodataForm.controls['lastName'].dirty ||
+                  biodataForm.controls['lastName'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['lastName'].errors.required"
+              >
+                Surname is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="zip" class="text-sm">Other Names</label>
+            <input
+              type="text"
+              formControlName="otherNames"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+          </div>
+          <div class="col-span-full sm:col-span-3">
+            <label for="email" class="text-sm">Previous Names</label>
+            <input
+              type="text"
+              formControlName="previosName"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+          </div>
+          <!--  <div class="col-span-full">
+            <label for="address" class="text-sm">Address</label>
+            <input
+              id="address"
+              type="text"
+              placeholder=""
+              class="w-full rounded-md focus:ring focus:ring-violet-400 focus:ring-opacity-75 dark:border-gray-700 dark:text-gray-900"
+            />
+          </div> -->
+
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm">Gender</label>
+            <select
+              formControlName="gender"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select gender</option>
+              <option *ngFor="let name of genderKeys" [value]="name">
+                {{ gender[name] }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                biodataForm.controls['gender'].invalid &&
+                (biodataForm.controls['gender'].dirty ||
+                  biodataForm.controls['gender'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['gender'].errors.required"
+              >
+                Gender is required
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm">Marital Status</label>
+            <select
+              formControlName="maritalStatus"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select gender</option>
+              <option *ngFor="let name of genderKeys" [value]="name">
+                {{ gender[name] }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                biodataForm.controls['maritalStatus'].invalid &&
+                (biodataForm.controls['maritalStatus'].dirty ||
+                  biodataForm.controls['maritalStatus'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['maritalStatus'].errors.required"
+              >
+                Marital Statusis required
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="zip" class="text-sm">Date of Birth</label>
+            <input
+              id="zip"
+              type="text"
+              placeholder=""
+              class="w-full rounded-md focus:ring focus:ring-violet-400 focus:ring-opacity-75 dark:border-gray-700 dark:text-gray-900"
+            />
+          </div>
+        </div>
+      </fieldset>
+      <fieldset
+        class="grid grid-cols-4 gap-6 rounded-md p-6 shadow-sm dark:bg-gray-900"
+      >
+        <div class="col-span-full space-y-2 lg:col-span-1">
+          <p class="font-medium">Profile</p>
+          <p class="text-xs">Adipisci fuga autem eum!</p>
+        </div>
+        <div class="col-span-full grid grid-cols-6 gap-4 lg:col-span-3">
+          <div class="col-span-full sm:col-span-3">
+            <label for="username" class="text-sm">Username</label>
+            <input
+              id="username"
+              type="text"
+              placeholder="Username"
+              class="w-full rounded-md focus:ring focus:ring-violet-400 focus:ring-opacity-75 dark:border-gray-700 dark:text-gray-900"
+            />
+          </div>
+          <div class="col-span-full sm:col-span-3">
+            <label for="website" class="text-sm">Website</label>
+            <input
+              id="website"
+              type="text"
+              placeholder="https://"
+              class="w-full rounded-md focus:ring focus:ring-violet-400 focus:ring-opacity-75 dark:border-gray-700 dark:text-gray-900"
+            />
+          </div>
+          <div class="col-span-full">
+            <label for="bio" class="text-sm">Bio</label>
+            <textarea
+              id="bio"
+              placeholder=""
+              class="w-full rounded-md focus:ring focus:ring-violet-400 focus:ring-opacity-75 dark:border-gray-700 dark:text-gray-900"
+            ></textarea>
+          </div>
+          <div class="col-span-full">
+            <label for="bio" class="text-sm">Photo</label>
+            <div class="flex items-center space-x-2">
+              <img
+                src="https://source.unsplash.com/30x30/?random"
+                alt=""
+                class="h-10 w-10 rounded-full dark:bg-gray-500 dark:bg-gray-700"
+              />
+              <button
+                type="button"
+                class="rounded-md border px-4 py-2 dark:border-gray-100"
+              >
+                Change
+              </button>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

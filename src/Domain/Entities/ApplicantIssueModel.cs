@@ -14,29 +14,28 @@
 //    limitations under the License.
 
 using System.ComponentModel.DataAnnotations;
-namespace OnlineApplicationSystem.Domain.Entities
+namespace OnlineApplicationSystem.Domain.Entities;
+
+public class ApplicantIssueModel : BaseAuditableEntity
 {
-    public class ApplicantIssueModel : BaseAuditableEntity
+
+    private IEnumerable<ApplicantModel?> ApplicantModel { get; set; }
+
+    public string ApplicantModelId { set; get; }
+    public bool Results { set; get; }
+    public bool Picture { set; get; }
+    public bool Age { set; get; }
+    public bool FormCompletion { set; get; }
+    public bool Qualification { set; get; }
+    public bool? DocumentUpload { set; get; }
+    public bool? WorkingExperience { set; get; }
+    public bool? AcademicExperience { set; get; }
+    public bool? ResearchInformation { set; get; }
+    public bool? ResearchPublication { set; get; }
+    public bool? Referee { set; get; }
+
+
+    public ApplicantIssueModel()
     {
-
-        private ICollection<ApplicantModel?> ApplicantModel { get; set; }
-
-        public int ApplicantModelId { set; get; }
-        public bool Results { set; get; }
-        public bool Picture { set; get; }
-        public bool Age { set; get; }
-        public bool FormCompletion { set; get; }
-        public bool Qualification { set; get; }
-        public bool? DocumentUpload { set; get; }
-        public bool? WorkingExperience { set; get; }
-        public bool? AcademicExperience { set; get; }
-        public bool? ResearchInformation { set; get; }
-        public bool? ResearchPublication { set; get; }
-        public bool? Referee { set; get; }
-
-
-        public ApplicantIssueModel()
-        {
-        }
     }
 }

@@ -55,9 +55,10 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
     public DbSet<Address> Addresss => Set<Address>();
     public DbSet<LanguageModel> LanguageModels => Set<LanguageModel>();
     public DbSet<ProgrammeModel> ProgrammeModels => Set<ProgrammeModel>();
-    public DbSet<ResultUploadModel> ResultUploadModels=> Set<ResultUploadModel>();
+    public DbSet<ResultUploadModel> ResultUploadModels => Set<ResultUploadModel>();
     public DbSet<WorkingExperienceModel> WorkingExperienceModels => Set<WorkingExperienceModel>();
     public DbSet<ResearchModel> ResearchModels { get; }
+    // public DbSet<ApplicantIssueModel> ApplicantIssueModels => Set<ApplicantIssueModel>();
     public DbSet<ApplicantIssueModel> ApplicantIssueModels => Set<ApplicantIssueModel>();
     public DbSet<ResearchPublicationModel> ResearchPublications => Set<ResearchPublicationModel>();
     public DbSet<ResearchModel> Researches => Set<ResearchModel>();

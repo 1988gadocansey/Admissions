@@ -9,6 +9,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import {NgxLoadingModule} from "ngx-loading";
 
 @NgModule({
   declarations: [
@@ -17,15 +18,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
     UploadpageComponent
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    PassportpicRoutingModule,
-    HttpClientModule,
+    imports: [
+        CommonModule,
+        SharedModule,
+        PassportpicRoutingModule,
+        HttpClientModule,
 
-    FormsModule,
+        FormsModule,
 
-    ReactiveFormsModule
-  ]
+        ReactiveFormsModule,
+        NgxLoadingModule
+    ]
 })
 export class PassportpicModule { }

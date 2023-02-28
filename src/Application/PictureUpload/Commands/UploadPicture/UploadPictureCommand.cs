@@ -1,9 +1,11 @@
 using MediatR;
 using OnlineApplicationSystem.Application.Common.Dtos;
 using OnlineApplicationSystem.Application.Common.Interfaces;
+using OnlineApplicationSystem.Domain.Entities;
+
 namespace OnlineApplicationSystem.Application.PictureUpload.Commands.UploadPicture;
 
-public class UploadPictureCommand : IRequestHandler<UploadPictureRequest, UrlsDto>
+public class UploadPictureCommand : IRequestHandler<UploadPictureRequest, int>
 {
     private readonly IApplicationDbContext _context;
     private readonly ICurrentUserService _currentUserService;
@@ -29,12 +31,27 @@ public class UploadPictureCommand : IRequestHandler<UploadPictureRequest, UrlsDt
 
          return Unit.Value;
      } */
-    public async Task<UrlsDto> Handle(UploadPictureRequest request, CancellationToken cancellationToken)
+    public async Task<int> Handle(UploadPictureRequest request, CancellationToken cancellationToken)
     {
-        var urls = await _photoUploadService.UploadAsync(request.Files);
-        var PictureUpload = await _photoUploadService.SendFileToServer(_currentUserService.UserId, request.Files, cancellationToken);
+        var pictureUpload = await _photoUploadService.SendFileToServer(_currentUserService.UserId, request.Files, cancellationToken);
         await _identityService.UpdateApplicationPictureStatus(_currentUserService.UserId, request.Files, cancellationToken);
+        //lets create issue flag here
+        var applicant = _context.ApplicantIssueModels.FirstOrDefault(u => u.ApplicantModelId == _currentUserService.UserId);
 
-        return urls;
+        if (applicant == null)
+        {
+            var issueFlag = (pictureUpload == 1) ? true : false;
+            var issue = new ApplicantIssueModel { Picture = issueFlag, ApplicantModelId = _currentUserService.UserId };
+            _context.ApplicantIssueModels.Add(issue);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+        else
+        {
+            applicant.Picture = (pictureUpload == 1) ? true : false;
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
+
+        return pictureUpload;
     }
 }

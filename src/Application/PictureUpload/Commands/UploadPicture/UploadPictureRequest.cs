@@ -9,7 +9,7 @@ namespace OnlineApplicationSystem.Application.PictureUpload.Commands.UploadPictu
     public string? FileName { get; init; }
 
 } */
-public class UploadPictureRequest : IRequest<UrlsDto>
+public class UploadPictureRequest : IRequest<int>
 {
     public string? UserId { get; init; }
     public ICollection<FileDto> Files { get; set; } = new List<FileDto>();

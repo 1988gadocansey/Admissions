@@ -1,16 +1,88 @@
-<div class="text-center">
-  <input class="form-control" type="file" (change)="onChange($event)" />
+<ngx-loading [show]="loading"></ngx-loading>
+<ng-container *ngIf="message == 200">
+  <div
+    class="mb-4 rounded-lg bg-green-50 p-4 text-center text-sm text-green-800 dark:bg-gray-800 dark:text-green-400"
+    role="alert"
+  >Picture Uploaded Successfully!
+  </div>
+</ng-container>
+<ng-container *ngIf="message && message < 200">
+  <div
+    class="mb-4 rounded-lg bg-red-50 p-4 text-center text-sm text-red-800 dark:bg-gray-800 dark:text-red-400"
+    role="alert"
+  >
+    Error uploading passport picture. Check picture size.
+  </div>
+</ng-container>
 
-  <button (click)="onUpload()" class="btn btn-success">Upload</button>
-</div>
+<div
+  x-data="{photoName: null, photoPreview: null}"
+  class="col-span-6 ml-2 sm:col-span-4 md:mr-3"
+>
+  <!-- Photo File Input -->
+  <input
+    accept="image/jpeg"
+    required=""
+    type="file"
+    class="hidden"
+    x-ref="photo"
+    x-on:change="
+                        photoName = $refs.photo.files[0].name;
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            photoPreview = e.target.result;
+                        };
+                        reader.readAsDataURL($refs.photo.files[0]);
+    "
+    (change)="onChange($event)"
+  />
 
-<!-- Shareable short link of  uploaded file -->
-<div class="jumbotron container text-center" *ngIf="shortLink">
-  <h2>Visit Here</h2>
-  <a href="{{ shortLink }}">{{ shortLink }}</a>
-</div>
+  <label
+    class="mb-2 block text-center text-sm font-bold text-gray-700"
+    for="photo"
+  >
+    Upload Passport Picture
+    <span class="text-red-600">(Max Picture Size 250KB)</span>
+  </label>
 
-<!--Flag variable is used here-->
-<div class="container" *ngIf="loading">
-  <h3>Loading ...</h3>
+  <div class="text-center">
+    <!-- Current Profile Photo -->
+    <div class="mt-2" x-show="! photoPreview">
+      <img
+        src="https://via.placeholder.com/250"
+        class="m-auto h-40 h-10 w-40 w-10 rounded"
+      />
+    </div>
+    <!-- New Profile Photo Preview -->
+    <div class="mt-2" x-show="photoPreview" style="display: none">
+      <span
+        class="m-auto block h-40 h-10 w-40 w-10 rounded"
+        x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'"
+        style="
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-image: url('null');
+        "
+      >
+      </span>
+    </div>
+    <p>&nbsp;</p>
+    <button
+      type="button"
+      class="focus:shadow-outline ml-3 rounded-sm px-3 py-1 focus:outline-none hover:bg-gray-300"
+      x-on:click.prevent="$refs.photo.click()"
+    >
+      Select New Photo
+    </button>
+    <span>&nbsp;</span>
+    <button
+      id="submit"
+      (click)="onUpload()"
+      type="button"
+      class="focus:shadow-outline rounded-sm bg-blue-700 px-3 py-1 text-white focus:outline-none hover:bg-blue-500"
+    >
+      Upload now
+    </button>
+  </div>
 </div>

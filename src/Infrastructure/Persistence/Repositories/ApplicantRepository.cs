@@ -10,26 +10,21 @@ namespace OnlineApplicationSystem.Infrastructure.Persistence.Repositories;
 
 public class ApplicantRepository : IApplicantRepository
 {
-
     private readonly IApplicationDbContext _context;
     private readonly IMapper _mapper;
     public ApplicantRepository(IApplicationDbContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;
-
     }
-
     Task<int> IApplicantRepository.checkFailed(IEnumerable<int> GradeValues)
     {
         throw new NotImplementedException();
     }
-
     Task<int> IApplicantRepository.checkPassed(IEnumerable<int> GradeValues)
     {
         throw new NotImplementedException();
     }
-
     public async Task<bool> ContainsDuplicates(int[] results)
     {
         /* var duplicates = results.GroupBy(x => x)
@@ -104,9 +99,9 @@ public class ApplicantRepository : IApplicantRepository
     {
         var client = new SmtpClient("smtp.google.com");
         client.EnableSsl = true;
-        var NetworkCred = new NetworkCredential("gadocansey@gmail.com", "031988gadocansey");
+        var networkCred = new NetworkCredential("gadocansey@gmail.com", "031988gadocansey");
         client.UseDefaultCredentials = true;
-        client.Credentials = NetworkCred;
+        client.Credentials = networkCred;
         client.Port = 587;
         // Specify the email sender.
         // Create a mailing address that includes a UTF8 character

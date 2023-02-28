@@ -30,6 +30,24 @@ const routes: Routes = [
     loadChildren: () => import('../faq/faq.module').then((m) => m.FaqModule),
   },
   {
+    path: 'forms',
+    component: LayoutComponent,
+    canActivate: [AuthorizeGuard],
+    loadChildren: () => import('../biodata/biodata.module').then((m) => m.BiodataModule),
+  },
+  {
+    path: 'issues',
+    component: LayoutComponent,
+    canActivate: [AuthorizeGuard],
+    loadChildren: () => import('../complains/complains.module').then((m) => m.ComplainsModule),
+  },
+  {
+    path: 'changes',
+    component: LayoutComponent,
+    canActivate: [AuthorizeGuard],
+    loadChildren: () => import('../changeform/changeform.module').then((m) => m.ChangeformModule),
+  },
+  {
     path: 'upload',
     component: LayoutComponent,
     canActivate: [AuthorizeGuard],

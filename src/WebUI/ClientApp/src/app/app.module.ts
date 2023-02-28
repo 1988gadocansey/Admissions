@@ -18,12 +18,26 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { TokenComponent } from './token/token.component';
 import { TodoComponent } from './todo/todo.component';
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './store/reducers/user.reducer';
+import { TryStoreComponent } from './try-store/try-store.component';
 
 @NgModule({
-  declarations: [AppComponent, SpinnerComponent, FetchDataComponent, TokenComponent, TodoComponent],
+  declarations: [AppComponent, SpinnerComponent, FetchDataComponent, TokenComponent, TodoComponent, TryStoreComponent],
   imports: [BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule, SharedModule, CommonModule, ApiAuthorizationModule, AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+  NgxLoadingModule.forRoot({
+    animationType: ngxLoadingAnimationTypes.circle,
+    backdropBackgroundColour: 'rgba(192,192,192,0.4)',
+    backdropBorderRadius: '4px',
+    primaryColour: '#64b2cd',
+    secondaryColour: '#ffffff',
+    tertiaryColour: '#ffffff'
+  }),
+  StoreModule.forRoot({ count: counterReducer }),
+
 
   ],
   providers: [
