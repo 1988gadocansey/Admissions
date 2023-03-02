@@ -2,9 +2,11 @@ using System.Net;
 using System.Net.Mail;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineApplicationSystem.Application.Biodata.Queries;
 using OnlineApplicationSystem.Application.Common.Interfaces;
 using OnlineApplicationSystem.Domain.Entities;
+using OnlineApplicationSystem.Application.Common.Dtos;
 
 namespace OnlineApplicationSystem.Infrastructure.Persistence.Repositories;
 
@@ -143,4 +145,96 @@ public class ApplicantRepository : IApplicantRepository
         update.No += 1;
         return await _context.SaveChangesAsync(cancellationToken);
     }
+    public async Task<RegionModel?> Regions(CancellationToken cancellationToken)
+    {
+        return await _context.RegionModels.OrderByDescending(b => b.Id)
+            .FirstOrDefaultAsync(cancellationToken);
+    }
+    public async Task<IEnumerable<ReligionDto>> Religions(CancellationToken cancellationToken)
+    {
+        var data = await _context.ReligionModels.Select(b =>
+           new ReligionDto()
+           {
+               Id = b.Id,
+               Name = b.Name,
+           }).ToListAsync(cancellationToken: cancellationToken);
+        return data;
+    }
+    public async Task<SubjectModel?> Subjects(CancellationToken cancellationToken)
+    {
+        return await _context.SubjectModels.OrderBy(b => b.Id)
+            .FirstOrDefaultAsync(cancellationToken);
+    }
+    public async Task<ExamModel?> Exams(CancellationToken cancellationToken)
+    {
+        return await _context.ExamModels.OrderBy(b => b.Id)
+            .FirstOrDefaultAsync(cancellationToken);
+    }
+
+    public async Task<CountryModel?> Countries(CancellationToken cancellationToken)
+    {
+        return await _context.CountryModels.OrderBy(b => b.ID)
+            .FirstOrDefaultAsync(cancellationToken);
+    }
+    public async Task<DistrictModel?> Districts(CancellationToken cancellationToken)
+    {
+        return await _context.DistrictModels.OrderBy(b => b.ID)
+            .FirstOrDefaultAsync(cancellationToken);
+    }
+    public async Task<FormerSchoolModel?> Schools(CancellationToken cancellationToken)
+    {
+        return await _context.FormerSchoolModels.OrderBy(b => b.Id)
+            .FirstOrDefaultAsync(cancellationToken);
+    }
+    public ProgrammeModel Programmes(string FormType)
+    {
+        var data = _context.ProgrammeModels.Where(a => a.Type == FormType).Select(p => new { p.Id, p.Name }).ToList();
+
+        return (ProgrammeModel)data.OrderBy(a => a.Name);
+
+
+    }
+    public async Task<DenominationModel?> Denominations(CancellationToken cancellationToken)
+    {
+        return await _context.DenominationModels.OrderBy(b => b.ID)
+            .FirstOrDefaultAsync(cancellationToken);
+    }
+
+    public async Task<HallModel?> Halls(CancellationToken cancellationToken)
+    {
+        return await _context.HallModels.OrderBy(b => b.Id)
+            .FirstOrDefaultAsync(cancellationToken);
+    }
+    public IEnumerable<SelectListItem> GetProgrammes(string FormType)
+    {
+        var types = new Dictionary<string, string>
+            {
+                { "DIPLOMA", "DipTECH" },
+                { "MTECH", "MTECH" },
+                { "BTECH", "DEGREE" },
+                { "MATURE", "BTECH" },
+                { "TOPUP", "BTECH" },
+                { "BRIDGING", "BTECH" },
+                 { "CERTIFICATE", "CERT" },
+                { "HND", "HND" },
+                { "ACCELERATED", "BTECH" }
+            };
+        var formType = types.FirstOrDefault(x => x.Value == FormType).Value;
+        List<SelectListItem> programme;
+
+        programme = _context.ProgrammeModels.AsNoTracking()
+            .OrderBy(n => n.Name)
+            .Where(n => n.Type == formType)
+            .Select(n =>
+                new SelectListItem
+                {
+                    Value = n.Id.ToString(),
+                    Text = n.Name
+                }).ToList();
+
+        return new SelectList(programme, "Value", "Text");
+
+
+    }
+
 }

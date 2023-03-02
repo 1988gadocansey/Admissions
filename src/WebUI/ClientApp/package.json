@@ -33,6 +33,8 @@
     "angular-svg-icon": "^15.0.0",
     "angular-svg-icon-preloader": "^5.0.0",
     "apexcharts": "^3.37.0",
+    "flowbite": "^1.6.3",
+    "flowbite-angular": "^0.0.1",
     "ng-apexcharts": "^1.7.4",
     "ngx-loading": "^15.0.0",
     "oidc-client": "^1.11.5",

@@ -57,11 +57,12 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
     public DbSet<ProgrammeModel> ProgrammeModels => Set<ProgrammeModel>();
     public DbSet<ResultUploadModel> ResultUploadModels => Set<ResultUploadModel>();
     public DbSet<WorkingExperienceModel> WorkingExperienceModels => Set<WorkingExperienceModel>();
-    public DbSet<ResearchModel> ResearchModels { get; }
+
     // public DbSet<ApplicantIssueModel> ApplicantIssueModels => Set<ApplicantIssueModel>();
     public DbSet<ApplicantIssueModel> ApplicantIssueModels => Set<ApplicantIssueModel>();
     public DbSet<ResearchPublicationModel> ResearchPublications => Set<ResearchPublicationModel>();
-    public DbSet<ResearchModel> Researches => Set<ResearchModel>();
+    public DbSet<ResearchModel> ResearchModels => Set<ResearchModel>();
+
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
