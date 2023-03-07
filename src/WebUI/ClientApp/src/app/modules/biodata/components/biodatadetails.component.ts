@@ -99,6 +99,7 @@ export class BiodatadetailsComponent implements OnInit {
     return new Date(0, i).toLocaleString('en-US', { month: 'long' })
   }); */
   public religions: ReligionDto[] = [];
+
   selectedYear: number;
   years: number[] = [];
 
@@ -115,7 +116,7 @@ export class BiodatadetailsComponent implements OnInit {
     }
     client.getRegions().subscribe((data: ReligionDto[]) => {
       this.religions = data;
-      console.log("religions",this.religions);
+      console.log("religions", this.religions);
     })
   }
 

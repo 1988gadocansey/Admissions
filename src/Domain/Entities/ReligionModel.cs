@@ -15,15 +15,15 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace OnlineApplicationSystem.Domain.Entities
+namespace OnlineApplicationSystem.Domain.Entities;
+
+
+public record ReligionModel
 {
-    public class ReligionModel
-    {
-        [Key]
-        public int Id { set; get; }
-        public string Name { set; get; }
-        public ReligionModel()
-        {
-        }
-    }
+    [Key]
+    public int? Id { set; get; }
+    public string? Name { set; get; }
+
 }
+
+

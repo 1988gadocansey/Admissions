@@ -2,8 +2,6 @@ using System.Net;
 using System.Net.Mail;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using OnlineApplicationSystem.Application.Biodata.Queries;
 using OnlineApplicationSystem.Application.Common.Interfaces;
 using OnlineApplicationSystem.Domain.Entities;
 using OnlineApplicationSystem.Application.Common.Dtos;
@@ -82,19 +80,19 @@ public class ApplicantRepository : IApplicantRepository
         return formNumber.No.ToString();
     }
 
-    Task<int> IApplicantRepository.GetTotalAggregate(int[] Cores, int[] CoreAlt, int[] Electives)
+    Task<int> IApplicantRepository.GetTotalAggregate(IEnumerable<GradeModel> Cores, IEnumerable<GradeModel> CoreAlt, IEnumerable<GradeModel> Electives)
     {
         throw new NotImplementedException();
     }
 
-    Task<string[]> IApplicantRepository.GradesIssues(int[] Cores, int[] CoreAlt, int[] Electives)
+    Task<string[]> IApplicantRepository.GradesIssues(IEnumerable<GradeModel> Cores, IEnumerable<GradeModel> CoreAlt, IEnumerable<GradeModel> Electives)
     {
         throw new NotImplementedException();
     }
 
-    Task<bool> IApplicantRepository.QualifiesMature(int age)
+    public async Task<bool> QualifiesMature(int age)
     {
-        throw new NotImplementedException();
+        return await Task.FromResult((age >= 25) ? true : false);
     }
 
     public Task SendEmailNotification(string Email, string Message)
@@ -145,67 +143,52 @@ public class ApplicantRepository : IApplicantRepository
         update.No += 1;
         return await _context.SaveChangesAsync(cancellationToken);
     }
-    public async Task<RegionModel?> Regions(CancellationToken cancellationToken)
+    public async Task<IEnumerable<RegionDto>> Regions(CancellationToken cancellationToken)
     {
-        return await _context.RegionModels.OrderByDescending(b => b.Id)
-            .FirstOrDefaultAsync(cancellationToken);
+
+        var data = await _context.RegionModels.ToListAsync(cancellationToken);
+        /* var data = await _context.RegionModels.Select(b =>
+        new RegionDto()
+        {
+            Id = b.Id,
+            Name = b.Name,
+        }).ToListAsync(cancellationToken: cancellationToken);
+        return data; */
+
+        var selectBoxItem = _mapper.Map<IEnumerable<RegionDto>>(data);
+        return selectBoxItem;
     }
     public async Task<IEnumerable<ReligionDto>> Religions(CancellationToken cancellationToken)
     {
-        var data = await _context.ReligionModels.Select(b =>
-           new ReligionDto()
-           {
-               Id = b.Id,
-               Name = b.Name,
-           }).ToListAsync(cancellationToken: cancellationToken);
-        return data;
-    }
-    public async Task<SubjectModel?> Subjects(CancellationToken cancellationToken)
-    {
-        return await _context.SubjectModels.OrderBy(b => b.Id)
-            .FirstOrDefaultAsync(cancellationToken);
-    }
-    public async Task<ExamModel?> Exams(CancellationToken cancellationToken)
-    {
-        return await _context.ExamModels.OrderBy(b => b.Id)
-            .FirstOrDefaultAsync(cancellationToken);
-    }
-
-    public async Task<CountryModel?> Countries(CancellationToken cancellationToken)
-    {
-        return await _context.CountryModels.OrderBy(b => b.ID)
-            .FirstOrDefaultAsync(cancellationToken);
-    }
-    public async Task<DistrictModel?> Districts(CancellationToken cancellationToken)
-    {
-        return await _context.DistrictModels.OrderBy(b => b.ID)
-            .FirstOrDefaultAsync(cancellationToken);
-    }
-    public async Task<FormerSchoolModel?> Schools(CancellationToken cancellationToken)
-    {
-        return await _context.FormerSchoolModels.OrderBy(b => b.Id)
-            .FirstOrDefaultAsync(cancellationToken);
-    }
-    public ProgrammeModel Programmes(string FormType)
-    {
-        var data = _context.ProgrammeModels.Where(a => a.Type == FormType).Select(p => new { p.Id, p.Name }).ToList();
-
-        return (ProgrammeModel)data.OrderBy(a => a.Name);
-
+        var data = await _context.ReligionModels.ToListAsync(cancellationToken);
+        var selectBoxItem = _mapper.Map<IEnumerable<ReligionDto>>(data);
+        return selectBoxItem;
 
     }
-    public async Task<DenominationModel?> Denominations(CancellationToken cancellationToken)
+    public async Task<IEnumerable<SubjectDto>> Subjects(CancellationToken cancellationToken)
     {
-        return await _context.DenominationModels.OrderBy(b => b.ID)
-            .FirstOrDefaultAsync(cancellationToken);
+        var data = await _context.SubjectModels.ToListAsync(cancellationToken);
+        var selectBoxItem = _mapper.Map<IEnumerable<SubjectDto>>(data);
+        return selectBoxItem;
     }
+    public async Task<IEnumerable<ExamDto>> Exams(CancellationToken cancellationToken)
+    {
+        var data = await _context.ExamModels.ToListAsync(cancellationToken);
+        var selectBoxItem = _mapper.Map<IEnumerable<ExamDto>>(data);
+        return selectBoxItem;
+    }
+    public async Task<IEnumerable<FormerSchoolDto>> Schools(CancellationToken cancellationToken)
+    {
+        var data = await _context.FormerSchoolModels.ToListAsync(cancellationToken);
+        var selectBoxItem = _mapper.Map<IEnumerable<FormerSchoolDto>>(data);
+        return selectBoxItem;
+    }
+    /*  public ProgrammeModel Programmes(string FormType)
+     {
+         var data = _context.ProgrammeModels.Where(a => a.Type == FormType).Select(p => new { p.Id, p.Name }).ToList().OrderBy(a => a.Name);
 
-    public async Task<HallModel?> Halls(CancellationToken cancellationToken)
-    {
-        return await _context.HallModels.OrderBy(b => b.Id)
-            .FirstOrDefaultAsync(cancellationToken);
-    }
-    public IEnumerable<SelectListItem> GetProgrammes(string FormType)
+     } */
+    public async Task<IEnumerable<ProgrammeDto>> Programmes(string FormType)
     {
         var types = new Dictionary<string, string>
             {
@@ -220,21 +203,91 @@ public class ApplicantRepository : IApplicantRepository
                 { "ACCELERATED", "BTECH" }
             };
         var formType = types.FirstOrDefault(x => x.Value == FormType).Value;
-        List<SelectListItem> programme;
 
-        programme = _context.ProgrammeModels.AsNoTracking()
+
+        var programme = _context.ProgrammeModels.AsNoTracking()
             .OrderBy(n => n.Name)
-            .Where(n => n.Type == formType)
-            .Select(n =>
-                new SelectListItem
-                {
-                    Value = n.Id.ToString(),
-                    Text = n.Name
-                }).ToList();
+            .Where(n => n.Type == formType).
+            ToListAsync();
 
-        return new SelectList(programme, "Value", "Text");
+        return _mapper.Map<IEnumerable<ProgrammeDto>>(programme);
+    }
 
+    public async Task<IEnumerable<CountryDto>> Countries(CancellationToken cancellationToken)
+    {
+        var data = await _context.CountryModels
+       .ToListAsync(cancellationToken: cancellationToken);
+        return _mapper.Map<IEnumerable<CountryDto>>(data);
+    }
+
+    public async Task<IEnumerable<DistrictDto>> Districts(CancellationToken cancellationToken)
+    {
+        var data = await _context.DistrictModels
+       .ToListAsync(cancellationToken: cancellationToken);
+        return _mapper.Map<IEnumerable<DistrictDto>>(data);
+    }
+
+    public async Task<IEnumerable<DenominationDto>> Denominations(CancellationToken cancellationToken)
+    {
+        var data = await _context.DenominationModels
+      .ToListAsync(cancellationToken: cancellationToken);
+        return _mapper.Map<IEnumerable<DenominationDto>>(data);
 
     }
+
+    public async Task<IEnumerable<HallDto>> Halls(CancellationToken cancellationToken)
+    {
+        var data = await _context.HallModels
+    .ToListAsync(cancellationToken: cancellationToken);
+        return _mapper.Map<IEnumerable<HallDto>>(data);
+    }
+    public async Task<IEnumerable<GradeDto>> Grades(CancellationToken cancellationToken)
+    {
+        var data = await _context.GradeModels
+    .ToListAsync(cancellationToken: cancellationToken);
+        return _mapper.Map<IEnumerable<GradeDto>>(data);
+    }
+    public async Task<IEnumerable<SHSProgrammesDto>> SHSProgrammes(CancellationToken cancellationToken)
+    {
+        var data = await _context.SHSProgrammes
+    .ToListAsync(cancellationToken: cancellationToken);
+        return _mapper.Map<IEnumerable<SHSProgrammesDto>>(data);
+    }
+    public async Task<IEnumerable<DisabilitiesDto>> Disabilities(CancellationToken cancellationToken)
+    {
+        var data = await _context.DistrictModels
+    .ToListAsync(cancellationToken: cancellationToken);
+        return _mapper.Map<IEnumerable<DisabilitiesDto>>(data);
+    }
+    public async Task<IEnumerable<LanguageDto>> Languages(CancellationToken cancellationToken)
+    {
+        var data = await _context.Languages
+    .ToListAsync(cancellationToken: cancellationToken);
+        return _mapper.Map<IEnumerable<LanguageDto>>(data);
+    }
+    public async Task<IEnumerable<SHSAttendedDto>> SHSAttendeds(CancellationToken cancellationToken)
+    {
+        var data = await _context.SHSAttendedModels
+    .ToListAsync(cancellationToken: cancellationToken);
+        return _mapper.Map<IEnumerable<SHSAttendedDto>>(data);
+    }
+
+    public async Task<IEnumerable<UniversityAttendedDto>> UniversityAttended(CancellationToken cancellationToken)
+    {
+        var data = await _context.UniversityAttendedModels
+    .ToListAsync(cancellationToken: cancellationToken);
+        return _mapper.Map<IEnumerable<UniversityAttendedDto>>(data);
+    }
+
+
+
+    /* public async Task<IEnumerable<FormerSchoolDto>> Schools(CancellationToken cancellationToken)
+    {
+        var data = await _context.FormerSchoolModels
+        .ToListAsync(cancellationToken: cancellationToken);
+        return _mapper.Map<IEnumerable<FormerSchoolDto>>(data);
+    } */
+
+
 
 }

@@ -12,7 +12,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public string GPRS { set; get; }
         public string Box { set; get; }
         public int ApplicantModelID { set; get; }
-        private ICollection<ApplicantModel?> ApplicantModel { get; set; }
+        private IEnumerable<ApplicantModel>? ApplicantModel { get; set; }
 
 
     }

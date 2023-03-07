@@ -1,14 +1,14 @@
 using OnlineApplicationSystem.Application.Common.Interfaces;
 using OnlineApplicationSystem.Application.Common.Security;
 using MediatR;
-using OnlineApplicationSystem.Domain.Entities;
+using OnlineApplicationSystem.Application.Common.Dtos;
 
 namespace OnlineApplicationSystem.Application.SelectBoxItems;
 
 [Authorize]
-public record GetRegionQuery : IRequest<RegionModel>;
+public record GetRegionQuery : IRequest<IEnumerable<RegionDto>>;
 
-public class GetRegionQueryHandler : IRequestHandler<GetRegionQuery, RegionModel>
+public class GetRegionQueryHandler : IRequestHandler<GetRegionQuery, IEnumerable<RegionDto>>
 {
     private readonly IApplicationDbContext _context;
     private readonly IApplicantRepository _applicantRepository;
@@ -20,9 +20,10 @@ public class GetRegionQueryHandler : IRequestHandler<GetRegionQuery, RegionModel
 
     }
 
-    public async Task<RegionModel> Handle(GetRegionQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<RegionDto>> Handle(GetRegionQuery request, CancellationToken cancellationToken)
     {
-
-        return await _applicantRepository.Regions(cancellationToken);
+        var data = await _applicantRepository.Regions(cancellationToken);
+        return data;
     }
+
 }

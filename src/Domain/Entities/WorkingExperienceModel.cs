@@ -20,7 +20,8 @@ namespace OnlineApplicationSystem.Domain.Entities
     public class WorkingExperienceModel : BaseEntity
     {
 
-
+        [Key]
+        public int Id { set; get; }
         public string CompanyName { set; get; }
         public string CompanyPhone { set; get; }
         public string CompanyAddress { set; get; }
@@ -28,11 +29,6 @@ namespace OnlineApplicationSystem.Domain.Entities
         public string CompanyFrom { set; get; }
         public string CompanyTo { set; get; }
 
-        public int ApplicantModelID { set; get; }
-        private ICollection<ApplicantModel?> ApplicantModel { get; set; }
-
-        public WorkingExperienceModel()
-        {
-        }
+        public ApplicantModel? ApplicantModel { get; set; }
     }
 }

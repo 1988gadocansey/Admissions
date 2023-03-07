@@ -27,6 +27,13 @@ public interface IApplicationDbContext
     DbSet<ExamModel> ExamModels { get; }
     DbSet<FormerSchoolModel> FormerSchoolModels { get; }
     DbSet<DenominationModel> DenominationModels { get; }
+    DbSet<GradeModel> GradeModels { get; }
+    DbSet<DisabilitiesModel> DisabilitiesModels { get; }
+    DbSet<LanguageModel> Languages { get; }
+
+    DbSet<SHSProgrammes> SHSProgrammes { get; }
+    DbSet<SHSAttendedModel> SHSAttendedModels { get; }
+    DbSet<UniversityAttendedModel> UniversityAttendedModels { get; }
     public Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
     // Task<int> CommitAsync(CancellationToken cancellationToken);

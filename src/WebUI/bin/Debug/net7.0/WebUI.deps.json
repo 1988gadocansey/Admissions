@@ -23,7 +23,10 @@
           "NSwag.AspNetCore": "13.16.0",
           "NSwag.MSBuild": "13.16.0",
           "OnlineApplicationSystem.Application": "1.0.0",
-          "OnlineApplicationSystem.Infrastructure": "1.0.0"
+          "OnlineApplicationSystem.Infrastructure": "1.0.0",
+          "OnlineApplicationSystem.Application.Reference": "1.0.0.0",
+          "OnlineApplicationSystem.Domain.Reference": "1.0.0.0",
+          "OnlineApplicationSystem.Infrastructure.Reference": "1.0.0.0"
         },
         "runtime": {
           "WebUI.dll": {}
@@ -1177,6 +1180,30 @@
         "runtime": {
           "OnlineApplicationSystem.Infrastructure.dll": {}
         }
+      },
+      "OnlineApplicationSystem.Application.Reference/1.0.0.0": {
+        "runtime": {
+          "OnlineApplicationSystem.Application.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "OnlineApplicationSystem.Domain.Reference/1.0.0.0": {
+        "runtime": {
+          "OnlineApplicationSystem.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "OnlineApplicationSystem.Infrastructure.Reference/1.0.0.0": {
+        "runtime": {
+          "OnlineApplicationSystem.Infrastructure.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -2052,6 +2079,21 @@
     },
     "OnlineApplicationSystem.Infrastructure/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "OnlineApplicationSystem.Application.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "OnlineApplicationSystem.Domain.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "OnlineApplicationSystem.Infrastructure.Reference/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

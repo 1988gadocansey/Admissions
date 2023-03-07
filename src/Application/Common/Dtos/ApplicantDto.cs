@@ -2,7 +2,7 @@ using OnlineApplicationSystem.Application.Common.Mappings;
 using OnlineApplicationSystem.Domain.Entities;
 using OnlineApplicationSystem.Domain.Enums;
 
-namespace OnlineApplicationSystem.Application.Biodata.Queries;
+namespace OnlineApplicationSystem.Application.Common.Dtos;
 
 public class ApplicantDto : IMapFrom<ApplicantModel>
 {

@@ -42,7 +42,7 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
     public DbSet<DocumentUploadModel> DocumentUploadModels => Set<DocumentUploadModel>();
     public DbSet<ExamModel> ExamModels => Set<ExamModel>();
     public DbSet<FacultyModel> FacultyModels => Set<FacultyModel>();
-    public DbSet<GradeModel> GradeModels => Set<GradeModel>();
+
     public DbSet<HallModel> HallModels => Set<HallModel>();
     public DbSet<RegionModel> RegionModels => Set<RegionModel>();
     public DbSet<ReligionModel> ReligionModels => Set<ReligionModel>();
@@ -53,16 +53,24 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
     public DbSet<SHSProgrammes> SHSProgrammes => Set<SHSProgrammes>();
     public DbSet<CountryModel> CountryModels => Set<CountryModel>();
     public DbSet<Address> Addresss => Set<Address>();
-    public DbSet<LanguageModel> LanguageModels => Set<LanguageModel>();
+    public DbSet<LanguageModel> Languages => Set<LanguageModel>();
     public DbSet<ProgrammeModel> ProgrammeModels => Set<ProgrammeModel>();
     public DbSet<ResultUploadModel> ResultUploadModels => Set<ResultUploadModel>();
     public DbSet<WorkingExperienceModel> WorkingExperienceModels => Set<WorkingExperienceModel>();
-
-    // public DbSet<ApplicantIssueModel> ApplicantIssueModels => Set<ApplicantIssueModel>();
     public DbSet<ApplicantIssueModel> ApplicantIssueModels => Set<ApplicantIssueModel>();
     public DbSet<ResearchPublicationModel> ResearchPublications => Set<ResearchPublicationModel>();
     public DbSet<ResearchModel> ResearchModels => Set<ResearchModel>();
 
+    public DbSet<GradeModel> GradeModels => Set<GradeModel>();
+
+    public DbSet<DisabilitiesModel> DisabilitiesModels => Set<DisabilitiesModel>();
+
+    public DbSet<UniversityAttendedModel> UniversityAttendedModels => Set<UniversityAttendedModel>();
+
+    public DbSet<SHSAttendedModel> SHSAttendedModels => Set<SHSAttendedModel>();
+
+
+    //public DbSet<GradeModel> GradeModels => Set<GradeModels>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

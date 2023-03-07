@@ -20,7 +20,8 @@ namespace OnlineApplicationSystem.Domain.Entities
     public class AcademicExperienceModel : BaseAuditableEntity
     {
 
-
+        [Key]
+        public int Id { set; get; }
         public string InstitutionName { set; get; }
         public string InstitutionAddress { set; get; }
         public string ProgrammeStudied { set; get; }
@@ -29,10 +30,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public string Certificate { set; get; }
 
         public int ApplicantModelID { set; get; }
-        private ICollection<ApplicantModel?> ApplicantModel { get; set; }
+        public ApplicantModel? ApplicantModel { get; set; }
 
-        public AcademicExperienceModel()
-        {
-        }
     }
 }

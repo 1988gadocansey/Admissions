@@ -1,5 +1,4 @@
-using OnlineApplicationSystem.Application.Results;
-using OnlineApplicationSystem.Application.User.Queries;
+using OnlineApplicationSystem.Application.Common.Dtos;
 
 namespace OnlineApplicationSystem.Application.Biodata.Queries.ViewModels;
 

@@ -1,14 +1,14 @@
 using OnlineApplicationSystem.Application.Common.Interfaces;
 using OnlineApplicationSystem.Application.Common.Security;
 using MediatR;
-using OnlineApplicationSystem.Domain.Entities;
+using OnlineApplicationSystem.Application.Common.Dtos;
 
 namespace OnlineApplicationSystem.Application.SelectBoxItems;
 
 [Authorize]
-public record GetSubjectQuery : IRequest<SubjectModel>;
+public record GetSubjectQuery : IRequest<IEnumerable<SubjectDto>>;
 
-public class GetSubjectQueryHandler : IRequestHandler<GetSubjectQuery, SubjectModel>
+public class GetSubjectQueryHandler : IRequestHandler<GetSubjectQuery, IEnumerable<SubjectDto>>
 {
     private readonly IApplicationDbContext _context;
     private readonly IApplicantRepository _applicantRepository;
@@ -20,9 +20,10 @@ public class GetSubjectQueryHandler : IRequestHandler<GetSubjectQuery, SubjectMo
 
     }
 
-    public async Task<SubjectModel> Handle(GetSubjectQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<SubjectDto>> Handle(GetSubjectQuery request, CancellationToken cancellationToken)
     {
-
-        return await _applicantRepository.Subjects(cancellationToken);
+        var data = await _applicantRepository.Subjects(cancellationToken);
+        return data;
     }
+
 }

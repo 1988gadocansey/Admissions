@@ -1,6 +1,6 @@
 using System.Reflection;
 using AutoMapper;
-
+using OnlineApplicationSystem.Application.Common.Dtos;
 namespace OnlineApplicationSystem.Application.Common.Mappings;
 
 public class MappingProfile : Profile
@@ -8,7 +8,6 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
-
 
     }
 
