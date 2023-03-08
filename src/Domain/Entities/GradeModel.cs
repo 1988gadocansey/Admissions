@@ -22,7 +22,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         [Key]
         public int Id { set; get; }
         public string Name { set; get; }
-        public string Value { set; get; }
+        public int Value { set; get; }
         public string Comment { set; get; }
         public int Exam { set; get; }
         public GradeModel()

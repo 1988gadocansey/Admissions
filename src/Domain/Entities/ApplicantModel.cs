@@ -101,18 +101,21 @@ namespace OnlineApplicationSystem.Domain.Entities
             return $"  {this.Title} ,{this.ApplicantName.LastName}, {this.ApplicantName.FirstName}, {this.ApplicantName.Othernames}";
         }
 
-        private IList<ProgrammeModel> Programme { get; set; }
-        private IList<ResultUploadModel> ResultUpload { get; set; }
-        private IList<WorkingExperienceModel?> WorkingExperience { get; set; }
-        private IList<AcademicExperienceModel?> AcademicExperience { get; set; }
-        private IList<DocumentUploadModel?> DocumentUpload { get; set; }
-        private IList<RefereeModel?> RefereeModel { get; set; }
-        private IList<Address?> Address { get; set; }
-        private IList<LanguageModel?> LanguageModels { get; set; }
-        private IList<SMSModel> Sms { get; set; }
-        private IList<ApplicantIssueModel>? ApplicantIssue { get; set; }
-        private IList<ResearchModel>? ResearchModels { get; set; }
-        private IList<ResearchPublicationModel>? ResearchPublications { get; set; }
+        private IEnumerable<ProgrammeModel> Programmes { get; set; }
+        private IEnumerable<ResultUploadModel> ResultUploads { get; set; }
+        private IEnumerable<WorkingExperienceModel?> WorkingExperiences { get; set; }
+        private IEnumerable<AcademicExperienceModel?> AcademicExperiences { get; set; }
+        private IEnumerable<DocumentUploadModel?> Documents { get; set; }
+        private IEnumerable<RefereeModel?> Referees { get; set; }
+        private IEnumerable<Address?> Addresses { get; set; }
+        private IEnumerable<LanguageModel?> Languages { get; set; }
+        private IEnumerable<SMSModel> Sms { get; set; }
+        private IEnumerable<ApplicantIssueModel>? ApplicantIssues { get; set; }
+        private IEnumerable<ResearchModel>? ResearchModels { get; set; }
+        private IEnumerable<ResearchPublicationModel>? ResearchPublications { get; set; }
+        private IEnumerable<UniversityAttendedModel>? UniversityAttended { get; set; }
+        private IEnumerable<SHSAttendedModel>? SHSAttend { get; set; }
+        private IEnumerable<DisabilitiesModel>? Disabilities { get; set; }
 
     }
 }

@@ -9,7 +9,7 @@ public class ApplicantName : ValueObject
 
     public string FirstName { get; }
     public string LastName { get; }
-    public string Othernames { get; }
+    public string? Othernames { get; }
     private ApplicantName() { }
     public static ApplicantName Create(string FirstName, string LastName, string Othernames)
     {

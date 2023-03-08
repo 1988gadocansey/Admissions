@@ -11,7 +11,6 @@ public class UploadPictureCommand : IRequestHandler<UploadPictureRequest, int>
     private readonly ICurrentUserService _currentUserService;
     private readonly IDateTime _dateTime;
     private readonly IPhotoUploadService _photoUploadService;
-
     private readonly IIdentityService _identityService;
     public UploadPictureCommand(IApplicationDbContext context, ICurrentUserService currentUserService, IDateTime dateTime, IIdentityService identityService, IPhotoUploadService photoUploadService)
     {

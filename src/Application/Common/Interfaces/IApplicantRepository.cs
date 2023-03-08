@@ -1,4 +1,5 @@
 using OnlineApplicationSystem.Application.Common.Dtos;
+using OnlineApplicationSystem.Application.Common.ViewModels;
 using OnlineApplicationSystem.Domain.Entities;
 
 namespace OnlineApplicationSystem.Application.Common.Interfaces;
@@ -6,16 +7,17 @@ namespace OnlineApplicationSystem.Application.Common.Interfaces;
 public interface IApplicantRepository
 {
 
-    public Task<ApplicantDto> GetApplicant(int Id, CancellationToken cancellationToken);
+    public Task<ApplicantVm> GetApplicantForUser(string Id, CancellationToken cancellationToken);
+    public Task<ApplicantVm> GetApplicant(int Id, CancellationToken cancellationToken);
     public Task SendSMSNotification(string PhoneNumber, string Message);
     public Task SendEmailNotification(string Email, string Message);
-    public Task<bool> ContainsDuplicates(int[] data);
+    public Task<bool> ContainsDuplicates( int[] data);
     public Task<int> GetAge(DateOnly dateOfBirth);
     public Task<bool> QualifiesMature(int age);
-    public Task<int> checkFailed(IEnumerable<int> GradeValues);
-    public Task<int> checkPassed(IEnumerable<int> GradeValues);
+    public int CheckFailed(IEnumerable<int> gradeValues);
+    public int CheckPassed(IEnumerable<int> GradeValues);
     public Task<string[]> GradesIssues(IEnumerable<GradeModel> Cores, IEnumerable<GradeModel> CoreAlt, IEnumerable<GradeModel> Electives);
-    public Task<int> GetTotalAggregate(IEnumerable<GradeModel> Cores, IEnumerable<GradeModel> CoreAlt, IEnumerable<GradeModel> Electives);
+    public Task<int> GetTotalAggregate(IEnumerable<int>   Cores, IEnumerable<int> CoreAlt, IEnumerable<int> Electives);
     public Task<string> GetFormNo();
     public Task<int> UpdateFormNo(CancellationToken cancellationToken);
     public Task<IEnumerable<ReligionDto>> Religions(CancellationToken cancellationToken);

@@ -36,7 +36,11 @@ public class CreateBiodataCommandValidator : AbstractValidator<CreateBiodataRequ
         RuleFor(v => v.Hometown)
         .NotEmpty().WithMessage("Hometown is required.");
 
+        RuleFor(v => v.IDCard.NationalIDNo)
+        .NotEmpty().WithMessage("ID Card Number is required.");
 
+        RuleFor(v => v.IDCard.NationalIDType)
+       .NotEmpty().WithMessage("ID Card Type is required.");
 
         RuleFor(v => v.IDCard.NationalIDNo)
            .NotEmpty().WithMessage("National ID No is required.")

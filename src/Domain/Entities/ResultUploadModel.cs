@@ -40,7 +40,7 @@ namespace OnlineApplicationSystem.Domain.Entities
 
         public virtual GradeModel Grade { get; set; }
 
-        private ICollection<ApplicantModel?> ApplicantModel { get; set; }
+        private IEnumerable<ApplicantModel?> ApplicantModel { get; set; }
 
 
         public ResultUploadModel()

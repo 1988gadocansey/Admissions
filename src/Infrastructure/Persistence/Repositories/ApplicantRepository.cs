@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using OnlineApplicationSystem.Application.Common.Interfaces;
 using OnlineApplicationSystem.Domain.Entities;
 using OnlineApplicationSystem.Application.Common.Dtos;
+using OnlineApplicationSystem.Application.Common.ViewModels;
 
 namespace OnlineApplicationSystem.Infrastructure.Persistence.Repositories;
 
@@ -17,52 +18,29 @@ public class ApplicantRepository : IApplicantRepository
         _context = context;
         _mapper = mapper;
     }
-    Task<int> IApplicantRepository.checkFailed(IEnumerable<int> GradeValues)
-    {
-        throw new NotImplementedException();
-    }
-    Task<int> IApplicantRepository.checkPassed(IEnumerable<int> GradeValues)
-    {
-        throw new NotImplementedException();
-    }
-    public async Task<bool> ContainsDuplicates(int[] results)
-    {
-        /* var duplicates = results.GroupBy(x => x)
-            .Where(g => g.Count() > 1)
-            .Select(y => y.Key)
-            .ToList(); */
-        if (results.Length != results.Distinct().Count())
-        {
-            return await Task.FromResult(true);
-        }
-        return await Task.FromResult(false);
-    }
+    public int CheckFailed(IEnumerable<int> gradeValues) => gradeValues.Count(values => values > 7);
+    public  int CheckPassed(IEnumerable<int> gradeValues) => gradeValues.Count(values => values < 7);
+    public  Task<bool> ContainsDuplicates( int[] results) => results.Length != results.Distinct().Count() ? Task.FromResult(true) : Task.FromResult(false);
 
     public Task<int> GetAge(DateOnly dateOfBirth)
     {
         var today = DateTime.Today;
-
         var a = (today.Year * 100 + today.Month) * 100 + today.Day;
         var b = (dateOfBirth.Year * 100 + dateOfBirth.Month) * 100 + dateOfBirth.Day;
-
         var age = (a - b) / 10000;
         return Task.FromResult(age);
     }
-
-    public async Task<ApplicantDto> GetApplicant(int Id, CancellationToken cancellationToken)
+    public async Task<ApplicantVm> GetApplicant(int Id, CancellationToken cancellationToken)
     {
         var applicant = await _context.ApplicantModels.FirstOrDefaultAsync(a => a.Id == Id, cancellationToken);
-        /*var applicantDto = new ApplicantDto()
-        {
-            FirstName = applicant.ApplicantName.FirstName,
-            LastName = applicant.ApplicantName.LastName,
-            Gender = applicant.Gender,
-            OtherName = applicant.ApplicantName.Othernames,
-            Title = applicant.Title,
-            Dob = applicant.Dob,
-            MaritalStatus = applicant.MaritalStatus,
-        };*/
-        var applicantDetails = _mapper.Map<ApplicantDto>(applicant);
+        var applicantDetails = _mapper.Map<ApplicantVm>(applicant);
+        return applicantDetails;
+    }
+
+    public async Task<ApplicantVm> GetApplicantForUser(string Id, CancellationToken cancellationToken)
+    {
+        var applicant = await _context.ApplicantModels.FirstOrDefaultAsync(a => a.ApplicationUserId == Id, cancellationToken);
+        var applicantDetails = _mapper.Map<ApplicantVm>(applicant);
         return applicantDetails;
     }
 
@@ -80,9 +58,14 @@ public class ApplicantRepository : IApplicantRepository
         return formNumber.No.ToString();
     }
 
-    Task<int> IApplicantRepository.GetTotalAggregate(IEnumerable<GradeModel> Cores, IEnumerable<GradeModel> CoreAlt, IEnumerable<GradeModel> Electives)
+    public async Task<int>  GetTotalAggregate(IEnumerable<int>   Cores, IEnumerable<int> CoreAlt, IEnumerable<int> Electives)
     {
-        throw new NotImplementedException();
+        if (Cores.Count() != 2 || !CoreAlt.Any() || Electives.Count() < 3) return await Task.FromResult(0);
+        var totalCores = Cores.Sum();
+        var totalCoAlt = CoreAlt.Order().Take(1).Sum();
+        var totalElective = CoreAlt.Order().Take(3).Sum();
+        var total = totalElective + totalCoAlt + totalCores;
+        return await Task.FromResult(total);
     }
 
     Task<string[]> IApplicantRepository.GradesIssues(IEnumerable<GradeModel> Cores, IEnumerable<GradeModel> CoreAlt, IEnumerable<GradeModel> Electives)
@@ -278,16 +261,6 @@ public class ApplicantRepository : IApplicantRepository
     .ToListAsync(cancellationToken: cancellationToken);
         return _mapper.Map<IEnumerable<UniversityAttendedDto>>(data);
     }
-
-
-
-    /* public async Task<IEnumerable<FormerSchoolDto>> Schools(CancellationToken cancellationToken)
-    {
-        var data = await _context.FormerSchoolModels
-        .ToListAsync(cancellationToken: cancellationToken);
-        return _mapper.Map<IEnumerable<FormerSchoolDto>>(data);
-    } */
-
 
 
 }
