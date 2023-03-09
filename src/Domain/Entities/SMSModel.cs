@@ -22,10 +22,10 @@ namespace OnlineApplicationSystem.Domain.Entities
         [Key]
         public int Id { set; get; }
         public string Message { set; get; }
-        public int SentBy { get; set; }
+        public string SentBy { get; set; }
         public int Recipient { get; set; }
         public DateTime DateSent { get; set; }
-        public string Status { get; set; }
+        public bool Status { get; set; }
         public int ApplicantModelID { set; get; }
         private ICollection<ApplicantModel?> ApplicantModel { get; set; }
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using OnlineApplicationSystem.Infrastructure.Persistence;
@@ -11,9 +12,11 @@ using OnlineApplicationSystem.Infrastructure.Persistence;
 namespace OnlineApplicationSystem.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230309113302_SampleMigration121")]
+    partial class SampleMigration121
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1295,13 +1298,16 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.Property<string>("StartYear")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.Property<int?>("student")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("Applicant");
+                    b.HasKey("Id");
 
                     b.HasIndex("LocationId");
 
                     b.HasIndex("NameId");
+
+                    b.HasIndex("student");
 
                     b.ToTable("SHSAttendedModels");
                 });
@@ -1517,11 +1523,14 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.Property<string>("StudentNumber")
                         .HasColumnType("text");
 
+                    b.Property<int?>("student")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("Applicant");
-
                     b.HasIndex("LocationID");
+
+                    b.HasIndex("student");
 
                     b.ToTable("UniversityAttendedModels");
                 });
@@ -1580,10 +1589,6 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("Branch")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Category")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -1954,12 +1959,6 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.SHSAttendedModel", b =>
                 {
-                    b.HasOne("OnlineApplicationSystem.Domain.Entities.ApplicantModel", "ApplicantModel")
-                        .WithMany()
-                        .HasForeignKey("Applicant")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("OnlineApplicationSystem.Domain.Entities.RegionModel", "Location")
                         .WithMany()
                         .HasForeignKey("LocationId");
@@ -1967,6 +1966,10 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.HasOne("OnlineApplicationSystem.Domain.Entities.FormerSchoolModel", "Name")
                         .WithMany()
                         .HasForeignKey("NameId");
+
+                    b.HasOne("OnlineApplicationSystem.Domain.Entities.ApplicantModel", "ApplicantModel")
+                        .WithMany()
+                        .HasForeignKey("student");
 
                     b.Navigation("ApplicantModel");
 
@@ -2011,15 +2014,13 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.UniversityAttendedModel", b =>
                 {
-                    b.HasOne("OnlineApplicationSystem.Domain.Entities.ApplicantModel", "ApplicantModel")
-                        .WithMany()
-                        .HasForeignKey("Applicant")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("OnlineApplicationSystem.Domain.Entities.CountryModel", "Location")
                         .WithMany()
                         .HasForeignKey("LocationID");
+
+                    b.HasOne("OnlineApplicationSystem.Domain.Entities.ApplicantModel", "ApplicantModel")
+                        .WithMany()
+                        .HasForeignKey("student");
 
                     b.Navigation("ApplicantModel");
 

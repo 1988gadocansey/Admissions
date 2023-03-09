@@ -8,6 +8,7 @@ public class ApplicationUser : IdentityUser
     public virtual int Started { get; set; }
     public virtual string FullName { get; set; }
     public virtual string Type { get; set; }
+    public virtual string Category { get; set; }
     public virtual int Sold { set; get; }
     public string SoldBy { set; get; }
     public virtual string Branch { set; get; }

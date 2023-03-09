@@ -141,7 +141,7 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<ApplicantModel>
             .IsRequired();
 
         //builder.HasMany<ApplicantModel>(applicant => applicant.Phone);
-
+       
     }
 
 

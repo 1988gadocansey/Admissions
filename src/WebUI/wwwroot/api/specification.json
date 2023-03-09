@@ -114,6 +114,31 @@
         ]
       }
     },
+    "/api/Preview/preview": {
+      "get": {
+        "tags": [
+          "Preview"
+        ],
+        "operationId": "Preview_Dashboard",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicantVm"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
     "/api/SelectBox/religions": {
       "get": {
         "tags": [
@@ -1331,6 +1356,241 @@
           "lastLogin": {
             "type": "string",
             "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "ApplicantVm": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "applicationNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "otherName": {
+            "type": "string"
+          },
+          "gender": {
+            "$ref": "#/components/schemas/Gender"
+          },
+          "dob": {
+            "type": "string",
+            "format": "date"
+          },
+          "title": {
+            "$ref": "#/components/schemas/Title"
+          },
+          "maritalStatus": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MaritalStatus"
+              }
+            ]
+          },
+          "phone": {
+            "type": "string"
+          },
+          "altPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "postGPRS": {
+            "type": "string",
+            "nullable": true
+          },
+          "emergencyContact": {
+            "type": "string",
+            "nullable": true
+          },
+          "hometown": {
+            "type": "string",
+            "nullable": true
+          },
+          "district": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "nationalIDType": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IDCards"
+              }
+            ]
+          },
+          "region": {
+            "type": "string",
+            "nullable": true
+          },
+          "nationalityId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "residentialStatus": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "guardianName": {
+            "type": "string",
+            "nullable": true
+          },
+          "guardianPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "guardianOccupation": {
+            "type": "string",
+            "nullable": true
+          },
+          "guardianRelationship": {
+            "type": "string",
+            "nullable": true
+          },
+          "disability": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "disabilityType": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Disability"
+              }
+            ]
+          },
+          "sourceOfFinance": {
+            "type": "string",
+            "nullable": true
+          },
+          "religionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "denomination": {
+            "type": "string",
+            "nullable": true
+          },
+          "referrals": {
+            "type": "string",
+            "nullable": true
+          },
+          "entryMode": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Session"
+              }
+            ]
+          },
+          "firstQualification": {
+            "type": "string",
+            "nullable": true
+          },
+          "secondQualification": {
+            "type": "string",
+            "nullable": true
+          },
+          "programmeStudied": {
+            "type": "string",
+            "nullable": true
+          },
+          "formerSchool": {
+            "type": "string",
+            "nullable": true
+          },
+          "formerSchoolNewId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "programmeAdmittedId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "lastYearInSchool": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "awaiting": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "grade": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "preferedHall": {
+            "type": "string",
+            "nullable": true
+          },
+          "elligible": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "admitted": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "admittedBy": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "admissionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "leveladmitted": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstChoice": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "secondChoice": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "thirdChoice": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "sponsorShip": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "sponsorShipCompany": {
+            "type": "string",
+            "nullable": true
+          },
+          "sponsorShipLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "sponsorShipCompanyContact": {
+            "type": "string",
             "nullable": true
           }
         }

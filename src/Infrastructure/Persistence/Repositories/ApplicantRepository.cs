@@ -1,11 +1,16 @@
 using System.Net;
+using System.Net.Http.Headers;
 using System.Net.Mail;
+using System.Web;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineApplicationSystem.Application.Common.Interfaces;
 using OnlineApplicationSystem.Domain.Entities;
 using OnlineApplicationSystem.Application.Common.Dtos;
 using OnlineApplicationSystem.Application.Common.ViewModels;
+using OnlineApplicationSystem.Infrastructure.Identity;
+using RestSharp;
 
 namespace OnlineApplicationSystem.Infrastructure.Persistence.Repositories;
 
@@ -13,14 +18,18 @@ public class ApplicantRepository : IApplicantRepository
 {
     private readonly IApplicationDbContext _context;
     private readonly IMapper _mapper;
-    public ApplicantRepository(IApplicationDbContext context, IMapper mapper)
+    private readonly UserManager<ApplicationUser> _userManager;
+    readonly RestClient _client;
+    public ApplicantRepository(IApplicationDbContext context, IMapper mapper, UserManager<ApplicationUser> userManager,RestClient client)
     {
         _context = context;
         _mapper = mapper;
+        _userManager = userManager;
+        _client = client;
     }
     public int CheckFailed(IEnumerable<int> gradeValues) => gradeValues.Count(values => values > 7);
     public  int CheckPassed(IEnumerable<int> gradeValues) => gradeValues.Count(values => values < 7);
-    public  Task<bool> ContainsDuplicates( int[] results) => results.Length != results.Distinct().Count() ? Task.FromResult(true) : Task.FromResult(false);
+    public  Task<bool> ContainsDuplicates( IEnumerable<int> results) => results.Count() != results.Distinct().Count() ? Task.FromResult(true) : Task.FromResult(false);
 
     public Task<int> GetAge(DateOnly dateOfBirth)
     {
@@ -68,14 +77,48 @@ public class ApplicantRepository : IApplicantRepository
         return await Task.FromResult(total);
     }
 
-    Task<string[]> IApplicantRepository.GradesIssues(IEnumerable<GradeModel> Cores, IEnumerable<GradeModel> CoreAlt, IEnumerable<GradeModel> Electives)
+    public async Task<IEnumerable<string>> GradesIssues(  IEnumerable<int> Cores, IEnumerable<int> CoreAlt, IEnumerable<int> Electives)
     {
-        throw new NotImplementedException();
+       
+        //IEnumerable<string> error = new []{ ""} ;
+        var error = new []{ ""};
+        /*
+        var user = await _userManager.FindByIdAsync(userId);
+        var applicant = await _context.ApplicantModels.FirstOrDefaultAsync(a => a.ApplicationUserId == userId);
+        var results = _context.ResultUploadModels.Where(a => a.ApplicantModelID == applicant.Id);
+        */
+        if (Cores.Count() + CoreAlt.Count() + Electives.Count() != 6)
+        {
+            const string msg = "Results not completed.";
+            Array.Fill(error, msg);
+        }
+        else if (Cores.Count() < 2)
+        {
+            const string msg = "Minimum of two(2) core subjects not met.";
+            Array.Fill(error, msg);
+        }
+        else if (Electives.Count() < 3)
+        {
+            const string msg = "Minimum of three(3) elective subjects not met.";
+            Array.Fill(error, msg);
+        }
+        else if (!CoreAlt.Any())
+        {
+            const string msg = "Social or Science required.";
+            Array.Fill(error, msg);
+        }
+        else
+        {
+            string msg = null;
+            Array.Fill(error, msg);
+        }
+        
+        return error;
     }
 
     public async Task<bool> QualifiesMature(int age)
     {
-        return await Task.FromResult((age >= 25) ? true : false);
+        return await Task.FromResult((age >= 25));
     }
 
     public Task SendEmailNotification(string Email, string Message)
@@ -111,12 +154,41 @@ public class ApplicantRepository : IApplicantRepository
         message.Dispose();
         return Task.CompletedTask;
     }
-
-
-
-    Task IApplicantRepository.SendSMSNotification(string PhoneNumber, string Message)
+    public async Task<bool> SendSMSNotification(string phoneNumber, string message, int formNo, string appSender)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrEmpty(phoneNumber) && string.IsNullOrEmpty(message))  return await Task.FromResult(false);
+         
+        const string senderid = "TTU"; 
+        const string apiKey = "USCULtE3m0afDH2cflug17HZSV4qiiOcaq7WTMZgN9vqR"; // API password to send SMS
+        phoneNumber = "+233" + phoneNumber.Substring(1, 9);
+        phoneNumber = phoneNumber.Replace(" ", "").Replace("-", "");
+        var messageText = HttpUtility.UrlEncode(message); // text message
+        const string url = "https://api.mnotify.com/api/sms/quick?key="+apiKey;
+        try
+        {
+            var clientRequest =
+                new RestRequest(url).AddJsonBody(new
+                {
+                    recipient = phoneNumber,
+                    sender = senderid,
+                    message = messageText,
+                    is_schedule= false,
+                    schedule_date =""
+                });
+            var smsResponse = await _client.PostAsync(clientRequest);
+            if (smsResponse.IsSuccessful)
+            {
+                var sms = new SMSModel { Recipient = formNo, DateSent = DateTime.UtcNow,Message = messageText,SentBy =appSender ,Status =smsResponse.IsSuccessful };
+                _context.SMSModels.AddAsync(sms);
+                return await Task.FromResult(true);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.ToString()); 
+            return   await Task.FromResult(false);
+        }
+        return await Task.FromResult(false);
     }
 
     public async Task<int> UpdateFormNo(CancellationToken cancellationToken)

@@ -10,7 +10,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public bool AttendedTTU { get; set; }
         public int Applicant { get; set; }
 
-        [ForeignKey("student")]
+        [ForeignKey("Applicant")]
         public ApplicantModel? ApplicantModel { get; set; }
         public FormerSchoolModel? Name { set; get; }
         public RegionModel? Location { set; get; }

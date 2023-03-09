@@ -221,6 +221,72 @@ export class PictureUploadClient implements IPictureUploadClient {
     }
 }
 
+export interface IPreviewClient {
+    dashboard(): Observable<ApplicantVm>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class PreviewClient implements IPreviewClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    dashboard(): Observable<ApplicantVm> {
+        let url_ = this.baseUrl + "/api/Preview/preview";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDashboard(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDashboard(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApplicantVm>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApplicantVm>;
+        }));
+    }
+
+    protected processDashboard(response: HttpResponseBase): Observable<ApplicantVm> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApplicantVm.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
 export interface ISelectBoxClient {
     getReligions(): Observable<ReligionDto[]>;
     getRegions(): Observable<RegionDto[]>;
@@ -1997,6 +2063,246 @@ export interface IUserDto {
     resultUploaded?: boolean | undefined;
     admitted?: boolean | undefined;
     lastLogin?: Date | undefined;
+}
+
+export class ApplicantVm implements IApplicantVm {
+    applicationNumber?: number;
+    firstName?: string;
+    lastName?: string;
+    otherName?: string;
+    gender?: Gender;
+    dob?: Date;
+    title?: Title;
+    maritalStatus?: MaritalStatus | undefined;
+    phone?: string;
+    altPhone?: string | undefined;
+    email?: string | undefined;
+    postGPRS?: string | undefined;
+    emergencyContact?: string | undefined;
+    hometown?: string | undefined;
+    district?: number | undefined;
+    nationalIDType?: IDCards | undefined;
+    region?: string | undefined;
+    nationalityId?: number | undefined;
+    residentialStatus?: boolean | undefined;
+    guardianName?: string | undefined;
+    guardianPhone?: string | undefined;
+    guardianOccupation?: string | undefined;
+    guardianRelationship?: string | undefined;
+    disability?: boolean | undefined;
+    disabilityType?: Disability | undefined;
+    sourceOfFinance?: string | undefined;
+    religionId?: number | undefined;
+    denomination?: string | undefined;
+    referrals?: string | undefined;
+    entryMode?: Session | undefined;
+    firstQualification?: string | undefined;
+    secondQualification?: string | undefined;
+    programmeStudied?: string | undefined;
+    formerSchool?: string | undefined;
+    formerSchoolNewId?: number | undefined;
+    programmeAdmittedId?: number | undefined;
+    lastYearInSchool?: number | undefined;
+    awaiting?: boolean | undefined;
+    grade?: number | undefined;
+    preferedHall?: string | undefined;
+    elligible?: boolean | undefined;
+    admitted?: boolean | undefined;
+    admittedBy?: number | undefined;
+    admissionType?: string | undefined;
+    leveladmitted?: string | undefined;
+    firstChoice?: number | undefined;
+    secondChoice?: number | undefined;
+    thirdChoice?: number | undefined;
+    sponsorShip?: boolean | undefined;
+    sponsorShipCompany?: string | undefined;
+    sponsorShipLocation?: string | undefined;
+    sponsorShipCompanyContact?: string | undefined;
+
+    constructor(data?: IApplicantVm) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.applicationNumber = _data["applicationNumber"];
+            this.firstName = _data["firstName"];
+            this.lastName = _data["lastName"];
+            this.otherName = _data["otherName"];
+            this.gender = _data["gender"];
+            this.dob = _data["dob"] ? new Date(_data["dob"].toString()) : <any>undefined;
+            this.title = _data["title"];
+            this.maritalStatus = _data["maritalStatus"];
+            this.phone = _data["phone"];
+            this.altPhone = _data["altPhone"];
+            this.email = _data["email"];
+            this.postGPRS = _data["postGPRS"];
+            this.emergencyContact = _data["emergencyContact"];
+            this.hometown = _data["hometown"];
+            this.district = _data["district"];
+            this.nationalIDType = _data["nationalIDType"];
+            this.region = _data["region"];
+            this.nationalityId = _data["nationalityId"];
+            this.residentialStatus = _data["residentialStatus"];
+            this.guardianName = _data["guardianName"];
+            this.guardianPhone = _data["guardianPhone"];
+            this.guardianOccupation = _data["guardianOccupation"];
+            this.guardianRelationship = _data["guardianRelationship"];
+            this.disability = _data["disability"];
+            this.disabilityType = _data["disabilityType"];
+            this.sourceOfFinance = _data["sourceOfFinance"];
+            this.religionId = _data["religionId"];
+            this.denomination = _data["denomination"];
+            this.referrals = _data["referrals"];
+            this.entryMode = _data["entryMode"];
+            this.firstQualification = _data["firstQualification"];
+            this.secondQualification = _data["secondQualification"];
+            this.programmeStudied = _data["programmeStudied"];
+            this.formerSchool = _data["formerSchool"];
+            this.formerSchoolNewId = _data["formerSchoolNewId"];
+            this.programmeAdmittedId = _data["programmeAdmittedId"];
+            this.lastYearInSchool = _data["lastYearInSchool"];
+            this.awaiting = _data["awaiting"];
+            this.grade = _data["grade"];
+            this.preferedHall = _data["preferedHall"];
+            this.elligible = _data["elligible"];
+            this.admitted = _data["admitted"];
+            this.admittedBy = _data["admittedBy"];
+            this.admissionType = _data["admissionType"];
+            this.leveladmitted = _data["leveladmitted"];
+            this.firstChoice = _data["firstChoice"];
+            this.secondChoice = _data["secondChoice"];
+            this.thirdChoice = _data["thirdChoice"];
+            this.sponsorShip = _data["sponsorShip"];
+            this.sponsorShipCompany = _data["sponsorShipCompany"];
+            this.sponsorShipLocation = _data["sponsorShipLocation"];
+            this.sponsorShipCompanyContact = _data["sponsorShipCompanyContact"];
+        }
+    }
+
+    static fromJS(data: any): ApplicantVm {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApplicantVm();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["applicationNumber"] = this.applicationNumber;
+        data["firstName"] = this.firstName;
+        data["lastName"] = this.lastName;
+        data["otherName"] = this.otherName;
+        data["gender"] = this.gender;
+        data["dob"] = this.dob ? formatDate(this.dob) : <any>undefined;
+        data["title"] = this.title;
+        data["maritalStatus"] = this.maritalStatus;
+        data["phone"] = this.phone;
+        data["altPhone"] = this.altPhone;
+        data["email"] = this.email;
+        data["postGPRS"] = this.postGPRS;
+        data["emergencyContact"] = this.emergencyContact;
+        data["hometown"] = this.hometown;
+        data["district"] = this.district;
+        data["nationalIDType"] = this.nationalIDType;
+        data["region"] = this.region;
+        data["nationalityId"] = this.nationalityId;
+        data["residentialStatus"] = this.residentialStatus;
+        data["guardianName"] = this.guardianName;
+        data["guardianPhone"] = this.guardianPhone;
+        data["guardianOccupation"] = this.guardianOccupation;
+        data["guardianRelationship"] = this.guardianRelationship;
+        data["disability"] = this.disability;
+        data["disabilityType"] = this.disabilityType;
+        data["sourceOfFinance"] = this.sourceOfFinance;
+        data["religionId"] = this.religionId;
+        data["denomination"] = this.denomination;
+        data["referrals"] = this.referrals;
+        data["entryMode"] = this.entryMode;
+        data["firstQualification"] = this.firstQualification;
+        data["secondQualification"] = this.secondQualification;
+        data["programmeStudied"] = this.programmeStudied;
+        data["formerSchool"] = this.formerSchool;
+        data["formerSchoolNewId"] = this.formerSchoolNewId;
+        data["programmeAdmittedId"] = this.programmeAdmittedId;
+        data["lastYearInSchool"] = this.lastYearInSchool;
+        data["awaiting"] = this.awaiting;
+        data["grade"] = this.grade;
+        data["preferedHall"] = this.preferedHall;
+        data["elligible"] = this.elligible;
+        data["admitted"] = this.admitted;
+        data["admittedBy"] = this.admittedBy;
+        data["admissionType"] = this.admissionType;
+        data["leveladmitted"] = this.leveladmitted;
+        data["firstChoice"] = this.firstChoice;
+        data["secondChoice"] = this.secondChoice;
+        data["thirdChoice"] = this.thirdChoice;
+        data["sponsorShip"] = this.sponsorShip;
+        data["sponsorShipCompany"] = this.sponsorShipCompany;
+        data["sponsorShipLocation"] = this.sponsorShipLocation;
+        data["sponsorShipCompanyContact"] = this.sponsorShipCompanyContact;
+        return data;
+    }
+}
+
+export interface IApplicantVm {
+    applicationNumber?: number;
+    firstName?: string;
+    lastName?: string;
+    otherName?: string;
+    gender?: Gender;
+    dob?: Date;
+    title?: Title;
+    maritalStatus?: MaritalStatus | undefined;
+    phone?: string;
+    altPhone?: string | undefined;
+    email?: string | undefined;
+    postGPRS?: string | undefined;
+    emergencyContact?: string | undefined;
+    hometown?: string | undefined;
+    district?: number | undefined;
+    nationalIDType?: IDCards | undefined;
+    region?: string | undefined;
+    nationalityId?: number | undefined;
+    residentialStatus?: boolean | undefined;
+    guardianName?: string | undefined;
+    guardianPhone?: string | undefined;
+    guardianOccupation?: string | undefined;
+    guardianRelationship?: string | undefined;
+    disability?: boolean | undefined;
+    disabilityType?: Disability | undefined;
+    sourceOfFinance?: string | undefined;
+    religionId?: number | undefined;
+    denomination?: string | undefined;
+    referrals?: string | undefined;
+    entryMode?: Session | undefined;
+    firstQualification?: string | undefined;
+    secondQualification?: string | undefined;
+    programmeStudied?: string | undefined;
+    formerSchool?: string | undefined;
+    formerSchoolNewId?: number | undefined;
+    programmeAdmittedId?: number | undefined;
+    lastYearInSchool?: number | undefined;
+    awaiting?: boolean | undefined;
+    grade?: number | undefined;
+    preferedHall?: string | undefined;
+    elligible?: boolean | undefined;
+    admitted?: boolean | undefined;
+    admittedBy?: number | undefined;
+    admissionType?: string | undefined;
+    leveladmitted?: string | undefined;
+    firstChoice?: number | undefined;
+    secondChoice?: number | undefined;
+    thirdChoice?: number | undefined;
+    sponsorShip?: boolean | undefined;
+    sponsorShipCompany?: string | undefined;
+    sponsorShipLocation?: string | undefined;
+    sponsorShipCompanyContact?: string | undefined;
 }
 
 export class ReligionDto implements IReligionDto {

@@ -86,7 +86,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public string? SponsorShipLocation { get; set; }
         public string? SponsorShipCompanyContact { get; set; }
         public string? ApplicationUserId { get; set; }
-
+            
         public ApplicantName ChangeName(ApplicantName Name)
         {
             if (object.ReferenceEquals(Name, null))

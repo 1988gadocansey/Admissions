@@ -30,6 +30,7 @@ public interface IApplicationDbContext
     DbSet<GradeModel> GradeModels { get; }
     DbSet<DisabilitiesModel> DisabilitiesModels { get; }
     DbSet<LanguageModel> Languages { get; }
+     DbSet<SMSModel> SMSModels { get; }
 
     DbSet<SHSProgrammes> SHSProgrammes { get; }
     DbSet<SHSAttendedModel> SHSAttendedModels { get; }
