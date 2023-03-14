@@ -12,8 +12,8 @@ using OnlineApplicationSystem.Infrastructure.Persistence;
 namespace OnlineApplicationSystem.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230214100949_RecreatePublicDB")]
-    partial class RecreatePublicDB
+    [Migration("20230314143743_results")]
+    partial class results
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -349,7 +349,9 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AcademicExperienceModel");
+                    b.HasIndex("ApplicantModelID");
+
+                    b.ToTable("AcademicExperienceModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.Address", b =>
@@ -360,7 +362,10 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ApplicantModelID")
+                    b.Property<int>("ApplicantId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ApplicantModel")
                         .HasColumnType("integer");
 
                     b.Property<string>("Box")
@@ -385,7 +390,9 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Address");
+                    b.HasIndex("ApplicantId");
+
+                    b.ToTable("Addresss");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ApplicantIssueModel", b =>
@@ -402,8 +409,9 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.Property<bool>("Age")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("ApplicantModelId")
-                        .HasColumnType("integer");
+                    b.Property<string>("ApplicantModelId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
@@ -446,7 +454,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ApplicantIssueModel");
+                    b.ToTable("ApplicantIssueModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ApplicantModel", b =>
@@ -503,8 +511,8 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.Property<int?>("DistrictId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("Dob")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<DateOnly>("Dob")
+                        .HasColumnType("date");
 
                     b.Property<bool?>("Elligible")
                         .HasColumnType("boolean");
@@ -711,7 +719,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BankModel");
+                    b.ToTable("BankModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ConfigurationModel", b =>
@@ -753,7 +761,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ConfigurationModel");
+                    b.ToTable("ConfigurationModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.CountryModel", b =>
@@ -770,7 +778,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("CountryModel");
+                    b.ToTable("CountryModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.DenominationModel", b =>
@@ -787,7 +795,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("DenominationModel");
+                    b.ToTable("DenominationModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.DepartmentModel", b =>
@@ -811,7 +819,24 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DepartmentModel");
+                    b.ToTable("DepartmentModels");
+                });
+
+            modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.DisabilitiesModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DisabilitiesModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.DistrictModel", b =>
@@ -831,7 +856,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("DistrictModel");
+                    b.ToTable("DistrictModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.DocumentUploadModel", b =>
@@ -867,7 +892,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DocumentUploadModel");
+                    b.ToTable("DocumentUploadModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ExamModel", b =>
@@ -888,7 +913,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ExamModel");
+                    b.ToTable("ExamModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.FacultyModel", b =>
@@ -909,7 +934,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FacultyModel");
+                    b.ToTable("FacultyModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.FormNoModel", b =>
@@ -929,7 +954,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FormNoModel");
+                    b.ToTable("FormNoModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.FormerSchoolModel", b =>
@@ -953,7 +978,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FormerSchoolModel");
+                    b.ToTable("FormerSchoolModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.GradeModel", b =>
@@ -975,13 +1000,12 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("Value")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.ToTable("GradeModel");
+                    b.ToTable("GradeModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.HallModel", b =>
@@ -1004,7 +1028,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("HallModel");
+                    b.ToTable("HallModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.LanguageModel", b =>
@@ -1019,12 +1043,11 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("LanguageModel");
+                    b.ToTable("Languages");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ProgrammeModel", b =>
@@ -1065,7 +1088,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProgrammeModel");
+                    b.ToTable("ProgrammeModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.RegionModel", b =>
@@ -1082,24 +1105,23 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RegionModel");
+                    b.ToTable("RegionModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ReligionModel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("Id"));
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ReligionModel");
+                    b.ToTable("ReligionModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.RequirementModel", b =>
@@ -1134,7 +1156,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RequirementModel");
+                    b.ToTable("RequirementModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ResearchModel", b =>
@@ -1162,7 +1184,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ResearchModel");
+                    b.ToTable("ResearchModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ResearchPublicationModel", b =>
@@ -1192,9 +1214,6 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Applicant")
-                        .HasColumnType("integer");
-
                     b.Property<int>("ApplicantModelID")
                         .HasColumnType("integer");
 
@@ -1212,11 +1231,10 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.Property<int>("GradeID")
                         .HasColumnType("integer");
 
-                    b.Property<int>("GradeOld")
+                    b.Property<int?>("GradeOld")
                         .HasColumnType("integer");
 
                     b.Property<string>("GradeValueOld")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("IndexNo")
@@ -1224,7 +1242,6 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("InstitutionName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Month")
@@ -1232,7 +1249,6 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("OldSubject")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Sitting")
@@ -1248,11 +1264,50 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ApplicantModelID");
+
                     b.HasIndex("GradeID");
 
                     b.HasIndex("SubjectID");
 
-                    b.ToTable("ResultUploadModel");
+                    b.ToTable("ResultUploadModels");
+                });
+
+            modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.SHSAttendedModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Applicant")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("AttendedTTU")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("EndYear")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("LocationId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("NameId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("StartYear")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Applicant");
+
+                    b.HasIndex("LocationId");
+
+                    b.HasIndex("NameId");
+
+                    b.ToTable("SHSAttendedModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.SHSProgrammes", b =>
@@ -1293,16 +1348,16 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.Property<int>("Recipient")
                         .HasColumnType("integer");
 
-                    b.Property<int>("SentBy")
-                        .HasColumnType("integer");
+                    b.Property<string>("SentBy")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("SMSModel");
+                    b.ToTable("SMSModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.SchoolModel", b =>
@@ -1326,7 +1381,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SchoolModel");
+                    b.ToTable("SchoolModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.SubjectModel", b =>
@@ -1351,7 +1406,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SubjectModel");
+                    b.ToTable("SubjectModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.TodoItem", b =>
@@ -1398,7 +1453,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasIndex("ListId");
 
-                    b.ToTable("TodoItem");
+                    b.ToTable("TodoItems");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.TodoList", b =>
@@ -1428,7 +1483,51 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TodoList");
+                    b.ToTable("TodoLists");
+                });
+
+            modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.UniversityAttendedModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Applicant")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal?>("CGPA")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("DegreeClassification")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DegreeObtained")
+                        .HasColumnType("text");
+
+                    b.Property<string>("EndYear")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("LocationID")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("StartYear")
+                        .HasColumnType("text");
+
+                    b.Property<string>("StudentNumber")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Applicant");
+
+                    b.HasIndex("LocationID");
+
+                    b.ToTable("UniversityAttendedModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.WorkingExperienceModel", b =>
@@ -1439,7 +1538,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ApplicantModelID")
+                    b.Property<int?>("ApplicantModelId")
                         .HasColumnType("integer");
 
                     b.Property<string>("CompanyAddress")
@@ -1468,7 +1567,9 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WorkingExperienceModel");
+                    b.HasIndex("ApplicantModelId");
+
+                    b.ToTable("WorkingExperienceModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Infrastructure.Identity.ApplicationUser", b =>
@@ -1483,6 +1584,10 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("Branch")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Category")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -1646,6 +1751,28 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.AcademicExperienceModel", b =>
+                {
+                    b.HasOne("OnlineApplicationSystem.Domain.Entities.ApplicantModel", "ApplicantModel")
+                        .WithMany()
+                        .HasForeignKey("ApplicantModelID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicantModel");
+                });
+
+            modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.Address", b =>
+                {
+                    b.HasOne("OnlineApplicationSystem.Domain.Entities.ApplicantModel", "Applicant")
+                        .WithMany()
+                        .HasForeignKey("ApplicantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Applicant");
+                });
+
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ApplicantModel", b =>
                 {
                     b.HasOne("OnlineApplicationSystem.Domain.Entities.DistrictModel", "District")
@@ -1692,7 +1819,6 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                                 .HasColumnName("LastName");
 
                             b1.Property<string>("Othernames")
-                                .IsRequired()
                                 .HasColumnType("text")
                                 .HasColumnName("Othernames");
 
@@ -1764,7 +1890,6 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                                 .HasColumnName("PreviousLastName");
 
                             b1.Property<string>("Othernames")
-                                .IsRequired()
                                 .HasColumnType("text")
                                 .HasColumnName("PreviousOthernames");
 
@@ -1825,6 +1950,12 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ResultUploadModel", b =>
                 {
+                    b.HasOne("OnlineApplicationSystem.Domain.Entities.ApplicantModel", "ApplicantModel")
+                        .WithMany()
+                        .HasForeignKey("ApplicantModelID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("OnlineApplicationSystem.Domain.Entities.GradeModel", "Grade")
                         .WithMany()
                         .HasForeignKey("GradeID")
@@ -1837,9 +1968,34 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("ApplicantModel");
+
                     b.Navigation("Grade");
 
                     b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.SHSAttendedModel", b =>
+                {
+                    b.HasOne("OnlineApplicationSystem.Domain.Entities.ApplicantModel", "ApplicantModel")
+                        .WithMany()
+                        .HasForeignKey("Applicant")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineApplicationSystem.Domain.Entities.RegionModel", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId");
+
+                    b.HasOne("OnlineApplicationSystem.Domain.Entities.FormerSchoolModel", "Name")
+                        .WithMany()
+                        .HasForeignKey("NameId");
+
+                    b.Navigation("ApplicantModel");
+
+                    b.Navigation("Location");
+
+                    b.Navigation("Name");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.TodoItem", b =>
@@ -1866,7 +2022,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                             b1.HasKey("TodoListId");
 
-                            b1.ToTable("TodoList");
+                            b1.ToTable("TodoLists");
 
                             b1.WithOwner()
                                 .HasForeignKey("TodoListId");
@@ -1874,6 +2030,32 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.Navigation("Colour")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.UniversityAttendedModel", b =>
+                {
+                    b.HasOne("OnlineApplicationSystem.Domain.Entities.ApplicantModel", "ApplicantModel")
+                        .WithMany()
+                        .HasForeignKey("Applicant")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineApplicationSystem.Domain.Entities.CountryModel", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationID");
+
+                    b.Navigation("ApplicantModel");
+
+                    b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.WorkingExperienceModel", b =>
+                {
+                    b.HasOne("OnlineApplicationSystem.Domain.Entities.ApplicantModel", "ApplicantModel")
+                        .WithMany()
+                        .HasForeignKey("ApplicantModelId");
+
+                    b.Navigation("ApplicantModel");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ProgrammeModel", b =>

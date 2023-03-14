@@ -11,8 +11,9 @@ namespace OnlineApplicationSystem.Domain.Entities
         public string City { set; get; }
         public string GPRS { set; get; }
         public string Box { set; get; }
-        public int ApplicantModelID { set; get; }
-        private IEnumerable<ApplicantModel>? ApplicantModel { get; set; }
+        public int ApplicantModel { set; get; }
+        public virtual ApplicantModel Applicant { get; set; }
+        private IEnumerable<ApplicantModel>? Applicants { get; set; }
 
 
     }

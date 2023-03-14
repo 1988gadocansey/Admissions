@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using OnlineApplicationSystem.Infrastructure.Persistence.Repositories;
+using RestSharp;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -46,9 +47,9 @@ public static class ConfigureServices
         services.AddTransient<IDateTime, DateTimeService>();
         services.AddTransient<IIdentityService, IdentityService>();
         services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
-       services.AddTransient<IApplicantRepository, ApplicantRepository>();
-       services.AddTransient<IPhotoUploadService, PhotoUploadService>();
-
+        services.AddTransient<IApplicantRepository, ApplicantRepository>();
+        services.AddTransient<IPhotoUploadService, PhotoUploadService>();
+        //services.AddTransient<IRestClient, RestClient>();
         services.AddAuthentication()
             .AddIdentityServerJwt();
 

@@ -25,7 +25,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public string SentBy { get; set; }
         public int Recipient { get; set; }
         public DateTime DateSent { get; set; }
-        public bool Status { get; set; }
+        public string? Status { get; set; }
         public int ApplicantModelID { set; get; }
         private ICollection<ApplicantModel?> ApplicantModel { get; set; }
 

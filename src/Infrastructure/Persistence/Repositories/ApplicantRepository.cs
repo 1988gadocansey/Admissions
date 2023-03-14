@@ -19,17 +19,18 @@ public class ApplicantRepository : IApplicantRepository
     private readonly IApplicationDbContext _context;
     private readonly IMapper _mapper;
     private readonly UserManager<ApplicationUser> _userManager;
-    readonly RestClient _client;
-    public ApplicantRepository(IApplicationDbContext context, IMapper mapper, UserManager<ApplicationUser> userManager,RestClient client)
+    //readonly IRestClient _client;
+    private readonly RestClient _client;
+    public ApplicantRepository(IApplicationDbContext context, IMapper mapper, UserManager<ApplicationUser> userManager)
     {
         _context = context;
         _mapper = mapper;
         _userManager = userManager;
-        _client = client;
+        // _client = client;
     }
     public int CheckFailed(IEnumerable<int> gradeValues) => gradeValues.Count(values => values > 7);
-    public  int CheckPassed(IEnumerable<int> gradeValues) => gradeValues.Count(values => values < 7);
-    public  Task<bool> ContainsDuplicates( IEnumerable<int> results) => results.Count() != results.Distinct().Count() ? Task.FromResult(true) : Task.FromResult(false);
+    public int CheckPassed(IEnumerable<int> gradeValues) => gradeValues.Count(values => values < 7);
+    public Task<bool> ContainsDuplicates(IEnumerable<int> results) => results.Count() != results.Distinct().Count() ? Task.FromResult(true) : Task.FromResult(false);
 
     public Task<int> GetAge(DateOnly dateOfBirth)
     {
@@ -67,7 +68,7 @@ public class ApplicantRepository : IApplicantRepository
         return formNumber.No.ToString();
     }
 
-    public async Task<int>  GetTotalAggregate(IEnumerable<int>   Cores, IEnumerable<int> CoreAlt, IEnumerable<int> Electives)
+    public async Task<int> GetTotalAggregate(IEnumerable<int> Cores, IEnumerable<int> CoreAlt, IEnumerable<int> Electives)
     {
         if (Cores.Count() != 2 || !CoreAlt.Any() || Electives.Count() < 3) return await Task.FromResult(0);
         var totalCores = Cores.Sum();
@@ -77,11 +78,11 @@ public class ApplicantRepository : IApplicantRepository
         return await Task.FromResult(total);
     }
 
-    public async Task<IEnumerable<string>> GradesIssues(  IEnumerable<int> Cores, IEnumerable<int> CoreAlt, IEnumerable<int> Electives)
+    public async Task<IEnumerable<string>> GradesIssues(IEnumerable<int> Cores, IEnumerable<int> CoreAlt, IEnumerable<int> Electives)
     {
-       
+
         //IEnumerable<string> error = new []{ ""} ;
-        var error = new []{ ""};
+        var error = new[] { "" };
         /*
         var user = await _userManager.FindByIdAsync(userId);
         var applicant = await _context.ApplicantModels.FirstOrDefaultAsync(a => a.ApplicationUserId == userId);
@@ -112,7 +113,7 @@ public class ApplicantRepository : IApplicantRepository
             string msg = null;
             Array.Fill(error, msg);
         }
-        
+
         return error;
     }
 
@@ -156,14 +157,14 @@ public class ApplicantRepository : IApplicantRepository
     }
     public async Task<bool> SendSMSNotification(string phoneNumber, string message, int formNo, string appSender)
     {
-        if (string.IsNullOrEmpty(phoneNumber) && string.IsNullOrEmpty(message))  return await Task.FromResult(false);
-         
-        const string senderid = "TTU"; 
+        if (string.IsNullOrEmpty(phoneNumber) && string.IsNullOrEmpty(message)) return await Task.FromResult(false);
+
+        const string senderid = "TTU";
         const string apiKey = "USCULtE3m0afDH2cflug17HZSV4qiiOcaq7WTMZgN9vqR"; // API password to send SMS
         phoneNumber = "+233" + phoneNumber.Substring(1, 9);
         phoneNumber = phoneNumber.Replace(" ", "").Replace("-", "");
         var messageText = HttpUtility.UrlEncode(message); // text message
-        const string url = "https://api.mnotify.com/api/sms/quick?key="+apiKey;
+        const string url = "https://api.mnotify.com/api/sms/quick?key=" + apiKey;
         try
         {
             var clientRequest =
@@ -172,21 +173,21 @@ public class ApplicantRepository : IApplicantRepository
                     recipient = phoneNumber,
                     sender = senderid,
                     message = messageText,
-                    is_schedule= false,
-                    schedule_date =""
+                    is_schedule = false,
+                    schedule_date = ""
                 });
             var smsResponse = await _client.PostAsync(clientRequest);
             if (smsResponse.IsSuccessful)
             {
-                var sms = new SMSModel { Recipient = formNo, DateSent = DateTime.UtcNow,Message = messageText,SentBy =appSender ,Status =smsResponse.IsSuccessful };
+                var sms = new SMSModel { Recipient = formNo, DateSent = DateTime.UtcNow, Message = messageText, SentBy = appSender, Status = Convert.ToString(smsResponse.IsSuccessful) };
                 _context.SMSModels.AddAsync(sms);
                 return await Task.FromResult(true);
             }
         }
         catch (Exception e)
         {
-            Console.WriteLine(e.ToString()); 
-            return   await Task.FromResult(false);
+            Console.WriteLine(e.ToString());
+            return await Task.FromResult(false);
         }
         return await Task.FromResult(false);
     }

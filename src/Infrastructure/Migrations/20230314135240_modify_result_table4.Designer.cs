@@ -12,8 +12,8 @@ using OnlineApplicationSystem.Infrastructure.Persistence;
 namespace OnlineApplicationSystem.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230309123711_modify_user_Table_addCategory")]
-    partial class modifyuserTableaddCategory
+    [Migration("20230314135240_modify_result_table4")]
+    partial class modifyresulttable4
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1209,9 +1209,6 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Applicant")
-                        .HasColumnType("integer");
-
                     b.Property<int>("ApplicantModelID")
                         .HasColumnType("integer");
 
@@ -1229,11 +1226,10 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.Property<int>("GradeID")
                         .HasColumnType("integer");
 
-                    b.Property<int>("GradeOld")
+                    b.Property<int?>("GradeOld")
                         .HasColumnType("integer");
 
                     b.Property<string>("GradeValueOld")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("IndexNo")
@@ -1241,7 +1237,6 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("InstitutionName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Month")
@@ -1249,7 +1244,6 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("OldSubject")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Sitting")
@@ -1264,6 +1258,8 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicantModelID");
 
                     b.HasIndex("GradeID");
 
@@ -1347,11 +1343,11 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.Property<int>("Recipient")
                         .HasColumnType("integer");
 
-                    b.Property<int>("SentBy")
-                        .HasColumnType("integer");
+                    b.Property<string>("SentBy")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -1938,6 +1934,12 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ResultUploadModel", b =>
                 {
+                    b.HasOne("OnlineApplicationSystem.Domain.Entities.ApplicantModel", "ApplicantModel")
+                        .WithMany()
+                        .HasForeignKey("ApplicantModelID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("OnlineApplicationSystem.Domain.Entities.GradeModel", "Grade")
                         .WithMany()
                         .HasForeignKey("GradeID")
@@ -1949,6 +1951,8 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasForeignKey("SubjectID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ApplicantModel");
 
                     b.Navigation("Grade");
 
