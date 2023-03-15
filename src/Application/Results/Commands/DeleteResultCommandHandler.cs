@@ -8,11 +8,11 @@ namespace OnlineApplicationSystem.Application.Results.Commands;
 
 public record DeleteResultRequest(int Id) : IRequest;
 
-public class DeleteTodoListCommandHandler : IRequestHandler<DeleteResultRequest>
+public class DeleteResultCommandHandler : IRequestHandler<DeleteResultRequest>
 {
     private readonly IApplicationDbContext _context;
 
-    public DeleteTodoListCommandHandler(IApplicationDbContext context)
+    public DeleteResultCommandHandler(IApplicationDbContext context)
     {
         _context = context;
     }

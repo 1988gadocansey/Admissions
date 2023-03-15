@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using OnlineApplicationSystem.Infrastructure.Persistence.Repositories;
 using RestSharp;
+using OnlineApplicationSystem.Infrastructure.Mails;
+using OnlineApplicationSystem.Infrastructure.SMS;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -48,6 +50,8 @@ public static class ConfigureServices
         services.AddTransient<IIdentityService, IdentityService>();
         services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
         services.AddTransient<IApplicantRepository, ApplicantRepository>();
+        services.AddTransient<IEmailSender, EmailService>();
+        services.AddTransient<ISmsSender, SmsService>();
         services.AddTransient<IPhotoUploadService, PhotoUploadService>();
         //services.AddTransient<IRestClient, RestClient>();
         services.AddAuthentication()

@@ -1170,6 +1170,9 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.Property<string>("ActualAreaOfResearch")
                         .HasColumnType("text");
 
+                    b.Property<int>("ApplicantId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("AreaOfResearchIfAdmitted")
                         .HasColumnType("text");
 
@@ -1183,6 +1186,8 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicantId");
 
                     b.ToTable("ResearchModels");
                 });
@@ -1949,6 +1954,17 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.Navigation("Region");
 
                     b.Navigation("Religion");
+                });
+
+            modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ResearchModel", b =>
+                {
+                    b.HasOne("OnlineApplicationSystem.Domain.Entities.ApplicantModel", "Applicant")
+                        .WithMany()
+                        .HasForeignKey("ApplicantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Applicant");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ResultUploadModel", b =>

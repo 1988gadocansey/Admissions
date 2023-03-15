@@ -208,6 +208,17 @@
           }
         }
       },
+      "MailKit/3.2.0": {
+        "dependencies": {
+          "MimeKit": "3.2.0"
+        },
+        "runtime": {
+          "lib/net6.0/MailKit.dll": {
+            "assemblyVersion": "3.2.0.0",
+            "fileVersion": "3.2.0.0"
+          }
+        }
+      },
       "MediatR/9.0.0": {
         "runtime": {
           "lib/netstandard2.1/MediatR.dll": {
@@ -715,6 +726,18 @@
           }
         }
       },
+      "MimeKit/3.2.0": {
+        "dependencies": {
+          "Portable.BouncyCastle": "1.9.0",
+          "System.Security.Cryptography.Pkcs": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/MimeKit.dll": {
+            "assemblyVersion": "3.2.0.0",
+            "fileVersion": "3.2.0.0"
+          }
+        }
+      },
       "Mono.TextTemplating/2.2.1": {
         "dependencies": {
           "System.CodeDom": "4.4.0"
@@ -734,6 +757,18 @@
           "lib/netstandard2.0/Namotion.Reflection.dll": {
             "assemblyVersion": "2.0.10.0",
             "fileVersion": "2.0.10.0"
+          }
+        }
+      },
+      "NETCore.MailKit/2.1.0": {
+        "dependencies": {
+          "MailKit": "3.2.0",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/NETCore.MailKit.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
           }
         }
       },
@@ -872,6 +907,14 @@
         }
       },
       "NSwag.MSBuild/13.16.0": {},
+      "Portable.BouncyCastle/1.9.0": {
+        "runtime": {
+          "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
+            "assemblyVersion": "1.9.0.0",
+            "fileVersion": "1.9.0.1"
+          }
+        }
+      },
       "RestSharp/109.0.0-preview.1": {
         "runtime": {
           "lib/net7.0/RestSharp.dll": {
@@ -908,6 +951,35 @@
           "lib/netstandard2.0/SshNet.Security.Cryptography.dll": {
             "assemblyVersion": "1.3.0.0",
             "fileVersion": "1.3.0.0"
+          }
+        }
+      },
+      "Syncfusion.Compression.Net.Core/20.4.0.54": {
+        "runtime": {
+          "lib/net7.0/Syncfusion.Compression.Portable.dll": {
+            "assemblyVersion": "20.4700.0.54",
+            "fileVersion": "20.4700.0.54"
+          }
+        }
+      },
+      "Syncfusion.Licensing/20.4.0.54": {
+        "runtime": {
+          "lib/net7.0/Syncfusion.Licensing.dll": {
+            "assemblyVersion": "20.4.0.54",
+            "fileVersion": "20.4.0.54"
+          }
+        }
+      },
+      "Syncfusion.Pdf.Net.Core/20.4.0.54": {
+        "dependencies": {
+          "Syncfusion.Compression.Net.Core": "20.4.0.54",
+          "Syncfusion.Licensing": "20.4.0.54",
+          "System.Text.Encoding.CodePages": "5.0.0"
+        },
+        "runtime": {
+          "lib/net7.0/Syncfusion.Pdf.Portable.dll": {
+            "assemblyVersion": "20.4700.0.54",
+            "fileVersion": "20.4700.0.54"
           }
         }
       },
@@ -952,7 +1024,7 @@
           }
         }
       },
-      "System.Formats.Asn1/5.0.0": {},
+      "System.Formats.Asn1/6.0.0": {},
       "System.Globalization/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "5.0.0",
@@ -1054,7 +1126,12 @@
       },
       "System.Security.Cryptography.Cng/5.0.0": {
         "dependencies": {
-          "System.Formats.Asn1": "5.0.0"
+          "System.Formats.Asn1": "6.0.0"
+        }
+      },
+      "System.Security.Cryptography.Pkcs/6.0.0": {
+        "dependencies": {
+          "System.Formats.Asn1": "6.0.0"
         }
       },
       "System.Security.Cryptography.ProtectedData/5.0.0": {
@@ -1172,10 +1249,12 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.0-rc.2.22476.2",
           "Microsoft.EntityFrameworkCore.InMemory": "7.0.0-rc.2.22472.11",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.0-rc.2.22472.11",
+          "NETCore.MailKit": "2.1.0",
           "Npgsql": "7.0.1",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.1",
           "OnlineApplicationSystem.Application": "1.0.0",
-          "SSH.NET": "2020.0.2"
+          "SSH.NET": "2020.0.2",
+          "Syncfusion.Pdf.Net.Core": "20.4.0.54"
         },
         "runtime": {
           "OnlineApplicationSystem.Infrastructure.dll": {}
@@ -1317,6 +1396,13 @@
       "sha512": "sha512-eVHCR7a6m/dm5RFcBzE3qs/Jg5j9R5Rjpu8aTOv9e4AFvaQtBXb5ah7kmwU+YwA0ufRwz4wf1hnIvsD2hSnI4g==",
       "path": "identitymodel/6.0.0",
       "hashPath": "identitymodel.6.0.0.nupkg.sha512"
+    },
+    "MailKit/3.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5MTpTqmjqT7HPvYbP3HozRZMth5vSaT0ReN0iM3rAM4CgLI/R1qqtLDDNWGnFFIlcNzeJkZQRJJMkv8cgzWBbA==",
+      "path": "mailkit/3.2.0",
+      "hashPath": "mailkit.3.2.0.nupkg.sha512"
     },
     "MediatR/9.0.0": {
       "type": "package",
@@ -1724,6 +1810,13 @@
       "path": "microsoft.win32.systemevents/7.0.0",
       "hashPath": "microsoft.win32.systemevents.7.0.0.nupkg.sha512"
     },
+    "MimeKit/3.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-l9YHMBhBUwY7qQHUp8fw0EvjcbmhN4Iggz6MdjqIShBf42+0nJTa5gu0kuupCOPuiARc9ZaS9c9f0gKz4OnxKw==",
+      "path": "mimekit/3.2.0",
+      "hashPath": "mimekit.3.2.0.nupkg.sha512"
+    },
     "Mono.TextTemplating/2.2.1": {
       "type": "package",
       "serviceable": true,
@@ -1737,6 +1830,13 @@
       "sha512": "sha512-KHndyscosup/AnzMQLzW0g6+z0h2NCmTyW9hnEL/T/ZkiUIQWBA1RadYgUT+dXuMORmQI/BXm+DXYySWwq8h0Q==",
       "path": "namotion.reflection/2.0.10",
       "hashPath": "namotion.reflection.2.0.10.nupkg.sha512"
+    },
+    "NETCore.MailKit/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+1C0sg4YJQczp/2RVrVbKLIntg7Mou7Ie5M01UBiAsxmIarjfBRlCgKK4sEbPyGask52VRKV29/Zi+41B6LPXA==",
+      "path": "netcore.mailkit/2.1.0",
+      "hashPath": "netcore.mailkit.2.1.0.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.1": {
       "type": "package",
@@ -1822,6 +1922,13 @@
       "path": "nswag.msbuild/13.16.0",
       "hashPath": "nswag.msbuild.13.16.0.nupkg.sha512"
     },
+    "Portable.BouncyCastle/1.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eZZBCABzVOek+id9Xy04HhmgykF0wZg9wpByzrWN7q8qEI0Qen9b7tfd7w8VA3dOeesumMG7C5ZPy0jk7PSRHw==",
+      "path": "portable.bouncycastle/1.9.0",
+      "hashPath": "portable.bouncycastle.1.9.0.nupkg.sha512"
+    },
     "RestSharp/109.0.0-preview.1": {
       "type": "package",
       "serviceable": true,
@@ -1849,6 +1956,27 @@
       "sha512": "sha512-5pBIXRjcSO/amY8WztpmNOhaaCNHY/B6CcYDI7FSTgqSyo/ZUojlLiKcsl+YGbxQuLX439qIkMfP0PHqxqJi/Q==",
       "path": "sshnet.security.cryptography/1.3.0",
       "hashPath": "sshnet.security.cryptography.1.3.0.nupkg.sha512"
+    },
+    "Syncfusion.Compression.Net.Core/20.4.0.54": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ITg5tnbyXaLbyCQWOlXqsU3SSnRRoQyFvo9z4Ygl+SJr2WmRXjynKAo32LsoJ5EX32/MqEL5Z2WWcIgT82LuOw==",
+      "path": "syncfusion.compression.net.core/20.4.0.54",
+      "hashPath": "syncfusion.compression.net.core.20.4.0.54.nupkg.sha512"
+    },
+    "Syncfusion.Licensing/20.4.0.54": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-16K5slTnWZ2UTTG2PWnw8WUS09EW/+KZy3kFVVAmkx9o6/Ik7xklD58BopZ9f3v93J4R3Ki+o4yCDLekIOx7cw==",
+      "path": "syncfusion.licensing/20.4.0.54",
+      "hashPath": "syncfusion.licensing.20.4.0.54.nupkg.sha512"
+    },
+    "Syncfusion.Pdf.Net.Core/20.4.0.54": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6lhWrqnTJEs7zkc7M9ViMUklx2wbjKvP+K/MhRUB2I/S3YaklNXSRXnFJT//MwCutB4lsGthtYrUCGTwZykRMw==",
+      "path": "syncfusion.pdf.net.core/20.4.0.54",
+      "hashPath": "syncfusion.pdf.net.core.20.4.0.54.nupkg.sha512"
     },
     "System.Buffers/4.5.1": {
       "type": "package",
@@ -1885,12 +2013,12 @@
       "path": "system.drawing.common/7.0.0",
       "hashPath": "system.drawing.common.7.0.0.nupkg.sha512"
     },
-    "System.Formats.Asn1/5.0.0": {
+    "System.Formats.Asn1/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-MTvUIktmemNB+El0Fgw9egyqT9AYSIk6DTJeoDSpc3GIHxHCMo8COqkWT1mptX5tZ1SlQ6HJZ0OsSvMth1c12w==",
-      "path": "system.formats.asn1/5.0.0",
-      "hashPath": "system.formats.asn1.5.0.0.nupkg.sha512"
+      "sha512": "sha512-T6fD00dQ3NTbPDy31m4eQUwKW84s03z0N2C8HpOklyeaDgaJPa/TexP4/SkORMSOwc7WhKifnA6Ya33AkzmafA==",
+      "path": "system.formats.asn1/6.0.0",
+      "hashPath": "system.formats.asn1.6.0.0.nupkg.sha512"
     },
     "System.Globalization/4.3.0": {
       "type": "package",
@@ -1989,6 +2117,13 @@
       "sha512": "sha512-jIMXsKn94T9JY7PvPq/tMfqa6GAaHpElRDpmG+SuL+D3+sTw2M8VhnibKnN8Tq+4JqbPJ/f+BwtLeDMEnzAvRg==",
       "path": "system.security.cryptography.cng/5.0.0",
       "hashPath": "system.security.cryptography.cng.5.0.0.nupkg.sha512"
+    },
+    "System.Security.Cryptography.Pkcs/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-elM3x+xSRhzQysiqo85SbidJJ2YbZlnvmh+53TuSZHsD7dNuuEWser+9EFtY+rYupBwkq2avc6ZCO3/6qACgmg==",
+      "path": "system.security.cryptography.pkcs/6.0.0",
+      "hashPath": "system.security.cryptography.pkcs.6.0.0.nupkg.sha512"
     },
     "System.Security.Cryptography.ProtectedData/5.0.0": {
       "type": "package",

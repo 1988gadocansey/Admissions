@@ -11,5 +11,5 @@ public class ResearchModel
     public string? AreaOfResearchIfAdmitted { set; get; }
     public string? ActualAreaOfResearch { set; get; }
     public string? FutureResearchInterest { set; get; }
-
+    public virtual ApplicantModel Applicant { set; get; }
 }

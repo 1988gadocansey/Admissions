@@ -121,3 +121,10 @@
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/obj/Debug/net7.0/ref/WebUI.dll
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Renci.SshNet.dll
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/SshNet.Security.Cryptography.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/MailKit.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/MimeKit.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/NETCore.MailKit.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/BouncyCastle.Crypto.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Syncfusion.Compression.Portable.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Syncfusion.Licensing.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Syncfusion.Pdf.Portable.dll

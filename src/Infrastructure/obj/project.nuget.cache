@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "IBQOA+uCw9AUuXBDQtFpNyCfevbFSGZYp1d3iZL+0wUiCKMjnCHJs992j5DIKexB8OMlFiwSizuFUeiQc6LbEw==",
+  "dgSpecHash": "HO6vNhzazXosuO4GWv23hSPYMn6L+MQ/rYJRPit7qMrdlmWvHeK9Jk0pGU5NQmdmWPysNqszilLARo7ViWL86w==",
   "success": true,
   "projectFilePath": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/Infrastructure/Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -77,6 +77,9 @@
     "/Users/gadocansey/.nuget/packages/sixlabors.imagesharp/2.1.3/sixlabors.imagesharp.2.1.3.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/ssh.net/2020.0.2/ssh.net.2020.0.2.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/sshnet.security.cryptography/1.3.0/sshnet.security.cryptography.1.3.0.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/syncfusion.compression.net.core/20.4.0.54/syncfusion.compression.net.core.20.4.0.54.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/syncfusion.licensing/20.4.0.54/syncfusion.licensing.20.4.0.54.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/syncfusion.pdf.net.core/20.4.0.54/syncfusion.pdf.net.core.20.4.0.54.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/system.configuration.configurationmanager/5.0.0/system.configuration.configurationmanager.5.0.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/system.diagnostics.diagnosticsource/5.0.0/system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
