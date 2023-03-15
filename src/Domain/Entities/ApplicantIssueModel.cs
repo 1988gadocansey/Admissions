@@ -18,10 +18,10 @@ namespace OnlineApplicationSystem.Domain.Entities;
 
 public class ApplicantIssueModel : BaseAuditableEntity
 {
-
-    private IEnumerable<ApplicantModel?> ApplicantModel { get; set; }
-
+    
+   // public virtual ApplicantModel ApplicantModel { get; set; }
     public string ApplicantModelId { set; get; }
+    public bool? Biodata { set; get; }
     public bool Results { set; get; }
     public bool Picture { set; get; }
     public bool Age { set; get; }
@@ -33,9 +33,5 @@ public class ApplicantIssueModel : BaseAuditableEntity
     public bool? ResearchInformation { set; get; }
     public bool? ResearchPublication { set; get; }
     public bool? Referee { set; get; }
-
-
-    public ApplicantIssueModel()
-    {
-    }
+ 
 }

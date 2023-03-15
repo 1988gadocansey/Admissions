@@ -1326,6 +1326,10 @@
             "type": "string",
             "nullable": true
           },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
           "formCompleted": {
             "type": "integer",
             "format": "int32",
@@ -1353,6 +1357,10 @@
             "type": "boolean",
             "nullable": true
           },
+          "foriegn": {
+            "type": "boolean",
+            "nullable": true
+          },
           "lastLogin": {
             "type": "string",
             "format": "date-time",
@@ -1364,6 +1372,10 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
           "applicationNumber": {
             "type": "integer",
             "format": "int64"

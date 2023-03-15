@@ -11,7 +11,7 @@ public interface IIdentityService
     Task<bool> AuthorizeAsync(string userId, string policyName);
 
     Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password);
-
+    public Task  Finalized(string userId);
     Task<Result> DeleteUserAsync(string userId);
 
     public Task<UserDto> GetApplicationUserDetails(string? userId, CancellationToken cancellationToken);

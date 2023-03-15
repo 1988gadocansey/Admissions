@@ -220,6 +220,10 @@
               "target": "Package",
               "version": "[7.0.0-rc.2.22472.11, )"
             },
+            "NETCore.MailKit": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
             "Npgsql": {
               "target": "Package",
               "version": "[7.0.1, )"

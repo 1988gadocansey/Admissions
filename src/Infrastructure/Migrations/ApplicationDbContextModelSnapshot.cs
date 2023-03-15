@@ -410,6 +410,9 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<bool?>("Biodata")
+                        .HasColumnType("boolean");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
 
@@ -1601,6 +1604,9 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.Property<int>("Finalized")
                         .HasColumnType("integer");
+
+                    b.Property<bool?>("Foriegn")
+                        .HasColumnType("boolean");
 
                     b.Property<int>("FormCompleted")
                         .HasColumnType("integer");

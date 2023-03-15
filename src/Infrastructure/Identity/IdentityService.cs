@@ -90,7 +90,6 @@ public class IdentityService : IIdentityService
     }
     public async Task<UserDto> GetApplicationUserDetails(string? userId, CancellationToken cancellationToken)
     {
-
         // now lets generate application number give the application and update his status as started
         var Formno = await _applicantRepository.GetFormNo();
         var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
@@ -122,19 +121,29 @@ public class IdentityService : IIdentityService
             ResultUploaded = b.ResultUploaded,
             Admitted = b.Admitted,
             LastLogin = b.LastLogin,
-            Type = b.Type
+            Type = b.Type,
+            Category = b.Category,
         }).FirstOrDefaultAsync(a => a.Id == userId, cancellationToken: cancellationToken);
-
         return userdetails;
-
     }
 
     public async Task UpdateApplicationPictureStatus(string? userId, ICollection<FileDto> photo, CancellationToken cancellationToken)
     {
-
         var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
-        user.PictureUploaded = 1;
-
-        await _userManager.UpdateAsync(user);
+        if (user != null)
+        {
+            user.PictureUploaded = 1;
+            await _userManager.UpdateAsync(user);
+        }
+    }
+    public async Task  Finalized(string userId)
+    {
+        var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
+        if (user != null)
+        {
+            user.Finalized = 1;
+            user.FormCompleted = 1;
+            await _userManager.UpdateAsync(user);
+        }
     }
 }

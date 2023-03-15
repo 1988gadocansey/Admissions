@@ -8,7 +8,7 @@ public record CreateResultRequest : IRequest<int>
     public int SubjectID { set; get; }
     public string ExamType { set; get; }
     public int GradeID { set; get; }
-    public int GradeOld { set; get; }
+    public int? GradeOld { set; get; }
     public string GradeValueOld { set; get; }
     public string IndexNo { set; get; }
     public string Sitting { set; get; }

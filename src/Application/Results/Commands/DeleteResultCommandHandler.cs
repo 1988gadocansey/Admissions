@@ -25,7 +25,7 @@ public class DeleteTodoListCommandHandler : IRequestHandler<DeleteResultRequest>
 
         if (entity == null)
         {
-            throw new NotFoundException(nameof(TodoList), request.Id);
+            throw new NotFoundException(nameof(ResultUploadModel), request.Id);
         }
 
         _context.ResultUploadModels.Remove(entity);

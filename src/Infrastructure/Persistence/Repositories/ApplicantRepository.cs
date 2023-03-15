@@ -20,7 +20,7 @@ public class ApplicantRepository : IApplicantRepository
     private readonly IMapper _mapper;
     private readonly UserManager<ApplicationUser> _userManager;
     //readonly IRestClient _client;
-    private readonly RestClient _client;
+    //private readonly RestClient _client;
     public ApplicantRepository(IApplicationDbContext context, IMapper mapper, UserManager<ApplicationUser> userManager)
     {
         _context = context;
@@ -121,77 +121,6 @@ public class ApplicantRepository : IApplicantRepository
     {
         return await Task.FromResult((age >= 25));
     }
-
-    public Task SendEmailNotification(string Email, string Message)
-    {
-        var client = new SmtpClient("smtp.google.com");
-        client.EnableSsl = true;
-        var networkCred = new NetworkCredential("gadocansey@gmail.com", "031988gadocansey");
-        client.UseDefaultCredentials = true;
-        client.Credentials = networkCred;
-        client.Port = 587;
-        // Specify the email sender.
-        // Create a mailing address that includes a UTF8 character
-        // in the display name.
-        var from = new MailAddress("admissions@ttu.edu.gh",
-            "Admissions " + (char)0xD8 + " TTU",
-            System.Text.Encoding.UTF8);
-        // Set destinations for the email message.
-        var to = new MailAddress(Email);
-        // Specify the message content.
-        var message = new MailMessage(from, to);
-        message.Body = Message;
-        // Include some non-ASCII characters in body and subject.
-        var someArrows = new string(new char[] { '\u2190', '\u2191', '\u2192', '\u2193' });
-        message.Body += Environment.NewLine + someArrows;
-        message.BodyEncoding = System.Text.Encoding.UTF8;
-        message.Subject = "From Admissions - Takoradi Technical University" + someArrows;
-        message.SubjectEncoding = System.Text.Encoding.UTF8;
-        const string userState = "TTU Admissions";
-        // Set the method that is called back when the send operation ends.
-        client.SendAsync(message, userState);
-
-        // Clean up.
-        message.Dispose();
-        return Task.CompletedTask;
-    }
-    public async Task<bool> SendSMSNotification(string phoneNumber, string message, int formNo, string appSender)
-    {
-        if (string.IsNullOrEmpty(phoneNumber) && string.IsNullOrEmpty(message)) return await Task.FromResult(false);
-
-        const string senderid = "TTU";
-        const string apiKey = "USCULtE3m0afDH2cflug17HZSV4qiiOcaq7WTMZgN9vqR"; // API password to send SMS
-        phoneNumber = "+233" + phoneNumber.Substring(1, 9);
-        phoneNumber = phoneNumber.Replace(" ", "").Replace("-", "");
-        var messageText = HttpUtility.UrlEncode(message); // text message
-        const string url = "https://api.mnotify.com/api/sms/quick?key=" + apiKey;
-        try
-        {
-            var clientRequest =
-                new RestRequest(url).AddJsonBody(new
-                {
-                    recipient = phoneNumber,
-                    sender = senderid,
-                    message = messageText,
-                    is_schedule = false,
-                    schedule_date = ""
-                });
-            var smsResponse = await _client.PostAsync(clientRequest);
-            if (smsResponse.IsSuccessful)
-            {
-                var sms = new SMSModel { Recipient = formNo, DateSent = DateTime.UtcNow, Message = messageText, SentBy = appSender, Status = Convert.ToString(smsResponse.IsSuccessful) };
-                _context.SMSModels.AddAsync(sms);
-                return await Task.FromResult(true);
-            }
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.ToString());
-            return await Task.FromResult(false);
-        }
-        return await Task.FromResult(false);
-    }
-
     public async Task<int> UpdateFormNo(CancellationToken cancellationToken)
     {
         var configuration = _context.ConfigurationModels.OrderByDescending(b => b.Id).FirstOrDefault();
@@ -334,6 +263,7 @@ public class ApplicantRepository : IApplicantRepository
     .ToListAsync(cancellationToken: cancellationToken);
         return _mapper.Map<IEnumerable<UniversityAttendedDto>>(data);
     }
+
 
 
 }

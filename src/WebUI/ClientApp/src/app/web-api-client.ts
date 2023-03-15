@@ -1985,12 +1985,14 @@ export class UserDto implements IUserDto {
     fullName?: string | undefined;
     type?: string | undefined;
     soldBy?: string | undefined;
+    category?: string | undefined;
     formCompleted?: number | undefined;
     pictureUploaded?: number | undefined;
     finalized?: number | undefined;
     year?: string | undefined;
     resultUploaded?: boolean | undefined;
     admitted?: boolean | undefined;
+    foriegn?: boolean | undefined;
     lastLogin?: Date | undefined;
 
     constructor(data?: IUserDto) {
@@ -2011,12 +2013,14 @@ export class UserDto implements IUserDto {
             this.fullName = _data["fullName"];
             this.type = _data["type"];
             this.soldBy = _data["soldBy"];
+            this.category = _data["category"];
             this.formCompleted = _data["formCompleted"];
             this.pictureUploaded = _data["pictureUploaded"];
             this.finalized = _data["finalized"];
             this.year = _data["year"];
             this.resultUploaded = _data["resultUploaded"];
             this.admitted = _data["admitted"];
+            this.foriegn = _data["foriegn"];
             this.lastLogin = _data["lastLogin"] ? new Date(_data["lastLogin"].toString()) : <any>undefined;
         }
     }
@@ -2037,12 +2041,14 @@ export class UserDto implements IUserDto {
         data["fullName"] = this.fullName;
         data["type"] = this.type;
         data["soldBy"] = this.soldBy;
+        data["category"] = this.category;
         data["formCompleted"] = this.formCompleted;
         data["pictureUploaded"] = this.pictureUploaded;
         data["finalized"] = this.finalized;
         data["year"] = this.year;
         data["resultUploaded"] = this.resultUploaded;
         data["admitted"] = this.admitted;
+        data["foriegn"] = this.foriegn;
         data["lastLogin"] = this.lastLogin ? this.lastLogin.toISOString() : <any>undefined;
         return data;
     }
@@ -2056,16 +2062,19 @@ export interface IUserDto {
     fullName?: string | undefined;
     type?: string | undefined;
     soldBy?: string | undefined;
+    category?: string | undefined;
     formCompleted?: number | undefined;
     pictureUploaded?: number | undefined;
     finalized?: number | undefined;
     year?: string | undefined;
     resultUploaded?: boolean | undefined;
     admitted?: boolean | undefined;
+    foriegn?: boolean | undefined;
     lastLogin?: Date | undefined;
 }
 
 export class ApplicantVm implements IApplicantVm {
+    id?: number;
     applicationNumber?: number;
     firstName?: string;
     lastName?: string;
@@ -2130,6 +2139,7 @@ export class ApplicantVm implements IApplicantVm {
 
     init(_data?: any) {
         if (_data) {
+            this.id = _data["id"];
             this.applicationNumber = _data["applicationNumber"];
             this.firstName = _data["firstName"];
             this.lastName = _data["lastName"];
@@ -2194,6 +2204,7 @@ export class ApplicantVm implements IApplicantVm {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
         data["applicationNumber"] = this.applicationNumber;
         data["firstName"] = this.firstName;
         data["lastName"] = this.lastName;
@@ -2251,6 +2262,7 @@ export class ApplicantVm implements IApplicantVm {
 }
 
 export interface IApplicantVm {
+    id?: number;
     applicationNumber?: number;
     firstName?: string;
     lastName?: string;

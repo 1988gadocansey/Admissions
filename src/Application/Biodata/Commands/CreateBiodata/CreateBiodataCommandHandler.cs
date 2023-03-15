@@ -17,16 +17,25 @@ public class CreateBiodataCommandHandler : IRequestHandler<CreateBiodataRequest,
     }
     public async Task<int> Handle(CreateBiodataRequest request, CancellationToken cancellationToken)
     {
-        var applicant = new ApplicantModel();
-        applicant.ApplicationUserId = _currentUserService.UserId;
-        applicant.ApplicationNumber = Domain.ValueObjects.ApplicationNumber.Create(request.ApplicationNumber);
-        applicant.ApplicantName = Domain.ValueObjects.ApplicantName.Create(request.FirstName, request.LastName, request.OtherName);
-        applicant.Title = request.Title;
-        applicant.Gender = request.Gender;
-        applicant.Email = Domain.ValueObjects.EmailAddress.Create(request.Email);
+        var applicant = new ApplicantModel
+        {
+            ApplicationUserId = _currentUserService.UserId,
+            ApplicationNumber = Domain.ValueObjects.ApplicationNumber.Create(request.ApplicationNumber),
+            ApplicantName = Domain.ValueObjects.ApplicantName.Create(request.FirstName, request.LastName, request.OtherName),
+            Title = request.Title,
+            Gender = request.Gender,
+            Email = Domain.ValueObjects.EmailAddress.Create(request.Email)
+        };
         _context.ApplicantModels.Add(applicant);
         await _context.SaveChangesAsync(cancellationToken);
-
+        // go to issue and update biodata done as true
+        var applicantIssues = _context.ApplicantIssueModels.FirstOrDefault(u => u.ApplicantModelId == _currentUserService.UserId);
+        if (applicantIssues != null)
+        {
+            applicantIssues.Biodata = true;
+            _context.ApplicantIssueModels.Update(applicantIssues);
+        }
+        await _context.SaveChangesAsync(cancellationToken);
         return applicant.Id;
     }
 }

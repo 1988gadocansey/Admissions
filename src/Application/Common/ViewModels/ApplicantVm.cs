@@ -9,6 +9,7 @@ namespace OnlineApplicationSystem.Application.Common.ViewModels;
 public class ApplicantVm : IMapFrom<ApplicantModel>
 {
 
+    public int Id { get; init; }
     public long ApplicationNumber { get; init; }
     public string FirstName { get; init; }
     public string LastName { get; init; }
