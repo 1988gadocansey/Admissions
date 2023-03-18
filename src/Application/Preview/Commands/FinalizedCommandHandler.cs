@@ -96,7 +96,6 @@ public class FinalizedCommandHandler : IRequestHandler<FinalizedRequest>
                 _context.ApplicantIssueModels.Update(applicantIssues);
                 await _context.SaveChangesAsync(cancellationToken);
                 await _identityService.Finalized(_currentUserService.UserId);
-
                 var applicantData =
                     await _context.ApplicantModels.FirstOrDefaultAsync(a => a.ApplicationUserId == _currentUserService.UserId, cancellationToken: cancellationToken);
                 if (applicantData != null)

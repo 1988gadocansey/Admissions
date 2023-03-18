@@ -53,7 +53,6 @@ public static class ConfigureServices
         services.AddTransient<IEmailSender, EmailService>();
         services.AddTransient<ISmsSender, SmsService>();
         services.AddTransient<IPhotoUploadService, PhotoUploadService>();
-        //services.AddTransient<IRestClient, RestClient>();
         services.AddAuthentication()
             .AddIdentityServerJwt();
 

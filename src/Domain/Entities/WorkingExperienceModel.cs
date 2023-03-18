@@ -29,6 +29,6 @@ namespace OnlineApplicationSystem.Domain.Entities
         public string CompanyFrom { set; get; }
         public string CompanyTo { set; get; }
 
-        public ApplicantModel? ApplicantModel { get; set; }
+        public virtual ApplicantModel? ApplicantModel { get; set; }
     }
 }

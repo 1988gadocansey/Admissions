@@ -18,11 +18,11 @@ namespace OnlineApplicationSystem.Domain.Entities
         public string? DegreeClassification { set; get; }
         public decimal? CGPA { set; get; }
 
-        
-       
+
+
         public int Applicant { get; set; }
 
         [ForeignKey("Applicant")]
-        public ApplicantModel? ApplicantModel { get; set; }
+        public virtual ApplicantModel? ApplicantModel { get; set; }
     }
 }

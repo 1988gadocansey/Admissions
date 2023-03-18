@@ -4,10 +4,10 @@ namespace OnlineApplicationSystem.Application.ResearchExperience.Commands;
 public class ResearchExperienceCommandValidator : AbstractValidator<ResearchExperienceRequest>
 {
 
-    private readonly IApplicationDbContext _context;
-    public ResearchExperienceCommandValidator(IApplicationDbContext context)
+    // private readonly IApplicationDbContext _context;
+    public ResearchExperienceCommandValidator()
     {
-        _context = context;
+        //  _context = context;
 
         RuleFor(v => v.ActualAreaOfResearch)
             .NotEmpty().WithMessage("Actual area of research is required.");

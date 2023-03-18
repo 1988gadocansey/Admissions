@@ -6,8 +6,7 @@ public class RefereeModel : BaseAuditableEntity
     public string? Institution { get; set; }
     public string? Email { get; set; }
     public string? Position { get; set; }
-    public int ApplicantModelID { set; get; }
-    private ICollection<ApplicantModel?> ApplicantModel { get; set; }
+    public virtual ApplicantModel ApplicantModel { set; get; }
 
     public RefereeStatus refereeStatus { get; set; } = RefereeStatus.Pending;
 

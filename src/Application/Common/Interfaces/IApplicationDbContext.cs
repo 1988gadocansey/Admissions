@@ -19,6 +19,7 @@ public interface IApplicationDbContext
     DbSet<FormNoModel> FormNoModels { get; }
     DbSet<RegionModel> RegionModels { get; }
     DbSet<ReligionModel> ReligionModels { get; }
+    DbSet<RefereeModel> RefereeModels { get; }
     DbSet<ProgrammeModel> ProgrammeModels { get; }
     DbSet<DistrictModel> DistrictModels { get; }
     DbSet<CountryModel> CountryModels { get; }
@@ -30,7 +31,7 @@ public interface IApplicationDbContext
     DbSet<GradeModel> GradeModels { get; }
     DbSet<DisabilitiesModel> DisabilitiesModels { get; }
     DbSet<LanguageModel> Languages { get; }
-     DbSet<SMSModel> SMSModels { get; }
+    DbSet<SMSModel> SMSModels { get; }
 
     DbSet<SHSProgrammes> SHSProgrammes { get; }
     DbSet<SHSAttendedModel> SHSAttendedModels { get; }
