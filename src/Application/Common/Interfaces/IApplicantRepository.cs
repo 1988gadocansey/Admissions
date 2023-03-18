@@ -39,4 +39,6 @@ public interface IApplicantRepository
     public Task<IEnumerable<SHSAttendedDto>> SHSAttendeds(CancellationToken cancellationToken);
     public Task<ConfigurationModel?> GetConfiguration();
 
+    public Task<ApplicantVm> GetApplicantByApplicationNumber(long ApplicationNumber, CancellationToken cancellationToken);
+
 }

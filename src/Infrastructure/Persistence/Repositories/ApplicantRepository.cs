@@ -46,6 +46,12 @@ public class ApplicantRepository : IApplicantRepository
         var applicantDetails = _mapper.Map<ApplicantVm>(applicant);
         return applicantDetails;
     }
+    public async Task<ApplicantVm> GetApplicantByApplicationNumber(long ApplicationNumber, CancellationToken cancellationToken)
+    {
+        var applicant = await _context.ApplicantModels.FirstOrDefaultAsync(a => a.ApplicationNumber.ApplicantNumber == ApplicationNumber, cancellationToken);
+        var applicantDetails = _mapper.Map<ApplicantVm>(applicant);
+        return applicantDetails;
+    }
 
     public async Task<ApplicantVm> GetApplicantForUser(string Id, CancellationToken cancellationToken)
     {
