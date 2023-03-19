@@ -9,7 +9,7 @@ using OnlineApplicationSystem.Application.Common.Mappings;
 using OnlineApplicationSystem.Application.Common.Models;
 using OnlineApplicationSystem.Domain.Entities;
 
-namespace OnlineApplicationSystem.Application.UniversityAttended.Commands;
+namespace OnlineApplicationSystem.Application.UniversityAttended.Queries;
 
 public record GetUniversityAttendedQuery : IRequest<PaginatedList<UniversityAttendedDto>>
 {
