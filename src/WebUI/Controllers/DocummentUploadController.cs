@@ -1,11 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OnlineApplicationSystem.Application.Biodata.Commands.CreateBiodata;
 using OnlineApplicationSystem.Application.Common.Dtos;
-using OnlineApplicationSystem.Application.Common.ViewModels;
+using OnlineApplicationSystem.Application.Common.Models;
 using OnlineApplicationSystem.Application.DocumentUpload.Commands;
 using OnlineApplicationSystem.Application.DocumentUpload.Queries;
-using OnlineApplicationSystem.Application.Preview;
 
 namespace WebUI.Controllers;
 
@@ -18,8 +16,9 @@ public class DocumentUploadController : ApiControllerBase
         return await Mediator.Send(command);
     }
     [HttpGet]
-    public async Task<ActionResult<DocumentUploadDto>> Get()
+    public async Task<ActionResult<PaginatedList<DocumentUploadDto>>> Get([FromQuery] GetDocumentUploadQuery query)
     {
-        return await Mediator.Send(new GetDocumentUploadQuery());
+        return await Mediator.Send(query);
     }
+
 }

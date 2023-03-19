@@ -13,12 +13,4 @@ public class HomeController : ApiControllerBase
     {
         return await Mediator.Send(new GetUserQuery());
     }
-    // download the preview form as pdf
-    /* [HttpGet("{id}")]
-    public async Task<FileResult> Get(int id)
-    {
-        var vm = await Mediator.Send(new ExportTodosQuery { ListId = id });
-
-        return File(vm.Content, vm.ContentType, vm.FileName);
-    } */
 }
