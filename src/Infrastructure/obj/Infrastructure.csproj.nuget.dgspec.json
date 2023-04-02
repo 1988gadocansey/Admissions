@@ -48,7 +48,7 @@
             },
             "FluentValidation.DependencyInjectionExtensions": {
               "target": "Package",
-              "version": "[10.3.4, )"
+              "version": "[10.4.0, )"
             },
             "MediatR.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -56,15 +56,15 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.0-rc.2.22472.11, )"
+              "version": "[7.0.4, )"
             },
             "RestSharp": {
               "target": "Package",
-              "version": "[109.0.0-preview.1, )"
+              "version": "[109.0.1, )"
             },
             "SixLabors.ImageSharp": {
               "target": "Package",
-              "version": "[2.1.3, )"
+              "version": "[2.1.4, )"
             },
             "System.Drawing.Common": {
               "target": "Package",
@@ -131,11 +131,19 @@
             },
             "Microsoft.EntityFrameworkCore.Abstractions": {
               "target": "Package",
-              "version": "[7.0.1, )"
+              "version": "[7.0.4, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             },
             "System.Drawing.Common": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[7.0.2, )"
             }
           },
           "imports": [
@@ -202,35 +210,63 @@
             },
             "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": {
               "target": "Package",
-              "version": "[7.0.0-rc.2.22476.2, )"
+              "version": "[7.0.4, )"
             },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.0-rc.2.22476.2, )"
+              "version": "[7.0.4, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.0-rc.2.22476.2, )"
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",
-              "version": "[7.0.0-rc.2.22472.11, )"
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[7.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[7.0.0-rc.2.22472.11, )"
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.4, )"
             },
             "NETCore.MailKit": {
               "target": "Package",
               "version": "[2.1.0, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "Npgsql": {
               "target": "Package",
-              "version": "[7.0.1, )"
+              "version": "[7.0.2, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[7.0.1, )"
+              "version": "[7.0.3, )"
             },
             "SSH.NET": {
               "target": "Package",
@@ -239,6 +275,10 @@
             "Syncfusion.Pdf.Net.Core": {
               "target": "Package",
               "version": "[20.4.0.54, )"
+            },
+            "coravel": {
+              "target": "Package",
+              "version": "[4.2.1, )"
             }
           },
           "imports": [

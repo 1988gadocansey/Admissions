@@ -16,11 +16,11 @@ namespace OnlineApplicationSystem.Domain.Entities
         public Gender Gender { get; set; }
         public int Age { get; set; }
         public MaritalStatus? MaritalStatus { get; set; } = Enums.MaritalStatus.Single;
-        public PhoneNumber Phone { get; private set; }
+        public PhoneNumber Phone { get; set; }
         public PhoneNumber? AltPhone { get; set; }
         public EmailAddress Email { get; set; }
         public string? PostGPRS { get; set; }
-        public PhoneNumber? EmergencyContact { get; private set; }
+        public PhoneNumber? EmergencyContact { get; set; }
         public string? Hometown { get; set; }
         public int? DistrictId { get; set; }
         public virtual DistrictModel? District { get; set; }
@@ -35,7 +35,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public virtual CountryModel? Nationality { get; set; }
         public bool? ResidentialStatus { get; set; }
         public string? GuardianName { get; set; }
-        public PhoneNumber GuardianPhone { get; private set; }
+        public PhoneNumber GuardianPhone { get; set; }
         public string? GuardianOccupation { get; set; }
         public string? GuardianRelationship { get; set; }
         public bool? Disability { get; set; }
@@ -86,7 +86,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public string? SponsorShipLocation { get; set; }
         public string? SponsorShipCompanyContact { get; set; }
         public string? ApplicationUserId { get; set; }
-            
+
         public ApplicantName ChangeName(ApplicantName Name)
         {
             if (object.ReferenceEquals(Name, null))

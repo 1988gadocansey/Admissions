@@ -117,10 +117,18 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<ApplicantModel>
 
        });
 
+
         builder.Property(x => x.MaritalStatus)
             .HasColumnName("MaritalStatus")
-            .HasConversion<string>()
-            .IsRequired();
+             .HasConversion(
+      v => v.ToString(),
+      v => (MaritalStatus)Enum.Parse(typeof(MaritalStatus), v));
+        builder.Property(x => x.Title)
+             .HasColumnName("Title")
+              .HasConversion(
+       v => v.ToString(),
+       v => (Title)Enum.Parse(typeof(Title), v));
+        //  .IsRequired();
 
         // if you want to store all value objects in one column as json
 
@@ -141,7 +149,7 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<ApplicantModel>
             .IsRequired();
 
         //builder.HasMany<ApplicantModel>(applicant => applicant.Phone);
-       
+
     }
 
 

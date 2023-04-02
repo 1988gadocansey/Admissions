@@ -6,7 +6,7 @@ namespace OnlineApplicationSystem.Application.Common.Dtos;
 public record DenominationDto : IMapFrom<DenominationModel>
 {
     public int? Id { set; get; }
-    public int? Exam { set; get; }
+    public string? Name { set; get; }
 
 
 }

@@ -136,7 +136,7 @@ public class IdentityService : IIdentityService
             await _userManager.UpdateAsync(user);
         }
     }
-    public async Task  Finalized(string userId)
+    public async Task Finalized(string userId)
     {
         var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
         if (user != null)

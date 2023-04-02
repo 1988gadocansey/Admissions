@@ -1,13 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "KF+SD3QYAakNX4XcqSeZEN+7G35uNzfCQLsA59GdjPQjqfKHxnSToj4qKnzg2E+gkJDTzfcBivLR4n8wrZnwvg==",
+  "dgSpecHash": "xt2XKeArOBdhHHRZHSE4oGXtFG6C17L/zQTBCOnjM/Ze3XnTJxL36OsVGxFVI1sR7HCuMoqFsj0ednXKJs1qZQ==",
   "success": true,
   "projectFilePath": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/Domain/Domain.csproj",
   "expectedPackageFiles": [
     "/Users/gadocansey/.nuget/packages/mediatr/9.0.0/mediatr.9.0.0.nupkg.sha512",
-    "/Users/gadocansey/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.1/microsoft.entityframeworkcore.abstractions.7.0.1.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.4/microsoft.entityframeworkcore.abstractions.7.0.4.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/microsoft.win32.systemevents/7.0.0/microsoft.win32.systemevents.7.0.0.nupkg.sha512",
-    "/Users/gadocansey/.nuget/packages/system.drawing.common/7.0.0/system.drawing.common.7.0.0.nupkg.sha512"
+    "/Users/gadocansey/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/system.drawing.common/7.0.0/system.drawing.common.7.0.0.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/system.text.encodings.web/7.0.0/system.text.encodings.web.7.0.0.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/system.text.json/7.0.2/system.text.json.7.0.2.nupkg.sha512"
   ],
   "logs": []
 }

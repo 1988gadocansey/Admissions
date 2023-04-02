@@ -114,7 +114,7 @@ public class FinalizedCommandHandler : IRequestHandler<FinalizedRequest>
         if (applicantIssues.Picture == false || applicantIssues.FormCompletion == false || applicantIssues.Referee == false || applicantIssues.ResearchInformation == false || applicantIssues.AcademicExperience == false)
         {
             // throw new NotFoundException(nameof(ApplicantModel), request.Id);
-            throw new NotFoundException("Error finalizing form. Check i.", request.Id);
+            throw new NotFoundException("Error finalizing form. Check.", request.Id);
         }
         // update the applicant issues
         applicantIssues.FormCompletion = true;

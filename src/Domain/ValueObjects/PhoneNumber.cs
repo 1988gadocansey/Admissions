@@ -12,6 +12,10 @@ public class PhoneNumber : ValueObject
         AreaCode = areaCode;
         Number = number;
     }
+    public static PhoneNumber Create(string areaCode, string number)
+    {
+        return new PhoneNumber(areaCode, number);
+    }
     public string AreaCode { get; private set; }
     public string Number { get; private set; }
 

@@ -4,7 +4,6 @@
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/appsettings.Production.json
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/nswag.json
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/WebUI.staticwebassets.runtime.json
-/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/WebUI
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/WebUI.deps.json
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/WebUI.runtimeconfig.json
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/WebUI.dll
@@ -128,3 +127,18 @@
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Syncfusion.Compression.Portable.dll
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Syncfusion.Licensing.dll
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Syncfusion.Pdf.Portable.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Coravel.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Microsoft.Extensions.Configuration.Binder.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Microsoft.Extensions.FileProviders.Embedded.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Microsoft.Extensions.Identity.Core.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Microsoft.Extensions.Identity.Stores.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/ZymLabs.NSwag.FluentValidation.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/ZymLabs.NSwag.FluentValidation.AspNetCore.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Microsoft.AspNetCore.JsonPatch.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Newtonsoft.Json.Bson.dll

@@ -37,6 +37,12 @@
                     </g>
                 </svg>
             </p>
+             @if (@ViewBag.ErrorMessage != "")
+                            {
+                                <div asp-validation-summary="All" style="color:red" class="form-messages" data-qa-form-error="">
+                
+                                </div>
+                            }
             <form class="bg-white rounded-md shadow-2xl p-5" method="post">
                  
                  

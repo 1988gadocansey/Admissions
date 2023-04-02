@@ -25,8 +25,14 @@ public static class ConfigureServices
         services.AddControllersWithViews(options =>
             options.Filters.Add<ApiExceptionFilterAttribute>())
                 .AddFluentValidation(x => x.AutomaticValidationEnabled = false);
-
-        services.AddRazorPages();
+        services.AddControllers().AddNewtonsoftJson(opt =>
+        {
+            opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+        });
+        services.AddRazorPages().AddNewtonsoftJson(opt =>
+        {
+            opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+        }); ;
 
         // Customise default API behaviour
         services.Configure<ApiBehaviorOptions>(options =>

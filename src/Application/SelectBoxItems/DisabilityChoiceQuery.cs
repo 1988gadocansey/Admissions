@@ -1,3 +1,4 @@
+using AutoMapper;
 using OnlineApplicationSystem.Application.Common.Security;
 using MediatR;
 using OnlineApplicationSystem.Application.Common.Dtos;
@@ -5,22 +6,28 @@ using OnlineApplicationSystem.Application.Common.Dtos;
 namespace OnlineApplicationSystem.Application.SelectBoxItems;
 
 [Authorize]
-public record DisabilityChoiceQuery : IRequest<IEnumerable<DisabilitiesDto>>;
+public record DisabilityChoiceQuery : IRequest<IEnumerable<string>>;
 
-public class DisabilityChoiceQueryHandler : RequestHandler<DisabilityChoiceQuery, IEnumerable<DisabilitiesDto>>
+public class DisabilityChoiceQueryHandler : RequestHandler<DisabilityChoiceQuery, IEnumerable<string>>
 {
-    private static readonly string[] Summaries = new[]
+    private readonly IMapper _mapper;
+
+    public DisabilityChoiceQueryHandler(IMapper mapper)
     {
-        "DEAF", "DUMB", "DEAF and DUMB", "BLIND (1 Eye)", "DEAF (1 Ear)", "CRIPPLED", "AMPUTEE", "BLIND"
-    };
+        _mapper = mapper;
+    }
+   
+    
     //IEnumerable<string> strings = new[] { "a", "b", "c" };
 
-    protected override IEnumerable<DisabilitiesDto> Handle(DisabilityChoiceQuery request)
+    protected override  IEnumerable<string> Handle (DisabilityChoiceQuery request)
     {
-        return Enumerable.Range(1, 10).Select(index => new DisabilitiesDto
+        var Disabilities = new[]
         {
-
-            Name = Summaries[index]
-        });
+            "DEAF", "DUMB", "DEAF and DUMB", "BLIND (1 Eye)", "DEAF (1 Ear)", "CRIPPLED", "AMPUTEE", "BLIND"
+        };
+        var data = Disabilities.Select(cust => cust);
+       // var dataMapped = _mapper.Map<DisabilitiesDto>(data);
+       return data;
     }
 }

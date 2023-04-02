@@ -25,7 +25,7 @@ public class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserDto>
 
     public async Task<UserDto> Handle(GetUserQuery request, CancellationToken cancellationToken)
     {
-        // Console.WriteLine($"user is " + _currentUserService.UserId);
+        Console.WriteLine($"user is " + _currentUserService.UserId);
         var userDetails = await _identityService.GetApplicationUserDetails(_currentUserService.UserId, cancellationToken);
 
         return userDetails;

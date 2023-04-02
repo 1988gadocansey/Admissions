@@ -5,7 +5,8 @@ import { BiodataRoutingModule } from './biodata-routing.module';
 import { BiodataComponent } from './biodata.component';
 import { BiodatapageComponent } from './pages/biodatapage.component';
 import { BiodatadetailsComponent } from './components/biodatadetails.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
+import { NgxLoadingModule } from 'ngx-loading';
 
 
 @NgModule({
@@ -14,10 +15,11 @@ import {ReactiveFormsModule} from "@angular/forms";
     BiodatapageComponent,
     BiodatadetailsComponent
   ],
-    imports: [
-        CommonModule,
-        BiodataRoutingModule,
-        ReactiveFormsModule
-    ]
+  imports: [
+    CommonModule,
+    BiodataRoutingModule,
+    ReactiveFormsModule,
+    NgxLoadingModule
+  ]
 })
 export class BiodataModule { }

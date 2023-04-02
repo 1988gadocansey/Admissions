@@ -19,7 +19,7 @@ public class SelectBoxController : ApiControllerBase
         return await Mediator.Send(new GetRegionQuery());
     }
     [HttpGet("disabilities")]
-    public async Task<IEnumerable<DisabilitiesDto>> GetDisabilities()
+    public async Task<IEnumerable<string>> GetDisabilities()
     {
         return await Mediator.Send(new DisabilityChoiceQuery());
     }

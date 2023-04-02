@@ -5,7 +5,7 @@ using OnlineApplicationSystem.Domain.ValueObjects;
 namespace OnlineApplicationSystem.Application.Biodata.Commands.UpdateBiodata;
 public record UpdateBiodataRequest : IRequest
 {
-    public UpdateBiodataRequest(string id, long applicationNumber, string firstName, string lastName, string otherName, Gender gender, DateOnly dob, Title title, MaritalStatus? maritalStatus, string phone, string? altPhone, string? email, string? postGprs, string? emergencyContact, string? hometown, int? district, string? nationalIdNo, IDCards? nationalIdType, int? regionId, int? nationalityId, bool? residentialStatus, string? guardianName, string? guardianPhone, string? guardianOccupation, string? guardianRelationship, bool? disability, Disability? disabilityType, string? sourceOfFinance, int? religionId, string? denomination, IDCard? idCard, string? referrals, Session? entryMode, string? firstQualification, string? secondQualification, string? programmeStudied, string? formerSchool, int? formerSchoolNewId, int? programmeAdmittedId, int? lastYearInSchool, bool? awaiting, int? grade, string? preferedHall, bool? elligible, int? firstChoiceId, int? secondChoiceId, int? thirdChoiceId, bool? sponsorShip, string? sponsorShipCompany, string? sponsorShipLocation, string? sponsorShipCompanyContact)
+    public UpdateBiodataRequest(long id, long applicationNumber, string firstName, string lastName, string otherName, Gender gender, DateOnly dob, Title title, MaritalStatus? maritalStatus, string phone, string? altPhone, string? email, string? postGprs, string? emergencyContact, string? hometown, int? district, string? nationalIdNo, IDCards? nationalIdType, int? regionId, int? nationalityId, bool? residentialStatus, string? guardianName, string? guardianPhone, string? guardianOccupation, string? guardianRelationship, bool? disability, Disability? disabilityType, string? sourceOfFinance, int? religionId, string? denomination, IDCard? idCard, string? referrals, Session? entryMode, string? firstQualification, string? secondQualification, string? programmeStudied, string? formerSchool, int? formerSchoolNewId, int? programmeAdmittedId, int? lastYearInSchool, bool? awaiting, int? grade, string? preferedHall, bool? elligible, int? firstChoiceId, int? secondChoiceId, int? thirdChoiceId, bool? sponsorShip, string? sponsorShipCompany, string? sponsorShipLocation, string? sponsorShipCompanyContact)
     {
         Id = id;
         ApplicationNumber = applicationNumber;
@@ -60,7 +60,7 @@ public record UpdateBiodataRequest : IRequest
         SponsorShipCompanyContact = sponsorShipCompanyContact;
     }
 
-    public string Id { get; set; }
+    public long Id { get; set; }
     public long ApplicationNumber { get; init; }
     public string FirstName { get; init; }
     public string LastName { get; init; }

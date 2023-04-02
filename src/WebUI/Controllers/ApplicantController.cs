@@ -13,4 +13,6 @@ public class ApplicantController : ApiControllerBase
     {
         return await Mediator.Send(new GetApplicantQuery());
     }
+
+
 }

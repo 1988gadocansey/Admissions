@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using OnlineApplicationSystem.Infrastructure.Persistence.Repositories;
-using RestSharp;
 using OnlineApplicationSystem.Infrastructure.Mails;
 using OnlineApplicationSystem.Infrastructure.SMS;
+using Coravel;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -52,13 +52,14 @@ public static class ConfigureServices
         services.AddTransient<IApplicantRepository, ApplicantRepository>();
         services.AddTransient<IEmailSender, EmailService>();
         services.AddTransient<ISmsSender, SmsService>();
+        services.AddTransient<IDocumentUploadService, DocumentUploadService>();
         services.AddTransient<IPhotoUploadService, PhotoUploadService>();
         services.AddAuthentication()
             .AddIdentityServerJwt();
 
         services.AddAuthorization(options =>
             options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator")));
-
+        //services.AddScheduler();
         return services;
     }
 }

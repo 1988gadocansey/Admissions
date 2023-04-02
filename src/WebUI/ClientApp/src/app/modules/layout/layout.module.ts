@@ -19,6 +19,7 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ApiAuthorizationModule } from "../../../api-authorization/api-authorization.module";
 @NgModule({
   declarations: [
     LayoutComponent,
@@ -43,7 +44,6 @@ import { ReactiveFormsModule } from '@angular/forms';
       primaryColour: "#ffffff",
       secondaryColour: "#ffffff",
       tertiaryColour: "#ffffff",
-    }),
-  ],
+    }), ApiAuthorizationModule]
 })
 export class LayoutModule { }
