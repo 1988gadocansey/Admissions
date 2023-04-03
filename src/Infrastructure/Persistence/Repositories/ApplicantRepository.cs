@@ -58,6 +58,7 @@ public class ApplicantRepository : IApplicantRepository
         var applicant = await _context.ApplicantModels.FirstOrDefaultAsync(a => a.ApplicationUserId == Id, cancellationToken);
         var applicantDetails = _mapper.Map<ApplicantVm>(applicant);
         return applicantDetails;
+
     }
 
     public async Task<ConfigurationModel?> GetConfiguration()

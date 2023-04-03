@@ -91,6 +91,24 @@
           }
         }
       },
+      "Coravel/4.2.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Memory": "3.1.0",
+          "Microsoft.Extensions.Hosting.Abstractions": "3.1.0",
+          "Microsoft.Extensions.Logging.Abstractions": "3.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Coravel.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Coravel.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "CsvHelper/15.0.10": {
         "type": "package",
         "dependencies": {
@@ -214,32 +232,32 @@
           }
         }
       },
-      "FluentValidation/10.3.4": {
+      "FluentValidation/11.2.1": {
         "type": "package",
         "compile": {
-          "lib/net5.0/FluentValidation.dll": {
+          "lib/net6.0/FluentValidation.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net5.0/FluentValidation.dll": {
+          "lib/net6.0/FluentValidation.dll": {
             "related": ".xml"
           }
         }
       },
-      "FluentValidation.AspNetCore/10.3.4": {
+      "FluentValidation.AspNetCore/11.2.2": {
         "type": "package",
         "dependencies": {
-          "FluentValidation": "10.3.4",
-          "FluentValidation.DependencyInjectionExtensions": "10.3.4"
+          "FluentValidation": "11.2.1",
+          "FluentValidation.DependencyInjectionExtensions": "11.2.1"
         },
         "compile": {
-          "lib/net5.0/FluentValidation.AspNetCore.dll": {
+          "lib/net6.0/FluentValidation.AspNetCore.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net5.0/FluentValidation.AspNetCore.dll": {
+          "lib/net6.0/FluentValidation.AspNetCore.dll": {
             "related": ".xml"
           }
         },
@@ -247,10 +265,10 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "FluentValidation.DependencyInjectionExtensions/10.3.4": {
+      "FluentValidation.DependencyInjectionExtensions/11.2.1": {
         "type": "package",
         "dependencies": {
-          "FluentValidation": "10.3.4",
+          "FluentValidation": "11.2.1",
           "Microsoft.Extensions.Dependencyinjection.Abstractions": "2.1.0"
         },
         "compile": {
@@ -332,7 +350,7 @@
           "lib/netstandard2.0/MediatR.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
-      "Microsoft.AspNetCore.ApiAuthorization.IdentityServer/7.0.0-rc.2.22476.2": {
+      "Microsoft.AspNetCore.ApiAuthorization.IdentityServer/7.0.4": {
         "type": "package",
         "dependencies": {
           "Duende.IdentityServer": "6.0.4",
@@ -340,11 +358,11 @@
           "Duende.IdentityServer.EntityFramework": "6.0.4",
           "Duende.IdentityServer.EntityFramework.Storage": "6.0.4",
           "Duende.IdentityServer.Storage": "6.0.4",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.0-rc.2.22476.2",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.0-rc.2.22476.2",
-          "Microsoft.AspNetCore.Identity.UI": "7.0.0-rc.2.22476.2",
-          "Microsoft.Extensions.Configuration.Binder": "7.0.0-rc.2.22472.3",
-          "Microsoft.Extensions.Http": "7.0.0-rc.2.22472.3",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.4",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.4",
+          "Microsoft.AspNetCore.Identity.UI": "7.0.4",
+          "Microsoft.Extensions.Configuration.Binder": "7.0.4",
+          "Microsoft.Extensions.Http": "7.0.0",
           "Newtonsoft.Json": "13.0.1"
         },
         "compile": {
@@ -361,7 +379,7 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.0-rc.2.22476.2": {
+      "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.4": {
         "type": "package",
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.15.1"
@@ -399,7 +417,7 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Microsoft.AspNetCore.Cryptography.Internal/7.0.0-rc.2.22476.2": {
+      "Microsoft.AspNetCore.Cryptography.Internal/7.0.4": {
         "type": "package",
         "compile": {
           "lib/net7.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
@@ -412,10 +430,10 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Cryptography.KeyDerivation/7.0.0-rc.2.22476.2": {
+      "Microsoft.AspNetCore.Cryptography.KeyDerivation/7.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Cryptography.Internal": "7.0.0-rc.2.22476.2"
+          "Microsoft.AspNetCore.Cryptography.Internal": "7.0.4"
         },
         "compile": {
           "lib/net7.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {
@@ -441,10 +459,10 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/7.0.0-rc.2.22476.2": {
+      "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/7.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "7.0.0-rc.2.22472.11"
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.4"
         },
         "compile": {
           "lib/net7.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll": {
@@ -460,11 +478,44 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/7.0.0-rc.2.22476.2": {
+      "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "7.0.0-rc.2.22472.11",
-          "Microsoft.Extensions.Identity.Stores": "7.0.0-rc.2.22476.2"
+          "Microsoft.AspNetCore.Http.Features": "2.2.0",
+          "System.Text.Encodings.Web": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Features/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/7.0.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.4",
+          "Microsoft.Extensions.Identity.Stores": "7.0.4"
         },
         "compile": {
           "lib/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
@@ -477,11 +528,11 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Identity.UI/7.0.0-rc.2.22476.2": {
+      "Microsoft.AspNetCore.Identity.UI/7.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.FileProviders.Embedded": "7.0.0-rc.2.22476.2",
-          "Microsoft.Extensions.Identity.Stores": "7.0.0-rc.2.22476.2"
+          "Microsoft.Extensions.FileProviders.Embedded": "7.0.4",
+          "Microsoft.Extensions.Identity.Stores": "7.0.4"
         },
         "compile": {
           "lib/net7.0/Microsoft.AspNetCore.Identity.UI.dll": {
@@ -527,7 +578,7 @@
           "buildTransitive/net7.0/Microsoft.AspNetCore.Mvc.Testing.targets": {}
         }
       },
-      "Microsoft.AspNetCore.SpaProxy/7.0.0-rc.2.22476.2": {
+      "Microsoft.AspNetCore.SpaProxy/7.0.4": {
         "type": "package",
         "compile": {
           "lib/net7.0/Microsoft.AspNetCore.SpaProxy.dll": {}
@@ -594,11 +645,11 @@
           "lib/netcoreapp2.0/_._": {}
         }
       },
-      "Microsoft.Data.SqlClient/5.0.0": {
+      "Microsoft.Data.SqlClient/5.0.1": {
         "type": "package",
         "dependencies": {
           "Azure.Identity": "1.6.0",
-          "Microsoft.Data.SqlClient.SNI.runtime": "5.0.0",
+          "Microsoft.Data.SqlClient.SNI.runtime": "5.0.1",
           "Microsoft.Identity.Client": "4.45.0",
           "Microsoft.IdentityModel.JsonWebTokens": "6.21.0",
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.21.0",
@@ -636,7 +687,7 @@
           }
         }
       },
-      "Microsoft.Data.SqlClient.SNI.runtime/5.0.0": {
+      "Microsoft.Data.SqlClient.SNI.runtime/5.0.1": {
         "type": "package",
         "runtimeTargets": {
           "runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll": {
@@ -657,11 +708,11 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore/7.0.1": {
+      "Microsoft.EntityFrameworkCore/7.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.1",
-          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.1",
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.4",
+          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.4",
           "Microsoft.Extensions.Caching.Memory": "7.0.0",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.Extensions.Logging": "7.0.0"
@@ -680,7 +731,7 @@
           "buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Abstractions/7.0.1": {
+      "Microsoft.EntityFrameworkCore.Abstractions/7.0.4": {
         "type": "package",
         "compile": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
@@ -693,7 +744,7 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Analyzers/7.0.1": {
+      "Microsoft.EntityFrameworkCore.Analyzers/7.0.4": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/_._": {}
@@ -702,12 +753,12 @@
           "lib/netstandard2.0/_._": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Design/7.0.0-rc.2.22472.11": {
+      "Microsoft.EntityFrameworkCore.Design/7.0.4": {
         "type": "package",
         "dependencies": {
           "Humanizer.Core": "2.14.1",
-          "Microsoft.EntityFrameworkCore.Relational": "7.0.0-rc.2.22472.11",
-          "Microsoft.Extensions.DependencyModel": "7.0.0-rc.2.22472.3",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.4",
+          "Microsoft.Extensions.DependencyModel": "7.0.0",
           "Mono.TextTemplating": "2.2.1"
         },
         "compile": {
@@ -724,10 +775,10 @@
           "build/net6.0/_._": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.InMemory/7.0.0-rc.2.22472.11": {
+      "Microsoft.EntityFrameworkCore.InMemory/7.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "7.0.0-rc.2.22472.11"
+          "Microsoft.EntityFrameworkCore": "7.0.4"
         },
         "compile": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
@@ -740,10 +791,10 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Relational/7.0.1": {
+      "Microsoft.EntityFrameworkCore.Relational/7.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "7.0.1",
+          "Microsoft.EntityFrameworkCore": "7.0.4",
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0"
         },
         "compile": {
@@ -757,11 +808,11 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.SqlServer/7.0.0-rc.2.22472.11": {
+      "Microsoft.EntityFrameworkCore.SqlServer/7.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Data.SqlClient": "5.0.0",
-          "Microsoft.EntityFrameworkCore.Relational": "7.0.0-rc.2.22472.11"
+          "Microsoft.Data.SqlClient": "5.0.1",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.4"
         },
         "compile": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.SqlServer.dll": {
@@ -774,10 +825,10 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/7.0.0-rc.2.22472.11": {
+      "Microsoft.EntityFrameworkCore.Tools/7.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Design": "7.0.0-rc.2.22472.11"
+          "Microsoft.EntityFrameworkCore.Design": "7.0.4"
         },
         "compile": {
           "lib/net6.0/_._": {}
@@ -876,10 +927,10 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "Microsoft.Extensions.Configuration.Binder/7.0.0-rc.2.22472.3": {
+      "Microsoft.Extensions.Configuration.Binder/7.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0-rc.2.22472.3"
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0"
         },
         "compile": {
           "lib/net7.0/Microsoft.Extensions.Configuration.Binder.dll": {
@@ -1039,11 +1090,11 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "Microsoft.Extensions.DependencyModel/7.0.0-rc.2.22472.3": {
+      "Microsoft.Extensions.DependencyModel/7.0.0": {
         "type": "package",
         "dependencies": {
-          "System.Text.Encodings.Web": "7.0.0-rc.2.22472.3",
-          "System.Text.Json": "7.0.0-rc.2.22472.3"
+          "System.Text.Encodings.Web": "7.0.0",
+          "System.Text.Json": "7.0.0"
         },
         "compile": {
           "lib/net7.0/Microsoft.Extensions.DependencyModel.dll": {
@@ -1059,60 +1110,10 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "Microsoft.Extensions.Diagnostics.HealthChecks/6.0.10": {
+      "Microsoft.Extensions.FileProviders.Abstractions/7.0.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions": "6.0.10",
-          "Microsoft.Extensions.Hosting.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.2",
-          "Microsoft.Extensions.Options": "6.0.0"
-        },
-        "compile": {
-          "lib/net6.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions/6.0.10": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore/6.0.10": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.10",
-          "Microsoft.Extensions.Diagnostics.HealthChecks": "6.0.10",
-          "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions": "6.0.10"
-        },
-        "compile": {
-          "lib/net6.0/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Microsoft.Extensions.FileProviders.Abstractions/7.0.0-rc.2.22472.3": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Primitives": "7.0.0-rc.2.22472.3"
+          "Microsoft.Extensions.Primitives": "7.0.0"
         },
         "compile": {
           "lib/net7.0/Microsoft.Extensions.FileProviders.Abstractions.dll": {
@@ -1128,10 +1129,10 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "Microsoft.Extensions.FileProviders.Embedded/7.0.0-rc.2.22476.2": {
+      "Microsoft.Extensions.FileProviders.Embedded/7.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.FileProviders.Abstractions": "7.0.0-rc.2.22472.3"
+          "Microsoft.Extensions.FileProviders.Abstractions": "7.0.0"
         },
         "compile": {
           "lib/net7.0/Microsoft.Extensions.FileProviders.Embedded.dll": {
@@ -1247,13 +1248,13 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "Microsoft.Extensions.Http/7.0.0-rc.2.22472.3": {
+      "Microsoft.Extensions.Http/7.0.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0-rc.2.22472.3",
-          "Microsoft.Extensions.Logging": "7.0.0-rc.2.22472.3",
-          "Microsoft.Extensions.Logging.Abstractions": "7.0.0-rc.2.22472.3",
-          "Microsoft.Extensions.Options": "7.0.0-rc.2.22472.3"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Logging": "7.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Options": "7.0.0"
         },
         "compile": {
           "lib/net7.0/Microsoft.Extensions.Http.dll": {
@@ -1269,12 +1270,12 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "Microsoft.Extensions.Identity.Core/7.0.0-rc.2.22476.2": {
+      "Microsoft.Extensions.Identity.Core/7.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "7.0.0-rc.2.22476.2",
-          "Microsoft.Extensions.Logging": "7.0.0-rc.2.22472.3",
-          "Microsoft.Extensions.Options": "7.0.0-rc.2.22472.3"
+          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "7.0.4",
+          "Microsoft.Extensions.Logging": "7.0.0",
+          "Microsoft.Extensions.Options": "7.0.1"
         },
         "compile": {
           "lib/net7.0/Microsoft.Extensions.Identity.Core.dll": {
@@ -1287,12 +1288,12 @@
           }
         }
       },
-      "Microsoft.Extensions.Identity.Stores/7.0.0-rc.2.22476.2": {
+      "Microsoft.Extensions.Identity.Stores/7.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "7.0.0-rc.2.22472.3",
-          "Microsoft.Extensions.Identity.Core": "7.0.0-rc.2.22476.2",
-          "Microsoft.Extensions.Logging": "7.0.0-rc.2.22472.3"
+          "Microsoft.Extensions.Caching.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Identity.Core": "7.0.4",
+          "Microsoft.Extensions.Logging": "7.0.0"
         },
         "compile": {
           "lib/net7.0/Microsoft.Extensions.Identity.Stores.dll": {
@@ -1461,7 +1462,7 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "Microsoft.Extensions.Options/7.0.0": {
+      "Microsoft.Extensions.Options/7.0.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
@@ -2041,7 +2042,7 @@
           }
         }
       },
-      "Namotion.Reflection/2.0.10": {
+      "Namotion.Reflection/2.1.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0"
@@ -2085,23 +2086,23 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
       },
-      "NJsonSchema/10.7.1": {
+      "NJsonSchema/10.8.0": {
         "type": "package",
         "dependencies": {
-          "Namotion.Reflection": "2.0.10",
+          "Namotion.Reflection": "2.1.0",
           "Newtonsoft.Json": "9.0.1"
         },
         "compile": {
@@ -2115,11 +2116,11 @@
           }
         }
       },
-      "NJsonSchema.Yaml/10.7.1": {
+      "NJsonSchema.Yaml/10.8.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.4.1",
-          "NJsonSchema": "10.7.1",
+          "NJsonSchema": "10.8.0",
           "YamlDotNet": "11.2.1"
         },
         "compile": {
@@ -2129,7 +2130,7 @@
           "lib/netstandard2.0/NJsonSchema.Yaml.dll": {}
         }
       },
-      "Npgsql/7.0.1": {
+      "Npgsql/7.0.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "6.0.0"
@@ -2145,13 +2146,13 @@
           }
         }
       },
-      "Npgsql.EntityFrameworkCore.PostgreSQL/7.0.1": {
+      "Npgsql.EntityFrameworkCore.PostgreSQL/7.0.3": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "[7.0.1, 8.0.0)",
-          "Microsoft.EntityFrameworkCore.Abstractions": "[7.0.1, 8.0.0)",
-          "Microsoft.EntityFrameworkCore.Relational": "[7.0.1, 8.0.0)",
-          "Npgsql": "7.0.1"
+          "Microsoft.EntityFrameworkCore": "[7.0.3, 8.0.0)",
+          "Microsoft.EntityFrameworkCore.Abstractions": "[7.0.3, 8.0.0)",
+          "Microsoft.EntityFrameworkCore.Relational": "[7.0.3, 8.0.0)",
+          "Npgsql": "7.0.2"
         },
         "compile": {
           "lib/net7.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
@@ -2164,7 +2165,7 @@
           }
         }
       },
-      "NSwag.Annotations/13.16.0": {
+      "NSwag.Annotations/13.18.2": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/NSwag.Annotations.dll": {
@@ -2177,24 +2178,24 @@
           }
         }
       },
-      "NSwag.AspNetCore/13.16.0": {
+      "NSwag.AspNetCore/13.18.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.3",
-          "Microsoft.Extensions.FileProviders.Embedded": "[6.0.0, 7.0.0)",
-          "NSwag.Annotations": "13.16.0",
-          "NSwag.Core": "13.16.0",
-          "NSwag.Core.Yaml": "13.16.0",
-          "NSwag.Generation": "13.16.0",
-          "NSwag.Generation.AspNetCore": "13.16.0"
+          "Microsoft.Extensions.FileProviders.Embedded": "[7.0.0, 8.0.0)",
+          "NSwag.Annotations": "13.18.2",
+          "NSwag.Core": "13.18.2",
+          "NSwag.Core.Yaml": "13.18.2",
+          "NSwag.Generation": "13.18.2",
+          "NSwag.Generation.AspNetCore": "13.18.2"
         },
         "compile": {
-          "lib/net6.0/NSwag.AspNetCore.dll": {
+          "lib/net7.0/NSwag.AspNetCore.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/NSwag.AspNetCore.dll": {
+          "lib/net7.0/NSwag.AspNetCore.dll": {
             "related": ".xml"
           }
         },
@@ -2205,11 +2206,11 @@
           "buildMultiTargeting/_._": {}
         }
       },
-      "NSwag.Core/13.16.0": {
+      "NSwag.Core/13.18.2": {
         "type": "package",
         "dependencies": {
-          "NJsonSchema": "10.7.1",
-          "Newtonsoft.Json": "9.0.1"
+          "NJsonSchema": "10.8.0",
+          "Newtonsoft.Json": "10.0.1"
         },
         "compile": {
           "lib/netstandard2.0/NSwag.Core.dll": {
@@ -2222,11 +2223,11 @@
           }
         }
       },
-      "NSwag.Core.Yaml/13.16.0": {
+      "NSwag.Core.Yaml/13.18.2": {
         "type": "package",
         "dependencies": {
-          "NJsonSchema.Yaml": "10.7.1",
-          "NSwag.Core": "13.16.0",
+          "NJsonSchema.Yaml": "10.8.0",
+          "NSwag.Core": "13.18.2",
           "YamlDotNet": "11.2.1"
         },
         "compile": {
@@ -2236,12 +2237,12 @@
           "lib/netstandard2.0/NSwag.Core.Yaml.dll": {}
         }
       },
-      "NSwag.Generation/13.16.0": {
+      "NSwag.Generation/13.18.2": {
         "type": "package",
         "dependencies": {
-          "NJsonSchema": "10.7.1",
-          "NSwag.Core": "13.16.0",
-          "Newtonsoft.Json": "9.0.1"
+          "NJsonSchema": "10.8.0",
+          "NSwag.Core": "13.18.2",
+          "Newtonsoft.Json": "10.0.1"
         },
         "compile": {
           "lib/netstandard2.0/NSwag.Generation.dll": {
@@ -2254,20 +2255,20 @@
           }
         }
       },
-      "NSwag.Generation.AspNetCore/13.16.0": {
+      "NSwag.Generation.AspNetCore/13.18.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "[6.0.0, 7.0.0)",
-          "Microsoft.Extensions.Options": "[6.0.0, 7.0.0)",
-          "NSwag.Generation": "13.16.0"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "[7.0.0, 8.0.0)",
+          "Microsoft.Extensions.Options": "[7.0.0, 8.0.0)",
+          "NSwag.Generation": "13.18.2"
         },
         "compile": {
-          "lib/net6.0/NSwag.Generation.AspNetCore.dll": {
+          "lib/net7.0/NSwag.Generation.AspNetCore.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/NSwag.Generation.AspNetCore.dll": {
+          "lib/net7.0/NSwag.Generation.AspNetCore.dll": {
             "related": ".xml"
           }
         },
@@ -2338,7 +2339,7 @@
           "lib/netstandard2.0/Respawn.dll": {}
         }
       },
-      "RestSharp/109.0.0-preview.1": {
+      "RestSharp/109.0.1": {
         "type": "package",
         "compile": {
           "lib/net7.0/RestSharp.dll": {
@@ -2351,7 +2352,7 @@
           }
         }
       },
-      "SixLabors.ImageSharp/2.1.3": {
+      "SixLabors.ImageSharp/2.1.4": {
         "type": "package",
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "5.0.0",
@@ -2917,7 +2918,7 @@
           }
         }
       },
-      "System.Text.Encodings.Web/7.0.0-rc.2.22472.3": {
+      "System.Text.Encodings.Web/7.0.0": {
         "type": "package",
         "compile": {
           "lib/net7.0/System.Text.Encodings.Web.dll": {
@@ -2939,10 +2940,10 @@
           }
         }
       },
-      "System.Text.Json/7.0.0-rc.2.22472.3": {
+      "System.Text.Json/7.0.2": {
         "type": "package",
         "dependencies": {
-          "System.Text.Encodings.Web": "7.0.0-rc.2.22472.3"
+          "System.Text.Encodings.Web": "7.0.0"
         },
         "compile": {
           "lib/net7.0/System.Text.Json.dll": {
@@ -3015,17 +3016,54 @@
           }
         }
       },
+      "ZymLabs.NSwag.FluentValidation/0.6.2": {
+        "type": "package",
+        "dependencies": {
+          "FluentValidation": "10.2.3",
+          "Microsoft.Extensions.Logging.Abstractions": "5.0.0",
+          "NJsonSchema": "10.4.4"
+        },
+        "compile": {
+          "lib/netstandard2.0/ZymLabs.NSwag.FluentValidation.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/ZymLabs.NSwag.FluentValidation.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "ZymLabs.NSwag.FluentValidation.AspNetCore/0.6.2": {
+        "type": "package",
+        "dependencies": {
+          "FluentValidation": "10.2.3",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "System.Text.Encodings.Web": "4.5.1",
+          "ZymLabs.NSwag.FluentValidation": "0.6.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/ZymLabs.NSwag.FluentValidation.AspNetCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/ZymLabs.NSwag.FluentValidation.AspNetCore.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "OnlineApplicationSystem.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
-          "FluentValidation.DependencyInjectionExtensions": "10.3.4",
+          "FluentValidation.DependencyInjectionExtensions": "10.4.0",
           "MediatR.Extensions.Microsoft.DependencyInjection": "9.0.0",
-          "Microsoft.EntityFrameworkCore": "7.0.0-rc.2.22472.11",
+          "Microsoft.EntityFrameworkCore": "7.0.4",
           "OnlineApplicationSystem.Domain": "1.0.0",
-          "RestSharp": "109.0.0-preview.1",
-          "SixLabors.ImageSharp": "2.1.3",
+          "RestSharp": "109.0.1",
+          "SixLabors.ImageSharp": "2.1.4",
           "System.Drawing.Common": "7.0.0"
         },
         "compile": {
@@ -3040,8 +3078,10 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "MediatR": "9.0.0",
-          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.1",
-          "System.Drawing.Common": "7.0.0"
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.4",
+          "Newtonsoft.Json": "13.0.3",
+          "System.Drawing.Common": "7.0.0",
+          "System.Text.Json": "7.0.2"
         },
         "compile": {
           "bin/placeholder/OnlineApplicationSystem.Domain.dll": {}
@@ -3055,17 +3095,20 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "CsvHelper": "15.0.10",
-          "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": "7.0.0-rc.2.22476.2",
-          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "7.0.0-rc.2.22476.2",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.0-rc.2.22476.2",
-          "Microsoft.EntityFrameworkCore.InMemory": "7.0.0-rc.2.22472.11",
-          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.0-rc.2.22472.11",
+          "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": "7.0.4",
+          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "7.0.4",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.4",
+          "Microsoft.EntityFrameworkCore": "7.0.4",
+          "Microsoft.EntityFrameworkCore.InMemory": "7.0.4",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.4",
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.4",
           "NETCore.MailKit": "2.1.0",
-          "Npgsql": "7.0.1",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.1",
+          "Npgsql": "7.0.2",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.3",
           "OnlineApplicationSystem.Application": "1.0.0",
           "SSH.NET": "2020.0.2",
-          "Syncfusion.Pdf.Net.Core": "20.4.0.54"
+          "Syncfusion.Pdf.Net.Core": "20.4.0.54",
+          "coravel": "4.2.1"
         },
         "compile": {
           "bin/placeholder/OnlineApplicationSystem.Infrastructure.dll": {}
@@ -3078,21 +3121,19 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "FluentValidation.AspNetCore": "10.3.4",
-          "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": "7.0.0-rc.2.22476.2",
-          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "7.0.0-rc.2.22476.2",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.0-rc.2.22476.2",
-          "Microsoft.AspNetCore.Identity.UI": "7.0.0-rc.2.22476.2",
-          "Microsoft.AspNetCore.SpaProxy": "7.0.0-rc.2.22476.2",
-          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.0-rc.2.22472.11",
-          "Microsoft.EntityFrameworkCore.Tools": "7.0.0-rc.2.22472.11",
-          "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
-          "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": "6.0.10",
-          "Microsoft.Extensions.Options": "7.0.0",
-          "NSwag.AspNetCore": "13.16.0",
+          "FluentValidation.AspNetCore": "11.2.2",
+          "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": "7.0.4",
+          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "7.0.4",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.4",
+          "Microsoft.AspNetCore.Identity.UI": "7.0.4",
+          "Microsoft.AspNetCore.SpaProxy": "7.0.4",
+          "Microsoft.EntityFrameworkCore.Tools": "7.0.4",
+          "Microsoft.Extensions.Options": "7.0.1",
+          "NSwag.AspNetCore": "13.18.2",
           "OnlineApplicationSystem.Application": "1.0.0",
-          "OnlineApplicationSystem.Infrastructure": "1.0.0"
+          "OnlineApplicationSystem.Infrastructure": "1.0.0",
+          "ZymLabs.NSwag.FluentValidation.AspNetCore": "0.6.2",
+          "coravel": "4.2.1"
         },
         "compile": {
           "bin/placeholder/WebUI.dll": {}
@@ -3196,6 +3237,21 @@
         "lib/netstandard2.1/Castle.Core.dll",
         "lib/netstandard2.1/Castle.Core.xml",
         "readme.txt"
+      ]
+    },
+    "Coravel/4.2.1": {
+      "sha512": "goj2P5yivyj5e3UwHyA9ET1s11US0V73Labc+KBT7fF+sZK5Uts/CE0lPAxgtWj+/uwM1bRpFDdAFNh+z7U2kw==",
+      "type": "package",
+      "path": "coravel/4.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "coravel.4.2.1.nupkg.sha512",
+        "coravel.nuspec",
+        "lib/netstandard2.0/Coravel.dll",
+        "lib/netstandard2.0/Coravel.xml",
+        "logo.png",
+        "readme.md"
       ]
     },
     "CsvHelper/15.0.10": {
@@ -3323,49 +3379,56 @@
         "lib/netstandard2.1/FluentAssertions.xml"
       ]
     },
-    "FluentValidation/10.3.4": {
-      "sha512": "hsGRtnhTlCrRbxIOkKp6rCBtkq3UV0i31ckcJtd5j1i99zqLgbQGcbxK0SMU63DIto94f++uIdRpoycu8ySnDQ==",
+    "FluentValidation/11.2.1": {
+      "sha512": "ZrQD0TGd0mHqf/zErZOEaba8cBeInaJj02nqinO+0La3uE08sJ5ScTYqsCbdx9fLHsX8rh+5KH5RtL2eOUS+OA==",
       "type": "package",
-      "path": "fluentvalidation/10.3.4",
+      "path": "fluentvalidation/11.2.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "README.md",
         "fluent-validation-icon.png",
-        "fluentvalidation.10.3.4.nupkg.sha512",
+        "fluentvalidation.11.2.1.nupkg.sha512",
         "fluentvalidation.nuspec",
         "lib/net5.0/FluentValidation.dll",
         "lib/net5.0/FluentValidation.xml",
+        "lib/net6.0/FluentValidation.dll",
+        "lib/net6.0/FluentValidation.xml",
         "lib/netstandard2.0/FluentValidation.dll",
         "lib/netstandard2.0/FluentValidation.xml",
         "lib/netstandard2.1/FluentValidation.dll",
         "lib/netstandard2.1/FluentValidation.xml"
       ]
     },
-    "FluentValidation.AspNetCore/10.3.4": {
-      "sha512": "YxJ6YH8Oh/DIyHHbjLdQkITGpksihDbznqEbKJy+uPfphdWwtlzaVSx1XyLotSj/bkPXOdLL8w5FPh1TA0Acpw==",
+    "FluentValidation.AspNetCore/11.2.2": {
+      "sha512": "jU/MHXqg9cnOU18dY75vorP2c2WDKMan4zegOPsoc34xZVjzTEtXP0fKvkDEdeaChUVooNWuRr27u9w3sYbEFA==",
       "type": "package",
-      "path": "fluentvalidation.aspnetcore/10.3.4",
+      "path": "fluentvalidation.aspnetcore/11.2.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "README.md",
         "fluent-validation-icon.png",
-        "fluentvalidation.aspnetcore.10.3.4.nupkg.sha512",
+        "fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
         "fluentvalidation.aspnetcore.nuspec",
         "lib/net5.0/FluentValidation.AspNetCore.dll",
         "lib/net5.0/FluentValidation.AspNetCore.xml",
+        "lib/net6.0/FluentValidation.AspNetCore.dll",
+        "lib/net6.0/FluentValidation.AspNetCore.xml",
         "lib/netcoreapp3.1/FluentValidation.AspNetCore.dll",
         "lib/netcoreapp3.1/FluentValidation.AspNetCore.xml"
       ]
     },
-    "FluentValidation.DependencyInjectionExtensions/10.3.4": {
-      "sha512": "LS0opGF4r/upI92Y+bToBzFqHYrfuHDWz9z9DN2hUn+/tmt9lN8n0bevyswabdKlTwL6s8vMhVQxHXM8wjOAbQ==",
+    "FluentValidation.DependencyInjectionExtensions/11.2.1": {
+      "sha512": "WqR2kt0OidUCg9xS+YOoiDmdCu7EnYLLgQb/bX+5fTTVor+90dWmr1OdJaWlLZvg2nbwV9EfxA9FZp91+JmQtg==",
       "type": "package",
-      "path": "fluentvalidation.dependencyinjectionextensions/10.3.4",
+      "path": "fluentvalidation.dependencyinjectionextensions/11.2.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "README.md",
         "fluent-validation-icon.png",
-        "fluentvalidation.dependencyinjectionextensions.10.3.4.nupkg.sha512",
+        "fluentvalidation.dependencyinjectionextensions.11.2.1.nupkg.sha512",
         "fluentvalidation.dependencyinjectionextensions.nuspec",
         "lib/netstandard2.0/FluentValidation.DependencyInjectionExtensions.dll",
         "lib/netstandard2.0/FluentValidation.DependencyInjectionExtensions.xml",
@@ -3485,10 +3548,10 @@
         "mediatr.extensions.microsoft.dependencyinjection.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.ApiAuthorization.IdentityServer/7.0.0-rc.2.22476.2": {
-      "sha512": "779m+eoZzOad/b5NlWu9Ivs7qUdbotErL7q30ktygKclNFWt19utILFjnAcKsCS+/9cYSoV/p9WrRXeMEoirwQ==",
+    "Microsoft.AspNetCore.ApiAuthorization.IdentityServer/7.0.4": {
+      "sha512": "a9HbRn1xfB1pqgNec32C577QChP4jYaQwqZa5698dpcr82ywY6DE3jBd+fed4HZ+8U+CENVk60eyFSn3CDAU+w==",
       "type": "package",
-      "path": "microsoft.aspnetcore.apiauthorization.identityserver/7.0.0-rc.2.22476.2",
+      "path": "microsoft.aspnetcore.apiauthorization.identityserver/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3496,14 +3559,14 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net7.0/Microsoft.AspNetCore.ApiAuthorization.IdentityServer.dll",
         "lib/net7.0/Microsoft.AspNetCore.ApiAuthorization.IdentityServer.xml",
-        "microsoft.aspnetcore.apiauthorization.identityserver.7.0.0-rc.2.22476.2.nupkg.sha512",
+        "microsoft.aspnetcore.apiauthorization.identityserver.7.0.4.nupkg.sha512",
         "microsoft.aspnetcore.apiauthorization.identityserver.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.0-rc.2.22476.2": {
-      "sha512": "sTNZLkyIJR+AewspVYBlcWb54EDuv3AkZDQ6jlnN60vFUIppxOfgVAhxqo4tNLAfbOnqGcX2zrjJ6UGGY6mIDA==",
+    "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.4": {
+      "sha512": "yMCO9yU1kNQ5MomCnGDNsjPyIvnxHu4U7AfRkLmzZuzCeOGGA5XiehmpfzzqlyIs8wbSR/c6jbuLexedfKgjgA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.authentication.jwtbearer/7.0.0-rc.2.22476.2",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3511,7 +3574,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
         "lib/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
-        "microsoft.aspnetcore.authentication.jwtbearer.7.0.0-rc.2.22476.2.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.7.0.4.nupkg.sha512",
         "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
       ]
     },
@@ -3530,10 +3593,10 @@
         "microsoft.aspnetcore.authentication.openidconnect.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Cryptography.Internal/7.0.0-rc.2.22476.2": {
-      "sha512": "s2uBHODsYV1euNveHJNwEf0O9nNXsbgb/6rbdOQZUXy6lCDJPC0mxjgUxeT3g/UczVPpQNbch5uO5WUzKirekg==",
+    "Microsoft.AspNetCore.Cryptography.Internal/7.0.4": {
+      "sha512": "DmdKVBQCY34nO9pm1CijbT+AZc8tndD1uGXLUySaznl63i+xTe4PB0Gl5hQY+XMdEpjGN1ShER1ULYuAnOl6Fw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.cryptography.internal/7.0.0-rc.2.22476.2",
+      "path": "microsoft.aspnetcore.cryptography.internal/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3545,14 +3608,14 @@
         "lib/net7.0/Microsoft.AspNetCore.Cryptography.Internal.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.xml",
-        "microsoft.aspnetcore.cryptography.internal.7.0.0-rc.2.22476.2.nupkg.sha512",
+        "microsoft.aspnetcore.cryptography.internal.7.0.4.nupkg.sha512",
         "microsoft.aspnetcore.cryptography.internal.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Cryptography.KeyDerivation/7.0.0-rc.2.22476.2": {
-      "sha512": "Ove59FmdBXRvDNnk/2UFBFJ7BswKA5Qoqj+Ux4RG27Ykc8Vvfz1j1i3ME09syV4FP5SHQsQMhOG6scOry05QJw==",
+    "Microsoft.AspNetCore.Cryptography.KeyDerivation/7.0.4": {
+      "sha512": "LeUReW5ArMgKDmoQuuVNf7mee2K57hwhBsavNkLqlmZvGOCWdj1ySHQewQeRrletHtpXgeOZp2B67YZYMUYa6Q==",
       "type": "package",
-      "path": "microsoft.aspnetcore.cryptography.keyderivation/7.0.0-rc.2.22476.2",
+      "path": "microsoft.aspnetcore.cryptography.keyderivation/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3564,7 +3627,7 @@
         "lib/net7.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
-        "microsoft.aspnetcore.cryptography.keyderivation.7.0.0-rc.2.22476.2.nupkg.sha512",
+        "microsoft.aspnetcore.cryptography.keyderivation.7.0.4.nupkg.sha512",
         "microsoft.aspnetcore.cryptography.keyderivation.nuspec"
       ]
     },
@@ -3587,10 +3650,10 @@
         "microsoft.aspnetcore.dataprotection.abstractions.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/7.0.0-rc.2.22476.2": {
-      "sha512": "d5YxOWRXS0H8Dxuazpg7B91wWzeeyUrOTDDLzFS3MHYzWGsPiNLNPX1cClAZ1Lu7/uVmPJfQ+md3fxyjB8Dkuw==",
+    "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/7.0.4": {
+      "sha512": "fWSKKaDyxP5OvIhGvSBDGsMRPCFC4mW+Fd63bILrzg/tEjkCpcKj245NOzl+fpsRcQP6OhM2vj9KhdtPu89x+g==",
       "type": "package",
-      "path": "microsoft.aspnetcore.diagnostics.entityframeworkcore/7.0.0-rc.2.22476.2",
+      "path": "microsoft.aspnetcore.diagnostics.entityframeworkcore/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3598,14 +3661,40 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net7.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll",
         "lib/net7.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.xml",
-        "microsoft.aspnetcore.diagnostics.entityframeworkcore.7.0.0-rc.2.22476.2.nupkg.sha512",
+        "microsoft.aspnetcore.diagnostics.entityframeworkcore.7.0.4.nupkg.sha512",
         "microsoft.aspnetcore.diagnostics.entityframeworkcore.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/7.0.0-rc.2.22476.2": {
-      "sha512": "h+37EZINuxQ2kNoeIcDKoP6ly7F/zGvvMq/Mye+RTz67UqcXrDB4Tqy0YJZA9UhSkcF7yBye0P1yrL4MKOtqJQ==",
+    "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
+      "sha512": "Nxs7Z1q3f1STfLYKJSVXCs1iBl+Ya6E8o4Oy1bCxJ/rNI44E/0f6tbsrVqAWfB7jlnJfyaAtIalBVxPKUPQb4Q==",
       "type": "package",
-      "path": "microsoft.aspnetcore.identity.entityframeworkcore/7.0.0-rc.2.22476.2",
+      "path": "microsoft.aspnetcore.http.abstractions/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.xml",
+        "microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Http.Features/2.2.0": {
+      "sha512": "ziFz5zH8f33En4dX81LW84I6XrYXKf9jg6aM39cM+LffN9KJahViKZ61dGMSO2gd3e+qe5yBRwsesvyqlZaSMg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.http.features/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.xml",
+        "microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.features.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/7.0.4": {
+      "sha512": "qs/wCiLjxedv5SByDwBBr60FsKHqFhDMe1tsuOP5FF3rA7/sue37bYFdSLpnkOIOnpwnMv8++T132+E1aipnPw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.identity.entityframeworkcore/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3613,14 +3702,14 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll",
         "lib/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml",
-        "microsoft.aspnetcore.identity.entityframeworkcore.7.0.0-rc.2.22476.2.nupkg.sha512",
+        "microsoft.aspnetcore.identity.entityframeworkcore.7.0.4.nupkg.sha512",
         "microsoft.aspnetcore.identity.entityframeworkcore.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Identity.UI/7.0.0-rc.2.22476.2": {
-      "sha512": "zMfa/9WURnRz+O+vLXqqpTklzV2TNfX29CDOWZ1LtTYNNul0Tw+a38towSpnFST5JnUc0aas79ME8c4YSdFcDw==",
+    "Microsoft.AspNetCore.Identity.UI/7.0.4": {
+      "sha512": "OYwrFtqXyxmluRKrTsju14fPUvqY3rI8YysUP2kaAGHD0kMkpZyWLrarGoZ8A8r/mVi1V+IwYY8pPTMoGEcAPA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.identity.ui/7.0.0-rc.2.22476.2",
+      "path": "microsoft.aspnetcore.identity.ui/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3635,7 +3724,7 @@
         "buildTransitive/Microsoft.AspNetCore.Identity.UI.targets",
         "lib/net7.0/Microsoft.AspNetCore.Identity.UI.dll",
         "lib/net7.0/Microsoft.AspNetCore.Identity.UI.xml",
-        "microsoft.aspnetcore.identity.ui.7.0.0-rc.2.22476.2.nupkg.sha512",
+        "microsoft.aspnetcore.identity.ui.7.0.4.nupkg.sha512",
         "microsoft.aspnetcore.identity.ui.nuspec",
         "staticwebassets/V4/css/site.css",
         "staticwebassets/V4/favicon.ico",
@@ -3753,10 +3842,10 @@
         "tasks/netstandard2.0/Microsoft.AspNetCore.Mvc.Testing.Tasks.dll"
       ]
     },
-    "Microsoft.AspNetCore.SpaProxy/7.0.0-rc.2.22476.2": {
-      "sha512": "U/hTfKlOQIwHz6GKKrQki9JtwdT9C603v8vl/S9Nf2KtSydsF6h7K9ge1A6cRKuKr9i00s9nqWb/GTzW41WOYg==",
+    "Microsoft.AspNetCore.SpaProxy/7.0.4": {
+      "sha512": "xgZoWvUZIHV3ywpMDFeAEnC+WH1LiBgw8sTTmWY7ZwDF1vDMQfVngWbDP20sWEDTijssT2BjHvO27/3shsh2JA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.spaproxy/7.0.0-rc.2.22476.2",
+      "path": "microsoft.aspnetcore.spaproxy/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3764,7 +3853,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "build/Microsoft.AspNetCore.SpaProxy.targets",
         "lib/net7.0/Microsoft.AspNetCore.SpaProxy.dll",
-        "microsoft.aspnetcore.spaproxy.7.0.0-rc.2.22476.2.nupkg.sha512",
+        "microsoft.aspnetcore.spaproxy.7.0.4.nupkg.sha512",
         "microsoft.aspnetcore.spaproxy.nuspec"
       ]
     },
@@ -3941,10 +4030,10 @@
         "version.txt"
       ]
     },
-    "Microsoft.Data.SqlClient/5.0.0": {
-      "sha512": "SSs/sdfcu3gwC04eNxXTZb3s4vA5JhxTx0oQh9lBamWVudSfH4NYs0Uoyndhzu726abnbHuXHUooOvgMfcbKUA==",
+    "Microsoft.Data.SqlClient/5.0.1": {
+      "sha512": "uu8dfrsx081cSbEevWuZAvqdmANDGJkbLBL2G3j0LAZxX1Oy8RCVAaC4Lcuak6jNicWP6CWvHqBTIEmQNSxQlw==",
       "type": "package",
-      "path": "microsoft.data.sqlclient/5.0.0",
+      "path": "microsoft.data.sqlclient/5.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3971,7 +4060,7 @@
         "lib/netstandard2.1/Microsoft.Data.SqlClient.dll",
         "lib/netstandard2.1/Microsoft.Data.SqlClient.pdb",
         "lib/netstandard2.1/Microsoft.Data.SqlClient.xml",
-        "microsoft.data.sqlclient.5.0.0.nupkg.sha512",
+        "microsoft.data.sqlclient.5.0.1.nupkg.sha512",
         "microsoft.data.sqlclient.nuspec",
         "ref/net462/Microsoft.Data.SqlClient.dll",
         "ref/net462/Microsoft.Data.SqlClient.pdb",
@@ -4001,16 +4090,16 @@
         "runtimes/win/lib/netstandard2.1/Microsoft.Data.SqlClient.pdb"
       ]
     },
-    "Microsoft.Data.SqlClient.SNI.runtime/5.0.0": {
-      "sha512": "1HkESJU1T/D8sJ1jlpEQRgx2SXCNyXzmUuS0hNBDyYGIAi7l8qlbaTptzSOUSXqmsz5MVQfo6+WFAIx8LQaRIQ==",
+    "Microsoft.Data.SqlClient.SNI.runtime/5.0.1": {
+      "sha512": "y0X5MxiNdbITJYoafJ2ruaX6hqO0twpCGR/ipiDOe85JKLU8WL4TuAQfDe5qtt3bND5Je26HnrarLSAMMnVTNg==",
       "type": "package",
-      "path": "microsoft.data.sqlclient.sni.runtime/5.0.0",
+      "path": "microsoft.data.sqlclient.sni.runtime/5.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.txt",
         "dotnet.png",
-        "microsoft.data.sqlclient.sni.runtime.5.0.0.nupkg.sha512",
+        "microsoft.data.sqlclient.sni.runtime.5.0.1.nupkg.sha512",
         "microsoft.data.sqlclient.sni.runtime.nuspec",
         "runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll",
         "runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll",
@@ -4018,10 +4107,10 @@
         "runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll"
       ]
     },
-    "Microsoft.EntityFrameworkCore/7.0.1": {
-      "sha512": "uvzJkdmqbB50COlCiNaBjWc4cl3kHBO9P7glPk6wK8xyLrli4xeVip+pmMyT/kYc2shWm1YdxegxFqKeCvQXAA==",
+    "Microsoft.EntityFrameworkCore/7.0.4": {
+      "sha512": "eNcsY3rft5ERJJcen80Jyg57EScjWZmvhwmFLYXmEOTdVqHG+wQZiMOXnO1b5RH3u2qTQq+Tpci7KGfLAG5Gtg==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore/7.0.1",
+      "path": "microsoft.entityframeworkcore/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4029,42 +4118,42 @@
         "buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props",
         "lib/net6.0/Microsoft.EntityFrameworkCore.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.xml",
-        "microsoft.entityframeworkcore.7.0.1.nupkg.sha512",
+        "microsoft.entityframeworkcore.7.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Abstractions/7.0.1": {
-      "sha512": "pPaoi2RHAkrsJ2kcGZGBiJFUXSS1LC+qET6HCn4hXP+X/kvIriJLv8lx6ddI6gTluGvm/lDgPAA0zZDXYaKf3A==",
+    "Microsoft.EntityFrameworkCore.Abstractions/7.0.4": {
+      "sha512": "6GbYvs4L5oFpYpMzwF05kdDgvX09UmMX7MpDtDlGI5ymijFwquwv+yvdijbtodOuu0yLUpc4n71x6eBdJ8v1xQ==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.abstractions/7.0.1",
+      "path": "microsoft.entityframeworkcore.abstractions/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.xml",
-        "microsoft.entityframeworkcore.abstractions.7.0.1.nupkg.sha512",
+        "microsoft.entityframeworkcore.abstractions.7.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.abstractions.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Analyzers/7.0.1": {
-      "sha512": "4A4NFkPFoRMdry24Hjdb5/sOH3tU3hzFePTGnSg8P+VBrFp/EO8kcA4L0hBzwbXj2HGNL8I/quYyS5GVtb4EOg==",
+    "Microsoft.EntityFrameworkCore.Analyzers/7.0.4": {
+      "sha512": "YRD4bViuaEPEsaBIL52DzXGzLCt3jYoE3wztYEW1QZYDl89hQ+ca0nvBO2mnMHmCXpU/2wlErrUyDp4x5B/3mg==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.analyzers/7.0.1",
+      "path": "microsoft.entityframeworkcore.analyzers/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll",
         "lib/netstandard2.0/_._",
-        "microsoft.entityframeworkcore.analyzers.7.0.1.nupkg.sha512",
+        "microsoft.entityframeworkcore.analyzers.7.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Design/7.0.0-rc.2.22472.11": {
-      "sha512": "re12RRSpAStNxvaoaaxFaaCgJRI3BhuC1gbAYZYSYOkmHrMW1vToRMsDE1E5I91AEleZAATU1RiTVCpmJmeMWA==",
+    "Microsoft.EntityFrameworkCore.Design/7.0.4": {
+      "sha512": "LI/ML3w17ap5IUmEKOPVnGJYi/XSDJW3Rf42utNF0e1tidmKtSkjwoTqIKLt2hE+jQJrlzeaqu5YiqdoFWVuZw==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.design/7.0.0-rc.2.22472.11",
+      "path": "microsoft.entityframeworkcore.design/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4072,63 +4161,63 @@
         "build/net6.0/Microsoft.EntityFrameworkCore.Design.props",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Design.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Design.xml",
-        "microsoft.entityframeworkcore.design.7.0.0-rc.2.22472.11.nupkg.sha512",
+        "microsoft.entityframeworkcore.design.7.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.design.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.InMemory/7.0.0-rc.2.22472.11": {
-      "sha512": "LzXL5U4qBuXFa2oEDgtJamR1GM2KDt01PZKe9G5S/SHlxuWnD2U82NbIVyO9TS01XmQWiNXgz5tGG8+nCWY3Mw==",
+    "Microsoft.EntityFrameworkCore.InMemory/7.0.4": {
+      "sha512": "enWK5KFD21mq6z1qs5i2PsGQbfud5hLF9erQvPCSC0HCSTQUuOqIxccUEbxu4QRrdqpjwVofZs+yNSM5qoe6bg==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.inmemory/7.0.0-rc.2.22472.11",
+      "path": "microsoft.entityframeworkcore.inmemory/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.xml",
-        "microsoft.entityframeworkcore.inmemory.7.0.0-rc.2.22472.11.nupkg.sha512",
+        "microsoft.entityframeworkcore.inmemory.7.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.inmemory.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Relational/7.0.1": {
-      "sha512": "F4EYKRhtnkjxp4BhKF3XDn+D3AKok6KIRZYAfaj6knx80CsjFeEUxFpSoqlB9r7ZJTgz30f2oZpHOO4qasIkhA==",
+    "Microsoft.EntityFrameworkCore.Relational/7.0.4": {
+      "sha512": "L41+VonK6L0IurFHopoe5yY+m3MD26OMocKLPPR/XKxnazzZUcGPz0IGJpVnwpZyKVPfEIAnD5vmm60meYr1NA==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.relational/7.0.1",
+      "path": "microsoft.entityframeworkcore.relational/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.xml",
-        "microsoft.entityframeworkcore.relational.7.0.1.nupkg.sha512",
+        "microsoft.entityframeworkcore.relational.7.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.relational.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.SqlServer/7.0.0-rc.2.22472.11": {
-      "sha512": "ID3v6athJq8tLvIB9LIbip1r5nvz+lCjnBw22570oLLUBbC/nFtjadQih/WBAHqk+wzHGeh6+72n1YxxedoqJw==",
+    "Microsoft.EntityFrameworkCore.SqlServer/7.0.4": {
+      "sha512": "3yUw/jaMhM65pfRqJVfLY3cOSV0qqh4dnl+VXuCxgUYcAtBaEcSEa12QvJWz9FFGh3fDN/kbm560oXcl2lDNyQ==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.sqlserver/7.0.0-rc.2.22472.11",
+      "path": "microsoft.entityframeworkcore.sqlserver/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.SqlServer.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.SqlServer.xml",
-        "microsoft.entityframeworkcore.sqlserver.7.0.0-rc.2.22472.11.nupkg.sha512",
+        "microsoft.entityframeworkcore.sqlserver.7.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlserver.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Tools/7.0.0-rc.2.22472.11": {
-      "sha512": "6C82gJdvF/gMvkx6s2PqZwJvV92zUKj5UJMFLJJyRRNukExlGwiBoQpMvDcxVL7HgSDNQvUk57kvwzmib81eRw==",
+    "Microsoft.EntityFrameworkCore.Tools/7.0.4": {
+      "sha512": "58hDB+ENGisuSjJBl1RBHL9qzFJTukFSQFl/wCU8/3ApcOH/rPrRG4PWThiJTmfHRmh8H8HExdYbtkv7wa7BLg==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.tools/7.0.0-rc.2.22472.11",
+      "path": "microsoft.entityframeworkcore.tools/7.0.4",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/_._",
-        "microsoft.entityframeworkcore.tools.7.0.0-rc.2.22472.11.nupkg.sha512",
+        "microsoft.entityframeworkcore.tools.7.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.tools.nuspec",
         "tools/EntityFrameworkCore.PS2.psd1",
         "tools/EntityFrameworkCore.PS2.psm1",
@@ -4482,10 +4571,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Configuration.Binder/7.0.0-rc.2.22472.3": {
-      "sha512": "Wv5mIUllalppHmP/K+gvzNFUmohtjvnOTVC16es01N57Ll0d89OZl0VG8sVmB6NB3wd8W7Twm7EuBgJ/WnhNWw==",
+    "Microsoft.Extensions.Configuration.Binder/7.0.4": {
+      "sha512": "8+XPvJnHZsYgHOQlcMuQe7QNF5KdVKHH1F/wW3nd8/u81Gk/XFAYMDP0Lpz18h7/AM95M662vvqMorcYxCBB4w==",
       "type": "package",
-      "path": "microsoft.extensions.configuration.binder/7.0.0-rc.2.22472.3",
+      "path": "microsoft.extensions.configuration.binder/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4504,7 +4593,7 @@
         "lib/net7.0/Microsoft.Extensions.Configuration.Binder.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.xml",
-        "microsoft.extensions.configuration.binder.7.0.0-rc.2.22472.3.nupkg.sha512",
+        "microsoft.extensions.configuration.binder.7.0.4.nupkg.sha512",
         "microsoft.extensions.configuration.binder.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -4708,10 +4797,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.DependencyModel/7.0.0-rc.2.22472.3": {
-      "sha512": "lzUgTQeWdnQwsbt6ODHJ7y+4VDvZAVWVllPfvbaHUtNg3al3tcz/HVzvNeveqZrd8QjtybuaTEXyN6MY0y3mFA==",
+    "Microsoft.Extensions.DependencyModel/7.0.0": {
+      "sha512": "oONNYd71J3LzkWc4fUHl3SvMfiQMYUCo/mDHDEu76hYYxdhdrPYv6fvGv9nnKVyhE9P0h20AU8RZB5OOWQcAXg==",
       "type": "package",
-      "path": "microsoft.extensions.dependencymodel/7.0.0-rc.2.22472.3",
+      "path": "microsoft.extensions.dependencymodel/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4731,68 +4820,15 @@
         "lib/net7.0/Microsoft.Extensions.DependencyModel.xml",
         "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.dll",
         "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.xml",
-        "microsoft.extensions.dependencymodel.7.0.0-rc.2.22472.3.nupkg.sha512",
+        "microsoft.extensions.dependencymodel.7.0.0.nupkg.sha512",
         "microsoft.extensions.dependencymodel.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Diagnostics.HealthChecks/6.0.10": {
-      "sha512": "YmTyFOc7xx2/9FKuAlCmcWYKYLr0bYgNrRlcNPy/vc8qXnxnRV+kua6z96RUXSJVSQadCbJcEjmnTUMTEVfXOQ==",
+    "Microsoft.Extensions.FileProviders.Abstractions/7.0.0": {
+      "sha512": "NyawiW9ZT/liQb34k9YqBSNPLuuPkrjMgQZ24Y/xXX1RoiBkLUdPMaQTmxhZ5TYu8ZKZ9qayzil75JX95vGQUg==",
       "type": "package",
-      "path": "microsoft.extensions.diagnostics.healthchecks/6.0.10",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/Microsoft.Extensions.Diagnostics.HealthChecks.dll",
-        "lib/net461/Microsoft.Extensions.Diagnostics.HealthChecks.xml",
-        "lib/net6.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll",
-        "lib/net6.0/Microsoft.Extensions.Diagnostics.HealthChecks.xml",
-        "lib/netstandard2.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll",
-        "lib/netstandard2.0/Microsoft.Extensions.Diagnostics.HealthChecks.xml",
-        "microsoft.extensions.diagnostics.healthchecks.6.0.10.nupkg.sha512",
-        "microsoft.extensions.diagnostics.healthchecks.nuspec"
-      ]
-    },
-    "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions/6.0.10": {
-      "sha512": "U1PO967am1BIWbxBiLcYzVx8KOTYa9NvhBNgTn8Oii3LcsjvIwHzM+GTYy6bTiHnAFAlK5HAjxusAnAHSHJRoA==",
-      "type": "package",
-      "path": "microsoft.extensions.diagnostics.healthchecks.abstractions/6.0.10",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll",
-        "lib/net461/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.xml",
-        "lib/net6.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll",
-        "lib/net6.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.xml",
-        "lib/netstandard2.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll",
-        "lib/netstandard2.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.xml",
-        "microsoft.extensions.diagnostics.healthchecks.abstractions.6.0.10.nupkg.sha512",
-        "microsoft.extensions.diagnostics.healthchecks.abstractions.nuspec"
-      ]
-    },
-    "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore/6.0.10": {
-      "sha512": "infVv0xUzQSCkm+GGEJu51mu/mz3Q+D7K/XkgYRjPyUgJ89Ve67yv37F8ePcL+RKCajt7F08GDQ3auiuoKiNUw==",
-      "type": "package",
-      "path": "microsoft.extensions.diagnostics.healthchecks.entityframeworkcore/6.0.10",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net6.0/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore.dll",
-        "lib/net6.0/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore.xml",
-        "microsoft.extensions.diagnostics.healthchecks.entityframeworkcore.6.0.10.nupkg.sha512",
-        "microsoft.extensions.diagnostics.healthchecks.entityframeworkcore.nuspec"
-      ]
-    },
-    "Microsoft.Extensions.FileProviders.Abstractions/7.0.0-rc.2.22472.3": {
-      "sha512": "rJYuHNjzvNm1cy7s5wkiTqYM5RKnhbM7NG74VAZDxDOgXSEtNhBABeWwMRDELgVPX6zJsD5FiuDROij172LUOQ==",
-      "type": "package",
-      "path": "microsoft.extensions.fileproviders.abstractions/7.0.0-rc.2.22472.3",
+      "path": "microsoft.extensions.fileproviders.abstractions/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4811,15 +4847,15 @@
         "lib/net7.0/Microsoft.Extensions.FileProviders.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Abstractions.xml",
-        "microsoft.extensions.fileproviders.abstractions.7.0.0-rc.2.22472.3.nupkg.sha512",
+        "microsoft.extensions.fileproviders.abstractions.7.0.0.nupkg.sha512",
         "microsoft.extensions.fileproviders.abstractions.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.FileProviders.Embedded/7.0.0-rc.2.22476.2": {
-      "sha512": "R4RKPRjy5815SFsW6MfA3tQZtlJBbIykHoSLBiTtmuGtbr05liqo7WNxqJOHD9whhNEG/H82WagutXQXrU+hwQ==",
+    "Microsoft.Extensions.FileProviders.Embedded/7.0.4": {
+      "sha512": "WFRadIy31Dk4oJzICMz3m++pY8mHst+YLP7GAHgudo4RsFQkOG1aa8kaemBHJ+bjyCS2LWwKkxuv9c53C3F8PA==",
       "type": "package",
-      "path": "microsoft.extensions.fileproviders.embedded/7.0.0-rc.2.22476.2",
+      "path": "microsoft.extensions.fileproviders.embedded/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4834,7 +4870,7 @@
         "lib/net7.0/Microsoft.Extensions.FileProviders.Embedded.xml",
         "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.dll",
         "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.xml",
-        "microsoft.extensions.fileproviders.embedded.7.0.0-rc.2.22476.2.nupkg.sha512",
+        "microsoft.extensions.fileproviders.embedded.7.0.4.nupkg.sha512",
         "microsoft.extensions.fileproviders.embedded.nuspec",
         "tasks/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task.dll"
       ]
@@ -4951,10 +4987,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Http/7.0.0-rc.2.22472.3": {
-      "sha512": "p0jlQ1sdjStbwcGXcZ/1M+9Uegz8Idy6oSXCeutUSWMA5xUuX7eYD2vAt7B5exDUZwJOfOGj/XTY0zfoDW1sAg==",
+    "Microsoft.Extensions.Http/7.0.0": {
+      "sha512": "9Pq9f/CvOSz0t9yQa6g1uWpxa2sm13daLFm8EZwy9MaQUjKXWdNUXQwIxwhmba5N83UIqURiPHSNqGK1vfWF2w==",
       "type": "package",
-      "path": "microsoft.extensions.http/7.0.0-rc.2.22472.3",
+      "path": "microsoft.extensions.http/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4973,15 +5009,15 @@
         "lib/net7.0/Microsoft.Extensions.Http.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Http.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Http.xml",
-        "microsoft.extensions.http.7.0.0-rc.2.22472.3.nupkg.sha512",
+        "microsoft.extensions.http.7.0.0.nupkg.sha512",
         "microsoft.extensions.http.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Identity.Core/7.0.0-rc.2.22476.2": {
-      "sha512": "gz9WmtG9slSaPWa/0xe/QbbI1BJ5cer1RSlT3llm9e2lPggD+ChxbkQgxTzp2Iak/x0nhXNk0EWXyZ9ozrjQPQ==",
+    "Microsoft.Extensions.Identity.Core/7.0.4": {
+      "sha512": "IIY2ow5zLByl0T77Bj26o/zIhPFRkVl94y+FyUmnG2Ywl62UEp0nw3Ckc/LuzaQmuZaCjPtZcR40TxH4uz4lQA==",
       "type": "package",
-      "path": "microsoft.extensions.identity.core/7.0.0-rc.2.22476.2",
+      "path": "microsoft.extensions.identity.core/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4993,14 +5029,14 @@
         "lib/net7.0/Microsoft.Extensions.Identity.Core.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.xml",
-        "microsoft.extensions.identity.core.7.0.0-rc.2.22476.2.nupkg.sha512",
+        "microsoft.extensions.identity.core.7.0.4.nupkg.sha512",
         "microsoft.extensions.identity.core.nuspec"
       ]
     },
-    "Microsoft.Extensions.Identity.Stores/7.0.0-rc.2.22476.2": {
-      "sha512": "lY4XZCBANpA6sjsGX/euCybbSti8/hfQ08eeDthYd6PKX4eGHIJYkKwZes63wSjr4iqzJ6ZRPJU6/xD/s8w6Rg==",
+    "Microsoft.Extensions.Identity.Stores/7.0.4": {
+      "sha512": "+VXIcS+Nakyv/yiaILmAWyG7PmPxOZjhx5UZRFqG41ObV7xES+o5teZ1rXV1R6X4mASzliQs4OAPtbpgG6Estw==",
       "type": "package",
-      "path": "microsoft.extensions.identity.stores/7.0.0-rc.2.22476.2",
+      "path": "microsoft.extensions.identity.stores/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5012,7 +5048,7 @@
         "lib/net7.0/Microsoft.Extensions.Identity.Stores.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.xml",
-        "microsoft.extensions.identity.stores.7.0.0-rc.2.22476.2.nupkg.sha512",
+        "microsoft.extensions.identity.stores.7.0.4.nupkg.sha512",
         "microsoft.extensions.identity.stores.nuspec"
       ]
     },
@@ -5250,10 +5286,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Options/7.0.0": {
-      "sha512": "lP1yBnTTU42cKpMozuafbvNtQ7QcBjr/CcK3bYOGEMH55Fjt+iecXjT6chR7vbgCMqy3PG3aNQSZgo/EuY/9qQ==",
+    "Microsoft.Extensions.Options/7.0.1": {
+      "sha512": "pZRDYdN1FpepOIfHU62QoBQ6zdAoTvnjxFfqAzEd9Jhb2dfhA5i6jeTdgGgcgTWFRC7oT0+3XrbQu4LjvgX1Nw==",
       "type": "package",
-      "path": "microsoft.extensions.options/7.0.0",
+      "path": "microsoft.extensions.options/7.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5274,7 +5310,7 @@
         "lib/netstandard2.0/Microsoft.Extensions.Options.xml",
         "lib/netstandard2.1/Microsoft.Extensions.Options.dll",
         "lib/netstandard2.1/Microsoft.Extensions.Options.xml",
-        "microsoft.extensions.options.7.0.0.nupkg.sha512",
+        "microsoft.extensions.options.7.0.1.nupkg.sha512",
         "microsoft.extensions.options.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -6197,10 +6233,10 @@
         "moq.png"
       ]
     },
-    "Namotion.Reflection/2.0.10": {
-      "sha512": "KHndyscosup/AnzMQLzW0g6+z0h2NCmTyW9hnEL/T/ZkiUIQWBA1RadYgUT+dXuMORmQI/BXm+DXYySWwq8h0Q==",
+    "Namotion.Reflection/2.1.0": {
+      "sha512": "9t63RauDp+CWzMCcCRAGXLRqEVIw0djYisGaDWhgHuXSaz/Djjpp9gpumCWVLpuDHLNf4HUmYWJeBt4AUyJSWA==",
       "type": "package",
-      "path": "namotion.reflection/2.0.10",
+      "path": "namotion.reflection/2.1.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6212,7 +6248,7 @@
         "lib/netstandard1.0/Namotion.Reflection.xml",
         "lib/netstandard2.0/Namotion.Reflection.dll",
         "lib/netstandard2.0/Namotion.Reflection.xml",
-        "namotion.reflection.2.0.10.nupkg.sha512",
+        "namotion.reflection.2.1.0.nupkg.sha512",
         "namotion.reflection.nuspec"
       ]
     },
@@ -6358,14 +6394,15 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Newtonsoft.Json/13.0.1": {
-      "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+    "Newtonsoft.Json/13.0.3": {
+      "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "type": "package",
-      "path": "newtonsoft.json/13.0.1",
+      "path": "newtonsoft.json/13.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.md",
+        "README.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
         "lib/net35/Newtonsoft.Json.dll",
@@ -6374,21 +6411,23 @@
         "lib/net40/Newtonsoft.Json.xml",
         "lib/net45/Newtonsoft.Json.dll",
         "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
         "lib/netstandard1.0/Newtonsoft.Json.dll",
         "lib/netstandard1.0/Newtonsoft.Json.xml",
         "lib/netstandard1.3/Newtonsoft.Json.dll",
         "lib/netstandard1.3/Newtonsoft.Json.xml",
         "lib/netstandard2.0/Newtonsoft.Json.dll",
         "lib/netstandard2.0/Newtonsoft.Json.xml",
-        "newtonsoft.json.13.0.1.nupkg.sha512",
+        "newtonsoft.json.13.0.3.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
     },
-    "NJsonSchema/10.7.1": {
-      "sha512": "mJcZHgin2XpvxfprUylh3YsL5dNAS6Po9WVhsbY9Cqu3fUWM3EXQfwq2rpJ78wgBz204gd4bLHVarwGPXDdqvg==",
+    "NJsonSchema/10.8.0": {
+      "sha512": "lChjsLWaxyvElh4WJjVhdIiCtx7rimYGFTxtSi2pAkZf0ZnKaXYIX484HCVyzbDDHejDZPgOrcfAJ3kqNSTONw==",
       "type": "package",
-      "path": "njsonschema/10.7.1",
+      "path": "njsonschema/10.8.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6401,14 +6440,14 @@
         "lib/netstandard1.0/NJsonSchema.xml",
         "lib/netstandard2.0/NJsonSchema.dll",
         "lib/netstandard2.0/NJsonSchema.xml",
-        "njsonschema.10.7.1.nupkg.sha512",
+        "njsonschema.10.8.0.nupkg.sha512",
         "njsonschema.nuspec"
       ]
     },
-    "NJsonSchema.Yaml/10.7.1": {
-      "sha512": "FSsjohtBX7AgGgFhrb3KmMZ7s7LS/wVHacz/64owLoVIKib/ZcR/7wDud2tChfn6ZHHiSCZrCJapeY2FSGZ46A==",
+    "NJsonSchema.Yaml/10.8.0": {
+      "sha512": "sygi7CN1AQHFNfpk/RRgsAMl+5tTM65Rajau3QPKoflJoZbxPQLBgZZrH7SMINumkW61JqDy6EhKfHsxngTzqw==",
       "type": "package",
-      "path": "njsonschema.yaml/10.7.1",
+      "path": "njsonschema.yaml/10.8.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6416,14 +6455,14 @@
         "lib/net45/NJsonSchema.Yaml.dll",
         "lib/netstandard1.3/NJsonSchema.Yaml.dll",
         "lib/netstandard2.0/NJsonSchema.Yaml.dll",
-        "njsonschema.yaml.10.7.1.nupkg.sha512",
+        "njsonschema.yaml.10.8.0.nupkg.sha512",
         "njsonschema.yaml.nuspec"
       ]
     },
-    "Npgsql/7.0.1": {
-      "sha512": "+s2gUPA37wDy9B3mE7ZN8xhfnSrf56OCR8ELMZkEbNxk9MyWS54o7ttrngmu7s7/C2ldjAWMdggkpMMPCZsKSg==",
+    "Npgsql/7.0.2": {
+      "sha512": "/k12hfmg4PI0IU2UTLN6n0s/FKUfox8+RdWtzgADYZoyks7GH82WLyXm27eeqatsi/nmiK9lO3HyULlTD87szg==",
       "type": "package",
-      "path": "npgsql/7.0.1",
+      "path": "npgsql/7.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6440,15 +6479,15 @@
         "lib/netstandard2.0/Npgsql.xml",
         "lib/netstandard2.1/Npgsql.dll",
         "lib/netstandard2.1/Npgsql.xml",
-        "npgsql.7.0.1.nupkg.sha512",
+        "npgsql.7.0.2.nupkg.sha512",
         "npgsql.nuspec",
         "postgresql.png"
       ]
     },
-    "Npgsql.EntityFrameworkCore.PostgreSQL/7.0.1": {
-      "sha512": "8txq2CsPWvWO4azZSBmKLKmYsL6dkGrarX2hJZY0Djx6uWZJGH9W0OTE1oHqn+aC5L+xrzyS+TM3kiKw2gdXuA==",
+    "Npgsql.EntityFrameworkCore.PostgreSQL/7.0.3": {
+      "sha512": "3iVz7vcPAZt6iBSjJ8XyjtIP19jilNOJqTiTCs2UHWhpTyP+FbNhnzCBE/oyD3n49McmmenjKpva+yTy7q1z/g==",
       "type": "package",
-      "path": "npgsql.entityframeworkcore.postgresql/7.0.1",
+      "path": "npgsql.entityframeworkcore.postgresql/7.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6457,15 +6496,15 @@
         "lib/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.xml",
         "lib/net7.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll",
         "lib/net7.0/Npgsql.EntityFrameworkCore.PostgreSQL.xml",
-        "npgsql.entityframeworkcore.postgresql.7.0.1.nupkg.sha512",
+        "npgsql.entityframeworkcore.postgresql.7.0.3.nupkg.sha512",
         "npgsql.entityframeworkcore.postgresql.nuspec",
         "postgresql.png"
       ]
     },
-    "NSwag.Annotations/13.16.0": {
-      "sha512": "JbA8RqECR2mr1da1IHQc1PY/NXl/zX91SO3ES4lbRR+7gs/i1uS1G+ogBMl2ZR39wiiyfCqJnusS+tIURVZSmw==",
+    "NSwag.Annotations/13.18.2": {
+      "sha512": "2zDLZXEU1PVuvdMc1k+SIkLonp8vPRHAkto6qQfCeCPqhDaF82+FOWe3TLJIYBS8IC7aV/mT+eoqJLeZvXiN4A==",
       "type": "package",
-      "path": "nswag.annotations/13.16.0",
+      "path": "nswag.annotations/13.18.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6476,14 +6515,14 @@
         "lib/netstandard1.0/NSwag.Annotations.xml",
         "lib/netstandard2.0/NSwag.Annotations.dll",
         "lib/netstandard2.0/NSwag.Annotations.xml",
-        "nswag.annotations.13.16.0.nupkg.sha512",
+        "nswag.annotations.13.18.2.nupkg.sha512",
         "nswag.annotations.nuspec"
       ]
     },
-    "NSwag.AspNetCore/13.16.0": {
-      "sha512": "mr6Km59/epNVMArdxigvr3BPdz17GKvp7x9ay73v6r6dXTk65is1Lb4GYhw1PKDIBYayd9VwGZ+ujLkvvb1H5Q==",
+    "NSwag.AspNetCore/13.18.2": {
+      "sha512": "ueewpltbJpZGWgR3BkLXQRX1g7ZtzNl7sT5DI90lNufJhLWnjC5nAfxRTP4J8nqO1vR79zLYzzA5ZwsusZaTpA==",
       "type": "package",
-      "path": "nswag.aspnetcore/13.16.0",
+      "path": "nswag.aspnetcore/13.18.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6498,20 +6537,22 @@
         "lib/net5.0/NSwag.AspNetCore.xml",
         "lib/net6.0/NSwag.AspNetCore.dll",
         "lib/net6.0/NSwag.AspNetCore.xml",
+        "lib/net7.0/NSwag.AspNetCore.dll",
+        "lib/net7.0/NSwag.AspNetCore.xml",
         "lib/netcoreapp3.1/NSwag.AspNetCore.dll",
         "lib/netcoreapp3.1/NSwag.AspNetCore.xml",
         "lib/netstandard1.6/NSwag.AspNetCore.dll",
         "lib/netstandard1.6/NSwag.AspNetCore.xml",
         "lib/netstandard2.0/NSwag.AspNetCore.dll",
         "lib/netstandard2.0/NSwag.AspNetCore.xml",
-        "nswag.aspnetcore.13.16.0.nupkg.sha512",
+        "nswag.aspnetcore.13.18.2.nupkg.sha512",
         "nswag.aspnetcore.nuspec"
       ]
     },
-    "NSwag.Core/13.16.0": {
-      "sha512": "scjeD4FGzG4MEI82uM5hVZQk+tVNUChQSBObxpywG8oEgOW+UwILrmSlxds3Z0JOK7t5xYQUO3gdMOeVnIYXUQ==",
+    "NSwag.Core/13.18.2": {
+      "sha512": "QM6OnVtUkD62fi0lgFF65KbZ0Y8ToGD+Rb4W3Nz6ymCWWfVbMwkn8xUxIjWSLsOEYJCbLvBBeGt+oBNrJwxb+A==",
       "type": "package",
-      "path": "nswag.core/13.16.0",
+      "path": "nswag.core/13.18.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6522,14 +6563,14 @@
         "lib/netstandard1.0/NSwag.Core.xml",
         "lib/netstandard2.0/NSwag.Core.dll",
         "lib/netstandard2.0/NSwag.Core.xml",
-        "nswag.core.13.16.0.nupkg.sha512",
+        "nswag.core.13.18.2.nupkg.sha512",
         "nswag.core.nuspec"
       ]
     },
-    "NSwag.Core.Yaml/13.16.0": {
-      "sha512": "2txac6ZLMTcfprCBnLuKFtHqio8pWjlZ8Lqqz/0ZoZmSnBQBOVE4pAVrAn/EW8r2K3kdP02uE2Lk32YgFPGIgw==",
+    "NSwag.Core.Yaml/13.18.2": {
+      "sha512": "y+h+4jrN3BC0B3v1Qg0Fr3jrGTB5nR5RAn5ZG5qBveiazeB9VDfR5cP9URN6wb3VypahHRzYryUB2KFZuiS22A==",
       "type": "package",
-      "path": "nswag.core.yaml/13.16.0",
+      "path": "nswag.core.yaml/13.18.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6537,14 +6578,14 @@
         "lib/net45/NSwag.Core.Yaml.dll",
         "lib/netstandard1.3/NSwag.Core.Yaml.dll",
         "lib/netstandard2.0/NSwag.Core.Yaml.dll",
-        "nswag.core.yaml.13.16.0.nupkg.sha512",
+        "nswag.core.yaml.13.18.2.nupkg.sha512",
         "nswag.core.yaml.nuspec"
       ]
     },
-    "NSwag.Generation/13.16.0": {
-      "sha512": "JUu6eeJJmqFDvu3vo4zqaiWKyP7Gh6eVYt2kTTN/BpLJtR3oVaIk5iQDdxNvWjVpX5XNKPIZBGIVJmWne+S2aA==",
+    "NSwag.Generation/13.18.2": {
+      "sha512": "hmdi+kXwKTgxu2aYgaILDw2nKvco1/wEd1RXaVNIz4ck6yHTJ58ANVcUjN3ytmL//f+hKEKWZznTi4YQW7jtpQ==",
       "type": "package",
-      "path": "nswag.generation/13.16.0",
+      "path": "nswag.generation/13.18.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6555,14 +6596,14 @@
         "lib/netstandard1.0/NSwag.Generation.xml",
         "lib/netstandard2.0/NSwag.Generation.dll",
         "lib/netstandard2.0/NSwag.Generation.xml",
-        "nswag.generation.13.16.0.nupkg.sha512",
+        "nswag.generation.13.18.2.nupkg.sha512",
         "nswag.generation.nuspec"
       ]
     },
-    "NSwag.Generation.AspNetCore/13.16.0": {
-      "sha512": "0dy9X0/EnwweQxk33QAYp0ssQ5t7lD8OXWMOlq/etCZnU8XyKnoHJUXpP/5T1TppyU0Tlr88FuU8ojHbr9DJGw==",
+    "NSwag.Generation.AspNetCore/13.18.2": {
+      "sha512": "D+yfRbXtv/wDan1oEkskGWejlCiUTdLlV93qynay1Xp1HmnC0XYspjLkfMGr9kqYX4CY9SrMUnDUsRNeyOoR/g==",
       "type": "package",
-      "path": "nswag.generation.aspnetcore/13.16.0",
+      "path": "nswag.generation.aspnetcore/13.18.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6573,13 +6614,15 @@
         "lib/net5.0/NSwag.Generation.AspNetCore.xml",
         "lib/net6.0/NSwag.Generation.AspNetCore.dll",
         "lib/net6.0/NSwag.Generation.AspNetCore.xml",
+        "lib/net7.0/NSwag.Generation.AspNetCore.dll",
+        "lib/net7.0/NSwag.Generation.AspNetCore.xml",
         "lib/netcoreapp3.1/NSwag.Generation.AspNetCore.dll",
         "lib/netcoreapp3.1/NSwag.Generation.AspNetCore.xml",
         "lib/netstandard1.6/NSwag.Generation.AspNetCore.dll",
         "lib/netstandard1.6/NSwag.Generation.AspNetCore.xml",
         "lib/netstandard2.0/NSwag.Generation.AspNetCore.dll",
         "lib/netstandard2.0/NSwag.Generation.AspNetCore.xml",
-        "nswag.generation.aspnetcore.13.16.0.nupkg.sha512",
+        "nswag.generation.aspnetcore.13.18.2.nupkg.sha512",
         "nswag.generation.aspnetcore.nuspec"
       ]
     },
@@ -6679,10 +6722,10 @@
         "respawn.nuspec"
       ]
     },
-    "RestSharp/109.0.0-preview.1": {
-      "sha512": "wzWstaw5D/AZzoKfoQJye8Kmhupx652vF4TbkULploy5lTkbDSsBKbHoQoc/gaHWCphlyrSOzJ/cradjgf3I1A==",
+    "RestSharp/109.0.1": {
+      "sha512": "OkJ23uaV8qwCKuR7RKBUFlnXxIDZ7P1jEaoDawXgysujIcWZgIwE6p90kJZxY9EVv9ESjZtGlSmP8k+kOfDH9g==",
       "type": "package",
-      "path": "restsharp/109.0.0-preview.1",
+      "path": "restsharp/109.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6694,15 +6737,15 @@
         "lib/net7.0/RestSharp.xml",
         "lib/netstandard2.0/RestSharp.dll",
         "lib/netstandard2.0/RestSharp.xml",
-        "restsharp.109.0.0-preview.1.nupkg.sha512",
+        "restsharp.109.0.1.nupkg.sha512",
         "restsharp.nuspec",
         "restsharp.png"
       ]
     },
-    "SixLabors.ImageSharp/2.1.3": {
-      "sha512": "8yonNRWX3vUE9k29ta0Hbfa0AEc0hbDjSH/nZ3vOTJEXmY6hLnGsjDKoz96Z+AgOsrdkAu6PdL/Ebaf70aitzw==",
+    "SixLabors.ImageSharp/2.1.4": {
+      "sha512": "K6F39YCm/MaOYT0iw9lMa8tBcz2eF8JaNMneo0EnRrml6k+8EQNSKXqb8yJTq2HHkWLlRHZl6UKMn02YmR/G3g==",
       "type": "package",
-      "path": "sixlabors.imagesharp/2.1.3",
+      "path": "sixlabors.imagesharp/2.1.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6717,7 +6760,7 @@
         "lib/netstandard2.1/SixLabors.ImageSharp.dll",
         "lib/netstandard2.1/SixLabors.ImageSharp.xml",
         "sixlabors.imagesharp.128.png",
-        "sixlabors.imagesharp.2.1.3.nupkg.sha512",
+        "sixlabors.imagesharp.2.1.4.nupkg.sha512",
         "sixlabors.imagesharp.nuspec"
       ]
     },
@@ -8132,10 +8175,10 @@
         "version.txt"
       ]
     },
-    "System.Text.Encodings.Web/7.0.0-rc.2.22472.3": {
-      "sha512": "o9O/FcXxh8L3Y9k4rPRPc5zp8c0DO4YUUDbOYnrLKufMGn/K4ZHYNURYbCqoMmYRiviiny6EYC4r2YMrf8SIYQ==",
+    "System.Text.Encodings.Web/7.0.0": {
+      "sha512": "OP6umVGxc0Z0MvZQBVigj4/U31Pw72ITihDWP9WiWDm+q5aoe0GaJivsfYGq53o6dxH7DcXWiCTl7+0o2CGdmg==",
       "type": "package",
-      "path": "system.text.encodings.web/7.0.0-rc.2.22472.3",
+      "path": "system.text.encodings.web/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8158,15 +8201,15 @@
         "runtimes/browser/lib/net6.0/System.Text.Encodings.Web.xml",
         "runtimes/browser/lib/net7.0/System.Text.Encodings.Web.dll",
         "runtimes/browser/lib/net7.0/System.Text.Encodings.Web.xml",
-        "system.text.encodings.web.7.0.0-rc.2.22472.3.nupkg.sha512",
+        "system.text.encodings.web.7.0.0.nupkg.sha512",
         "system.text.encodings.web.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Text.Json/7.0.0-rc.2.22472.3": {
-      "sha512": "/fSjSM1v79RTMCn9PjifYevLdOKwo37+KrNKYJES+UeqxHuNmGt3syOdCYikE6/MDOKnii65bBygG2MsCtyP1A==",
+    "System.Text.Json/7.0.2": {
+      "sha512": "/LZf/JrGyilojqwpaywb+sSz8Tew7ij4K/Sk+UW8AKfAK7KRhR6mKpKtTm06cYA7bCpGTWfYksIW+mVsdxPegQ==",
       "type": "package",
-      "path": "system.text.json/7.0.0-rc.2.22472.3",
+      "path": "system.text.json/7.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8229,7 +8272,7 @@
         "lib/net7.0/System.Text.Json.xml",
         "lib/netstandard2.0/System.Text.Json.dll",
         "lib/netstandard2.0/System.Text.Json.xml",
-        "system.text.json.7.0.0-rc.2.22472.3.nupkg.sha512",
+        "system.text.json.7.0.2.nupkg.sha512",
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -8386,6 +8429,32 @@
         "yamldotnet.nuspec"
       ]
     },
+    "ZymLabs.NSwag.FluentValidation/0.6.2": {
+      "sha512": "oo6Dx/D5pCMsCtSCuN9zpcykwLajW1qylUtpatpUBMdTuPca+9VLAJFOA9+AEsF7f4qPnyypQcN2e68sqXSYHA==",
+      "type": "package",
+      "path": "zymlabs.nswag.fluentvalidation/0.6.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/ZymLabs.NSwag.FluentValidation.dll",
+        "lib/netstandard2.0/ZymLabs.NSwag.FluentValidation.xml",
+        "zymlabs.nswag.fluentvalidation.0.6.2.nupkg.sha512",
+        "zymlabs.nswag.fluentvalidation.nuspec"
+      ]
+    },
+    "ZymLabs.NSwag.FluentValidation.AspNetCore/0.6.2": {
+      "sha512": "NOGefx66NhmjGF9KFpCbFinUAjpDONtrIUhvafWlz022D5cqK2J2nVdsuQbvjbEYaJSqAw/md8M/JcyZhApsQQ==",
+      "type": "package",
+      "path": "zymlabs.nswag.fluentvalidation.aspnetcore/0.6.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/ZymLabs.NSwag.FluentValidation.AspNetCore.dll",
+        "lib/netstandard2.0/ZymLabs.NSwag.FluentValidation.AspNetCore.xml",
+        "zymlabs.nswag.fluentvalidation.aspnetcore.0.6.2.nupkg.sha512",
+        "zymlabs.nswag.fluentvalidation.aspnetcore.nuspec"
+      ]
+    },
     "OnlineApplicationSystem.Application/1.0.0": {
       "type": "project",
       "path": "../../src/Application/Application.csproj",
@@ -8510,27 +8579,5 @@
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.201/RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1608",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: NSwag.Generation.AspNetCore 13.16.0 requires Microsoft.Extensions.DependencyInjection.Abstractions (>= 6.0.0 && < 7.0.0) but version Microsoft.Extensions.DependencyInjection.Abstractions 7.0.0 was resolved.",
-      "libraryId": "Microsoft.Extensions.DependencyInjection.Abstractions",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    },
-    {
-      "code": "NU1608",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Detected package version outside of dependency constraint: NSwag.Generation.AspNetCore 13.16.0 requires Microsoft.Extensions.Options (>= 6.0.0 && < 7.0.0) but version Microsoft.Extensions.Options 7.0.0 was resolved.",
-      "libraryId": "Microsoft.Extensions.Options",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    }
-  ]
+  }
 }

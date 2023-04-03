@@ -1,7 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { Observable, retry } from 'rxjs';
+import { Observable, catchError, retry, tap, throwError } from 'rxjs';
 import { ApplicantClient, ApplicantVm, BiodataClient, CountryDto, CreateBiodataRequest, DenominationDto, Disability, DistrictDto, Gender, IDCards, MaritalStatus, RegionDto, ReligionDto, SelectBoxClient, Title } from 'src/app/web-api-client';
 
 @Component({
@@ -14,8 +15,51 @@ export class BiodatadetailsComponent implements OnInit {
   submitted = false;
   loading: boolean = false;
   message: number | any;
-  applicant: ApplicantVm;
+  applicant: ApplicantVm
+    ;
   ngOnInit() {
+
+    this.applicantClient.get().subscribe({
+      next: data => {
+        this.applicant = data,
+          this.biodataForm.get("email").setValue(data.email.value);
+        this.biodataForm.get("Id").setValue(data.id);
+        this.biodataForm.get("firstName").setValue(data.applicantName.firstName);
+        this.biodataForm.get("lastName").setValue(data.applicantName.lastName);
+        this.biodataForm.get("otherNames").setValue(data.applicantName.othernames);
+        this.biodataForm.get("previousName").setValue(data.previousName.firstName);
+        this.biodataForm.get("title").setValue(data.title);
+        this.biodataForm.get("gender").setValue(data.gender);
+        this.biodataForm.get("phone").setValue(data.phone.number);
+        this.biodataForm.get("hometown").setValue(data.hometown);
+        this.biodataForm.get("maritalStatus").setValue(data.maritalStatus);
+        this.biodataForm.get("regionId").setValue(data.regionId);
+        this.biodataForm.get("religionId").setValue(data.religionId);
+        this.biodataForm.get("denomination").setValue(data.denomination);
+        this.biodataForm.get("sourceOfFinance").setValue(data.sourceOfFinance);
+        this.biodataForm.get("disability").setValue(data.disability);
+        this.biodataForm.get("disabilityType").setValue(data.disabilityType);
+        this.biodataForm.get("guardianName").setValue(data.guardianName);
+        this.biodataForm.get("guardianOccupation").setValue(data.guardianOccupation);
+        this.biodataForm.get("guardianPhone").setValue(data.guardianPhone.number);
+        this.biodataForm.get("guardianRelationship").setValue(data.guardianRelationship);
+        this.biodataForm.get("altphone").setValue(data.altPhone.number);
+        this.biodataForm.get("emergencyContact").setValue(data.emergencyContact.number);
+        this.biodataForm.get("referrals").setValue(data.referrals);
+        this.biodataForm.get("district").setValue(data.districtId);
+        this.biodataForm.get("nationalIDType").setValue(data.idCard.nationalIDType);
+        this.biodataForm.get("nationalIDNo").setValue(data.idCard.nationalIDNo);
+        this.biodataForm.get("sponsorShip").setValue(data.sponsorShip);
+        this.biodataForm.get("sponsorShipCompany").setValue(data.sponsorShipCompany);
+        this.biodataForm.get("sponsorShipLocation").setValue(data.sponsorShipLocation);
+        this.biodataForm.get("sponsorShipCompanyContact").setValue(data.sponsorShipCompanyContact);
+        this.biodataForm.get("residentialStatus").setValue(data.residentialStatus);
+        this.biodataForm.get("day").setValue(data.dob);
+        this.biodataForm.get("nationalityId").setValue(data.nationalityId);
+      }
+    })
+
+
     this.biodataForm = this.fb.group({
       Id: [''],
       firstName: ['', Validators.required],
@@ -39,27 +83,20 @@ export class BiodatadetailsComponent implements OnInit {
       regionId: ['', Validators.required],
       nationalityId: ['', Validators.required],
       residentialStatus: ['', Validators.required],
-
-
       disability: ['', Validators.required],
       disabilityType: ['', Validators.required],
       sourceOfFinance: ['', Validators.required],
       religionId: ['', Validators.required],
       denomination: [''],
       referrals: ['', Validators.required],
-
       sponsorShip: ['', Validators.required],
       sponsorShipCompany: ['', Validators.required],
       sponsorShipLocation: ['', Validators.required],
       sponsorShipCompanyContact: ['', Validators.required],
-
-
       guardianName: ['', Validators.required],
       guardianPhone: ['', Validators.required],
       guardianOccupation: ['', Validators.required],
       guardianRelationship: ['', Validators.required],
-
-
       /* address: this.fb.group({
         street: [''],
         city: [''],
@@ -168,27 +205,32 @@ export class BiodatadetailsComponent implements OnInit {
     this.biodataClient.create(this.biodataForm.value).subscribe(data => {
       this.message = data;
       this.loading = false;
-
       console.log("response is " + JSON.stringify(data))
     },
-
       error => this.message = error,
-
       () => this.loading = false,
 
     );
   }
 
   getApplicant(): Observable<ApplicantVm> {
-    // return this.applicant = this.applicantClient.get();
-
-    this.applicantClient.get().subscribe(
-      result => {
-        return this.applicant = result;
-
-      },
-      error => console.error(error)
+    return this.applicantClient.get().pipe(
+      tap(data => console.log('All: ' + JSON.stringify(data))),
+      catchError(this.handleError)
     );
-    return this.applicant;
+
+  }
+  private handleError(err: HttpErrorResponse) {
+
+    let errorMessage = '';
+    if (err.error instanceof ErrorEvent) {
+
+      errorMessage = `An error occurred: ${err.error.message}`;
+    } else {
+
+      errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
+    }
+    console.error(errorMessage);
+    return throwError(errorMessage);
   }
 }

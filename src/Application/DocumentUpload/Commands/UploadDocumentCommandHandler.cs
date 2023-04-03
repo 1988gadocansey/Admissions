@@ -29,12 +29,10 @@ public class UploadDocumentCommandHandler : IRequestHandler<UploadDocumentReques
     }
     public async Task<int> Handle(UploadDocumentRequest request, CancellationToken cancellationToken)
     {
-
-
         var userId = _currentUserService.UserId;
         var userDetails = await _identityService.GetApplicationUserDetails(userId, cancellationToken);
         var applicantDetails = await _applicantRepository.GetApplicantForUser(userId, cancellationToken);
-        var pictureUpload = await _documentUploadService.UploadFiles(applicantDetails.ApplicationNumber, request.Files, cancellationToken);
+        var pictureUpload = await _documentUploadService.UploadFiles(Convert.ToInt64(applicantDetails.ApplicationNumber), request.Files, cancellationToken);
         if (userDetails.Category == "Undergraduate") throw new NotFoundException("Only postgraduates allowed", request.Id); ;
         var documentDetails = new DocumentUploadDto
         {
@@ -47,7 +45,7 @@ public class UploadDocumentCommandHandler : IRequestHandler<UploadDocumentReques
         var dataMapped = _mapper.Map<DocumentUploadModel>(documentDetails);
         await _context.DocumentUploadModels.AddAsync(dataMapped, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
-        await _documentUploadService.DeleteFile(applicantDetails.ApplicationNumber, request.Name, cancellationToken);
+        await _documentUploadService.DeleteFile(Convert.ToInt64(applicantDetails.ApplicationNumber), request.Name, cancellationToken);
         return documentDetails.Id;
 
     }

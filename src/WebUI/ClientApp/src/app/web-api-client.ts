@@ -3172,33 +3172,38 @@ export class WeatherForecastClient implements IWeatherForecastClient {
 
 export class ApplicantVm implements IApplicantVm {
     id?: number;
-    applicationNumber?: number;
-    firstName?: string;
-    lastName?: string;
-    otherName?: string;
-    gender?: Gender;
-    dob?: Date;
+    applicationNumber?: ApplicationNumber;
     title?: Title;
+    applicantName?: ApplicantName;
+    previousName?: ApplicantName | undefined;
+    dob?: Date;
+    gender?: Gender;
+    age?: number;
     maritalStatus?: MaritalStatus | undefined;
-    phone?: string;
-    altPhone?: string | undefined;
-    email?: string | undefined;
+    phone?: PhoneNumber;
+    altPhone?: PhoneNumber | undefined;
+    email?: EmailAddress;
     postGPRS?: string | undefined;
-    emergencyContact?: string | undefined;
+    emergencyContact?: PhoneNumber | undefined;
     hometown?: string | undefined;
-    district?: number | undefined;
-    nationalIDType?: IDCards | undefined;
-    region?: string | undefined;
+    districtId?: number | undefined;
+    district?: DistrictModel | undefined;
+    hall?: HallModel | undefined;
+    idCard?: IDCard | undefined;
+    regionId?: number | undefined;
+    region?: RegionModel | undefined;
     nationalityId?: number | undefined;
+    nationality?: CountryModel | undefined;
     residentialStatus?: boolean | undefined;
     guardianName?: string | undefined;
-    guardianPhone?: string | undefined;
+    guardianPhone?: PhoneNumber;
     guardianOccupation?: string | undefined;
     guardianRelationship?: string | undefined;
     disability?: boolean | undefined;
     disabilityType?: Disability | undefined;
     sourceOfFinance?: string | undefined;
     religionId?: number | undefined;
+    religion?: ReligionModel | undefined;
     denomination?: string | undefined;
     referrals?: string | undefined;
     entryMode?: Session | undefined;
@@ -3237,33 +3242,38 @@ export class ApplicantVm implements IApplicantVm {
     init(_data?: any) {
         if (_data) {
             this.id = _data["id"];
-            this.applicationNumber = _data["applicationNumber"];
-            this.firstName = _data["firstName"];
-            this.lastName = _data["lastName"];
-            this.otherName = _data["otherName"];
-            this.gender = _data["gender"];
-            this.dob = _data["dob"] ? new Date(_data["dob"].toString()) : <any>undefined;
+            this.applicationNumber = _data["applicationNumber"] ? ApplicationNumber.fromJS(_data["applicationNumber"]) : <any>undefined;
             this.title = _data["title"];
+            this.applicantName = _data["applicantName"] ? ApplicantName.fromJS(_data["applicantName"]) : <any>undefined;
+            this.previousName = _data["previousName"] ? ApplicantName.fromJS(_data["previousName"]) : <any>undefined;
+            this.dob = _data["dob"] ? new Date(_data["dob"].toString()) : <any>undefined;
+            this.gender = _data["gender"];
+            this.age = _data["age"];
             this.maritalStatus = _data["maritalStatus"];
-            this.phone = _data["phone"];
-            this.altPhone = _data["altPhone"];
-            this.email = _data["email"];
+            this.phone = _data["phone"] ? PhoneNumber.fromJS(_data["phone"]) : <any>undefined;
+            this.altPhone = _data["altPhone"] ? PhoneNumber.fromJS(_data["altPhone"]) : <any>undefined;
+            this.email = _data["email"] ? EmailAddress.fromJS(_data["email"]) : <any>undefined;
             this.postGPRS = _data["postGPRS"];
-            this.emergencyContact = _data["emergencyContact"];
+            this.emergencyContact = _data["emergencyContact"] ? PhoneNumber.fromJS(_data["emergencyContact"]) : <any>undefined;
             this.hometown = _data["hometown"];
-            this.district = _data["district"];
-            this.nationalIDType = _data["nationalIDType"];
-            this.region = _data["region"];
+            this.districtId = _data["districtId"];
+            this.district = _data["district"] ? DistrictModel.fromJS(_data["district"]) : <any>undefined;
+            this.hall = _data["hall"] ? HallModel.fromJS(_data["hall"]) : <any>undefined;
+            this.idCard = _data["idCard"] ? IDCard.fromJS(_data["idCard"]) : <any>undefined;
+            this.regionId = _data["regionId"];
+            this.region = _data["region"] ? RegionModel.fromJS(_data["region"]) : <any>undefined;
             this.nationalityId = _data["nationalityId"];
+            this.nationality = _data["nationality"] ? CountryModel.fromJS(_data["nationality"]) : <any>undefined;
             this.residentialStatus = _data["residentialStatus"];
             this.guardianName = _data["guardianName"];
-            this.guardianPhone = _data["guardianPhone"];
+            this.guardianPhone = _data["guardianPhone"] ? PhoneNumber.fromJS(_data["guardianPhone"]) : <any>undefined;
             this.guardianOccupation = _data["guardianOccupation"];
             this.guardianRelationship = _data["guardianRelationship"];
             this.disability = _data["disability"];
             this.disabilityType = _data["disabilityType"];
             this.sourceOfFinance = _data["sourceOfFinance"];
             this.religionId = _data["religionId"];
+            this.religion = _data["religion"] ? ReligionModel.fromJS(_data["religion"]) : <any>undefined;
             this.denomination = _data["denomination"];
             this.referrals = _data["referrals"];
             this.entryMode = _data["entryMode"];
@@ -3302,33 +3312,38 @@ export class ApplicantVm implements IApplicantVm {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        data["applicationNumber"] = this.applicationNumber;
-        data["firstName"] = this.firstName;
-        data["lastName"] = this.lastName;
-        data["otherName"] = this.otherName;
-        data["gender"] = this.gender;
-        data["dob"] = this.dob ? formatDate(this.dob) : <any>undefined;
+        data["applicationNumber"] = this.applicationNumber ? this.applicationNumber.toJSON() : <any>undefined;
         data["title"] = this.title;
+        data["applicantName"] = this.applicantName ? this.applicantName.toJSON() : <any>undefined;
+        data["previousName"] = this.previousName ? this.previousName.toJSON() : <any>undefined;
+        data["dob"] = this.dob ? formatDate(this.dob) : <any>undefined;
+        data["gender"] = this.gender;
+        data["age"] = this.age;
         data["maritalStatus"] = this.maritalStatus;
-        data["phone"] = this.phone;
-        data["altPhone"] = this.altPhone;
-        data["email"] = this.email;
+        data["phone"] = this.phone ? this.phone.toJSON() : <any>undefined;
+        data["altPhone"] = this.altPhone ? this.altPhone.toJSON() : <any>undefined;
+        data["email"] = this.email ? this.email.toJSON() : <any>undefined;
         data["postGPRS"] = this.postGPRS;
-        data["emergencyContact"] = this.emergencyContact;
+        data["emergencyContact"] = this.emergencyContact ? this.emergencyContact.toJSON() : <any>undefined;
         data["hometown"] = this.hometown;
-        data["district"] = this.district;
-        data["nationalIDType"] = this.nationalIDType;
-        data["region"] = this.region;
+        data["districtId"] = this.districtId;
+        data["district"] = this.district ? this.district.toJSON() : <any>undefined;
+        data["hall"] = this.hall ? this.hall.toJSON() : <any>undefined;
+        data["idCard"] = this.idCard ? this.idCard.toJSON() : <any>undefined;
+        data["regionId"] = this.regionId;
+        data["region"] = this.region ? this.region.toJSON() : <any>undefined;
         data["nationalityId"] = this.nationalityId;
+        data["nationality"] = this.nationality ? this.nationality.toJSON() : <any>undefined;
         data["residentialStatus"] = this.residentialStatus;
         data["guardianName"] = this.guardianName;
-        data["guardianPhone"] = this.guardianPhone;
+        data["guardianPhone"] = this.guardianPhone ? this.guardianPhone.toJSON() : <any>undefined;
         data["guardianOccupation"] = this.guardianOccupation;
         data["guardianRelationship"] = this.guardianRelationship;
         data["disability"] = this.disability;
         data["disabilityType"] = this.disabilityType;
         data["sourceOfFinance"] = this.sourceOfFinance;
         data["religionId"] = this.religionId;
+        data["religion"] = this.religion ? this.religion.toJSON() : <any>undefined;
         data["denomination"] = this.denomination;
         data["referrals"] = this.referrals;
         data["entryMode"] = this.entryMode;
@@ -3360,33 +3375,38 @@ export class ApplicantVm implements IApplicantVm {
 
 export interface IApplicantVm {
     id?: number;
-    applicationNumber?: number;
-    firstName?: string;
-    lastName?: string;
-    otherName?: string;
-    gender?: Gender;
-    dob?: Date;
+    applicationNumber?: ApplicationNumber;
     title?: Title;
+    applicantName?: ApplicantName;
+    previousName?: ApplicantName | undefined;
+    dob?: Date;
+    gender?: Gender;
+    age?: number;
     maritalStatus?: MaritalStatus | undefined;
-    phone?: string;
-    altPhone?: string | undefined;
-    email?: string | undefined;
+    phone?: PhoneNumber;
+    altPhone?: PhoneNumber | undefined;
+    email?: EmailAddress;
     postGPRS?: string | undefined;
-    emergencyContact?: string | undefined;
+    emergencyContact?: PhoneNumber | undefined;
     hometown?: string | undefined;
-    district?: number | undefined;
-    nationalIDType?: IDCards | undefined;
-    region?: string | undefined;
+    districtId?: number | undefined;
+    district?: DistrictModel | undefined;
+    hall?: HallModel | undefined;
+    idCard?: IDCard | undefined;
+    regionId?: number | undefined;
+    region?: RegionModel | undefined;
     nationalityId?: number | undefined;
+    nationality?: CountryModel | undefined;
     residentialStatus?: boolean | undefined;
     guardianName?: string | undefined;
-    guardianPhone?: string | undefined;
+    guardianPhone?: PhoneNumber;
     guardianOccupation?: string | undefined;
     guardianRelationship?: string | undefined;
     disability?: boolean | undefined;
     disabilityType?: Disability | undefined;
     sourceOfFinance?: string | undefined;
     religionId?: number | undefined;
+    religion?: ReligionModel | undefined;
     denomination?: string | undefined;
     referrals?: string | undefined;
     entryMode?: Session | undefined;
@@ -3414,9 +3434,65 @@ export interface IApplicantVm {
     sponsorShipCompanyContact?: string | undefined;
 }
 
-export enum Gender {
-    Male = 0,
-    Female = 1,
+export abstract class ValueObject implements IValueObject {
+
+    constructor(data?: IValueObject) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+    }
+
+    static fromJS(data: any): ValueObject {
+        data = typeof data === 'object' ? data : {};
+        throw new Error("The abstract class 'ValueObject' cannot be instantiated.");
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        return data;
+    }
+}
+
+export interface IValueObject {
+}
+
+export class ApplicationNumber extends ValueObject implements IApplicationNumber {
+    applicantNumber?: number;
+
+    constructor(data?: IApplicationNumber) {
+        super(data);
+    }
+
+    override init(_data?: any) {
+        super.init(_data);
+        if (_data) {
+            this.applicantNumber = _data["applicantNumber"];
+        }
+    }
+
+    static override fromJS(data: any): ApplicationNumber {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApplicationNumber();
+        result.init(data);
+        return result;
+    }
+
+    override toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["applicantNumber"] = this.applicantNumber;
+        super.toJSON(data);
+        return data;
+    }
+}
+
+export interface IApplicationNumber extends IValueObject {
+    applicantNumber?: number;
 }
 
 export enum Title {
@@ -3430,6 +3506,52 @@ export enum Title {
     Prof = 7,
 }
 
+export class ApplicantName extends ValueObject implements IApplicantName {
+    firstName?: string;
+    lastName?: string;
+    othernames?: string | undefined;
+
+    constructor(data?: IApplicantName) {
+        super(data);
+    }
+
+    override init(_data?: any) {
+        super.init(_data);
+        if (_data) {
+            this.firstName = _data["firstName"];
+            this.lastName = _data["lastName"];
+            this.othernames = _data["othernames"];
+        }
+    }
+
+    static override fromJS(data: any): ApplicantName {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApplicantName();
+        result.init(data);
+        return result;
+    }
+
+    override toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["firstName"] = this.firstName;
+        data["lastName"] = this.lastName;
+        data["othernames"] = this.othernames;
+        super.toJSON(data);
+        return data;
+    }
+}
+
+export interface IApplicantName extends IValueObject {
+    firstName?: string;
+    lastName?: string;
+    othernames?: string | undefined;
+}
+
+export enum Gender {
+    Male = 0,
+    Female = 1,
+}
+
 export enum MaritalStatus {
     Married = 0,
     Divorced = 1,
@@ -3437,13 +3559,283 @@ export enum MaritalStatus {
     Seperated = 3,
 }
 
-export enum IDCards {
-    GhanaCard = 0,
-    VotersCard = 1,
-    NHIS = 2,
-    PassPort = 3,
-    DriversLicense = 4,
-    Other = 5,
+export class PhoneNumber extends ValueObject implements IPhoneNumber {
+    areaCode?: string;
+    number?: string;
+
+    constructor(data?: IPhoneNumber) {
+        super(data);
+    }
+
+    override init(_data?: any) {
+        super.init(_data);
+        if (_data) {
+            this.areaCode = _data["areaCode"];
+            this.number = _data["number"];
+        }
+    }
+
+    static override fromJS(data: any): PhoneNumber {
+        data = typeof data === 'object' ? data : {};
+        let result = new PhoneNumber();
+        result.init(data);
+        return result;
+    }
+
+    override toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["areaCode"] = this.areaCode;
+        data["number"] = this.number;
+        super.toJSON(data);
+        return data;
+    }
+}
+
+export interface IPhoneNumber extends IValueObject {
+    areaCode?: string;
+    number?: string;
+}
+
+export class EmailAddress extends ValueObject implements IEmailAddress {
+    value?: string;
+
+    constructor(data?: IEmailAddress) {
+        super(data);
+    }
+
+    override init(_data?: any) {
+        super.init(_data);
+        if (_data) {
+            this.value = _data["value"];
+        }
+    }
+
+    static override fromJS(data: any): EmailAddress {
+        data = typeof data === 'object' ? data : {};
+        let result = new EmailAddress();
+        result.init(data);
+        return result;
+    }
+
+    override toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["value"] = this.value;
+        super.toJSON(data);
+        return data;
+    }
+}
+
+export interface IEmailAddress extends IValueObject {
+    value?: string;
+}
+
+export class DistrictModel implements IDistrictModel {
+    id?: number;
+    name?: string;
+    region?: number;
+
+    constructor(data?: IDistrictModel) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.region = _data["region"];
+        }
+    }
+
+    static fromJS(data: any): DistrictModel {
+        data = typeof data === 'object' ? data : {};
+        let result = new DistrictModel();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["region"] = this.region;
+        return data;
+    }
+}
+
+export interface IDistrictModel {
+    id?: number;
+    name?: string;
+    region?: number;
+}
+
+export class HallModel implements IHallModel {
+    id?: number;
+    bankAcc?: number;
+    fees?: number;
+    name?: string;
+
+    constructor(data?: IHallModel) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.bankAcc = _data["bankAcc"];
+            this.fees = _data["fees"];
+            this.name = _data["name"];
+        }
+    }
+
+    static fromJS(data: any): HallModel {
+        data = typeof data === 'object' ? data : {};
+        let result = new HallModel();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["bankAcc"] = this.bankAcc;
+        data["fees"] = this.fees;
+        data["name"] = this.name;
+        return data;
+    }
+}
+
+export interface IHallModel {
+    id?: number;
+    bankAcc?: number;
+    fees?: number;
+    name?: string;
+}
+
+export class IDCard extends ValueObject implements IIDCard {
+    nationalIDType?: string;
+    nationalIDNo?: string;
+
+    constructor(data?: IIDCard) {
+        super(data);
+    }
+
+    override init(_data?: any) {
+        super.init(_data);
+        if (_data) {
+            this.nationalIDType = _data["nationalIDType"];
+            this.nationalIDNo = _data["nationalIDNo"];
+        }
+    }
+
+    static override fromJS(data: any): IDCard {
+        data = typeof data === 'object' ? data : {};
+        let result = new IDCard();
+        result.init(data);
+        return result;
+    }
+
+    override toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["nationalIDType"] = this.nationalIDType;
+        data["nationalIDNo"] = this.nationalIDNo;
+        super.toJSON(data);
+        return data;
+    }
+}
+
+export interface IIDCard extends IValueObject {
+    nationalIDType?: string;
+    nationalIDNo?: string;
+}
+
+export class RegionModel implements IRegionModel {
+    id?: number;
+    name?: string;
+
+    constructor(data?: IRegionModel) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+        }
+    }
+
+    static fromJS(data: any): RegionModel {
+        data = typeof data === 'object' ? data : {};
+        let result = new RegionModel();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        return data;
+    }
+}
+
+export interface IRegionModel {
+    id?: number;
+    name?: string;
+}
+
+export class CountryModel implements ICountryModel {
+    id?: number;
+    name?: string;
+
+    constructor(data?: ICountryModel) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+        }
+    }
+
+    static fromJS(data: any): CountryModel {
+        data = typeof data === 'object' ? data : {};
+        let result = new CountryModel();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        return data;
+    }
+}
+
+export interface ICountryModel {
+    id?: number;
+    name?: string;
 }
 
 export enum Disability {
@@ -3455,6 +3847,46 @@ export enum Disability {
     Crippled = 5,
     Blind_One_Eye = 6,
     Deaf = 7,
+}
+
+export class ReligionModel implements IReligionModel {
+    id?: number | undefined;
+    name?: string | undefined;
+
+    constructor(data?: IReligionModel) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+        }
+    }
+
+    static fromJS(data: any): ReligionModel {
+        data = typeof data === 'object' ? data : {};
+        let result = new ReligionModel();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        return data;
+    }
+}
+
+export interface IReligionModel {
+    id?: number | undefined;
+    name?: string | undefined;
 }
 
 export enum Session {
@@ -3656,69 +4088,13 @@ export interface ICreateBiodataRequest {
     sponsorShipCompanyContact?: string | undefined;
 }
 
-export abstract class ValueObject implements IValueObject {
-
-    constructor(data?: IValueObject) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-    }
-
-    static fromJS(data: any): ValueObject {
-        data = typeof data === 'object' ? data : {};
-        throw new Error("The abstract class 'ValueObject' cannot be instantiated.");
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        return data;
-    }
-}
-
-export interface IValueObject {
-}
-
-export class IDCard extends ValueObject implements IIDCard {
-    nationalIDType?: string;
-    nationalIDNo?: string;
-
-    constructor(data?: IIDCard) {
-        super(data);
-    }
-
-    override init(_data?: any) {
-        super.init(_data);
-        if (_data) {
-            this.nationalIDType = _data["nationalIDType"];
-            this.nationalIDNo = _data["nationalIDNo"];
-        }
-    }
-
-    static override fromJS(data: any): IDCard {
-        data = typeof data === 'object' ? data : {};
-        let result = new IDCard();
-        result.init(data);
-        return result;
-    }
-
-    override toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["nationalIDType"] = this.nationalIDType;
-        data["nationalIDNo"] = this.nationalIDNo;
-        super.toJSON(data);
-        return data;
-    }
-}
-
-export interface IIDCard extends IValueObject {
-    nationalIDType?: string;
-    nationalIDNo?: string;
+export enum IDCards {
+    GhanaCard = 0,
+    VotersCard = 1,
+    NHIS = 2,
+    PassPort = 3,
+    DriversLicense = 4,
+    Other = 5,
 }
 
 export class UploadDocumentRequest implements IUploadDocumentRequest {
@@ -5196,362 +5572,6 @@ export interface IApplicantModel extends IBaseAuditableEntity {
     sponsorShipLocation?: string | undefined;
     sponsorShipCompanyContact?: string | undefined;
     applicationUserId?: string | undefined;
-}
-
-export class ApplicationNumber extends ValueObject implements IApplicationNumber {
-    applicantNumber?: number;
-
-    constructor(data?: IApplicationNumber) {
-        super(data);
-    }
-
-    override init(_data?: any) {
-        super.init(_data);
-        if (_data) {
-            this.applicantNumber = _data["applicantNumber"];
-        }
-    }
-
-    static override fromJS(data: any): ApplicationNumber {
-        data = typeof data === 'object' ? data : {};
-        let result = new ApplicationNumber();
-        result.init(data);
-        return result;
-    }
-
-    override toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["applicantNumber"] = this.applicantNumber;
-        super.toJSON(data);
-        return data;
-    }
-}
-
-export interface IApplicationNumber extends IValueObject {
-    applicantNumber?: number;
-}
-
-export class ApplicantName extends ValueObject implements IApplicantName {
-    firstName?: string;
-    lastName?: string;
-    othernames?: string | undefined;
-
-    constructor(data?: IApplicantName) {
-        super(data);
-    }
-
-    override init(_data?: any) {
-        super.init(_data);
-        if (_data) {
-            this.firstName = _data["firstName"];
-            this.lastName = _data["lastName"];
-            this.othernames = _data["othernames"];
-        }
-    }
-
-    static override fromJS(data: any): ApplicantName {
-        data = typeof data === 'object' ? data : {};
-        let result = new ApplicantName();
-        result.init(data);
-        return result;
-    }
-
-    override toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["firstName"] = this.firstName;
-        data["lastName"] = this.lastName;
-        data["othernames"] = this.othernames;
-        super.toJSON(data);
-        return data;
-    }
-}
-
-export interface IApplicantName extends IValueObject {
-    firstName?: string;
-    lastName?: string;
-    othernames?: string | undefined;
-}
-
-export class PhoneNumber extends ValueObject implements IPhoneNumber {
-    areaCode?: string;
-    number?: string;
-
-    constructor(data?: IPhoneNumber) {
-        super(data);
-    }
-
-    override init(_data?: any) {
-        super.init(_data);
-        if (_data) {
-            this.areaCode = _data["areaCode"];
-            this.number = _data["number"];
-        }
-    }
-
-    static override fromJS(data: any): PhoneNumber {
-        data = typeof data === 'object' ? data : {};
-        let result = new PhoneNumber();
-        result.init(data);
-        return result;
-    }
-
-    override toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["areaCode"] = this.areaCode;
-        data["number"] = this.number;
-        super.toJSON(data);
-        return data;
-    }
-}
-
-export interface IPhoneNumber extends IValueObject {
-    areaCode?: string;
-    number?: string;
-}
-
-export class EmailAddress extends ValueObject implements IEmailAddress {
-    value?: string;
-
-    constructor(data?: IEmailAddress) {
-        super(data);
-    }
-
-    override init(_data?: any) {
-        super.init(_data);
-        if (_data) {
-            this.value = _data["value"];
-        }
-    }
-
-    static override fromJS(data: any): EmailAddress {
-        data = typeof data === 'object' ? data : {};
-        let result = new EmailAddress();
-        result.init(data);
-        return result;
-    }
-
-    override toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["value"] = this.value;
-        super.toJSON(data);
-        return data;
-    }
-}
-
-export interface IEmailAddress extends IValueObject {
-    value?: string;
-}
-
-export class DistrictModel implements IDistrictModel {
-    id?: number;
-    name?: string;
-    region?: number;
-
-    constructor(data?: IDistrictModel) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.id = _data["id"];
-            this.name = _data["name"];
-            this.region = _data["region"];
-        }
-    }
-
-    static fromJS(data: any): DistrictModel {
-        data = typeof data === 'object' ? data : {};
-        let result = new DistrictModel();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
-        data["region"] = this.region;
-        return data;
-    }
-}
-
-export interface IDistrictModel {
-    id?: number;
-    name?: string;
-    region?: number;
-}
-
-export class HallModel implements IHallModel {
-    id?: number;
-    bankAcc?: number;
-    fees?: number;
-    name?: string;
-
-    constructor(data?: IHallModel) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.id = _data["id"];
-            this.bankAcc = _data["bankAcc"];
-            this.fees = _data["fees"];
-            this.name = _data["name"];
-        }
-    }
-
-    static fromJS(data: any): HallModel {
-        data = typeof data === 'object' ? data : {};
-        let result = new HallModel();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["bankAcc"] = this.bankAcc;
-        data["fees"] = this.fees;
-        data["name"] = this.name;
-        return data;
-    }
-}
-
-export interface IHallModel {
-    id?: number;
-    bankAcc?: number;
-    fees?: number;
-    name?: string;
-}
-
-export class RegionModel implements IRegionModel {
-    id?: number;
-    name?: string;
-
-    constructor(data?: IRegionModel) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.id = _data["id"];
-            this.name = _data["name"];
-        }
-    }
-
-    static fromJS(data: any): RegionModel {
-        data = typeof data === 'object' ? data : {};
-        let result = new RegionModel();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
-        return data;
-    }
-}
-
-export interface IRegionModel {
-    id?: number;
-    name?: string;
-}
-
-export class CountryModel implements ICountryModel {
-    id?: number;
-    name?: string;
-
-    constructor(data?: ICountryModel) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.id = _data["id"];
-            this.name = _data["name"];
-        }
-    }
-
-    static fromJS(data: any): CountryModel {
-        data = typeof data === 'object' ? data : {};
-        let result = new CountryModel();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
-        return data;
-    }
-}
-
-export interface ICountryModel {
-    id?: number;
-    name?: string;
-}
-
-export class ReligionModel implements IReligionModel {
-    id?: number | undefined;
-    name?: string | undefined;
-
-    constructor(data?: IReligionModel) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.id = _data["id"];
-            this.name = _data["name"];
-        }
-    }
-
-    static fromJS(data: any): ReligionModel {
-        data = typeof data === 'object' ? data : {};
-        let result = new ReligionModel();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
-        return data;
-    }
-}
-
-export interface IReligionModel {
-    id?: number | undefined;
-    name?: string | undefined;
 }
 
 export class FormerSchoolModel implements IFormerSchoolModel {

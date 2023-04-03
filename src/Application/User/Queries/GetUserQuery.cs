@@ -23,11 +23,6 @@ public class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserDto>
         _identityService = identityService;
     }
 
-    public async Task<UserDto> Handle(GetUserQuery request, CancellationToken cancellationToken)
-    {
-        Console.WriteLine($"user is " + _currentUserService.UserId);
-        var userDetails = await _identityService.GetApplicationUserDetails(_currentUserService.UserId, cancellationToken);
+    public async Task<UserDto> Handle(GetUserQuery request, CancellationToken cancellationToken) => await _identityService.GetApplicationUserDetails(_currentUserService.UserId, cancellationToken);
 
-        return userDetails;
-    }
 }

@@ -1,3 +1,4 @@
+using AutoMapper;
 using MediatR;
 using OnlineApplicationSystem.Application.Common.Interfaces;
 using OnlineApplicationSystem.Application.Common.ViewModels;
@@ -11,20 +12,20 @@ public class GetApplicantQueryHandler : IRequestHandler<GetApplicantQuery, Appli
     private readonly IApplicationDbContext _context;
     private readonly IApplicantRepository _applicantRepository;
     private readonly ICurrentUserService _currentUserService;
+    private readonly IMapper _mapper;
 
-
-    public GetApplicantQueryHandler(IApplicationDbContext context, IApplicantRepository applicantRepository, ICurrentUserService currentUserService)
+    public GetApplicantQueryHandler(IApplicationDbContext context, IApplicantRepository applicantRepository, ICurrentUserService currentUserService, IMapper mapper)
     {
         _context = context;
         _applicantRepository = applicantRepository;
         _currentUserService = currentUserService;
+        _mapper = mapper;
 
     }
 
-    public async Task<ApplicantVm> Handle(GetApplicantQuery request, CancellationToken cancellationToken)
+    public async Task<ApplicantVm> Handle(GetApplicantQuery request, CancellationToken cancellationToken) => await _applicantRepository.GetApplicantForUser(_currentUserService.UserId, cancellationToken);
+    /* public async Task<ApplicantVm> Handle(GetApplicantQuery request, CancellationToken cancellationToken)
     {
-        var data = await _applicantRepository.GetApplicantForUser(_currentUserService.UserId, cancellationToken);
-        return data;
-    }
-
+        return await _applicantRepository.GetApplicantForUser(_currentUserService.UserId, cancellationToken);
+    } */
 }

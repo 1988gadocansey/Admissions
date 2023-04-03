@@ -6,6 +6,7 @@ using OnlineApplicationSystem.Application.Common.Dtos;
 using OnlineApplicationSystem.Application.Common.Interfaces;
 using OnlineApplicationSystem.Application.Common.Mappings;
 using OnlineApplicationSystem.Application.Common.Models;
+using OnlineApplicationSystem.Domain.ValueObjects;
 
 namespace OnlineApplicationSystem.Application.PreviousSHSAttended.Commands;
 public record GetSHSAttendedQuery : IRequest<PaginatedList<SHSAttendedDto>>
@@ -39,7 +40,7 @@ public class GetResultQueryHandler : IRequestHandler<GetSHSAttendedQuery, Pagina
 
         var results = await _context.SHSAttendedModels.Include(g => g.Applicant)
                      .Include(s => s.Location)
-                     .Where(r => r.Applicant == applicantDetails.ApplicationNumber).OrderBy(s => s.StartYear).OrderBy(s => s.Location.Name)
+                     .Where(r => r.Applicant == applicantDetails.Id).OrderBy(s => s.StartYear).OrderBy(s => s.Location.Name)
                      .ProjectTo<SHSAttendedDto>(_mapper.ConfigurationProvider)
                      .PaginatedListAsync(request.PageNumber, request.PageSize);
         return results;

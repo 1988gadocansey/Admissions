@@ -41,7 +41,7 @@ public class GetResultQueryHandler : IRequestHandler<GetResultQuery, PaginatedLi
 
         var results = await _context.ResultUploadModels.Include(g => g.Grade)
                      .Include(s => s.Subject)
-                     .Where(r => r.Form == applicantDetails.ApplicationNumber).OrderBy(s => s.Year).OrderBy(s => s.Subject.Type)
+                     .Where(r => r.ApplicantModelID == applicantDetails.Id).OrderBy(s => s.Year).OrderBy(s => s.Subject.Type)
                      .ProjectTo<ResultsDto>(_mapper.ConfigurationProvider)
                      .PaginatedListAsync(request.PageNumber, request.PageSize);
         return results;
