@@ -36,6 +36,12 @@ const routes: Routes = [
     loadChildren: () => import('../biodata/biodata.module').then((m) => m.BiodataModule),
   },
   {
+    path: 'proof',
+    component: LayoutComponent,
+    canActivate: [AuthorizeGuard],
+    loadChildren: () => import('../preview/preview.module').then((m) => m.PreviewModule),
+  },
+  {
     path: 'issues',
     component: LayoutComponent,
     canActivate: [AuthorizeGuard],

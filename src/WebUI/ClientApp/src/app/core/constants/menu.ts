@@ -14,7 +14,7 @@ export class Menu {
             { label: 'Home', route: '/welcome/live' },
             { label: 'Upload Passport Photo', route: '/upload/passport' },
             { label: 'Change Form', route: '/changes/form' },
-            { label: 'Report Issue', route: '/issues/report' },
+            /*  { label: 'Report Issue', route: '/issues/report' }, */
             { label: 'Announcements', route: '/announcements/index' },
 
           ],
@@ -39,7 +39,7 @@ export class Menu {
             { label: 'List of Referees', route: '/download', },
             { label: 'Supporting Documents', route: '/download', },
             // { label: 'Application Summary', route: '/download', },
-            { label: 'Proof of Application', route: '/download', },
+            { label: 'Proof of Application', route: '/proof/preview', },
             // { label: 'Application Status', route: '/download', },
           ],
         },

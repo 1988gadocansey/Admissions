@@ -31,6 +31,69 @@
         ]
       }
     },
+    "/api/Applicant/form/change": {
+      "get": {
+        "tags": [
+          "Applicant"
+        ],
+        "operationId": "Applicant_GetForms",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApplicationType"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Applicant"
+        ],
+        "operationId": "Applicant_SaveFormChanges",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFormUpdateRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
     "/api/Biodata": {
       "post": {
         "tags": [
@@ -1964,6 +2027,11 @@
               }
             ]
           },
+          "noOfChildren": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "phone": {
             "$ref": "#/components/schemas/PhoneNumber"
           },
@@ -2015,7 +2083,7 @@
               }
             ]
           },
-          "idCard": {
+          "idcard": {
             "nullable": true,
             "oneOf": [
               {
@@ -2481,13 +2549,46 @@
           3
         ]
       },
+      "ApplicationType": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "CERTIFICATE",
+          "DIPLOMA",
+          "HND",
+          "BTECH",
+          "TOPUP_DIPLOMA",
+          "TOPUP_CERTIFICATE",
+          "MTECH",
+          "PhD"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "CreateFormUpdateRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "formType": {
+            "$ref": "#/components/schemas/ApplicationType"
+          }
+        }
+      },
       "CreateBiodataRequest": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
           "id": {
             "type": "integer",
-            "format": "int64",
+            "format": "int32",
             "nullable": true
           },
           "applicationNumber": {
@@ -2506,6 +2607,11 @@
           },
           "previousName": {
             "type": "string",
+            "nullable": true
+          },
+          "noOfChildren": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
           "gender": {
@@ -2846,6 +2952,10 @@
             "nullable": true
           },
           "soldBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "branch": {
             "type": "string",
             "nullable": true
           },
@@ -3290,6 +3400,11 @@
                   }
                 ]
               },
+              "noOfChildren": {
+                "type": "integer",
+                "format": "int32",
+                "nullable": true
+              },
               "phone": {
                 "$ref": "#/components/schemas/PhoneNumber"
               },
@@ -3341,7 +3456,7 @@
                   }
                 ]
               },
-              "idCard": {
+              "idcard": {
                 "nullable": true,
                 "oneOf": [
                   {

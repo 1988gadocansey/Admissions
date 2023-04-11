@@ -16,16 +16,19 @@ export class TopinfoComponent {
   public profile: UserDto | any;
   public imgurl: string;
   public imgurlAlt: string;
+  loading: boolean = false; // Flag variable
 
   constructor(private client: HomeClient, private dateago: DateAsAgoPipe) {
     client.dashboard().subscribe(result => {
+      this.loading = true;
       this.profile = result;
       this.imgurl = "https://photos.ttuportal.com/public/albums/thumbnails/" +
         this.profile?.formNo + ".jpg";
       this.imgurlAlt = "https://photos.ttuportal.com/public/albums/thumbnails/" +
         this.profile?.formNo + ".jpeg";
+      this.loading = false;
       // console.log("user is " + this.imgurl);
-    }, error => console.error(error));
+    }, error => console.error(error)), this.loading = false;
 
   }
 

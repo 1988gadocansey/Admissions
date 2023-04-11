@@ -17,6 +17,8 @@ export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
 export interface IApplicantClient {
     get(): Observable<ApplicantVm>;
+    getForms(): Observable<ApplicationType[]>;
+    saveFormChanges(command: CreateFormUpdateRequest): Observable<boolean>;
 }
 
 @Injectable({
@@ -70,6 +72,114 @@ export class ApplicantClient implements IApplicantClient {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = ApplicantVm.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getForms(): Observable<ApplicationType[]> {
+        let url_ = this.baseUrl + "/api/Applicant/form/change";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetForms(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetForms(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApplicationType[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApplicationType[]>;
+        }));
+    }
+
+    protected processGetForms(response: HttpResponseBase): Observable<ApplicationType[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(item);
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    saveFormChanges(command: CreateFormUpdateRequest): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/Applicant/form/change";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processSaveFormChanges(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processSaveFormChanges(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<boolean>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<boolean>;
+        }));
+    }
+
+    protected processSaveFormChanges(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -3180,6 +3290,7 @@ export class ApplicantVm implements IApplicantVm {
     gender?: Gender;
     age?: number;
     maritalStatus?: MaritalStatus | undefined;
+    noOfChildren?: number | undefined;
     phone?: PhoneNumber;
     altPhone?: PhoneNumber | undefined;
     email?: EmailAddress;
@@ -3189,7 +3300,7 @@ export class ApplicantVm implements IApplicantVm {
     districtId?: number | undefined;
     district?: DistrictModel | undefined;
     hall?: HallModel | undefined;
-    idCard?: IDCard | undefined;
+    idcard?: IDCard | undefined;
     regionId?: number | undefined;
     region?: RegionModel | undefined;
     nationalityId?: number | undefined;
@@ -3250,6 +3361,7 @@ export class ApplicantVm implements IApplicantVm {
             this.gender = _data["gender"];
             this.age = _data["age"];
             this.maritalStatus = _data["maritalStatus"];
+            this.noOfChildren = _data["noOfChildren"];
             this.phone = _data["phone"] ? PhoneNumber.fromJS(_data["phone"]) : <any>undefined;
             this.altPhone = _data["altPhone"] ? PhoneNumber.fromJS(_data["altPhone"]) : <any>undefined;
             this.email = _data["email"] ? EmailAddress.fromJS(_data["email"]) : <any>undefined;
@@ -3259,7 +3371,7 @@ export class ApplicantVm implements IApplicantVm {
             this.districtId = _data["districtId"];
             this.district = _data["district"] ? DistrictModel.fromJS(_data["district"]) : <any>undefined;
             this.hall = _data["hall"] ? HallModel.fromJS(_data["hall"]) : <any>undefined;
-            this.idCard = _data["idCard"] ? IDCard.fromJS(_data["idCard"]) : <any>undefined;
+            this.idcard = _data["idcard"] ? IDCard.fromJS(_data["idcard"]) : <any>undefined;
             this.regionId = _data["regionId"];
             this.region = _data["region"] ? RegionModel.fromJS(_data["region"]) : <any>undefined;
             this.nationalityId = _data["nationalityId"];
@@ -3320,6 +3432,7 @@ export class ApplicantVm implements IApplicantVm {
         data["gender"] = this.gender;
         data["age"] = this.age;
         data["maritalStatus"] = this.maritalStatus;
+        data["noOfChildren"] = this.noOfChildren;
         data["phone"] = this.phone ? this.phone.toJSON() : <any>undefined;
         data["altPhone"] = this.altPhone ? this.altPhone.toJSON() : <any>undefined;
         data["email"] = this.email ? this.email.toJSON() : <any>undefined;
@@ -3329,7 +3442,7 @@ export class ApplicantVm implements IApplicantVm {
         data["districtId"] = this.districtId;
         data["district"] = this.district ? this.district.toJSON() : <any>undefined;
         data["hall"] = this.hall ? this.hall.toJSON() : <any>undefined;
-        data["idCard"] = this.idCard ? this.idCard.toJSON() : <any>undefined;
+        data["idcard"] = this.idcard ? this.idcard.toJSON() : <any>undefined;
         data["regionId"] = this.regionId;
         data["region"] = this.region ? this.region.toJSON() : <any>undefined;
         data["nationalityId"] = this.nationalityId;
@@ -3383,6 +3496,7 @@ export interface IApplicantVm {
     gender?: Gender;
     age?: number;
     maritalStatus?: MaritalStatus | undefined;
+    noOfChildren?: number | undefined;
     phone?: PhoneNumber;
     altPhone?: PhoneNumber | undefined;
     email?: EmailAddress;
@@ -3392,7 +3506,7 @@ export interface IApplicantVm {
     districtId?: number | undefined;
     district?: DistrictModel | undefined;
     hall?: HallModel | undefined;
-    idCard?: IDCard | undefined;
+    idcard?: IDCard | undefined;
     regionId?: number | undefined;
     region?: RegionModel | undefined;
     nationalityId?: number | undefined;
@@ -3896,6 +4010,53 @@ export enum Session {
     Distance = 3,
 }
 
+export enum ApplicationType {
+    CERTIFICATE = 0,
+    DIPLOMA = 1,
+    HND = 2,
+    BTECH = 3,
+    TOPUP_DIPLOMA = 4,
+    TOPUP_CERTIFICATE = 5,
+    MTECH = 6,
+    PhD = 7,
+}
+
+export class CreateFormUpdateRequest implements ICreateFormUpdateRequest {
+    formType?: ApplicationType;
+
+    constructor(data?: ICreateFormUpdateRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.formType = _data["formType"];
+        }
+    }
+
+    static fromJS(data: any): CreateFormUpdateRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateFormUpdateRequest();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["formType"] = this.formType;
+        return data;
+    }
+}
+
+export interface ICreateFormUpdateRequest {
+    formType?: ApplicationType;
+}
+
 export class CreateBiodataRequest implements ICreateBiodataRequest {
     id?: number | undefined;
     applicationNumber?: number;
@@ -3903,6 +4064,7 @@ export class CreateBiodataRequest implements ICreateBiodataRequest {
     lastName?: string;
     otherName?: string | undefined;
     previousName?: string | undefined;
+    noOfChildren?: number | undefined;
     gender?: Gender;
     dob?: Date;
     month?: string | undefined;
@@ -3955,6 +4117,7 @@ export class CreateBiodataRequest implements ICreateBiodataRequest {
             this.lastName = _data["lastName"];
             this.otherName = _data["otherName"];
             this.previousName = _data["previousName"];
+            this.noOfChildren = _data["noOfChildren"];
             this.gender = _data["gender"];
             this.dob = _data["dob"] ? new Date(_data["dob"].toString()) : <any>undefined;
             this.month = _data["month"];
@@ -4007,6 +4170,7 @@ export class CreateBiodataRequest implements ICreateBiodataRequest {
         data["lastName"] = this.lastName;
         data["otherName"] = this.otherName;
         data["previousName"] = this.previousName;
+        data["noOfChildren"] = this.noOfChildren;
         data["gender"] = this.gender;
         data["dob"] = this.dob ? formatDate(this.dob) : <any>undefined;
         data["month"] = this.month;
@@ -4052,6 +4216,7 @@ export interface ICreateBiodataRequest {
     lastName?: string;
     otherName?: string | undefined;
     previousName?: string | undefined;
+    noOfChildren?: number | undefined;
     gender?: Gender;
     dob?: Date;
     month?: string | undefined;
@@ -4396,6 +4561,7 @@ export class UserDto implements IUserDto {
     fullName?: string | undefined;
     type?: string | undefined;
     soldBy?: string | undefined;
+    branch?: string | undefined;
     category?: string | undefined;
     formCompleted?: number | undefined;
     pictureUploaded?: number | undefined;
@@ -4424,6 +4590,7 @@ export class UserDto implements IUserDto {
             this.fullName = _data["fullName"];
             this.type = _data["type"];
             this.soldBy = _data["soldBy"];
+            this.branch = _data["branch"];
             this.category = _data["category"];
             this.formCompleted = _data["formCompleted"];
             this.pictureUploaded = _data["pictureUploaded"];
@@ -4452,6 +4619,7 @@ export class UserDto implements IUserDto {
         data["fullName"] = this.fullName;
         data["type"] = this.type;
         data["soldBy"] = this.soldBy;
+        data["branch"] = this.branch;
         data["category"] = this.category;
         data["formCompleted"] = this.formCompleted;
         data["pictureUploaded"] = this.pictureUploaded;
@@ -4473,6 +4641,7 @@ export interface IUserDto {
     fullName?: string | undefined;
     type?: string | undefined;
     soldBy?: string | undefined;
+    branch?: string | undefined;
     category?: string | undefined;
     formCompleted?: number | undefined;
     pictureUploaded?: number | undefined;
@@ -5258,6 +5427,7 @@ export class ApplicantModel extends BaseAuditableEntity implements IApplicantMod
     gender?: Gender;
     age?: number;
     maritalStatus?: MaritalStatus | undefined;
+    noOfChildren?: number | undefined;
     phone?: PhoneNumber;
     altPhone?: PhoneNumber | undefined;
     email?: EmailAddress;
@@ -5267,7 +5437,7 @@ export class ApplicantModel extends BaseAuditableEntity implements IApplicantMod
     districtId?: number | undefined;
     district?: DistrictModel | undefined;
     hall?: HallModel | undefined;
-    idCard?: IDCard | undefined;
+    idcard?: IDCard | undefined;
     regionId?: number | undefined;
     region?: RegionModel | undefined;
     nationalityId?: number | undefined;
@@ -5340,6 +5510,7 @@ export class ApplicantModel extends BaseAuditableEntity implements IApplicantMod
             this.gender = _data["gender"];
             this.age = _data["age"];
             this.maritalStatus = _data["maritalStatus"];
+            this.noOfChildren = _data["noOfChildren"];
             this.phone = _data["phone"] ? PhoneNumber.fromJS(_data["phone"]) : <any>undefined;
             this.altPhone = _data["altPhone"] ? PhoneNumber.fromJS(_data["altPhone"]) : <any>undefined;
             this.email = _data["email"] ? EmailAddress.fromJS(_data["email"]) : <any>undefined;
@@ -5349,7 +5520,7 @@ export class ApplicantModel extends BaseAuditableEntity implements IApplicantMod
             this.districtId = _data["districtId"];
             this.district = _data["district"] ? DistrictModel.fromJS(_data["district"]) : <any>undefined;
             this.hall = _data["hall"] ? HallModel.fromJS(_data["hall"]) : <any>undefined;
-            this.idCard = _data["idCard"] ? IDCard.fromJS(_data["idCard"]) : <any>undefined;
+            this.idcard = _data["idcard"] ? IDCard.fromJS(_data["idcard"]) : <any>undefined;
             this.regionId = _data["regionId"];
             this.region = _data["region"] ? RegionModel.fromJS(_data["region"]) : <any>undefined;
             this.nationalityId = _data["nationalityId"];
@@ -5426,6 +5597,7 @@ export class ApplicantModel extends BaseAuditableEntity implements IApplicantMod
         data["gender"] = this.gender;
         data["age"] = this.age;
         data["maritalStatus"] = this.maritalStatus;
+        data["noOfChildren"] = this.noOfChildren;
         data["phone"] = this.phone ? this.phone.toJSON() : <any>undefined;
         data["altPhone"] = this.altPhone ? this.altPhone.toJSON() : <any>undefined;
         data["email"] = this.email ? this.email.toJSON() : <any>undefined;
@@ -5435,7 +5607,7 @@ export class ApplicantModel extends BaseAuditableEntity implements IApplicantMod
         data["districtId"] = this.districtId;
         data["district"] = this.district ? this.district.toJSON() : <any>undefined;
         data["hall"] = this.hall ? this.hall.toJSON() : <any>undefined;
-        data["idCard"] = this.idCard ? this.idCard.toJSON() : <any>undefined;
+        data["idcard"] = this.idcard ? this.idcard.toJSON() : <any>undefined;
         data["regionId"] = this.regionId;
         data["region"] = this.region ? this.region.toJSON() : <any>undefined;
         data["nationalityId"] = this.nationalityId;
@@ -5506,6 +5678,7 @@ export interface IApplicantModel extends IBaseAuditableEntity {
     gender?: Gender;
     age?: number;
     maritalStatus?: MaritalStatus | undefined;
+    noOfChildren?: number | undefined;
     phone?: PhoneNumber;
     altPhone?: PhoneNumber | undefined;
     email?: EmailAddress;
@@ -5515,7 +5688,7 @@ export interface IApplicantModel extends IBaseAuditableEntity {
     districtId?: number | undefined;
     district?: DistrictModel | undefined;
     hall?: HallModel | undefined;
-    idCard?: IDCard | undefined;
+    idcard?: IDCard | undefined;
     regionId?: number | undefined;
     region?: RegionModel | undefined;
     nationalityId?: number | undefined;

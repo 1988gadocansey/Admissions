@@ -113,6 +113,7 @@ public class IdentityService : IIdentityService
             FormCompleted = b.FormCompleted,
             Finalized = b.Finalized,
             SoldBy = b.SoldBy,
+            Branch = b.Branch,
             Started = b.Started,
             Year = b.Year,
             PictureUploaded = b.PictureUploaded,
@@ -135,6 +136,17 @@ public class IdentityService : IIdentityService
             user.PictureUploaded = 1;
             await _userManager.UpdateAsync(user);
         }
+    }
+    public async Task<bool> ChangeApplicantFormType(string? userId, string? formType)
+    {
+        var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
+        if (user != null)
+        {
+            user.Type = formType;
+            await _userManager.UpdateAsync(user);
+            return true;
+        }
+        return false;
     }
     public async Task Finalized(string userId)
     {

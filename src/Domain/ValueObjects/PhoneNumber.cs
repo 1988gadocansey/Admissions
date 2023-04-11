@@ -6,18 +6,21 @@ namespace OnlineApplicationSystem.Domain.ValueObjects;
 [NotMapped]
 public class PhoneNumber : ValueObject
 {
+
+    public string AreaCode { get; }
+    public string Number { get; }
     private PhoneNumber() { }
-    public PhoneNumber(string areaCode, string number)
+    public PhoneNumber(string number)
     {
-        AreaCode = areaCode;
+        // AreaCode = areaCode;
         Number = number;
     }
-    public static PhoneNumber Create(string areaCode, string number)
+    public static PhoneNumber Create(string number)
     {
-        return new PhoneNumber(areaCode, number);
+        return new PhoneNumber(number);
     }
-    public string AreaCode { get; private set; }
-    public string Number { get; private set; }
+    /*   public string AreaCode { get; private set; }
+      public string Number { get; private set; } */
 
     public string FullNumber()
     {

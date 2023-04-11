@@ -16,6 +16,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public Gender Gender { get; set; }
         public int Age { get; set; }
         public MaritalStatus? MaritalStatus { get; set; } = Enums.MaritalStatus.Single;
+        public int? NoOfChildren { get; set; }
         public PhoneNumber Phone { get; set; }
         public PhoneNumber? AltPhone { get; set; }
         public EmailAddress Email { get; set; }
@@ -25,10 +26,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public int? DistrictId { get; set; }
         public virtual DistrictModel? District { get; set; }
         public virtual HallModel? Hall { get; set; }
-        // public IDCards NationalIDType { get; set; }
-        // public string NationalIDNo { get; set; }
-
-        public IDCard? IDCard { get; set; }
+        public IDCard? Idcard { get; set; }
         public int? RegionId { get; set; }
         public virtual RegionModel? Region { get; set; }
         public int? NationalityId { get; set; }
@@ -43,7 +41,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public string? SourceOfFinance { get; set; }
         public int? ReligionId { get; set; }
         public virtual ReligionModel? Religion { get; set; }
-        public string? Denomination { get; }
+        public string? Denomination { get; set; }
         public string? Referrals { get; set; }
         public Session? EntryMode { get; set; }
         public string? FirstQualification { get; set; }
@@ -70,7 +68,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public int? HallAdmitted { get; set; }
         public string? RoomNo { get; set; }
         // public string? Status { get; set; }
-        public ApplicationStatus? Status => ApplicationStatus.Applicant;
+        public ApplicationStatus? Status { get; set; } = ApplicationStatus.Applicant;
         public bool? SMSSent { get; set; }
         public bool? LetterPrinted { get; set; }
         public int? FirstChoiceId { get; set; }

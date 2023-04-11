@@ -45,7 +45,7 @@ export class UploadpicComponent {
       this.message = data.status;
       this.loading = false;
       if (data.status == 200) {
-        this.router.navigate(['/forms']);
+        // this.router.navigate(['/forms']);
       }
       console.log("response is " + JSON.stringify(data))
     },

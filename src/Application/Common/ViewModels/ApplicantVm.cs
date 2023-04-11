@@ -20,6 +20,7 @@ public class ApplicantVm : IMapFrom<ApplicantModel>
     public Gender Gender { get; set; }
     public int Age { get; set; }
     public MaritalStatus? MaritalStatus { get; set; } = Domain.Enums.MaritalStatus.Single;
+    public int? NoOfChildren { get; set; }
     public PhoneNumber Phone { get; set; }
     public PhoneNumber? AltPhone { get; set; }
     public EmailAddress Email { get; set; }
@@ -29,10 +30,9 @@ public class ApplicantVm : IMapFrom<ApplicantModel>
     public int? DistrictId { get; set; }
     public virtual DistrictModel? District { get; set; }
     public virtual HallModel? Hall { get; set; }
-    // public IDCards NationalIDType { get; set; }
-    // public string NationalIDNo { get; set; }
 
-    public IDCard? IDCard { get; set; }
+    public IDCard? Idcard { get; set; }
+
     public int? RegionId { get; set; }
     public virtual RegionModel? Region { get; set; }
     public int? NationalityId { get; set; }
@@ -47,7 +47,7 @@ public class ApplicantVm : IMapFrom<ApplicantModel>
     public string? SourceOfFinance { get; set; }
     public int? ReligionId { get; set; }
     public virtual ReligionModel? Religion { get; set; }
-    public string? Denomination { get; }
+    public string? Denomination { get; set; }
     public string? Referrals { get; set; }
     public Session? EntryMode { get; set; }
     public string? FirstQualification { get; init; }

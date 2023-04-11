@@ -12,6 +12,7 @@ import { TopinfoComponent } from './components/topinfo/topinfo.component';
 import { UpcominglecturesComponent } from './components/upcominglectures/upcominglectures.component';
 import { IssuesComponent } from './components/issues/issues.component';
 import { DateAsAgoPipe } from 'src/app/core/pipes/datePipe';
+import { NgxLoadingModule } from 'ngx-loading';
 
 
 
@@ -32,6 +33,7 @@ import { DateAsAgoPipe } from 'src/app/core/pipes/datePipe';
     HttpClientModule,
     WelcomeRoutingModule,
     NgApexchartsModule,
+    NgxLoadingModule,
     AngularSvgIconModule.forRoot(),
   ]
 

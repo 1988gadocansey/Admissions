@@ -47,36 +47,41 @@ public class CreateBiodataCommandHandler : IRequestHandler<CreateBiodataRequest,
                 Email = EmailAddress.Create(request.Email),
                 MaritalStatus = request.MaritalStatus,
                 Dob = request.Dob,
+                NoOfChildren = request.NoOfChildren,
                 Age = 0,
-                Phone = PhoneNumber.Create("+233", request.Phone),
-                AltPhone = PhoneNumber.Create("+233", request.AltPhone),
-                EmergencyContact = PhoneNumber.Create("+233", request.EmergencyContact),
+                Phone = PhoneNumber.Create(request.Phone),
+                AltPhone = PhoneNumber.Create(request.AltPhone),
+                EmergencyContact = PhoneNumber.Create(request.EmergencyContact),
                 Referrals = request.Referrals,
                 NationalityId = request.NationalityId,
                 Region = region,
                 Religion = religion,
                 District = district,
+                Denomination = request.Denomination,
                 Nationality = nationality,
                 Disability = request.Disability,
                 DisabilityType = request.DisabilityType,
-                IDCard = IDCard.Create(request.NationalIDType.ToString(), request.NationalIDNo),
+                Idcard = IDCard.Create(request.NationalIDNo, request.NationalIDType.ToString()),
                 ResidentialStatus = request.ResidentialStatus,
                 SourceOfFinance = request.SourceOfFinance.ToUpper(),
                 Hometown = request.Hometown.ToUpper(),
                 GuardianName = request.GuardianName.ToUpper(),
                 GuardianOccupation = request.GuardianOccupation.ToUpper(),
-                GuardianPhone = PhoneNumber.Create("+233", request.GuardianPhone),
+                GuardianPhone = PhoneNumber.Create(request.GuardianPhone),
                 GuardianRelationship = request.GuardianRelationship,
                 SponsorShip = request.SponsorShip,
                 SponsorShipCompany = request.SponsorShipCompany,
                 SponsorShipCompanyContact = request.SponsorShipCompanyContact,
                 SponsorShipLocation = request.SponsorShipLocation,
-                YearOfAdmission = calender.Year
+                YearOfAdmission = calender.Year,
+                Admitted = false,
+                HallFeesPaid = Money.Create("GHS", 0)
 
             };
 
             await _context.ApplicantModels.AddAsync(applicant, cancellationToken);
             // await _applicantRepository.UpdateFormNo(cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
         }
         else
         {
@@ -95,34 +100,36 @@ public class CreateBiodataCommandHandler : IRequestHandler<CreateBiodataRequest,
             applicant.Gender = request.Gender;
             applicant.Email = EmailAddress.Create(request.Email);
             applicant.MaritalStatus = request.MaritalStatus;
+            applicant.NoOfChildren = request.NoOfChildren;
             applicant.Dob = request.Dob;
-            applicant.Phone = PhoneNumber.Create("+233", request.Phone);
-            applicant.AltPhone = PhoneNumber.Create("+233", request.AltPhone);
-            applicant.EmergencyContact = PhoneNumber.Create("+233", request.EmergencyContact);
+            applicant.Phone = PhoneNumber.Create(request.Phone);
+            applicant.AltPhone = PhoneNumber.Create(request.AltPhone);
+            applicant.EmergencyContact = PhoneNumber.Create(request.EmergencyContact);
             applicant.Referrals = request.Referrals;
             applicant.NationalityId = request.NationalityId;
             applicant.Region = region;
             applicant.Religion = religion;
+            applicant.Denomination = request.Denomination;
             applicant.District = district;
             applicant.Nationality = nationality;
             applicant.Disability = request.Disability;
             applicant.DisabilityType = request.DisabilityType;
-            applicant.IDCard = IDCard.Create(request.NationalIDType.ToString(), request.NationalIDNo);
+            applicant.Idcard = IDCard.Create(request.NationalIDNo, request.NationalIDType.ToString());
             applicant.ResidentialStatus = request.ResidentialStatus;
             applicant.SourceOfFinance = request.SourceOfFinance.ToUpper();
             applicant.Hometown = request.Hometown.ToUpper();
             applicant.GuardianName = request.GuardianName.ToUpper();
             applicant.GuardianOccupation = request.GuardianOccupation.ToUpper();
-            applicant.GuardianPhone = PhoneNumber.Create("+233", request.GuardianPhone);
+            applicant.GuardianPhone = PhoneNumber.Create(request.GuardianPhone);
             applicant.GuardianRelationship = request.GuardianRelationship;
             applicant.SponsorShip = request.SponsorShip;
             applicant.SponsorShipCompany = request.SponsorShipCompany;
             applicant.SponsorShipCompanyContact = request.SponsorShipCompanyContact;
             applicant.SponsorShipLocation = request.SponsorShipLocation;
-            await _context.ApplicantModels.AddAsync(applicant, cancellationToken);
-
+            //await _context.ApplicantModels.AddAsync(applicant, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
         }
-        await _context.SaveChangesAsync(cancellationToken);
+
         // go to issue and update biodata done as true
         var applicantIssues = _context.ApplicantIssueModels.FirstOrDefault(u => u.ApplicantModelId == _currentUserService.UserId);
         if (applicantIssues != null)

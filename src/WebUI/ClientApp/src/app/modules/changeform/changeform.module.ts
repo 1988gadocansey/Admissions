@@ -5,6 +5,8 @@ import { ChangeformRoutingModule } from './changeform-routing.module';
 import { ChangeformpageComponent } from './pages/changeformpage.component';
 import { ChangeformdetailsComponent } from './components/changeformdetails.component';
 import { ChangeformComponent } from './changeform.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxLoadingModule } from 'ngx-loading';
 
 
 @NgModule({
@@ -15,7 +17,10 @@ import { ChangeformComponent } from './changeform.component';
   ],
   imports: [
     CommonModule,
-    ChangeformRoutingModule
+    ChangeformRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxLoadingModule
   ]
 })
 export class ChangeformModule { }

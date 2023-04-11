@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Observable, catchError, retry, tap, throwError } from 'rxjs';
-import { ApplicantClient, ApplicantVm, BiodataClient, CountryDto, CreateBiodataRequest, DenominationDto, Disability, DistrictDto, Gender, IDCards, MaritalStatus, RegionDto, ReligionDto, SelectBoxClient, Title } from 'src/app/web-api-client';
+import { ApplicantClient, ApplicantVm, BiodataClient, CountryDto, CreateBiodataRequest, DenominationDto, Disability, DistrictDto, Gender, IDCard, IDCards, MaritalStatus, RegionDto, ReligionDto, SelectBoxClient, Title } from 'src/app/web-api-client';
 
 @Component({
   selector: 'app-biodatadetails',
@@ -21,16 +21,23 @@ export class BiodatadetailsComponent implements OnInit {
 
     this.applicantClient.get().subscribe({
       next: data => {
-        this.applicant = data,
+
+        const dob = data.dob.toLocaleString("en-US").split("/");
+        const yr = dob[2].split(",");
+        console.log("dob" + yr[0]),
+          this.applicant = data,
           this.biodataForm.get("email").setValue(data.email.value);
         this.biodataForm.get("Id").setValue(data.id);
         this.biodataForm.get("firstName").setValue(data.applicantName.firstName);
         this.biodataForm.get("lastName").setValue(data.applicantName.lastName);
-        this.biodataForm.get("otherNames").setValue(data.applicantName.othernames);
+        this.biodataForm.get("otherName").setValue(data.applicantName.othernames);
         this.biodataForm.get("previousName").setValue(data.previousName.firstName);
         this.biodataForm.get("title").setValue(data.title);
         this.biodataForm.get("gender").setValue(data.gender);
         this.biodataForm.get("phone").setValue(data.phone.number);
+        this.biodataForm.get("day").setValue(dob[1]);
+        this.biodataForm.get("month").setValue(dob[0]);
+        this.biodataForm.get("year").setValue(yr[0]);
         this.biodataForm.get("hometown").setValue(data.hometown);
         this.biodataForm.get("maritalStatus").setValue(data.maritalStatus);
         this.biodataForm.get("regionId").setValue(data.regionId);
@@ -47,14 +54,15 @@ export class BiodatadetailsComponent implements OnInit {
         this.biodataForm.get("emergencyContact").setValue(data.emergencyContact.number);
         this.biodataForm.get("referrals").setValue(data.referrals);
         this.biodataForm.get("district").setValue(data.districtId);
-        this.biodataForm.get("nationalIDType").setValue(data.idCard.nationalIDType);
-        this.biodataForm.get("nationalIDNo").setValue(data.idCard.nationalIDNo);
+        this.biodataForm.get("nationalIDType").setValue(data.idcard.nationalIDType);
+        this.biodataForm.get("nationalIDNo").setValue(data.idcard.nationalIDNo);
         this.biodataForm.get("sponsorShip").setValue(data.sponsorShip);
         this.biodataForm.get("sponsorShipCompany").setValue(data.sponsorShipCompany);
         this.biodataForm.get("sponsorShipLocation").setValue(data.sponsorShipLocation);
         this.biodataForm.get("sponsorShipCompanyContact").setValue(data.sponsorShipCompanyContact);
         this.biodataForm.get("residentialStatus").setValue(data.residentialStatus);
-        this.biodataForm.get("day").setValue(data.dob);
+
+        this.biodataForm.get("NoOfChildren").setValue(data.noOfChildren);
         this.biodataForm.get("nationalityId").setValue(data.nationalityId);
       }
     })
@@ -65,9 +73,10 @@ export class BiodatadetailsComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       previousName: [''],
-      otherNames: [''],
+      otherName: [''],
       phone: ['', Validators.required],
       altphone: [''],
+      NoOfChildren: [''],
       day: ['', Validators.required],
       year: ['', Validators.required],
       month: ['', Validators.required],
@@ -89,10 +98,10 @@ export class BiodatadetailsComponent implements OnInit {
       religionId: ['', Validators.required],
       denomination: [''],
       referrals: ['', Validators.required],
-      sponsorShip: ['', Validators.required],
-      sponsorShipCompany: ['', Validators.required],
-      sponsorShipLocation: ['', Validators.required],
-      sponsorShipCompanyContact: ['', Validators.required],
+      sponsorShip: [''],
+      sponsorShipCompany: [''],
+      sponsorShipLocation: [''],
+      sponsorShipCompanyContact: [''],
       guardianName: ['', Validators.required],
       guardianPhone: ['', Validators.required],
       guardianOccupation: ['', Validators.required],
@@ -120,7 +129,6 @@ export class BiodatadetailsComponent implements OnInit {
         thirdChoiceId: ['', Validators.required]
       }),
  */
-
 
     });
 
@@ -161,7 +169,6 @@ export class BiodatadetailsComponent implements OnInit {
 
   days = Array.from({ length: 31 }, (item, index) => index + 1);
 
-
   constructor(private fb: FormBuilder, private client: SelectBoxClient, private biodataClient: BiodataClient, private applicantClient: ApplicantClient) {
     this.titleKeys = Object.keys(this.titleTypes);
     this.genderKeys = Object.keys(this.genderTypes);
@@ -193,13 +200,13 @@ export class BiodatadetailsComponent implements OnInit {
       this.religions = data;
       console.log("religions", this.religions);
     })
-
-
-
   }
 
   onSubmit(): void {
 
+    if (this.biodataForm.invalid) {
+      return;
+    }
     this.loading = true;
     console.log("data", this.biodataForm.value);
     this.biodataClient.create(this.biodataForm.value).subscribe(data => {
@@ -212,7 +219,6 @@ export class BiodatadetailsComponent implements OnInit {
 
     );
   }
-
   getApplicant(): Observable<ApplicantVm> {
     return this.applicantClient.get().pipe(
       tap(data => console.log('All: ' + JSON.stringify(data))),

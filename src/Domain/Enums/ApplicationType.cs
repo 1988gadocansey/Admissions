@@ -2,14 +2,14 @@ namespace OnlineApplicationSystem.Domain.Enums;
 
 public enum ApplicationType
 {
-    Certificate,
-    Diploma,
+    CERTIFICATE,
+    DIPLOMA,
     HND,
     BTECH,
     TOPUP_DIPLOMA,
     TOPUP_CERTIFICATE,
     MTECH,
-    Degree,
-    Masters,
+    //Degree,
+    //Masters,
     PhD
 }

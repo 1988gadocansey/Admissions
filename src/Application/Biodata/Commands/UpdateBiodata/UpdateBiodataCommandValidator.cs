@@ -47,6 +47,6 @@ public class UpdateBiodataCommandValidator : AbstractValidator<UpdateBiodataRequ
     public async Task<bool> BeUniqueNationalIDNo(string NationalIDNo, CancellationToken cancellationToken)
     {
         return await _context.ApplicantModels
-            .AllAsync(l => l.IDCard.NationalIDNo != NationalIDNo, cancellationToken);
+            .AllAsync(l => l.Idcard.NationalIDNo != NationalIDNo, cancellationToken);
     }
 }

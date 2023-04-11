@@ -31,8 +31,8 @@
 <section class="bg-white dark:bg-gray-900">
   <div class="mx-auto max-w-screen-xl py-8 px-4 lg:py-16 lg:px-6">
     <p class="text-center text-sm">
-      <em class="text-red-500">PLEASE NOTE</em> : All fields marked with
-      <em class="text-red-500">*</em> are required to be filled.
+      <span class="text-red-500">PLEASE NOTE</span> : All fields marked with
+      <span class="text-red-500">*</span> are required to be filled.
     </p>
     <form
       (ngSubmit)="onSubmit()"
@@ -146,7 +146,7 @@
             <input
               type="text"
               oninput="this.value = this.value.toUpperCase()"
-              formControlName="otherNames"
+              formControlName="otherName"
               class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
             />
           </div>
@@ -244,8 +244,7 @@
             </label>
             <input
               type="number"
-              min="1979-01-01"
-              max="2005-12-31"
+              formControlName="NoOfChildren"
               class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
             />
           </div>
@@ -374,15 +373,15 @@
               class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
             >
               <option value="" selected>Select month</option>
-              <option value="01">JAN</option>
-              <option value="02">FEB</option>
-              <option value="03">MAR</option>
-              <option value="04">APRIL</option>
-              <option value="05">MAY</option>
-              <option value="06">JUN</option>
-              <option value="07">JUL</option>
-              <option value="08">AUG</option>
-              <option value="09">SEPT</option>
+              <option value="1">JAN</option>
+              <option value="2">FEB</option>
+              <option value="3">MAR</option>
+              <option value="4">APRIL</option>
+              <option value="5">MAY</option>
+              <option value="6">JUN</option>
+              <option value="7">JUL</option>
+              <option value="8">AUG</option>
+              <option value="9">SEPT</option>
               <option value="10">OCT</option>
               <option value="11">NOV</option>
               <option value="12">DEC</option>
@@ -565,24 +564,27 @@
               </div>
             </div>
           </div>
-          <div class="flex-1 p-6">
-            <div class="mb-6 last:mb-0" *ngIf="challenged.selectedIndex === 1">
-              <div class="" *ngFor="let name of disabilitiesKeys">
-                <div class="-mb-3 flex flex-wrap justify-start">
-                  <label class="checkbox mr-6 mb-3 last:mr-0"
-                    ><input
-                      type="checkbox"
-                      formControlName="disabilityType"
-                      name="sample-checkbox"
-                      [id]="name"
-                      [value]="name"
-                    /><span class="check"></span
-                    ><span class="pl-2">{{ disabilities[name] }}</span></label
-                  >
-                </div>
-              </div>
-              <!---->
-            </div>
+          <div
+            class="col-span-full sm:col-span-2"
+            *ngIf="challenged.selectedIndex === 1"
+          >
+            <label for="disability" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Type of Disability</span
+              ></label
+            >
+            <select
+              formControlName="disabilityType"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select Answer</option>
+              <option *ngFor="let name of disabilitiesKeys" [value]="name">
+                {{ disabilities[name] }}
+              </option>
+            </select>
+            <!---->
+
             <div
               *ngIf="
                 biodataForm.controls['disabilityType'].invalid &&
@@ -715,7 +717,7 @@
               </div>
             </div>
           </div>
-          <div class="col-span-full sm:col-span-2" *ngIf="card.value != ''">
+          <div class="col-span-full sm:col-span-2">
             <label for="city" class="text-sm"
               ><span class="after:text-red-500 after:content-['*']">
                 ID Card No</span
@@ -896,7 +898,7 @@
           <div class="col-span-full sm:col-span-2">
             <label for="city" class="text-sm"
               ><span class="after:text-red-500 after:content-['*']"
-                >Relatiionship to Guardian.</span
+                >Relationship to Guardian.</span
               ></label
             >
             <select
@@ -996,7 +998,10 @@
             </div>
           </div>
 
-          <div class="col-span-full sm:col-span-2">
+          <div
+            class="col-span-full sm:col-span-2"
+            *ngIf="sponsorShips.value == 'true'"
+          >
             <label for="city" class="text-sm"
               ><span class="after:text-red-500 after:content-['*']">
                 Name of Company</span
@@ -1027,7 +1032,10 @@
               </div>
             </div>
           </div>
-          <div class="col-span-full sm:col-span-2">
+          <div
+            class="col-span-full sm:col-span-2"
+            *ngIf="sponsorShips.value == 'true'"
+          >
             <label for="city" class="text-sm"
               ><span class="after:text-red-500 after:content-['*']">
                 Location of Company</span
@@ -1058,7 +1066,10 @@
               </div>
             </div>
           </div>
-          <div class="col-span-full sm:col-span-2">
+          <div
+            class="col-span-full sm:col-span-2"
+            *ngIf="sponsorShips.value == 'true'"
+          >
             <label for="city" class="text-sm"
               ><span class="after:text-red-500 after:content-['*']"
                 >Phone No of Company.</span
@@ -1090,7 +1101,7 @@
             </div>
           </div>
           <div class="col-span-full">
-            <div class="-mb-3 flex flex-wrap items-center justify-start">
+            <div class="align-content: center;">
               <button
                 [disabled]="!biodataForm.valid"
                 class="mr-3 mb-3 inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded border border-blue-600 bg-blue-600 py-2 px-3 text-white ring-blue-300 transition-colors duration-150 last:mr-0 focus:outline-none focus:ring hover:border-blue-700 hover:bg-blue-700 dark:border-blue-500 dark:bg-blue-500 dark:ring-blue-700 hover:dark:border-blue-600 hover:dark:bg-blue-600"

@@ -6,12 +6,13 @@ namespace OnlineApplicationSystem.Application.Biodata.Commands.CreateBiodata;
 public record CreateBiodataRequest : IRequest<int>
 {
 
-    public long? Id;
+    public int? Id;
     public long ApplicationNumber { get; init; }
     public string FirstName { get; init; }
     public string LastName { get; init; }
     public string? OtherName { get; init; }
     public string? PreviousName { get; init; }
+    public int? NoOfChildren { get; init; }
     public Gender Gender { get; init; }
     public DateOnly Dob => DateOnly.Parse(Year + "-" + Month + "-" + Day);
     public string? Month { get; init; }
@@ -19,16 +20,17 @@ public record CreateBiodataRequest : IRequest<int>
     public string? Day { get; init; }
     public Title Title { get; init; }
     public MaritalStatus? MaritalStatus { get; set; } = Domain.Enums.MaritalStatus.Single;
-    public string Phone { get; init; }
-    public string? AltPhone { get; init; }
+    public string Phone { get; set; }
+    public string? AltPhone { get; set; }
     public string? Email { get; init; }
     public string? PostGPRS { get; init; }
-    public string? EmergencyContact { get; init; }
+    public string? EmergencyContact { get; set; }
     public string? Hometown { get; init; }
     public int? District { get; init; }
     public string? NationalIDNo { get; set; }
-    public IDCards? NationalIDType { get; init; }
-    public int? RegionId { get; init; }
+    public IDCards? NationalIDType { get; set; }
+    public int? RegionId { get; set; }
+
     public int? NationalityId { get; init; }
     public bool? ResidentialStatus { get; init; }
     public string? GuardianName { get; init; }

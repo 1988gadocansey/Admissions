@@ -82,24 +82,29 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<ApplicantModel>
             .HasConversion(email => email.Value, value => new EmailAddress(value));
         builder.Property(x => x.Phone)
             .HasColumnName("Phone")
-            .HasConversion(phone => phone.FullNumber(), value => new PhoneNumber(value, value))
+            .HasConversion(phone => phone.FullNumber(), value => new PhoneNumber(value))
             .IsRequired();
         builder.Property(x => x.AltPhone)
             .HasColumnName("AltPhone")
-            .HasConversion(phone => phone.FullNumber(), value => new PhoneNumber(value, value));
+            .HasConversion(phone => phone.FullNumber(), value => new PhoneNumber(value));
         builder.Property(x => x.GuardianPhone)
             .HasColumnName("GuardianPhone")
-            .HasConversion(phone => phone.FullNumber(), value => new PhoneNumber(value, value))
+            .HasConversion(phone => phone.FullNumber(), value => new PhoneNumber(value))
             .IsRequired();
         builder.Property(x => x.EmergencyContact)
             .HasColumnName("EmergencyContact")
-            .HasConversion(phone => phone.FullNumber(), value => new PhoneNumber(value, value))
+            .HasConversion(phone => phone.FullNumber(), value => new PhoneNumber(value))
             .IsRequired();
 
         builder.Property(x => x.Gender)
             .HasColumnName("Gender")
             .IsRequired()
             .HasConversion<string>();
+
+        builder.Property(x => x.Title)
+       .HasColumnName("Title")
+       .IsRequired()
+       .HasConversion<string>();
 
         builder.Property(x => x.AdmissionType)
        .HasColumnName("AdmissionType")
@@ -110,7 +115,7 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<ApplicantModel>
                     .IsRequired()
                     .HasConversion<string>(); */
 
-        builder.OwnsOne(x => x.IDCard, nameBuilder =>
+        builder.OwnsOne(x => x.Idcard, nameBuilder =>
        {
            nameBuilder.Property(p => p.NationalIDNo).HasColumnName("NationalIDNo").IsRequired();
            nameBuilder.Property(p => p.NationalIDType).HasColumnName("NationalIDType").IsRequired();
@@ -123,11 +128,12 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<ApplicantModel>
              .HasConversion(
       v => v.ToString(),
       v => (MaritalStatus)Enum.Parse(typeof(MaritalStatus), v));
-        builder.Property(x => x.Title)
-             .HasColumnName("Title")
-              .HasConversion(
-       v => v.ToString(),
-       v => (Title)Enum.Parse(typeof(Title), v));
+        /*  
+         builder.Property(x => x.Title)
+              .HasColumnName("Title")
+               .HasConversion(
+        v => v.ToString(),
+        v => (Title)Enum.Parse(typeof(Title), v)); */
         //  .IsRequired();
 
         // if you want to store all value objects in one column as json
@@ -149,6 +155,13 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<ApplicantModel>
             .IsRequired();
 
         //builder.HasMany<ApplicantModel>(applicant => applicant.Phone);
+
+        builder.Property(x => x.Status)
+              .HasColumnName("Status")
+              .HasDefaultValue(ApplicationStatus.Applicant)
+               .HasConversion(
+        v => v.ToString(),
+        v => (ApplicationStatus)Enum.Parse(typeof(ApplicationStatus), v));
 
     }
 
