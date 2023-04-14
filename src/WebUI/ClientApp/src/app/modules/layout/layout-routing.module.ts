@@ -36,6 +36,18 @@ const routes: Routes = [
     loadChildren: () => import('../biodata/biodata.module').then((m) => m.BiodataModule),
   },
   {
+    path: 'steptwo',
+    component: LayoutComponent,
+    canActivate: [AuthorizeGuard],
+    loadChildren: () => import('../academics/academics.module').then((m) => m.AcademicsModule),
+  },
+  {
+    path: 'stepthree',
+    component: LayoutComponent,
+    canActivate: [AuthorizeGuard],
+    loadChildren: () => import('../resultupload/resultupload.module').then((m) => m.ResultuploadModule),
+  },
+  {
     path: 'proof',
     component: LayoutComponent,
     canActivate: [AuthorizeGuard],

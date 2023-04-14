@@ -32,12 +32,11 @@ export class Menu {
           route: '/academics',
           children: [
             { label: 'Biodata', route: '/forms/biodata' },
-            { label: 'Educational Background', route: '/download', },
-            { label: 'Programme Information', route: '/download', },
-            { label: 'Upload of Result', route: '/download', },
-            { label: 'Research Information', route: '/download', },
-            { label: 'List of Referees', route: '/download', },
-            { label: 'Supporting Documents', route: '/download', },
+            { label: 'Programme & Educational Information', route: '/steptwo/academics', },
+            { label: 'Upload of Result', route: '/stepthree/results', },
+            /*  { label: 'Research Information', route: '/download', },
+             { label: 'List of Referees', route: '/download', },
+             { label: 'Supporting Documents', route: '/download', }, */
             // { label: 'Application Summary', route: '/download', },
             { label: 'Proof of Application', route: '/proof/preview', },
             // { label: 'Application Status', route: '/download', },

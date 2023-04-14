@@ -1,0 +1,121 @@
+table {
+    /* just an example */
+    border: solid red;
+    border-width: 1px 0 0 1px !important;
+    border-bottom-style: none;
+}
+
+ 
+.stickIt{
+    position: fixed;
+    top: 0px;
+  }
+
+  .colorme{
+    font-weight: 400;
+
+  }
+  .changefont{
+     color:#281564;
+    font-weight: bold;
+    
+  }
+  
+  @media print {
+    body {
+        height: auto;
+    }
+    img {
+        -webkit-print-color-adjust: exact;
+    }
+    #print {
+        text-align: right;
+    }
+
+    .capitalize {
+        text-transform: capitalize;
+    }
+
+    .ui.table td .uppercase {
+        font-weight: bold;
+        text-align: right;
+        text-transform: uppercase;
+    }
+    table {
+        float: none !important;
+    }
+
+    * {
+        overflow: visible !important;
+    }
+
+    div {
+        float: none !important;
+    }
+
+    #page1 {
+        page-break-inside: avoid;
+        page-break-after: always;
+    }
+
+    #page2 {
+        page-break-inside: avoid;
+        page-break-after: always;
+         
+    }
+
+    #page3 {
+        page-break-inside: avoid;
+        page-break-before: always;
+    }
+
+    #page4 {
+        page-break-inside: avoid;
+        page-break-before: always;
+    }
+
+    .clear {
+        clear: both;
+    }
+    /* clear here */
+    table {
+        page-break-inside: auto;
+        border-collapse: collapse
+    }
+
+    tr {
+        page-break-inside: avoid;
+        page-break-after: auto
+    }
+
+    thead {
+        display: table-header-group
+    }
+
+    tfoot {
+        display: table-footer-group
+    }
+
+    
+
+}
+
+@page {
+    size: A4;
+}
+
+table, figure {
+    page-break-inside: avoid;
+}
+
+fieldset legend {
+    page-break-before: always;
+}
+
+h1, h2, h3, h4, h5 {
+    page-break-after: avoid;
+}
+
+table {
+    background: none;
+}

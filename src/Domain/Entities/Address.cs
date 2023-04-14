@@ -13,7 +13,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public string Box { set; get; }
         public int ApplicantModel { set; get; }
         public virtual ApplicantModel Applicant { get; set; }
-        private IEnumerable<ApplicantModel>? Applicants { get; set; }
+        //  private IEnumerable<ApplicantModel>? Applicants { get; set; }
 
 
     }

@@ -94,26 +94,26 @@ namespace OnlineApplicationSystem.Domain.Entities
         /*[Display(Name = "Full Name")]
         public string FullName => Title +" "+ LastName + ", " + FirstName + " "+ MiddleName;
         */
-        public string GetFullName()
+        public string GetFullName
         {
-            return $"  {this.Title} ,{this.ApplicantName.LastName}, {this.ApplicantName.FirstName}, {this.ApplicantName.Othernames}";
+            get => $"  {this.Title} {this.ApplicantName.LastName} {this.ApplicantName.FirstName} {this.ApplicantName.Othernames}";
         }
 
-        private IEnumerable<ProgrammeModel> Programmes { get; set; }
-        private IEnumerable<ResultUploadModel> ResultUploads { get; set; }
-        private IEnumerable<WorkingExperienceModel?> WorkingExperiences { get; set; }
-        private IEnumerable<AcademicExperienceModel?> AcademicExperiences { get; set; }
-        private IEnumerable<DocumentUploadModel?> Documents { get; set; }
-        private IEnumerable<RefereeModel?> Referees { get; set; }
-        private IEnumerable<Address?> Addresses { get; set; }
-        private IEnumerable<LanguageModel?> Languages { get; set; }
-        private IEnumerable<SMSModel> Sms { get; set; }
-        private IEnumerable<ApplicantIssueModel>? ApplicantIssues { get; set; }
-        private IEnumerable<ResearchModel>? ResearchModels { get; set; }
-        private IEnumerable<ResearchPublicationModel>? ResearchPublications { get; set; }
-        private IEnumerable<UniversityAttendedModel>? UniversityAttended { get; set; }
-        private IEnumerable<SHSAttendedModel>? SHSAttend { get; set; }
-        private IEnumerable<DisabilitiesModel>? Disabilities { get; set; }
+        public IEnumerable<ProgrammeModel> Programmes { get; set; }
+        public IEnumerable<ResultUploadModel> ResultUploads { get; set; }
+        public IEnumerable<WorkingExperienceModel?> WorkingExperiences { get; set; }
+        public IEnumerable<AcademicExperienceModel?> AcademicExperiences { get; set; }
+        public IEnumerable<DocumentUploadModel?> Documents { get; set; }
+        public IEnumerable<RefereeModel?> Referees { get; set; }
+        public IEnumerable<Address?> Addresses { get; set; }
+        public IEnumerable<LanguageModel?> Languages { get; set; }
+        public IEnumerable<SMSModel> Sms { get; set; }
+        public IEnumerable<ApplicantIssueModel>? ApplicantIssues { get; set; }
+        public IEnumerable<ResearchModel>? ResearchModels { get; set; }
+        public IEnumerable<ResearchPublicationModel>? ResearchPublications { get; set; }
+        public IEnumerable<UniversityAttendedModel>? UniversityAttended { get; set; }
+        public IEnumerable<SHSAttendedModel>? SHSAttend { get; set; }
+        public IEnumerable<DisabilitiesModel>? Disabilities { get; set; }
 
     }
 }

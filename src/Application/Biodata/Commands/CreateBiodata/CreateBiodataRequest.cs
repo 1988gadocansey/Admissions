@@ -63,6 +63,10 @@ public record CreateBiodataRequest : IRequest<int>
     //  public int? FirstChoiceId { get; init; }
     //  public int? SecondChoiceId { get; init; }
     //  public int? ThirdChoiceId { get; init; }
+    public bool? Admitted { get; init; }
+    public string? leveladmitted { get; init; }
+    public int? Grade { get; init; }
+    public int? AdmittedBy { get; init; }
     public bool? SponsorShip { get; init; }
     public string? SponsorShipCompany { get; init; }
     public string? SponsorShipLocation { get; init; }

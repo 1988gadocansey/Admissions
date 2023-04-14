@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Tylgy0s9SXblAdy/KUoFi/NkrBBO951y7GOC6xHijZA=",
+  "Hash": "uHkkyZ1d2VEATCvc8YPXecbVxthnrTvvYfzv8FP1rPg=",
   "Source": "WebUI",
   "BasePath": "_content/WebUI",
   "Mode": "Default",
@@ -1069,6 +1069,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/api/specification.json"
+    },
+    {
+      "Identity": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/assets/logo.png",
+      "SourceId": "WebUI",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/",
+      "BasePath": "_content/WebUI",
+      "RelativePath": "assets/logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/logo.png"
+    },
+    {
+      "Identity": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/assets/seal.png",
+      "SourceId": "WebUI",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/",
+      "BasePath": "_content/WebUI",
+      "RelativePath": "assets/seal.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/seal.png"
     },
     {
       "Identity": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/wwwroot/favicon.ico",

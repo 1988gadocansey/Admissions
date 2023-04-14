@@ -374,9 +374,10 @@
                 *ngIf="profile?.formNo != 0 || profile?.formNo! == ''"
               >
                 <img
+                  style="width: 280px; height: 200px"
+                  class="h-48 w-96 object-scale-down"
                   src="{{ imgurl }}"
                   alt="{{ imgurlAlt }}"
-                  class="block h-auto w-full max-w-full rounded-full bg-gray-100 dark:bg-slate-800"
                 />
               </ng-container>
               <ng-container

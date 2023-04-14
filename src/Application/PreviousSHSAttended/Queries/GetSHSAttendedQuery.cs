@@ -8,7 +8,7 @@ using OnlineApplicationSystem.Application.Common.Mappings;
 using OnlineApplicationSystem.Application.Common.Models;
 using OnlineApplicationSystem.Domain.ValueObjects;
 
-namespace OnlineApplicationSystem.Application.PreviousSHSAttended.Commands;
+namespace OnlineApplicationSystem.Application.PreviousSHSAttended.Queries;
 public record GetSHSAttendedQuery : IRequest<PaginatedList<SHSAttendedDto>>
 {
     public int ResultId { get; init; }

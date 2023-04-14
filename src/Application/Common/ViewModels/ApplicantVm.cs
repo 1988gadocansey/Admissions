@@ -72,13 +72,32 @@ public class ApplicantVm : IMapFrom<ApplicantModel>
     public string? SponsorShipCompany { get; init; }
     public string? SponsorShipLocation { get; init; }
     public string? SponsorShipCompanyContact { get; init; }
-
+    public string GetFullName
+    {
+        get => $"  {this.Title} {this.ApplicantName.LastName} {this.ApplicantName.FirstName} {this.ApplicantName.Othernames}";
+    }
     public void Mapping(Profile profile)
     {
         profile.CreateMap<ApplicantModel, ApplicantVm>()
             .ForMember(d => d.FormerSchool, opt => opt.MapFrom(s => s.FormerSchoolNew.Name))
             .ForMember(d => d.Region, opt => opt.MapFrom(s => s.Region.Name));
     }
+    public IEnumerable<ProgrammeModel> Programmes { get; set; }
+    public IEnumerable<ResultUploadModel> ResultUploads { get; set; }
+    public IEnumerable<WorkingExperienceModel?> WorkingExperiences { get; set; }
+    public IEnumerable<AcademicExperienceModel?> AcademicExperiences { get; set; }
+    public IEnumerable<DocumentUploadModel?> Documents { get; set; }
+    public IEnumerable<RefereeModel?> Referees { get; set; }
+    public IEnumerable<Address?> Addresses { get; set; }
+    public IEnumerable<LanguageModel?> Languages { get; set; }
+    public IEnumerable<SMSModel> Sms { get; set; }
+    public IEnumerable<ApplicantIssueModel>? ApplicantIssues { get; set; }
+    public IEnumerable<ResearchModel>? ResearchModels { get; set; }
+    public IEnumerable<ResearchPublicationModel>? ResearchPublications { get; set; }
+    public IEnumerable<UniversityAttendedModel>? UniversityAttended { get; set; }
+    public IEnumerable<SHSAttendedModel>? SHSAttend { get; set; }
+    public IEnumerable<DisabilitiesModel>? Disabilities { get; set; }
+
 
 
 }

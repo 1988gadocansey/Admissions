@@ -23,11 +23,16 @@ public class SelectBoxController : ApiControllerBase
     {
         return await Mediator.Send(new DisabilityChoiceQuery());
     }
-    
+
     [HttpGet("denominations")]
     public async Task<IEnumerable<DenominationDto>> GetDenominations()
     {
         return await Mediator.Send(new GetDenominationQuery());
+    }
+    [HttpGet("programmes")]
+    public async Task<IEnumerable<ProgrammeDto>> GetProgrammes()
+    {
+        return await Mediator.Send(new GetProgrammeQuery());
     }
     [HttpGet("languages")]
     public async Task<IEnumerable<LanguageDto>> GetLanguages()
@@ -69,6 +74,6 @@ public class SelectBoxController : ApiControllerBase
     {
         return await Mediator.Send(new GetSHSProgrammesQuery());
     }
-    
+
 
 }

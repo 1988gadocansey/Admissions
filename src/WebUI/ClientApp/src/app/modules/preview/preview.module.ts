@@ -8,6 +8,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { PreviewpageComponent } from './pages/previewpage/previewpage.component';
 import { PreviewdetailsComponent } from './components/previewdetails/previewdetails.component';
+import { NgxLoadingModule } from 'ngx-loading';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { PreviewdetailsComponent } from './components/previewdetails/previewdeta
     PreviewRoutingModule,
     HttpClientModule,
     NgApexchartsModule,
+    NgxLoadingModule,
     AngularSvgIconModule.forRoot(),
   ]
 })

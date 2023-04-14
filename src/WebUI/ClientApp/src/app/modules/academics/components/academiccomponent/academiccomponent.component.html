@@ -1,0 +1,1131 @@
+<div class="flex items-center justify-start">
+  <ngx-loading [show]="loading"></ngx-loading>
+  <span
+    class="mr-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-black dark:bg-slate-900/70 dark:text-white"
+    ><svg viewBox="0 0 24 24" width="24" height="24" class="inline-block">
+      <path
+        fill="currentColor"
+        d="M13,7.5H18V9.5H13V7.5M13,14.5H18V16.5H13V14.5M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M19,19V5H5V19H19M11,6V11H6V6H11M10,10V7H7V10H10M11,13V18H6V13H11M10,17V14H7V17H10Z"
+      ></path>
+    </svg>
+  </span>
+  <h1 class="text-2xl leading-tight">Biodata Collection Step</h1>
+</div>
+<span>&nbsp;</span>
+<ng-container *ngIf="message == 200">
+  <div
+    class="mb-4 rounded-lg bg-green-50 p-4 text-center text-sm text-green-800 dark:bg-gray-800 dark:text-green-400"
+    role="alert"
+  >
+    Biodata saved Successfully!
+  </div>
+</ng-container>
+<ng-container *ngIf="message && message == 500">
+  <div
+    class="mb-4 rounded-lg bg-red-50 p-4 text-center text-sm text-red-800 dark:bg-gray-800 dark:text-red-400"
+    role="alert"
+  >
+    Error Saving biodata.
+  </div>
+</ng-container>
+<section class="bg-white dark:bg-gray-900">
+  <div class="mx-auto max-w-screen-xl py-8 px-4 lg:py-16 lg:px-6">
+    <p class="text-center text-sm">
+      <span class="text-red-500">PLEASE NOTE</span> : All fields marked with
+      <span class="text-red-500">*</span> are required to be filled.
+    </p>
+    <form
+      (ngSubmit)="onSubmit()"
+      [formGroup]="biodataForm"
+      autocomplete="off"
+      class="ng-untouched ng-pristine ng-valid container mx-auto flex flex-col space-y-12"
+    >
+      <input type="hidden" formControlName="Id" />
+      <fieldset
+        class="grid grid-cols-4 gap-6 rounded-md p-6 shadow-sm dark:bg-gray-900"
+      >
+        <div class="col-span-full space-y-2 lg:col-span-1">
+          <p class="font-medium">Personal Information</p>
+          <p class="text-xs">Collecting applicant biodata!</p>
+        </div>
+
+        <div class="col-span-full grid grid-cols-6 gap-4 lg:col-span-3">
+          <div class="col-span-full sm:col-span-2">
+            <label for="Title" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Title</span
+              ></label
+            >
+            <select
+              formControlName="title"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select title</option>
+              <option *ngFor="let name of titleKeys" [value]="name">
+                {{ titles[name] }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                biodataForm.controls['title'].invalid &&
+                (biodataForm.controls['title'].dirty ||
+                  biodataForm.controls['title'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['title'].errors.required"
+              >
+                Title is required
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >First Name</span
+              ></label
+            >
+            <input
+              type="text"
+              required=""
+              oninput="this.value = this.value.toUpperCase()"
+              formControlName="firstName"
+              autocapitalize=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                biodataForm.controls['firstName'].invalid &&
+                (biodataForm.controls['firstName'].dirty ||
+                  biodataForm.controls['firstName'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['firstName'].errors.required"
+              >
+                First Name is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="state" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Last Name</span
+              ></label
+            >
+            <input
+              required=""
+              type="text"
+              formControlName="lastName"
+              oninput="this.value = this.value.toUpperCase()"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                biodataForm.controls['lastName'].invalid &&
+                (biodataForm.controls['lastName'].dirty ||
+                  biodataForm.controls['lastName'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['lastName'].errors.required"
+              >
+                Surname is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="zip" class="text-sm">Other Names</label>
+            <input
+              type="text"
+              oninput="this.value = this.value.toUpperCase()"
+              formControlName="otherName"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+          </div>
+          <div class="col-span-full sm:col-span-3">
+            <label for="email" class="text-sm">Previous Names</label>
+            <input
+              type="text"
+              oninput="this.value = this.value.toUpperCase()"
+              formControlName="previousName"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+          </div>
+          <!--  <div class="col-span-full">
+              <label for="address" class="text-sm">Address</label>
+              <input
+                id="address"
+                type="text"
+                placeholder=""
+                class="w-full rounded-md focus:ring focus:ring-violet-400 focus:ring-opacity-75 dark:border-gray-700 dark:text-gray-900"
+              />
+            </div> -->
+
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Gender</span
+              ></label
+            >
+            <select
+              formControlName="gender"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select gender</option>
+              <option *ngFor="let name of genderKeys" [value]="name">
+                {{ gender[name] }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                biodataForm.controls['gender'].invalid &&
+                (biodataForm.controls['gender'].dirty ||
+                  biodataForm.controls['gender'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['gender'].errors.required"
+              >
+                Gender is required
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Marital Status</span
+              ></label
+            >
+            <select
+              #marital
+              formControlName="maritalStatus"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select marital status</option>
+              <option *ngFor="let name of maritalKeys" [value]="name">
+                {{ maritalStatus[name] }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                biodataForm.controls['maritalStatus'].invalid &&
+                (biodataForm.controls['maritalStatus'].dirty ||
+                  biodataForm.controls['maritalStatus'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['maritalStatus'].errors.required"
+              >
+                Marital Status is required
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-span-full sm:col-span-2"
+            *ngIf="marital.value != '2' && marital.value != ''"
+          >
+            <label for="state" class="text-sm"
+              >Number of Children(if any)
+            </label>
+            <input
+              type="number"
+              formControlName="NoOfChildren"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+          </div>
+
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm">
+              <span class="after:text-red-500 after:content-['*']"
+                >Religion</span
+              ></label
+            >
+            <select
+              #religion
+              formControlName="religionId"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select Religion</option>
+              <option *ngFor="let name of religions" [value]="name.id">
+                {{ name.name }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                biodataForm.controls['religionId'].invalid &&
+                (biodataForm.controls['religionId'].dirty ||
+                  biodataForm.controls['religionId'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['religionId'].errors.required"
+              >
+                Religions required
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-span-full sm:col-span-2"
+            *ngIf="religion.value == '8'"
+          >
+            <label for="city" class="text-sm">
+              <span class="after:text-red-500 after:content-['*']"
+                >Denomination</span
+              ></label
+            >
+            <select
+              formControlName="denomination"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select Denomination</option>
+              <option *ngFor="let name of denominations" [value]="name.id">
+                {{ name.name }}
+              </option>
+            </select>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Source of Finance.</span
+              ></label
+            >
+            <input
+              type="text"
+              required=""
+              oninput="this.value = this.value.toUpperCase()"
+              formControlName="sourceOfFinance"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                biodataForm.controls['sourceOfFinance'].invalid &&
+                (biodataForm.controls['sourceOfFinance'].dirty ||
+                  biodataForm.controls['sourceOfFinance'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['sourceOfFinance'].errors.required"
+              >
+                Source O Finance is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full">
+            <p>
+              <span class="after:text-red-500 after:content-['*']"
+                >Date of Birth(As on GH Card)</span
+              >
+            </p>
+          </div>
+
+          <div class="col-span-full sm:col-span-2">
+            <select
+              formControlName="year"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>select year</option>
+              <option *ngFor="let year of years" [value]="year">
+                {{ year }}
+              </option>
+            </select>
+
+            <div
+              *ngIf="
+                biodataForm.controls['year'].invalid &&
+                (biodataForm.controls['year'].dirty ||
+                  biodataForm.controls['year'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['year'].errors.required"
+              >
+                Year
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <select
+              formControlName="month"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select month</option>
+              <option value="1">JAN</option>
+              <option value="2">FEB</option>
+              <option value="3">MAR</option>
+              <option value="4">APRIL</option>
+              <option value="5">MAY</option>
+              <option value="6">JUN</option>
+              <option value="7">JUL</option>
+              <option value="8">AUG</option>
+              <option value="9">SEPT</option>
+              <option value="10">OCT</option>
+              <option value="11">NOV</option>
+              <option value="12">DEC</option>
+            </select>
+
+            <div
+              *ngIf="
+                biodataForm.controls['month'].invalid &&
+                (biodataForm.controls['month'].dirty ||
+                  biodataForm.controls['month'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['month'].errors.required"
+              >
+                Month of birth is required
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <select
+              formControlName="day"
+              placeholder="Day of birth"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>select day</option>
+              <option *ngFor="let data of days" [value]="data">
+                {{ data }}
+              </option>
+            </select>
+
+            <div
+              *ngIf="
+                biodataForm.controls['day'].invalid &&
+                (biodataForm.controls['day'].dirty ||
+                  biodataForm.controls['day'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['day'].errors.required"
+              >
+                Day is required
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Nationality</span
+              ></label
+            >
+            <select
+              formControlName="nationalityId"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select Nationality</option>
+              <option *ngFor="let name of nationalities" [value]="name.id">
+                {{ name.name }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                biodataForm.controls['nationalityId'].invalid &&
+                (biodataForm.controls['nationalityId'].dirty ||
+                  biodataForm.controls['nationalityId'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['nationalityId'].errors.required"
+              >
+                Nationality is required
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >District</span
+              ></label
+            >
+            <select
+              formControlName="district"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select District</option>
+              <option *ngFor="let name of districts" [value]="name.id">
+                {{ name.name }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                biodataForm.controls['district'].invalid &&
+                (biodataForm.controls['district'].dirty ||
+                  biodataForm.controls['district'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['district'].errors.required"
+              >
+                District is required
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Referals</span
+              ></label
+            >
+            <select
+              formControlName="referrals"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select Referals</option>
+              <option value="Social Media">Social Media</option>
+              <option value="Print Media">Print Media</option>
+              <option value="TTU Outreach team">TTU Outreach Team</option>
+              <option value="Friends">Friends</option>
+            </select>
+            <div
+              *ngIf="
+                biodataForm.controls['referrals'].invalid &&
+                (biodataForm.controls['referrals'].dirty ||
+                  biodataForm.controls['referrals'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['referrals'].errors.required"
+              >
+                Referrals is required
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-full sm:col-span-2">
+            <label for="disability" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Physically Challenged?</span
+              ></label
+            >
+            <select
+              #challenged
+              formControlName="disability"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select Answer</option>
+              <option value="true" selected>Yes</option>
+              <option value="false" selected>No</option>
+            </select>
+            <div
+              *ngIf="
+                biodataForm.controls['disability'].invalid &&
+                (biodataForm.controls['disability'].dirty ||
+                  biodataForm.controls['disability'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['disability'].errors.required"
+              >
+                Answer is required
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-span-full sm:col-span-2"
+            *ngIf="challenged.selectedIndex === 1"
+          >
+            <label for="disability" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Type of Disability</span
+              ></label
+            >
+            <select
+              formControlName="disabilityType"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select Answer</option>
+              <option *ngFor="let name of disabilitiesKeys" [value]="name">
+                {{ disabilities[name] }}
+              </option>
+            </select>
+            <!---->
+
+            <div
+              *ngIf="
+                biodataForm.controls['disabilityType'].invalid &&
+                (biodataForm.controls['disabilityType'].dirty ||
+                  biodataForm.controls['disabilityType'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['disabilityType'].errors.required"
+              >
+                Select at least one.
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset
+        class="grid grid-cols-4 gap-6 rounded-md p-6 shadow-sm dark:bg-gray-900"
+      >
+        <div class="col-span-full space-y-2 lg:col-span-1">
+          <p class="font-medium">Contact Information</p>
+          <p class="text-xs">Guardian Info and Address</p>
+        </div>
+        <div class="col-span-full grid grid-cols-6 gap-4 lg:col-span-3">
+          <div class="col-span-full sm:col-span-2">
+            <label for="phone" class="text-sm">
+              <span class="after:text-red-500 after:content-['*']"
+                >Phone No.</span
+              >
+            </label>
+            <input
+              type="tel"
+              required=""
+              formControlName="phone"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                biodataForm.controls['phone'].invalid &&
+                (biodataForm.controls['phone'].dirty ||
+                  biodataForm.controls['phone'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['phone'].errors.required"
+              >
+                Phone no is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm">Alt Phone</label>
+            <input
+              type="tel"
+              formControlName="altphone"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Emergency Phone No.</span
+              ></label
+            >
+            <input
+              type="tel"
+              required=""
+              formControlName="emergencyContact"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                biodataForm.controls['emergencyContact'].invalid &&
+                (biodataForm.controls['emergencyContact'].dirty ||
+                  biodataForm.controls['emergencyContact'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['emergencyContact'].errors.required"
+              >
+                Emergency Phone No. is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="state" class="text-sm">Email</label>
+            <input
+              oninput="this.value = this.value.toUpperCase()"
+              type="email"
+              formControlName="email"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']">
+                National ID Type</span
+              ></label
+            >
+            <select
+              #card
+              formControlName="nationalIDType"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select ID</option>
+              <option *ngFor="let name of IdCardKeys" [value]="name">
+                {{ IdCard[name] }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                biodataForm.controls['nationalIDType'].invalid &&
+                (biodataForm.controls['nationalIDType'].dirty ||
+                  biodataForm.controls['nationalIDType'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['nationalIDType'].errors.required"
+              >
+                ID Card type is required
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']">
+                ID Card No</span
+              ></label
+            >
+            <input
+              type="text"
+              required=""
+              formControlName="nationalIDNo"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                biodataForm.controls['nationalIDNo'].invalid &&
+                (biodataForm.controls['nationalIDNo'].dirty ||
+                  biodataForm.controls['nationalIDNo'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['nationalIDNo'].errors.required"
+              >
+                ID Card No is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-3">
+            <label for="email" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']">
+                Hometown</span
+              >
+            </label>
+            <input
+              type="text"
+              required=""
+              oninput="this.value = this.value.toUpperCase()"
+              formControlName="hometown"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                biodataForm.controls['hometown'].invalid &&
+                (biodataForm.controls['hometown'].dirty ||
+                  biodataForm.controls['hometown'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['hometown'].errors.required"
+              >
+                Hometown is required
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']">
+                Hometown Region</span
+              ></label
+            >
+            <select
+              formControlName="regionId"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select Region</option>
+              <option *ngFor="let name of regions" [value]="name.id">
+                {{ name.name }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                biodataForm.controls['regionId'].invalid &&
+                (biodataForm.controls['regionId'].dirty ||
+                  biodataForm.controls['regionId'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['regionId'].errors.required"
+              >
+                Region is required
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']">
+                Guardian Name</span
+              ></label
+            >
+            <input
+              type="text"
+              required=""
+              oninput="this.value = this.value.toUpperCase()"
+              formControlName="guardianName"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                biodataForm.controls['guardianName'].invalid &&
+                (biodataForm.controls['guardianName'].dirty ||
+                  biodataForm.controls['guardianName'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['guardianName'].errors.required"
+              >
+                Guardian Name is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']">
+                Guardian Occupation</span
+              ></label
+            >
+            <input
+              type="text"
+              required=""
+              formControlName="guardianOccupation"
+              oninput="this.value = this.value.toUpperCase()"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                biodataForm.controls['guardianOccupation'].invalid &&
+                (biodataForm.controls['guardianOccupation'].dirty ||
+                  biodataForm.controls['guardianOccupation'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="
+                  biodataForm.controls['guardianOccupation'].errors.required
+                "
+              >
+                Guardian Occupation is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Guardian Phone No.</span
+              ></label
+            >
+            <input
+              type="tel"
+              required=""
+              formControlName="guardianPhone"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                biodataForm.controls['guardianPhone'].invalid &&
+                (biodataForm.controls['guardianPhone'].dirty ||
+                  biodataForm.controls['guardianPhone'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['guardianName'].errors.required"
+              >
+                Guardian Phone No. is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Relationship to Guardian.</span
+              ></label
+            >
+            <select
+              formControlName="guardianRelationship"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select Relatiionship</option>
+              <option value="PARENT">Parent</option>
+              <option value="SIBILING">Sibling</option>
+              <option value="FAMILY MEMBER">Family Member</option>
+              <option value="SPOUSE">Spouse</option>
+              <option value="COLLEAGUE">Colleague</option>
+              <option value="OTHER">Other</option>
+            </select>
+            <div
+              *ngIf="
+                biodataForm.controls['guardianRelationship'].invalid &&
+                (biodataForm.controls['guardianRelationship'].dirty ||
+                  biodataForm.controls['guardianRelationship'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="
+                  biodataForm.controls['guardianRelationship'].errors.required
+                "
+              >
+                Relatiionship to Guardian is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Residential Status</span
+              ></label
+            >
+            <select
+              formControlName="residentialStatus"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select Answer</option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+            <div
+              *ngIf="
+                biodataForm.controls['residentialStatus'].invalid &&
+                (biodataForm.controls['residentialStatus'].dirty ||
+                  biodataForm.controls['residentialStatus'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="
+                  biodataForm.controls['residentialStatus'].errors.required
+                "
+              >
+                Residential Status is required
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Are you under sponsership?</span
+              ></label
+            >
+            <select
+              #sponsorShips
+              formControlName="sponsorShip"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select Answer</option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+            <div
+              *ngIf="
+                biodataForm.controls['sponsorShip'].invalid &&
+                (biodataForm.controls['sponsorShip'].dirty ||
+                  biodataForm.controls['sponsorShip'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="biodataForm.controls['sponsorShip'].errors.required"
+              >
+                SponsorShip Status is required
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-span-full sm:col-span-2"
+            *ngIf="sponsorShips.value == 'true'"
+          >
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']">
+                Name of Company</span
+              ></label
+            >
+            <input
+              type="text"
+              required=""
+              formControlName="sponsorShipCompany"
+              oninput="this.value = this.value.toUpperCase()"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                biodataForm.controls['sponsorShipCompany'].invalid &&
+                (biodataForm.controls['sponsorShipCompany'].dirty ||
+                  biodataForm.controls['sponsorShipCompany'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="
+                  biodataForm.controls['sponsorShipCompany'].errors.required
+                "
+              >
+                SponsorShip Company is required.
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-span-full sm:col-span-2"
+            *ngIf="sponsorShips.value == 'true'"
+          >
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']">
+                Location of Company</span
+              ></label
+            >
+            <input
+              type="tel"
+              required=""
+              formControlName="sponsorShipLocation"
+              oninput="this.value = this.value.toUpperCase()"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                biodataForm.controls['sponsorShipLocation'].invalid &&
+                (biodataForm.controls['sponsorShipLocation'].dirty ||
+                  biodataForm.controls['sponsorShipLocation'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="
+                  biodataForm.controls['sponsorShipLocation'].errors.required
+                "
+              >
+                Location is required.
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-span-full sm:col-span-2"
+            *ngIf="sponsorShips.value == 'true'"
+          >
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Phone No of Company.</span
+              ></label
+            >
+            <input
+              type="text"
+              required=""
+              formControlName="sponsorShipCompanyContact"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                biodataForm.controls['sponsorShipCompanyContact'].invalid &&
+                (biodataForm.controls['sponsorShipCompanyContact'].dirty ||
+                  biodataForm.controls['sponsorShipCompanyContact'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="
+                  biodataForm.controls['sponsorShipCompanyContact'].errors
+                    .required
+                "
+              >
+                Phone no is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full">
+            <div class="align-content: center;">
+              <button
+                [disabled]="!biodataForm.valid"
+                class="mr-3 mb-3 inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded border border-blue-600 bg-blue-600 py-2 px-3 text-white ring-blue-300 transition-colors duration-150 last:mr-0 focus:outline-none focus:ring hover:border-blue-700 hover:bg-blue-700 dark:border-blue-500 dark:bg-blue-500 dark:ring-blue-700 hover:dark:border-blue-600 hover:dark:bg-blue-600"
+                type="submit"
+              >
+                <!----><span class="px-2">Save & Continue</span>
+              </button>
+              <button
+                [disabled]="!biodataForm.valid"
+                class="mr-3 mb-3 inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded border border-orange-600 bg-orange-600 py-2 px-3 text-white ring-orange-300 transition-colors duration-150 last:mr-0 focus:outline-none focus:ring hover:border-orange-700 dark:border-orange-500 dark:bg-orange-500 dark:ring-orange-700 hover:dark:border-orange-600 hover:dark:bg-orange-600"
+                type="submit"
+              >
+                <!----><span class="px-2">Save & Exit</span>
+              </button>
+              <button
+                class="mr-3 mb-3 inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded border border-blue-600 py-2 px-3 text-blue-600 ring-blue-300 transition-colors duration-150 last:mr-0 focus:outline-none focus:ring hover:bg-blue-600 hover:text-white dark:border-blue-500 dark:text-blue-500 dark:ring-blue-700 hover:dark:border-blue-600 hover:dark:text-white"
+                type="reset"
+              >
+                <!----><span class="px-2">Previous Form</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
