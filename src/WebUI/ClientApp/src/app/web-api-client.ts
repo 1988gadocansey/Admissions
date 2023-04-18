@@ -7912,6 +7912,7 @@ export interface IPaginatedListOfResultsDto {
 }
 
 export class ResultsDto implements IResultsDto {
+    id?: number;
     subjectID?: number;
     examType?: string;
     gradeID?: number;
@@ -7941,6 +7942,7 @@ export class ResultsDto implements IResultsDto {
 
     init(_data?: any) {
         if (_data) {
+            this.id = _data["id"];
             this.subjectID = _data["subjectID"];
             this.examType = _data["examType"];
             this.gradeID = _data["gradeID"];
@@ -7970,6 +7972,7 @@ export class ResultsDto implements IResultsDto {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
         data["subjectID"] = this.subjectID;
         data["examType"] = this.examType;
         data["gradeID"] = this.gradeID;
@@ -7992,6 +7995,7 @@ export class ResultsDto implements IResultsDto {
 }
 
 export interface IResultsDto {
+    id?: number;
     subjectID?: number;
     examType?: string;
     gradeID?: number;

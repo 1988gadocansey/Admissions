@@ -5,6 +5,7 @@ namespace OnlineApplicationSystem.Application.Common.Dtos;
 
 public record ResultsDto : IMapFrom<ResultUploadModel>
 {
+    public int Id { set; get; }
     public int SubjectID { set; get; }
     public string ExamType { set; get; }
     public int GradeID { set; get; }

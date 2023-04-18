@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0CHnu4E3bvqWXziHSdeLM6Gx04ELEWkaYJ/+TDBTgz0W29m4Al+FBY9Mvluvic8adWDlhcx6g9y108EgJBw8Yg==",
+  "dgSpecHash": "/JvcwS2YwxEXrjJb4yoJ1vDY5fjya54xs0sUrg19QirINjAAdsDZ94h/qGpDdKlGL4jLJFU/8m98WxM4WOu44w==",
   "success": true,
   "projectFilePath": "/Users/gadocansey/Projects/OnlineApplicationSystem/tests/Application.UnitTests/Application.UnitTests.csproj",
   "expectedPackageFiles": [
@@ -32,6 +32,8 @@
     "/Users/gadocansey/.nuget/packages/microsoft.aspnetcore.diagnostics.entityframeworkcore/7.0.4/microsoft.aspnetcore.diagnostics.entityframeworkcore.7.0.4.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/7.0.4/microsoft.aspnetcore.identity.entityframeworkcore.7.0.4.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/microsoft.aspnetcore.identity.ui/7.0.4/microsoft.aspnetcore.identity.ui.7.0.4.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/microsoft.aspnetcore.jsonpatch/7.0.4/microsoft.aspnetcore.jsonpatch.7.0.4.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/7.0.4/microsoft.aspnetcore.mvc.newtonsoftjson.7.0.4.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/microsoft.codecoverage/17.3.2/microsoft.codecoverage.17.3.2.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
@@ -80,6 +82,7 @@
     "/Users/gadocansey/.nuget/packages/netcore.mailkit/2.1.0/netcore.mailkit.2.1.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/netstandard.library/2.0.0/netstandard.library.2.0.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/npgsql/7.0.2/npgsql.7.0.2.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/npgsql.entityframeworkcore.postgresql/7.0.3/npgsql.entityframeworkcore.postgresql.7.0.3.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/nuget.frameworks/5.11.0/nuget.frameworks.5.11.0.nupkg.sha512",

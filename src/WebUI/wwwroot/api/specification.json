@@ -5189,6 +5189,10 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
           "subjectID": {
             "type": "integer",
             "format": "int32"

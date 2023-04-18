@@ -20,14 +20,14 @@ export class ResultuploaddetailsComponent {
   years: number[] = [];
   ngOnInit() {
     this.loading = true;
-    this.resultUploadClient.get(1, 1, 100).subscribe(
+    /* this.resultUploadClient.get(1, 1, 100).subscribe(
       result => {
         this.resultUploadDto = result.items;
         this.loading = false;
       },
       error => console.error(error)
-    );
-
+    ); */
+    this.getData();
     this.ResultUploadForm = this.fb.group({
       Id: [''],
       SubjectId: ['', Validators.required],
@@ -74,7 +74,8 @@ export class ResultuploaddetailsComponent {
     this.resultUploadClient.create(this.ResultUploadForm.value).subscribe(data => {
       this.message = data;
       this.loading = false;
-      window.location.href = '/proof/preview';
+      // window.location.href = '/proof/preview';
+      this.getData()
       console.log("response is " + JSON.stringify(data))
     },
       error => this.message = error,
@@ -82,5 +83,30 @@ export class ResultuploaddetailsComponent {
 
     );
   }
+
+  getData() {
+    this.resultUploadClient.get(1, 1, 100).subscribe(
+      result => {
+        this.resultUploadDto = result.items;
+        this.loading = false;
+      },
+      error => console.error(error)
+    );
+  }
+
+  delete(id: number): void {
+
+    var c = confirm("Are you sure you want to delete this result?");
+
+    if (c == true) {
+      this.resultUploadClient.delete(id).subscribe(data => {
+        this.getData();
+      }
+      );
+
+    }
+
+  }
+
 
 }
