@@ -30,7 +30,7 @@ const routes: Routes = [
     loadChildren: () => import('../faq/faq.module').then((m) => m.FaqModule),
   },
   {
-    path: 'forms',
+    path: 'stepone',
     component: LayoutComponent,
     canActivate: [AuthorizeGuard],
     loadChildren: () => import('../biodata/biodata.module').then((m) => m.BiodataModule),
@@ -39,10 +39,16 @@ const routes: Routes = [
     path: 'steptwo',
     component: LayoutComponent,
     canActivate: [AuthorizeGuard],
-    loadChildren: () => import('../academics/academics.module').then((m) => m.AcademicsModule),
+    loadChildren: () => import('../address/address.module').then((m) => m.AddressModule),
   },
   {
     path: 'stepthree',
+    component: LayoutComponent,
+    canActivate: [AuthorizeGuard],
+    loadChildren: () => import('../academics/academics.module').then((m) => m.AcademicsModule),
+  },
+  {
+    path: 'stepfour',
     component: LayoutComponent,
     canActivate: [AuthorizeGuard],
     loadChildren: () => import('../resultupload/resultupload.module').then((m) => m.ResultuploadModule),

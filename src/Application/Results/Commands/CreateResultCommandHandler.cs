@@ -26,7 +26,7 @@ public class CreateResultCommandHandler : IRequestHandler<CreateResultRequest, i
         var userDetails = await _identityService.GetApplicationUserDetails(userId, cancellationToken);
         var formNo = userDetails.FormNo;
         var applicantDetails = await _applicantRepository.GetApplicantForUser(userId, cancellationToken);
-        var subject = await _context.SubjectModels.FirstOrDefaultAsync(s => s.Id == request.SubjectID, cancellationToken: cancellationToken);
+        var subject = await _context.SubjectModels.FirstOrDefaultAsync(s => s.Id == request.SubjectId, cancellationToken: cancellationToken);
         var grade = await _context.GradeModels.FirstOrDefaultAsync(s => s.Id == request.GradeID, cancellationToken: cancellationToken);
         if (userDetails.Category != "Undergraduate" || userDetails.Foriegn == true) return 0;
         var resultDetails = new ResultUploadModel

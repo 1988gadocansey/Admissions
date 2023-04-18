@@ -207,6 +207,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "AForge": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            },
+            "AForge.Imaging": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            },
             "CsvHelper": {
               "target": "Package",
               "version": "[15.0.10, )"

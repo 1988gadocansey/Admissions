@@ -50,8 +50,8 @@ public class ApplicantVm : IMapFrom<ApplicantModel>
     public string? Denomination { get; set; }
     public string? Referrals { get; set; }
     public Session? EntryMode { get; set; }
-    public string? FirstQualification { get; init; }
-    public string? SecondQualification { get; init; }
+    public EntryQualification? FirstQualification { get; init; }
+    public EntryQualification? SecondQualification { get; init; }
     public string? ProgrammeStudied { get; init; }
     public string? FormerSchool { get; init; }
     public int? FormerSchoolNewId { get; init; }
@@ -65,9 +65,9 @@ public class ApplicantVm : IMapFrom<ApplicantModel>
     public int? AdmittedBy { get; init; }
     public string? AdmissionType { get; init; }
     public string? leveladmitted { get; init; }
-    public int? FirstChoice { get; init; }
-    public int? SecondChoice { get; init; }
-    public int? ThirdChoice { get; init; }
+    public int? FirstChoiceId { get; init; }
+    public int? SecondChoiceId { get; init; }
+    public int? ThirdChoiceId { get; init; }
     public bool? SponsorShip { get; init; }
     public string? SponsorShipCompany { get; init; }
     public string? SponsorShipLocation { get; init; }
@@ -88,10 +88,10 @@ public class ApplicantVm : IMapFrom<ApplicantModel>
     public IEnumerable<AcademicExperienceModel?> AcademicExperiences { get; set; }
     public IEnumerable<DocumentUploadModel?> Documents { get; set; }
     public IEnumerable<RefereeModel?> Referees { get; set; }
-    public IEnumerable<Address?> Addresses { get; set; }
+    public IEnumerable<AddressModel?> Addresses { get; set; }
     public IEnumerable<LanguageModel?> Languages { get; set; }
     public IEnumerable<SMSModel> Sms { get; set; }
-    public IEnumerable<ApplicantIssueModel>? ApplicantIssues { get; set; }
+    // public IEnumerable<ApplicantIssueModel>? ApplicantIssues { get; set; }
     public IEnumerable<ResearchModel>? ResearchModels { get; set; }
     public IEnumerable<ResearchPublicationModel>? ResearchPublications { get; set; }
     public IEnumerable<UniversityAttendedModel>? UniversityAttended { get; set; }

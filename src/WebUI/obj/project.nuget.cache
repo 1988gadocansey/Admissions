@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "db6NF1HFOfLdPwpTNbu4sgWwv3VyXbPHoXyX03GBztwD9crnUD6XSypXxSYqLopbaUbtMBQka30xSNil0TDQhw==",
+  "dgSpecHash": "Lrx7DmrKbgNDpAllTo+/Mi+5MoPvsKlXQm2wJSmzg27RD2g7E11DX+6syRInZpibwLkRxIc3NEeWJr3PbSWj2A==",
   "success": true,
   "projectFilePath": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/WebUI.csproj",
   "expectedPackageFiles": [
+    "/Users/gadocansey/.nuget/packages/aforge/2.2.5/aforge.2.2.5.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/aforge.imaging/2.2.5/aforge.imaging.2.2.5.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/aforge.math/2.2.5/aforge.math.2.2.5.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/automapper/11.0.0/automapper.11.0.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/11.0.0/automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/azure.core/1.24.0/azure.core.1.24.0.nupkg.sha512",
@@ -143,5 +146,36 @@
     "/Users/gadocansey/.nuget/packages/zymlabs.nswag.fluentvalidation/0.6.2/zymlabs.nswag.fluentvalidation.0.6.2.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/zymlabs.nswag.fluentvalidation.aspnetcore/0.6.2/zymlabs.nswag.fluentvalidation.aspnetcore.0.6.2.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'AForge 2.2.5' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "AForge",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'AForge.Imaging 2.2.5' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "AForge.Imaging",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'AForge.Math 2.2.5' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "AForge.Math",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }

@@ -3,8 +3,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { Observable, catchError, retry, tap, throwError } from 'rxjs';
-import { ApplicantClient, ApplicantVm, BiodataClient, CountryDto, CreateBiodataRequest, DenominationDto, Disability, DistrictDto, Gender, IDCard, IDCards, MaritalStatus, RegionDto, ReligionDto, SelectBoxClient, Title } from 'src/app/web-api-client';
+import { Observable, catchError, tap, throwError } from 'rxjs';
+import { ApplicantClient, ApplicantVm, BiodataClient, EntryQualification, ProgrammeDto, ProgrammeInformationClient, SelectBoxClient, Session } from 'src/app/web-api-client';
 
 @Component({
   selector: 'app-academiccomponent',
@@ -12,205 +12,85 @@ import { ApplicantClient, ApplicantVm, BiodataClient, CountryDto, CreateBiodataR
   styleUrls: ['./academiccomponent.component.css']
 })
 export class AcademiccomponentComponent implements OnInit {
-  biodataForm: FormGroup;
+  programmeInfo: FormGroup;
   submitted = false;
   loading: boolean = false;
   message: number | any;
   applicant: ApplicantVm
     ;
+  selectedYear: number;
+  years: number[] = [];
   ngOnInit() {
 
     this.applicantClient.get().subscribe({
       next: data => {
-
-        const dob = data.dob.toLocaleString("en-US").split("/");
-        const yr = dob[2].split(",");
-        console.log("dob" + yr[0]),
-          this.applicant = data,
-          this.biodataForm.get("email").setValue(data.email.value);
-        this.biodataForm.get("Id").setValue(data.id);
-        this.biodataForm.get("firstName").setValue(data.applicantName.firstName);
-        this.biodataForm.get("lastName").setValue(data.applicantName.lastName);
-        this.biodataForm.get("otherName").setValue(data.applicantName.othernames);
-        this.biodataForm.get("previousName").setValue(data.previousName.firstName);
-        this.biodataForm.get("title").setValue(data.title);
-        this.biodataForm.get("gender").setValue(data.gender);
-        this.biodataForm.get("phone").setValue(data.phone.number);
-        this.biodataForm.get("day").setValue(dob[1]);
-        this.biodataForm.get("month").setValue(dob[0]);
-        this.biodataForm.get("year").setValue(yr[0]);
-        this.biodataForm.get("hometown").setValue(data.hometown);
-        this.biodataForm.get("maritalStatus").setValue(data.maritalStatus);
-        this.biodataForm.get("regionId").setValue(data.regionId);
-        this.biodataForm.get("religionId").setValue(data.religionId);
-        this.biodataForm.get("denomination").setValue(data.denomination);
-        this.biodataForm.get("sourceOfFinance").setValue(data.sourceOfFinance);
-        this.biodataForm.get("disability").setValue(data.disability);
-        this.biodataForm.get("disabilityType").setValue(data.disabilityType);
-        this.biodataForm.get("guardianName").setValue(data.guardianName);
-        this.biodataForm.get("guardianOccupation").setValue(data.guardianOccupation);
-        this.biodataForm.get("guardianPhone").setValue(data.guardianPhone.number);
-        this.biodataForm.get("guardianRelationship").setValue(data.guardianRelationship);
-        this.biodataForm.get("altphone").setValue(data.altPhone.number);
-        this.biodataForm.get("emergencyContact").setValue(data.emergencyContact.number);
-        this.biodataForm.get("referrals").setValue(data.referrals);
-        this.biodataForm.get("district").setValue(data.districtId);
-        this.biodataForm.get("nationalIDType").setValue(data.idcard.nationalIDType);
-        this.biodataForm.get("nationalIDNo").setValue(data.idcard.nationalIDNo);
-        this.biodataForm.get("sponsorShip").setValue(data.sponsorShip);
-        this.biodataForm.get("sponsorShipCompany").setValue(data.sponsorShipCompany);
-        this.biodataForm.get("sponsorShipLocation").setValue(data.sponsorShipLocation);
-        this.biodataForm.get("sponsorShipCompanyContact").setValue(data.sponsorShipCompanyContact);
-        this.biodataForm.get("residentialStatus").setValue(data.residentialStatus);
-
-        this.biodataForm.get("NoOfChildren").setValue(data.noOfChildren);
-        this.biodataForm.get("nationalityId").setValue(data.nationalityId);
+        this.programmeInfo.get("Id").setValue(data.id);
+        this.programmeInfo.get("ThirdChoiceId").setValue(data.thirdChoiceId);
+        this.programmeInfo.get("FirstChoiceId").setValue(data.thirdChoiceId);
+        this.programmeInfo.get("SecondChoiceId").setValue(data.secondChoiceId);
+        this.programmeInfo.get("entryMode").setValue(data.entryMode);
+        this.programmeInfo.get("awaiting").setValue(data.awaiting);
+        this.programmeInfo.get("lastYearInSchool").setValue(data.lastYearInSchool);
+        this.programmeInfo.get("firstQualification").setValue(data.firstQualification);
+        this.programmeInfo.get("secondQualification").setValue(data.secondQualification);
       }
     })
 
 
-    this.biodataForm = this.fb.group({
+    this.programmeInfo = this.fb.group({
       Id: [''],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      previousName: [''],
-      otherName: [''],
-      phone: ['', Validators.required],
-      altphone: [''],
-      NoOfChildren: [''],
-      day: ['', Validators.required],
-      year: ['', Validators.required],
-      month: ['', Validators.required],
-      maritalStatus: ['', Validators.required],
-      gender: ['', Validators.required],
-      title: ['', Validators.required],
-      email: [''],
-      emergencyContact: ['', Validators.required],
-      hometown: ['', Validators.required],
-      district: ['', Validators.required],
-      nationalIDType: ['', Validators.required],
-      nationalIDNo: ['', Validators.required],
-      regionId: ['', Validators.required],
-      nationalityId: ['', Validators.required],
-      residentialStatus: ['', Validators.required],
-      disability: ['', Validators.required],
-      disabilityType: ['', Validators.required],
-      sourceOfFinance: ['', Validators.required],
-      religionId: ['', Validators.required],
-      denomination: [''],
-      referrals: ['', Validators.required],
-      sponsorShip: [''],
-      sponsorShipCompany: [''],
-      sponsorShipLocation: [''],
-      sponsorShipCompanyContact: [''],
-      guardianName: ['', Validators.required],
-      guardianPhone: ['', Validators.required],
-      guardianOccupation: ['', Validators.required],
-      guardianRelationship: ['', Validators.required],
-      /* address: this.fb.group({
-        street: [''],
-        city: [''],
-        state: [''],
-        zip: ['']
-      }),
+      firstQualification: ['', Validators.required],
+      secondQualification: ['', Validators.required],
 
-      previousEducationInfo: this.fb.group({
-        formerSchoolNewId: ['', Validators.required],
-        firstQualification: ['', Validators.required],
-        secondQualification: [''],
-        programmeStudied: ['', Validators.required],
-        lastYearInSchool: ['', Validators.required]
-      }),
+      entryMode: ['', Validators.required],
 
-      programmeChoice: this.fb.group({
-        awaiting: ['', Validators.required],
-        preferedHall: [''],
-        firstChoiceId: ['', Validators.required],
-        secondChoiceId: ['', Validators.required],
-        thirdChoiceId: ['', Validators.required]
-      }),
- */
+      ThirdChoiceId: ['', Validators.required],
+      SecondChoiceId: ['', Validators.required],
+      FirstChoiceId: ['', Validators.required],
+      lastYearInSchool: ['', Validators.required],
+      awaiting: ['', Validators.required],
+
+
 
     });
 
   }
-  get primEmail() {
-    return this.biodataForm.get('email')
-  }
-  disabilities = Disability;
-  disabilitiesKeys = [];
-  disabilitiesTypes = Object.values(this.disabilities).filter(value => typeof value === 'number');
 
-  titles = Title;
-  titleKeys = [];
-  titleTypes = Object.values(this.titles).filter(value => typeof value === 'number');
+  entryMode = Session;
+  entryModeKeys = [];
+  entryModeTypes = Object.values(this.entryMode).filter(value => typeof value === 'number');
 
-  gender = Gender;
-  genderKeys = [];
-  genderTypes = Object.values(this.gender).filter(value => typeof value === 'number');
+  entryQualification = EntryQualification;
+  entryQualificationKeys = [];
+  entryQualificationypes = Object.values(this.entryQualification).filter(value => typeof value === 'number');
 
-  IdCard = IDCards;
-  IdCardKeys = [];
-  IdCardTypes = Object.values(this.IdCard).filter(value => typeof value === 'number');
 
-  maritalStatus = MaritalStatus;
-  maritalKeys = [];
-  maritalTypes = Object.values(this.maritalStatus).filter(value => typeof value === 'number');
+  public programmes: ProgrammeDto[] = [];
 
-  /* monthList = Array.from({ length: 12 }, (item, i) => {
-    return new Date(0, i).toLocaleString('en-US', { month: 'long' })
-  }); */
-  public religions: ReligionDto[] = [];
-  public regions: RegionDto[] = [];
-  public districts: DistrictDto[] = [];
-  public nationalities: CountryDto[] = [];
-  public denominations: DenominationDto[] = [];
-  selectedYear: number;
-  years: number[] = [];
 
-  days = Array.from({ length: 31 }, (item, index) => index + 1);
 
-  constructor(private fb: FormBuilder, private client: SelectBoxClient, private biodataClient: BiodataClient, private applicantClient: ApplicantClient) {
-    this.titleKeys = Object.keys(this.titleTypes);
-    this.genderKeys = Object.keys(this.genderTypes);
-    this.IdCardKeys = Object.keys(this.IdCardTypes);
-    this.disabilitiesKeys = Object.keys(this.disabilitiesTypes);
-    this.maritalKeys = Object.keys(this.maritalTypes);
-    this.selectedYear = 2005;
-    for (let year = this.selectedYear; year >= 1945; year--) {
+  constructor(private fb: FormBuilder, private client: SelectBoxClient, private biodataClient: BiodataClient, private applicantClient: ApplicantClient, private academicClient: ProgrammeInformationClient) {
+    this.entryModeKeys = Object.keys(this.entryModeTypes);
+    this.entryQualificationKeys = Object.keys(this.entryQualificationypes);
+
+    client.getProgrammes().subscribe((data: ProgrammeDto[]) => {
+      this.programmes = data;
+      console.log("programmes", this.programmes);
+    })
+    this.selectedYear = new Date().getFullYear();
+    for (let year = this.selectedYear; year >= 1955; year--) {
       this.years.push(year);
     }
-    client.getRegions().subscribe((data: RegionDto[]) => {
-      this.regions = data;
-      console.log("religions", this.regions);
-    })
-    client.getCountries().subscribe((data: CountryDto[]) => {
-      this.nationalities = data;
-      console.log("countries", this.nationalities);
-    })
-    client.getDistricts().subscribe((data: DistrictDto[]) => {
-      this.districts = data;
-      console.log("districts", this.districts);
-    })
-
-    client.getDenominations().subscribe((data: DenominationDto[]) => {
-      this.denominations = data;
-      console.log("denomination", this.denominations);
-    })
-    client.getReligions().subscribe((data: ReligionDto[]) => {
-      this.religions = data;
-      console.log("religions", this.religions);
-    })
   }
 
   onSubmit(): void {
 
-    if (this.biodataForm.invalid) {
+    if (this.programmeInfo.invalid) {
       return;
     }
     this.loading = true;
-    console.log("data", this.biodataForm.value);
-    this.biodataClient.create(this.biodataForm.value).subscribe(data => {
+    console.log("data", this.programmeInfo.value);
+    this.academicClient.create(this.programmeInfo.value).subscribe(data => {
       this.message = data;
       this.loading = false;
       console.log("response is " + JSON.stringify(data))

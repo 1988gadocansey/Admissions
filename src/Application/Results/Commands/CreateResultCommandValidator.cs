@@ -11,7 +11,7 @@ public class CreateResultCommandValidator : AbstractValidator<CreateResultReques
     {
         _context = context;
 
-        RuleFor(v => v.GradeID)
+        /* RuleFor(v => v.GradeID)
             .NotEmpty().WithMessage("Grade is required.");
         RuleFor(v => v.SubjectID)
       .NotEmpty().WithMessage("Subject is required.")
@@ -34,7 +34,7 @@ public class CreateResultCommandValidator : AbstractValidator<CreateResultReques
        .NotEmpty().WithMessage("Month is required.");
 
         RuleFor(v => v.IndexNo)
-       .NotEmpty().WithMessage("Index No is required.");
+       .NotEmpty().WithMessage("Index No is required."); */
 
     }
 

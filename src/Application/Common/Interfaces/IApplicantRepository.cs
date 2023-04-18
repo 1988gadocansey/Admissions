@@ -20,6 +20,11 @@ public interface IApplicantRepository
     public Task<int> GetTotalAggregate(IEnumerable<int> Cores, IEnumerable<int> CoreAlt, IEnumerable<int> Electives);
     public Task<string> GetFormNo();
     public Task<int> UpdateFormNo(CancellationToken cancellationToken);
+
+    // for future use.. applicant has many addresses but now ive limited it to single address cos of time constraints
+    // public Task<IEnumerable<AddressDto>> GetAddresses(int applicant, CancellationToken cancellationToken);
+
+    public Task<AddressDto> GetAddresses(int applicant, CancellationToken cancellationToken);
     public Task<IEnumerable<ReligionDto>> Religions(CancellationToken cancellationToken);
     public Task<IEnumerable<CountryDto>> Countries(CancellationToken cancellationToken);
     public Task<IEnumerable<RegionDto>> Regions(CancellationToken cancellationToken);

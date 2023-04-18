@@ -20,7 +20,7 @@ public class ApplicantIssueModel : BaseAuditableEntity
 {
 
     //public virtual ApplicantModel ApplicantModel { get; set; }
-    public string ApplicantModelId { set; get; }
+    public string ApplicationUserId { set; get; }
     public bool? Biodata { set; get; }
     public bool Results { set; get; }
     public bool Picture { set; get; }

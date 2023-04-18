@@ -6,16 +6,15 @@ namespace OnlineApplicationSystem.Application.ProgrammeInformation.Commands;
 public record ProgrammeInfoRequest : IRequest<int>
 {
 
-    public int? Id;
+    public int? Id { get; init; }
 
     public Session? EntryMode { get; init; }
-    public string? FirstQualification { get; init; }
-    public string? SecondQualification { get; init; }
+    public EntryQualification? FirstQualification { get; init; }
+    public EntryQualification? SecondQualification { get; init; }
     public int? FirstChoiceId { get; init; }
     public int? SecondChoiceId { get; init; }
     public int? ThirdChoiceId { get; init; }
     public bool? Awaiting { get; init; }
-    public int? Grade { get; init; }
     public int? LastYearInSchool { get; init; }
 
 

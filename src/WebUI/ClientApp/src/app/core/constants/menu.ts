@@ -31,9 +31,10 @@ export class Menu {
           label: 'Steps',
           route: '/academics',
           children: [
-            { label: 'Biodata', route: '/forms/biodata' },
-            { label: 'Programme & Educational Information', route: '/steptwo/academics', },
-            { label: 'Upload of Result', route: '/stepthree/results', },
+            { label: 'Biodata', route: '/stepone/biodata' },
+            { label: 'Location Information', route: '/steptwo/address' },
+            { label: 'Programme & Educational Information', route: '/stepthree/academics', },
+            { label: 'Upload of Result', route: '/stepfour/results', },
             /*  { label: 'Research Information', route: '/download', },
              { label: 'List of Referees', route: '/download', },
              { label: 'Supporting Documents', route: '/download', }, */

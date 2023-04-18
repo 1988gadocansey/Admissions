@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable, catchError, retry, tap, throwError } from 'rxjs';
 import { ApplicantClient, ApplicantVm, BiodataClient, CountryDto, CreateBiodataRequest, DenominationDto, Disability, DistrictDto, Gender, IDCard, IDCards, MaritalStatus, RegionDto, ReligionDto, SelectBoxClient, Title } from 'src/app/web-api-client';
 
@@ -169,7 +170,7 @@ export class BiodatadetailsComponent implements OnInit {
 
   days = Array.from({ length: 31 }, (item, index) => index + 1);
 
-  constructor(private fb: FormBuilder, private client: SelectBoxClient, private biodataClient: BiodataClient, private applicantClient: ApplicantClient) {
+  constructor(private fb: FormBuilder, private client: SelectBoxClient, private biodataClient: BiodataClient, private applicantClient: ApplicantClient, private router: Router) {
     this.titleKeys = Object.keys(this.titleTypes);
     this.genderKeys = Object.keys(this.genderTypes);
     this.IdCardKeys = Object.keys(this.IdCardTypes);
@@ -201,6 +202,9 @@ export class BiodatadetailsComponent implements OnInit {
       console.log("religions", this.religions);
     })
   }
+  onsaveexit(): void {
+    this.router.navigate(['/welcome'])
+  }
 
   onSubmit(): void {
 
@@ -212,6 +216,7 @@ export class BiodatadetailsComponent implements OnInit {
     this.biodataClient.create(this.biodataForm.value).subscribe(data => {
       this.message = data;
       this.loading = false;
+      window.location.href = '/steptwo/address';
       console.log("response is " + JSON.stringify(data))
     },
       error => this.message = error,

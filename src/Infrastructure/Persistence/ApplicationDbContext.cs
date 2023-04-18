@@ -53,7 +53,7 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
     public DbSet<SubjectModel> SubjectModels => Set<SubjectModel>();
     public DbSet<SHSProgrammes> SHSProgrammes => Set<SHSProgrammes>();
     public DbSet<CountryModel> CountryModels => Set<CountryModel>();
-    public DbSet<Address> Addresss => Set<Address>();
+    public DbSet<AddressModel> AddressModels => Set<AddressModel>();
     public DbSet<LanguageModel> Languages => Set<LanguageModel>();
     public DbSet<ProgrammeModel> ProgrammeModels => Set<ProgrammeModel>();
     public DbSet<ResultUploadModel> ResultUploadModels => Set<ResultUploadModel>();

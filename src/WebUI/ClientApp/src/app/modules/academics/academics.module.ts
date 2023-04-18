@@ -5,7 +5,7 @@ import { AcademicsRoutingModule } from './academics-routing.module';
 import { AcademicsComponent } from './academics.component';
 import { AcademicdetailsComponent } from './pages/academicdetails/academicdetails.component';
 import { AcademiccomponentComponent } from './components/academiccomponent/academiccomponent.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxLoadingModule } from 'ngx-loading';
 
 
@@ -19,7 +19,8 @@ import { NgxLoadingModule } from 'ngx-loading';
     CommonModule,
     AcademicsRoutingModule,
     ReactiveFormsModule,
-    NgxLoadingModule
+    NgxLoadingModule,
+    FormsModule
   ]
 })
 export class AcademicsModule { }

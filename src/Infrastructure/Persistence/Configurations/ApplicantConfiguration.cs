@@ -163,6 +163,28 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<ApplicantModel>
         v => v.ToString(),
         v => (ApplicationStatus)Enum.Parse(typeof(ApplicationStatus), v));
 
+
+
+        builder.Property(x => x.EntryMode)
+   .HasColumnName("EntryMode")
+
+   .HasConversion<string>();
+        builder.Property(x => x.FirstQualification)
+     .HasColumnName("FirstQualification")
+
+     .HasConversion<string>();
+
+        builder.Property(x => x.SecondQualification)
+       .HasColumnName("SecondQualification")
+
+       .HasConversion<string>();
+
+        builder.Property(x => x.FirstQualification)
+  .HasColumnName("FirstQualification")
+
+  .HasConversion<string>();
+
+
     }
 
 

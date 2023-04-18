@@ -94,7 +94,7 @@ public class CreateBiodataCommandHandler : IRequestHandler<CreateBiodataRequest,
             }
             applicant.Title = request.Title;
             applicant.ApplicationUserId = _currentUserService.UserId;
-            applicant.ApplicationNumber = ApplicationNumber.Create(request.ApplicationNumber);
+            // applicant.ApplicationNumber = ApplicationNumber.Create(request.ApplicationNumber);
             applicant.ApplicantName = ApplicantName.Create(request.FirstName, request.LastName, request.OtherName);
             applicant.Title = request.Title;
             applicant.Gender = request.Gender;
@@ -131,7 +131,7 @@ public class CreateBiodataCommandHandler : IRequestHandler<CreateBiodataRequest,
         }
 
         // go to issue and update biodata done as true
-        var applicantIssues = _context.ApplicantIssueModels.FirstOrDefault(u => u.ApplicantModelId == _currentUserService.UserId);
+        var applicantIssues = _context.ApplicantIssueModels.FirstOrDefault(u => u.ApplicationUserId == _currentUserService.UserId);
         if (applicantIssues != null)
         {
             applicantIssues.Biodata = true;

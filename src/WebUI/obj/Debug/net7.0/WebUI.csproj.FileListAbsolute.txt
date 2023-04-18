@@ -142,3 +142,6 @@
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Microsoft.AspNetCore.JsonPatch.dll
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/Newtonsoft.Json.Bson.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/AForge.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/AForge.Imaging.dll
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/WebUI/bin/Debug/net7.0/AForge.Math.dll

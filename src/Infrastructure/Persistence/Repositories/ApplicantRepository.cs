@@ -257,6 +257,18 @@ public class ApplicantRepository : IApplicantRepository
     .ToListAsync(cancellationToken: cancellationToken);
         return _mapper.Map<IEnumerable<LanguageDto>>(data);
     }
+    /*  public async Task<IEnumerable<AddressDto>> GetAddresses(int applicant, CancellationToken cancellationToken)
+     {
+         var data = await _context.AddressModels.Where(a => a.Applicant.Id == applicant).ToListAsync(cancellationToken: cancellationToken);
+
+         return _mapper.Map<IEnumerable<AddressDto>>(data);
+     } */
+    public async Task<AddressDto> GetAddresses(int applicant, CancellationToken cancellationToken)
+    {
+        var data = await _context.AddressModels.FirstOrDefaultAsync(a => a.Applicant.Id == applicant, cancellationToken);
+
+        return _mapper.Map<AddressDto>(data);
+    }
     public async Task<IEnumerable<SHSAttendedDto>> SHSAttendeds(CancellationToken cancellationToken)
     {
         var data = await _context.SHSAttendedModels

@@ -1,8 +1,9 @@
+using OnlineApplicationSystem.Application.Common.Mappings;
 using OnlineApplicationSystem.Domain.Entities;
 
 namespace OnlineApplicationSystem.Application.Common.Dtos;
 
-public record ResultsDto
+public record ResultsDto : IMapFrom<ResultUploadModel>
 {
     public int SubjectID { set; get; }
     public string ExamType { set; get; }

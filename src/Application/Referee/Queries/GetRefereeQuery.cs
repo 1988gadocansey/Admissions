@@ -35,7 +35,7 @@ public class GetRefereeHandler : IRequestHandler<GetRefereeQuery, PaginatedList<
     public async Task<PaginatedList<RefereeDto>> Handle(GetRefereeQuery request, CancellationToken cancellationToken)
     {
         var userId = _currentUserService.UserId;
-        var userDetails = await _identityService.GetApplicationUserDetails(userId, cancellationToken);
+        // var userDetails = await _identityService.GetApplicationUserDetails(userId, cancellationToken);
         var applicantDetails = await _applicantRepository.GetApplicantForUser(_currentUserService.UserId, cancellationToken);
 
         var results = await _context.ResearchModels.Include(g => g.Applicant)

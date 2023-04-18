@@ -42,7 +42,7 @@ public class CreateProgrammeInfoCommandHandler : IRequestHandler<ProgrammeInfoRe
         applicant.FirstQualification = request.FirstQualification;
         applicant.SecondQualification = request.SecondQualification;
         applicant.Awaiting = request.Awaiting;
-        applicant.Grade = request.Grade;
+        // applicant.Grade = request.Grade;
         var result = await _context.SaveChangesAsync(cancellationToken);
         if (result == 1)
         {

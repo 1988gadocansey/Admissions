@@ -43,7 +43,7 @@ public class FinalizedCommandHandler : IRequestHandler<FinalizedRequest>
         var qualifiesMatured = await _applicantRepository.QualifiesMature(applicant.Age);
         // go through issue table to see if there are issues to prevent him from finalizing
         //lets create issue flag here
-        var applicantIssues = _context.ApplicantIssueModels.FirstOrDefault(u => u.ApplicantModelId == _currentUserService.UserId);
+        var applicantIssues = _context.ApplicantIssueModels.FirstOrDefault(u => u.ApplicationUserId == _currentUserService.UserId);
         //lets do our processings
         // check issue with results uploaded
         // calculate total aggregate

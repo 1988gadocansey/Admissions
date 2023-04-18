@@ -370,24 +370,24 @@
         >
           <div class="mb-6 flex items-center justify-center md:mb-0">
             <div class="lg:mx-12">
-              <ng-container
-                *ngIf="profile?.formNo != 0 || profile?.formNo! == ''"
-              >
+              <ng-container *ngIf="profile?.pictureUploaded == 1">
                 <img
-                  style="width: 280px; height: 200px"
-                  class="h-48 w-96 object-scale-down"
+                  class="inline-block h-40 w-60 rounded-full ring-2 ring-white"
                   src="{{ imgurl }}"
                   alt="{{ imgurlAlt }}"
                 />
               </ng-container>
-              <ng-container
+              <!-- <ng-container
                 *ngIf="profile?.formNo == 0 || profile?.formNo == ''"
-              >
-                <img
-                  src="https://srms.ttuportal.com/public/albums/students/USER.JPG"
-                  alt="passport photo"
-                  class="block h-auto w-full max-w-full rounded-full bg-gray-100 dark:bg-slate-800"
-                />
+              > -->
+              <ng-container *ngIf="profile?.pictureUploaded == 0">
+                <a routerLink="/upload/passport">
+                  <button
+                    class="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
+                  >
+                    Start application
+                  </button></a
+                >
               </ng-container>
             </div>
           </div>

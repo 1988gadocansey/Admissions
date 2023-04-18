@@ -44,8 +44,8 @@ namespace OnlineApplicationSystem.Domain.Entities
         public string? Denomination { get; set; }
         public string? Referrals { get; set; }
         public Session? EntryMode { get; set; }
-        public string? FirstQualification { get; set; }
-        public string? SecondQualification { get; set; }
+        public EntryQualification? FirstQualification { get; set; }
+        public EntryQualification? SecondQualification { get; set; }
         public string? ProgrammeStudied { get; set; }
         public string? FormerSchool { get; set; }
         public int? FormerSchoolNewId { get; set; }
@@ -105,10 +105,10 @@ namespace OnlineApplicationSystem.Domain.Entities
         public IEnumerable<AcademicExperienceModel?> AcademicExperiences { get; set; }
         public IEnumerable<DocumentUploadModel?> Documents { get; set; }
         public IEnumerable<RefereeModel?> Referees { get; set; }
-        public IEnumerable<Address?> Addresses { get; set; }
+        public IEnumerable<AddressModel?> Addresses { get; set; }
         public IEnumerable<LanguageModel?> Languages { get; set; }
         public IEnumerable<SMSModel> Sms { get; set; }
-        public IEnumerable<ApplicantIssueModel>? ApplicantIssues { get; set; }
+        // public IEnumerable<ApplicantIssueModel>? ApplicantIssues { get; set; }
         public IEnumerable<ResearchModel>? ResearchModels { get; set; }
         public IEnumerable<ResearchPublicationModel>? ResearchPublications { get; set; }
         public IEnumerable<UniversityAttendedModel>? UniversityAttended { get; set; }

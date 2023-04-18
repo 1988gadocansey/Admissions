@@ -15,6 +15,126 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
+export interface IAddressClient {
+    create(command: CreateAddressRequest): Observable<number>;
+    get(): Observable<AddressDto>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class AddressClient implements IAddressClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    create(command: CreateAddressRequest): Observable<number> {
+        let url_ = this.baseUrl + "/api/Address";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreate(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<number>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<number>;
+        }));
+    }
+
+    protected processCreate(response: HttpResponseBase): Observable<number> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    get(): Observable<AddressDto> {
+        let url_ = this.baseUrl + "/api/Address";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGet(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGet(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<AddressDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<AddressDto>;
+        }));
+    }
+
+    protected processGet(response: HttpResponseBase): Observable<AddressDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = AddressDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
 export interface IApplicantClient {
     get(): Observable<ApplicantVm>;
     getForms(): Observable<ApplicationType[]>;
@@ -3390,8 +3510,216 @@ export class WeatherForecastClient implements IWeatherForecastClient {
     }
 }
 
-export class ApplicantVm implements IApplicantVm {
+export class CreateAddressRequest implements ICreateAddressRequest {
     id?: number;
+    street?: string | undefined;
+    houseNumber?: string | undefined;
+    city?: string | undefined;
+    gprs?: string | undefined;
+    box?: string | undefined;
+    applicant?: number;
+
+    constructor(data?: ICreateAddressRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.street = _data["street"];
+            this.houseNumber = _data["houseNumber"];
+            this.city = _data["city"];
+            this.gprs = _data["gprs"];
+            this.box = _data["box"];
+            this.applicant = _data["applicant"];
+        }
+    }
+
+    static fromJS(data: any): CreateAddressRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateAddressRequest();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["street"] = this.street;
+        data["houseNumber"] = this.houseNumber;
+        data["city"] = this.city;
+        data["gprs"] = this.gprs;
+        data["box"] = this.box;
+        data["applicant"] = this.applicant;
+        return data;
+    }
+}
+
+export interface ICreateAddressRequest {
+    id?: number;
+    street?: string | undefined;
+    houseNumber?: string | undefined;
+    city?: string | undefined;
+    gprs?: string | undefined;
+    box?: string | undefined;
+    applicant?: number;
+}
+
+export class AddressDto implements IAddressDto {
+    id?: number;
+    street?: string | undefined;
+    houseNumber?: string | undefined;
+    city?: string | undefined;
+    gprs?: string | undefined;
+    box?: string | undefined;
+    applicant?: ApplicantModel | undefined;
+
+    constructor(data?: IAddressDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.street = _data["street"];
+            this.houseNumber = _data["houseNumber"];
+            this.city = _data["city"];
+            this.gprs = _data["gprs"];
+            this.box = _data["box"];
+            this.applicant = _data["applicant"] ? ApplicantModel.fromJS(_data["applicant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): AddressDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new AddressDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["street"] = this.street;
+        data["houseNumber"] = this.houseNumber;
+        data["city"] = this.city;
+        data["gprs"] = this.gprs;
+        data["box"] = this.box;
+        data["applicant"] = this.applicant ? this.applicant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IAddressDto {
+    id?: number;
+    street?: string | undefined;
+    houseNumber?: string | undefined;
+    city?: string | undefined;
+    gprs?: string | undefined;
+    box?: string | undefined;
+    applicant?: ApplicantModel | undefined;
+}
+
+export abstract class BaseEntity implements IBaseEntity {
+    id?: number;
+    domainEvents?: BaseEvent[];
+
+    constructor(data?: IBaseEntity) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            if (Array.isArray(_data["domainEvents"])) {
+                this.domainEvents = [] as any;
+                for (let item of _data["domainEvents"])
+                    this.domainEvents!.push(BaseEvent.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): BaseEntity {
+        data = typeof data === 'object' ? data : {};
+        throw new Error("The abstract class 'BaseEntity' cannot be instantiated.");
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        if (Array.isArray(this.domainEvents)) {
+            data["domainEvents"] = [];
+            for (let item of this.domainEvents)
+                data["domainEvents"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IBaseEntity {
+    id?: number;
+    domainEvents?: BaseEvent[];
+}
+
+export abstract class BaseAuditableEntity extends BaseEntity implements IBaseAuditableEntity {
+    created?: Date;
+    createdBy?: string | undefined;
+    lastModified?: Date | undefined;
+    lastModifiedBy?: string | undefined;
+
+    constructor(data?: IBaseAuditableEntity) {
+        super(data);
+    }
+
+    override init(_data?: any) {
+        super.init(_data);
+        if (_data) {
+            this.created = _data["created"] ? new Date(_data["created"].toString()) : <any>undefined;
+            this.createdBy = _data["createdBy"];
+            this.lastModified = _data["lastModified"] ? new Date(_data["lastModified"].toString()) : <any>undefined;
+            this.lastModifiedBy = _data["lastModifiedBy"];
+        }
+    }
+
+    static override fromJS(data: any): BaseAuditableEntity {
+        data = typeof data === 'object' ? data : {};
+        throw new Error("The abstract class 'BaseAuditableEntity' cannot be instantiated.");
+    }
+
+    override toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["created"] = this.created ? this.created.toISOString() : <any>undefined;
+        data["createdBy"] = this.createdBy;
+        data["lastModified"] = this.lastModified ? this.lastModified.toISOString() : <any>undefined;
+        data["lastModifiedBy"] = this.lastModifiedBy;
+        super.toJSON(data);
+        return data;
+    }
+}
+
+export interface IBaseAuditableEntity extends IBaseEntity {
+    created?: Date;
+    createdBy?: string | undefined;
+    lastModified?: Date | undefined;
+    lastModifiedBy?: string | undefined;
+}
+
+export class ApplicantModel extends BaseAuditableEntity implements IApplicantModel {
     applicationNumber?: ApplicationNumber;
     title?: Title;
     applicantName?: ApplicantName;
@@ -3428,28 +3756,45 @@ export class ApplicantVm implements IApplicantVm {
     denomination?: string | undefined;
     referrals?: string | undefined;
     entryMode?: Session | undefined;
-    firstQualification?: string | undefined;
-    secondQualification?: string | undefined;
+    firstQualification?: EntryQualification | undefined;
+    secondQualification?: EntryQualification | undefined;
     programmeStudied?: string | undefined;
     formerSchool?: string | undefined;
     formerSchoolNewId?: number | undefined;
+    formerSchoolNew?: FormerSchoolModel | undefined;
     programmeAdmittedId?: number | undefined;
     lastYearInSchool?: number | undefined;
     awaiting?: boolean | undefined;
     grade?: number | undefined;
+    yearOfAdmission?: string | undefined;
     preferedHall?: string | undefined;
+    results?: string | undefined;
+    externalHostel?: string | undefined;
     elligible?: boolean | undefined;
     admitted?: boolean | undefined;
     admittedBy?: number | undefined;
-    admissionType?: string | undefined;
+    dateAdmitted?: Date | undefined;
+    admissionType?: AdmissionType | undefined;
     leveladmitted?: string | undefined;
-    firstChoice?: number | undefined;
-    secondChoice?: number | undefined;
-    thirdChoice?: number | undefined;
+    sectionAdmitted?: string | undefined;
+    hallAdmitted?: number | undefined;
+    roomNo?: string | undefined;
+    status?: ApplicationStatus | undefined;
+    smsSent?: boolean | undefined;
+    letterPrinted?: boolean | undefined;
+    firstChoiceId?: number | undefined;
+    secondChoiceId?: number | undefined;
+    thirdChoiceId?: number | undefined;
+    feePaying?: boolean | undefined;
+    reportedInSchool?: boolean | undefined;
+    feesPaid?: Money | undefined;
+    hallFeesPaid?: Money | undefined;
+    reported?: boolean | undefined;
     sponsorShip?: boolean | undefined;
     sponsorShipCompany?: string | undefined;
     sponsorShipLocation?: string | undefined;
     sponsorShipCompanyContact?: string | undefined;
+    applicationUserId?: string | undefined;
     getFullName?: string;
     programmes?: ProgrammeModel[];
     resultUploads?: ResultUploadModel[];
@@ -3457,28 +3802,22 @@ export class ApplicantVm implements IApplicantVm {
     academicExperiences?: (AcademicExperienceModel | undefined)[];
     documents?: (DocumentUploadModel | undefined)[];
     referees?: (RefereeModel | undefined)[];
-    addresses?: (Address | undefined)[];
+    addresses?: (AddressModel | undefined)[];
     languages?: (LanguageModel | undefined)[];
     sms?: SMSModel[];
-    applicantIssues?: ApplicantIssueModel[] | undefined;
     researchModels?: ResearchModel[] | undefined;
     researchPublications?: ResearchPublicationModel[] | undefined;
     universityAttended?: UniversityAttendedModel[] | undefined;
     shsAttend?: SHSAttendedModel[] | undefined;
     disabilities?: DisabilitiesModel[] | undefined;
 
-    constructor(data?: IApplicantVm) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
+    constructor(data?: IApplicantModel) {
+        super(data);
     }
 
-    init(_data?: any) {
+    override init(_data?: any) {
+        super.init(_data);
         if (_data) {
-            this.id = _data["id"];
             this.applicationNumber = _data["applicationNumber"] ? ApplicationNumber.fromJS(_data["applicationNumber"]) : <any>undefined;
             this.title = _data["title"];
             this.applicantName = _data["applicantName"] ? ApplicantName.fromJS(_data["applicantName"]) : <any>undefined;
@@ -3520,23 +3859,40 @@ export class ApplicantVm implements IApplicantVm {
             this.programmeStudied = _data["programmeStudied"];
             this.formerSchool = _data["formerSchool"];
             this.formerSchoolNewId = _data["formerSchoolNewId"];
+            this.formerSchoolNew = _data["formerSchoolNew"] ? FormerSchoolModel.fromJS(_data["formerSchoolNew"]) : <any>undefined;
             this.programmeAdmittedId = _data["programmeAdmittedId"];
             this.lastYearInSchool = _data["lastYearInSchool"];
             this.awaiting = _data["awaiting"];
             this.grade = _data["grade"];
+            this.yearOfAdmission = _data["yearOfAdmission"];
             this.preferedHall = _data["preferedHall"];
+            this.results = _data["results"];
+            this.externalHostel = _data["externalHostel"];
             this.elligible = _data["elligible"];
             this.admitted = _data["admitted"];
             this.admittedBy = _data["admittedBy"];
+            this.dateAdmitted = _data["dateAdmitted"] ? new Date(_data["dateAdmitted"].toString()) : <any>undefined;
             this.admissionType = _data["admissionType"];
             this.leveladmitted = _data["leveladmitted"];
-            this.firstChoice = _data["firstChoice"];
-            this.secondChoice = _data["secondChoice"];
-            this.thirdChoice = _data["thirdChoice"];
+            this.sectionAdmitted = _data["sectionAdmitted"];
+            this.hallAdmitted = _data["hallAdmitted"];
+            this.roomNo = _data["roomNo"];
+            this.status = _data["status"];
+            this.smsSent = _data["smsSent"];
+            this.letterPrinted = _data["letterPrinted"];
+            this.firstChoiceId = _data["firstChoiceId"];
+            this.secondChoiceId = _data["secondChoiceId"];
+            this.thirdChoiceId = _data["thirdChoiceId"];
+            this.feePaying = _data["feePaying"];
+            this.reportedInSchool = _data["reportedInSchool"];
+            this.feesPaid = _data["feesPaid"] ? Money.fromJS(_data["feesPaid"]) : <any>undefined;
+            this.hallFeesPaid = _data["hallFeesPaid"] ? Money.fromJS(_data["hallFeesPaid"]) : <any>undefined;
+            this.reported = _data["reported"];
             this.sponsorShip = _data["sponsorShip"];
             this.sponsorShipCompany = _data["sponsorShipCompany"];
             this.sponsorShipLocation = _data["sponsorShipLocation"];
             this.sponsorShipCompanyContact = _data["sponsorShipCompanyContact"];
+            this.applicationUserId = _data["applicationUserId"];
             this.getFullName = _data["getFullName"];
             if (Array.isArray(_data["programmes"])) {
                 this.programmes = [] as any;
@@ -3571,7 +3927,7 @@ export class ApplicantVm implements IApplicantVm {
             if (Array.isArray(_data["addresses"])) {
                 this.addresses = [] as any;
                 for (let item of _data["addresses"])
-                    this.addresses!.push(Address.fromJS(item));
+                    this.addresses!.push(AddressModel.fromJS(item));
             }
             if (Array.isArray(_data["languages"])) {
                 this.languages = [] as any;
@@ -3582,11 +3938,6 @@ export class ApplicantVm implements IApplicantVm {
                 this.sms = [] as any;
                 for (let item of _data["sms"])
                     this.sms!.push(SMSModel.fromJS(item));
-            }
-            if (Array.isArray(_data["applicantIssues"])) {
-                this.applicantIssues = [] as any;
-                for (let item of _data["applicantIssues"])
-                    this.applicantIssues!.push(ApplicantIssueModel.fromJS(item));
             }
             if (Array.isArray(_data["researchModels"])) {
                 this.researchModels = [] as any;
@@ -3616,16 +3967,15 @@ export class ApplicantVm implements IApplicantVm {
         }
     }
 
-    static fromJS(data: any): ApplicantVm {
+    static override fromJS(data: any): ApplicantModel {
         data = typeof data === 'object' ? data : {};
-        let result = new ApplicantVm();
+        let result = new ApplicantModel();
         result.init(data);
         return result;
     }
 
-    toJSON(data?: any) {
+    override toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
         data["applicationNumber"] = this.applicationNumber ? this.applicationNumber.toJSON() : <any>undefined;
         data["title"] = this.title;
         data["applicantName"] = this.applicantName ? this.applicantName.toJSON() : <any>undefined;
@@ -3667,23 +4017,40 @@ export class ApplicantVm implements IApplicantVm {
         data["programmeStudied"] = this.programmeStudied;
         data["formerSchool"] = this.formerSchool;
         data["formerSchoolNewId"] = this.formerSchoolNewId;
+        data["formerSchoolNew"] = this.formerSchoolNew ? this.formerSchoolNew.toJSON() : <any>undefined;
         data["programmeAdmittedId"] = this.programmeAdmittedId;
         data["lastYearInSchool"] = this.lastYearInSchool;
         data["awaiting"] = this.awaiting;
         data["grade"] = this.grade;
+        data["yearOfAdmission"] = this.yearOfAdmission;
         data["preferedHall"] = this.preferedHall;
+        data["results"] = this.results;
+        data["externalHostel"] = this.externalHostel;
         data["elligible"] = this.elligible;
         data["admitted"] = this.admitted;
         data["admittedBy"] = this.admittedBy;
+        data["dateAdmitted"] = this.dateAdmitted ? this.dateAdmitted.toISOString() : <any>undefined;
         data["admissionType"] = this.admissionType;
         data["leveladmitted"] = this.leveladmitted;
-        data["firstChoice"] = this.firstChoice;
-        data["secondChoice"] = this.secondChoice;
-        data["thirdChoice"] = this.thirdChoice;
+        data["sectionAdmitted"] = this.sectionAdmitted;
+        data["hallAdmitted"] = this.hallAdmitted;
+        data["roomNo"] = this.roomNo;
+        data["status"] = this.status;
+        data["smsSent"] = this.smsSent;
+        data["letterPrinted"] = this.letterPrinted;
+        data["firstChoiceId"] = this.firstChoiceId;
+        data["secondChoiceId"] = this.secondChoiceId;
+        data["thirdChoiceId"] = this.thirdChoiceId;
+        data["feePaying"] = this.feePaying;
+        data["reportedInSchool"] = this.reportedInSchool;
+        data["feesPaid"] = this.feesPaid ? this.feesPaid.toJSON() : <any>undefined;
+        data["hallFeesPaid"] = this.hallFeesPaid ? this.hallFeesPaid.toJSON() : <any>undefined;
+        data["reported"] = this.reported;
         data["sponsorShip"] = this.sponsorShip;
         data["sponsorShipCompany"] = this.sponsorShipCompany;
         data["sponsorShipLocation"] = this.sponsorShipLocation;
         data["sponsorShipCompanyContact"] = this.sponsorShipCompanyContact;
+        data["applicationUserId"] = this.applicationUserId;
         data["getFullName"] = this.getFullName;
         if (Array.isArray(this.programmes)) {
             data["programmes"] = [];
@@ -3730,11 +4097,6 @@ export class ApplicantVm implements IApplicantVm {
             for (let item of this.sms)
                 data["sms"].push(item.toJSON());
         }
-        if (Array.isArray(this.applicantIssues)) {
-            data["applicantIssues"] = [];
-            for (let item of this.applicantIssues)
-                data["applicantIssues"].push(item.toJSON());
-        }
         if (Array.isArray(this.researchModels)) {
             data["researchModels"] = [];
             for (let item of this.researchModels)
@@ -3760,12 +4122,12 @@ export class ApplicantVm implements IApplicantVm {
             for (let item of this.disabilities)
                 data["disabilities"].push(item.toJSON());
         }
+        super.toJSON(data);
         return data;
     }
 }
 
-export interface IApplicantVm {
-    id?: number;
+export interface IApplicantModel extends IBaseAuditableEntity {
     applicationNumber?: ApplicationNumber;
     title?: Title;
     applicantName?: ApplicantName;
@@ -3802,28 +4164,45 @@ export interface IApplicantVm {
     denomination?: string | undefined;
     referrals?: string | undefined;
     entryMode?: Session | undefined;
-    firstQualification?: string | undefined;
-    secondQualification?: string | undefined;
+    firstQualification?: EntryQualification | undefined;
+    secondQualification?: EntryQualification | undefined;
     programmeStudied?: string | undefined;
     formerSchool?: string | undefined;
     formerSchoolNewId?: number | undefined;
+    formerSchoolNew?: FormerSchoolModel | undefined;
     programmeAdmittedId?: number | undefined;
     lastYearInSchool?: number | undefined;
     awaiting?: boolean | undefined;
     grade?: number | undefined;
+    yearOfAdmission?: string | undefined;
     preferedHall?: string | undefined;
+    results?: string | undefined;
+    externalHostel?: string | undefined;
     elligible?: boolean | undefined;
     admitted?: boolean | undefined;
     admittedBy?: number | undefined;
-    admissionType?: string | undefined;
+    dateAdmitted?: Date | undefined;
+    admissionType?: AdmissionType | undefined;
     leveladmitted?: string | undefined;
-    firstChoice?: number | undefined;
-    secondChoice?: number | undefined;
-    thirdChoice?: number | undefined;
+    sectionAdmitted?: string | undefined;
+    hallAdmitted?: number | undefined;
+    roomNo?: string | undefined;
+    status?: ApplicationStatus | undefined;
+    smsSent?: boolean | undefined;
+    letterPrinted?: boolean | undefined;
+    firstChoiceId?: number | undefined;
+    secondChoiceId?: number | undefined;
+    thirdChoiceId?: number | undefined;
+    feePaying?: boolean | undefined;
+    reportedInSchool?: boolean | undefined;
+    feesPaid?: Money | undefined;
+    hallFeesPaid?: Money | undefined;
+    reported?: boolean | undefined;
     sponsorShip?: boolean | undefined;
     sponsorShipCompany?: string | undefined;
     sponsorShipLocation?: string | undefined;
     sponsorShipCompanyContact?: string | undefined;
+    applicationUserId?: string | undefined;
     getFullName?: string;
     programmes?: ProgrammeModel[];
     resultUploads?: ResultUploadModel[];
@@ -3831,10 +4210,9 @@ export interface IApplicantVm {
     academicExperiences?: (AcademicExperienceModel | undefined)[];
     documents?: (DocumentUploadModel | undefined)[];
     referees?: (RefereeModel | undefined)[];
-    addresses?: (Address | undefined)[];
+    addresses?: (AddressModel | undefined)[];
     languages?: (LanguageModel | undefined)[];
     sms?: SMSModel[];
-    applicantIssues?: ApplicantIssueModel[] | undefined;
     researchModels?: ResearchModel[] | undefined;
     researchPublications?: ResearchPublicationModel[] | undefined;
     universityAttended?: UniversityAttendedModel[] | undefined;
@@ -4304,686 +4682,16 @@ export enum Session {
     Distance = 3,
 }
 
-export class ProgrammeModel implements IProgrammeModel {
-    id?: number;
-    name?: string;
-    code?: string;
-    levelAdmitted?: string;
-    runing?: boolean;
-    showOnPortal?: boolean;
-    type?: string;
-    duration?: number;
-    department?: number;
-    applicant?: ApplicantModel[];
-
-    constructor(data?: IProgrammeModel) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.id = _data["id"];
-            this.name = _data["name"];
-            this.code = _data["code"];
-            this.levelAdmitted = _data["levelAdmitted"];
-            this.runing = _data["runing"];
-            this.showOnPortal = _data["showOnPortal"];
-            this.type = _data["type"];
-            this.duration = _data["duration"];
-            this.department = _data["department"];
-            if (Array.isArray(_data["applicant"])) {
-                this.applicant = [] as any;
-                for (let item of _data["applicant"])
-                    this.applicant!.push(ApplicantModel.fromJS(item));
-            }
-        }
-    }
-
-    static fromJS(data: any): ProgrammeModel {
-        data = typeof data === 'object' ? data : {};
-        let result = new ProgrammeModel();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
-        data["code"] = this.code;
-        data["levelAdmitted"] = this.levelAdmitted;
-        data["runing"] = this.runing;
-        data["showOnPortal"] = this.showOnPortal;
-        data["type"] = this.type;
-        data["duration"] = this.duration;
-        data["department"] = this.department;
-        if (Array.isArray(this.applicant)) {
-            data["applicant"] = [];
-            for (let item of this.applicant)
-                data["applicant"].push(item.toJSON());
-        }
-        return data;
-    }
-}
-
-export interface IProgrammeModel {
-    id?: number;
-    name?: string;
-    code?: string;
-    levelAdmitted?: string;
-    runing?: boolean;
-    showOnPortal?: boolean;
-    type?: string;
-    duration?: number;
-    department?: number;
-    applicant?: ApplicantModel[];
-}
-
-export abstract class BaseEntity implements IBaseEntity {
-    id?: number;
-    domainEvents?: BaseEvent[];
-
-    constructor(data?: IBaseEntity) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.id = _data["id"];
-            if (Array.isArray(_data["domainEvents"])) {
-                this.domainEvents = [] as any;
-                for (let item of _data["domainEvents"])
-                    this.domainEvents!.push(BaseEvent.fromJS(item));
-            }
-        }
-    }
-
-    static fromJS(data: any): BaseEntity {
-        data = typeof data === 'object' ? data : {};
-        throw new Error("The abstract class 'BaseEntity' cannot be instantiated.");
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        if (Array.isArray(this.domainEvents)) {
-            data["domainEvents"] = [];
-            for (let item of this.domainEvents)
-                data["domainEvents"].push(item.toJSON());
-        }
-        return data;
-    }
-}
-
-export interface IBaseEntity {
-    id?: number;
-    domainEvents?: BaseEvent[];
-}
-
-export abstract class BaseAuditableEntity extends BaseEntity implements IBaseAuditableEntity {
-    created?: Date;
-    createdBy?: string | undefined;
-    lastModified?: Date | undefined;
-    lastModifiedBy?: string | undefined;
-
-    constructor(data?: IBaseAuditableEntity) {
-        super(data);
-    }
-
-    override init(_data?: any) {
-        super.init(_data);
-        if (_data) {
-            this.created = _data["created"] ? new Date(_data["created"].toString()) : <any>undefined;
-            this.createdBy = _data["createdBy"];
-            this.lastModified = _data["lastModified"] ? new Date(_data["lastModified"].toString()) : <any>undefined;
-            this.lastModifiedBy = _data["lastModifiedBy"];
-        }
-    }
-
-    static override fromJS(data: any): BaseAuditableEntity {
-        data = typeof data === 'object' ? data : {};
-        throw new Error("The abstract class 'BaseAuditableEntity' cannot be instantiated.");
-    }
-
-    override toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["created"] = this.created ? this.created.toISOString() : <any>undefined;
-        data["createdBy"] = this.createdBy;
-        data["lastModified"] = this.lastModified ? this.lastModified.toISOString() : <any>undefined;
-        data["lastModifiedBy"] = this.lastModifiedBy;
-        super.toJSON(data);
-        return data;
-    }
-}
-
-export interface IBaseAuditableEntity extends IBaseEntity {
-    created?: Date;
-    createdBy?: string | undefined;
-    lastModified?: Date | undefined;
-    lastModifiedBy?: string | undefined;
-}
-
-export class ApplicantModel extends BaseAuditableEntity implements IApplicantModel {
-    applicationNumber?: ApplicationNumber;
-    title?: Title;
-    applicantName?: ApplicantName;
-    previousName?: ApplicantName | undefined;
-    dob?: Date;
-    gender?: Gender;
-    age?: number;
-    maritalStatus?: MaritalStatus | undefined;
-    noOfChildren?: number | undefined;
-    phone?: PhoneNumber;
-    altPhone?: PhoneNumber | undefined;
-    email?: EmailAddress;
-    postGPRS?: string | undefined;
-    emergencyContact?: PhoneNumber | undefined;
-    hometown?: string | undefined;
-    districtId?: number | undefined;
-    district?: DistrictModel | undefined;
-    hall?: HallModel | undefined;
-    idcard?: IDCard | undefined;
-    regionId?: number | undefined;
-    region?: RegionModel | undefined;
-    nationalityId?: number | undefined;
-    nationality?: CountryModel | undefined;
-    residentialStatus?: boolean | undefined;
-    guardianName?: string | undefined;
-    guardianPhone?: PhoneNumber;
-    guardianOccupation?: string | undefined;
-    guardianRelationship?: string | undefined;
-    disability?: boolean | undefined;
-    disabilityType?: Disability | undefined;
-    sourceOfFinance?: string | undefined;
-    religionId?: number | undefined;
-    religion?: ReligionModel | undefined;
-    denomination?: string | undefined;
-    referrals?: string | undefined;
-    entryMode?: Session | undefined;
-    firstQualification?: string | undefined;
-    secondQualification?: string | undefined;
-    programmeStudied?: string | undefined;
-    formerSchool?: string | undefined;
-    formerSchoolNewId?: number | undefined;
-    formerSchoolNew?: FormerSchoolModel | undefined;
-    programmeAdmittedId?: number | undefined;
-    lastYearInSchool?: number | undefined;
-    awaiting?: boolean | undefined;
-    grade?: number | undefined;
-    yearOfAdmission?: string | undefined;
-    preferedHall?: string | undefined;
-    results?: string | undefined;
-    externalHostel?: string | undefined;
-    elligible?: boolean | undefined;
-    admitted?: boolean | undefined;
-    admittedBy?: number | undefined;
-    dateAdmitted?: Date | undefined;
-    admissionType?: AdmissionType | undefined;
-    leveladmitted?: string | undefined;
-    sectionAdmitted?: string | undefined;
-    hallAdmitted?: number | undefined;
-    roomNo?: string | undefined;
-    status?: ApplicationStatus | undefined;
-    smsSent?: boolean | undefined;
-    letterPrinted?: boolean | undefined;
-    firstChoiceId?: number | undefined;
-    secondChoiceId?: number | undefined;
-    thirdChoiceId?: number | undefined;
-    feePaying?: boolean | undefined;
-    reportedInSchool?: boolean | undefined;
-    feesPaid?: Money | undefined;
-    hallFeesPaid?: Money | undefined;
-    reported?: boolean | undefined;
-    sponsorShip?: boolean | undefined;
-    sponsorShipCompany?: string | undefined;
-    sponsorShipLocation?: string | undefined;
-    sponsorShipCompanyContact?: string | undefined;
-    applicationUserId?: string | undefined;
-    getFullName?: string;
-    programmes?: ProgrammeModel[];
-    resultUploads?: ResultUploadModel[];
-    workingExperiences?: (WorkingExperienceModel | undefined)[];
-    academicExperiences?: (AcademicExperienceModel | undefined)[];
-    documents?: (DocumentUploadModel | undefined)[];
-    referees?: (RefereeModel | undefined)[];
-    addresses?: (Address | undefined)[];
-    languages?: (LanguageModel | undefined)[];
-    sms?: SMSModel[];
-    applicantIssues?: ApplicantIssueModel[] | undefined;
-    researchModels?: ResearchModel[] | undefined;
-    researchPublications?: ResearchPublicationModel[] | undefined;
-    universityAttended?: UniversityAttendedModel[] | undefined;
-    shsAttend?: SHSAttendedModel[] | undefined;
-    disabilities?: DisabilitiesModel[] | undefined;
-
-    constructor(data?: IApplicantModel) {
-        super(data);
-    }
-
-    override init(_data?: any) {
-        super.init(_data);
-        if (_data) {
-            this.applicationNumber = _data["applicationNumber"] ? ApplicationNumber.fromJS(_data["applicationNumber"]) : <any>undefined;
-            this.title = _data["title"];
-            this.applicantName = _data["applicantName"] ? ApplicantName.fromJS(_data["applicantName"]) : <any>undefined;
-            this.previousName = _data["previousName"] ? ApplicantName.fromJS(_data["previousName"]) : <any>undefined;
-            this.dob = _data["dob"] ? new Date(_data["dob"].toString()) : <any>undefined;
-            this.gender = _data["gender"];
-            this.age = _data["age"];
-            this.maritalStatus = _data["maritalStatus"];
-            this.noOfChildren = _data["noOfChildren"];
-            this.phone = _data["phone"] ? PhoneNumber.fromJS(_data["phone"]) : <any>undefined;
-            this.altPhone = _data["altPhone"] ? PhoneNumber.fromJS(_data["altPhone"]) : <any>undefined;
-            this.email = _data["email"] ? EmailAddress.fromJS(_data["email"]) : <any>undefined;
-            this.postGPRS = _data["postGPRS"];
-            this.emergencyContact = _data["emergencyContact"] ? PhoneNumber.fromJS(_data["emergencyContact"]) : <any>undefined;
-            this.hometown = _data["hometown"];
-            this.districtId = _data["districtId"];
-            this.district = _data["district"] ? DistrictModel.fromJS(_data["district"]) : <any>undefined;
-            this.hall = _data["hall"] ? HallModel.fromJS(_data["hall"]) : <any>undefined;
-            this.idcard = _data["idcard"] ? IDCard.fromJS(_data["idcard"]) : <any>undefined;
-            this.regionId = _data["regionId"];
-            this.region = _data["region"] ? RegionModel.fromJS(_data["region"]) : <any>undefined;
-            this.nationalityId = _data["nationalityId"];
-            this.nationality = _data["nationality"] ? CountryModel.fromJS(_data["nationality"]) : <any>undefined;
-            this.residentialStatus = _data["residentialStatus"];
-            this.guardianName = _data["guardianName"];
-            this.guardianPhone = _data["guardianPhone"] ? PhoneNumber.fromJS(_data["guardianPhone"]) : <any>undefined;
-            this.guardianOccupation = _data["guardianOccupation"];
-            this.guardianRelationship = _data["guardianRelationship"];
-            this.disability = _data["disability"];
-            this.disabilityType = _data["disabilityType"];
-            this.sourceOfFinance = _data["sourceOfFinance"];
-            this.religionId = _data["religionId"];
-            this.religion = _data["religion"] ? ReligionModel.fromJS(_data["religion"]) : <any>undefined;
-            this.denomination = _data["denomination"];
-            this.referrals = _data["referrals"];
-            this.entryMode = _data["entryMode"];
-            this.firstQualification = _data["firstQualification"];
-            this.secondQualification = _data["secondQualification"];
-            this.programmeStudied = _data["programmeStudied"];
-            this.formerSchool = _data["formerSchool"];
-            this.formerSchoolNewId = _data["formerSchoolNewId"];
-            this.formerSchoolNew = _data["formerSchoolNew"] ? FormerSchoolModel.fromJS(_data["formerSchoolNew"]) : <any>undefined;
-            this.programmeAdmittedId = _data["programmeAdmittedId"];
-            this.lastYearInSchool = _data["lastYearInSchool"];
-            this.awaiting = _data["awaiting"];
-            this.grade = _data["grade"];
-            this.yearOfAdmission = _data["yearOfAdmission"];
-            this.preferedHall = _data["preferedHall"];
-            this.results = _data["results"];
-            this.externalHostel = _data["externalHostel"];
-            this.elligible = _data["elligible"];
-            this.admitted = _data["admitted"];
-            this.admittedBy = _data["admittedBy"];
-            this.dateAdmitted = _data["dateAdmitted"] ? new Date(_data["dateAdmitted"].toString()) : <any>undefined;
-            this.admissionType = _data["admissionType"];
-            this.leveladmitted = _data["leveladmitted"];
-            this.sectionAdmitted = _data["sectionAdmitted"];
-            this.hallAdmitted = _data["hallAdmitted"];
-            this.roomNo = _data["roomNo"];
-            this.status = _data["status"];
-            this.smsSent = _data["smsSent"];
-            this.letterPrinted = _data["letterPrinted"];
-            this.firstChoiceId = _data["firstChoiceId"];
-            this.secondChoiceId = _data["secondChoiceId"];
-            this.thirdChoiceId = _data["thirdChoiceId"];
-            this.feePaying = _data["feePaying"];
-            this.reportedInSchool = _data["reportedInSchool"];
-            this.feesPaid = _data["feesPaid"] ? Money.fromJS(_data["feesPaid"]) : <any>undefined;
-            this.hallFeesPaid = _data["hallFeesPaid"] ? Money.fromJS(_data["hallFeesPaid"]) : <any>undefined;
-            this.reported = _data["reported"];
-            this.sponsorShip = _data["sponsorShip"];
-            this.sponsorShipCompany = _data["sponsorShipCompany"];
-            this.sponsorShipLocation = _data["sponsorShipLocation"];
-            this.sponsorShipCompanyContact = _data["sponsorShipCompanyContact"];
-            this.applicationUserId = _data["applicationUserId"];
-            this.getFullName = _data["getFullName"];
-            if (Array.isArray(_data["programmes"])) {
-                this.programmes = [] as any;
-                for (let item of _data["programmes"])
-                    this.programmes!.push(ProgrammeModel.fromJS(item));
-            }
-            if (Array.isArray(_data["resultUploads"])) {
-                this.resultUploads = [] as any;
-                for (let item of _data["resultUploads"])
-                    this.resultUploads!.push(ResultUploadModel.fromJS(item));
-            }
-            if (Array.isArray(_data["workingExperiences"])) {
-                this.workingExperiences = [] as any;
-                for (let item of _data["workingExperiences"])
-                    this.workingExperiences!.push(WorkingExperienceModel.fromJS(item));
-            }
-            if (Array.isArray(_data["academicExperiences"])) {
-                this.academicExperiences = [] as any;
-                for (let item of _data["academicExperiences"])
-                    this.academicExperiences!.push(AcademicExperienceModel.fromJS(item));
-            }
-            if (Array.isArray(_data["documents"])) {
-                this.documents = [] as any;
-                for (let item of _data["documents"])
-                    this.documents!.push(DocumentUploadModel.fromJS(item));
-            }
-            if (Array.isArray(_data["referees"])) {
-                this.referees = [] as any;
-                for (let item of _data["referees"])
-                    this.referees!.push(RefereeModel.fromJS(item));
-            }
-            if (Array.isArray(_data["addresses"])) {
-                this.addresses = [] as any;
-                for (let item of _data["addresses"])
-                    this.addresses!.push(Address.fromJS(item));
-            }
-            if (Array.isArray(_data["languages"])) {
-                this.languages = [] as any;
-                for (let item of _data["languages"])
-                    this.languages!.push(LanguageModel.fromJS(item));
-            }
-            if (Array.isArray(_data["sms"])) {
-                this.sms = [] as any;
-                for (let item of _data["sms"])
-                    this.sms!.push(SMSModel.fromJS(item));
-            }
-            if (Array.isArray(_data["applicantIssues"])) {
-                this.applicantIssues = [] as any;
-                for (let item of _data["applicantIssues"])
-                    this.applicantIssues!.push(ApplicantIssueModel.fromJS(item));
-            }
-            if (Array.isArray(_data["researchModels"])) {
-                this.researchModels = [] as any;
-                for (let item of _data["researchModels"])
-                    this.researchModels!.push(ResearchModel.fromJS(item));
-            }
-            if (Array.isArray(_data["researchPublications"])) {
-                this.researchPublications = [] as any;
-                for (let item of _data["researchPublications"])
-                    this.researchPublications!.push(ResearchPublicationModel.fromJS(item));
-            }
-            if (Array.isArray(_data["universityAttended"])) {
-                this.universityAttended = [] as any;
-                for (let item of _data["universityAttended"])
-                    this.universityAttended!.push(UniversityAttendedModel.fromJS(item));
-            }
-            if (Array.isArray(_data["shsAttend"])) {
-                this.shsAttend = [] as any;
-                for (let item of _data["shsAttend"])
-                    this.shsAttend!.push(SHSAttendedModel.fromJS(item));
-            }
-            if (Array.isArray(_data["disabilities"])) {
-                this.disabilities = [] as any;
-                for (let item of _data["disabilities"])
-                    this.disabilities!.push(DisabilitiesModel.fromJS(item));
-            }
-        }
-    }
-
-    static override fromJS(data: any): ApplicantModel {
-        data = typeof data === 'object' ? data : {};
-        let result = new ApplicantModel();
-        result.init(data);
-        return result;
-    }
-
-    override toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["applicationNumber"] = this.applicationNumber ? this.applicationNumber.toJSON() : <any>undefined;
-        data["title"] = this.title;
-        data["applicantName"] = this.applicantName ? this.applicantName.toJSON() : <any>undefined;
-        data["previousName"] = this.previousName ? this.previousName.toJSON() : <any>undefined;
-        data["dob"] = this.dob ? formatDate(this.dob) : <any>undefined;
-        data["gender"] = this.gender;
-        data["age"] = this.age;
-        data["maritalStatus"] = this.maritalStatus;
-        data["noOfChildren"] = this.noOfChildren;
-        data["phone"] = this.phone ? this.phone.toJSON() : <any>undefined;
-        data["altPhone"] = this.altPhone ? this.altPhone.toJSON() : <any>undefined;
-        data["email"] = this.email ? this.email.toJSON() : <any>undefined;
-        data["postGPRS"] = this.postGPRS;
-        data["emergencyContact"] = this.emergencyContact ? this.emergencyContact.toJSON() : <any>undefined;
-        data["hometown"] = this.hometown;
-        data["districtId"] = this.districtId;
-        data["district"] = this.district ? this.district.toJSON() : <any>undefined;
-        data["hall"] = this.hall ? this.hall.toJSON() : <any>undefined;
-        data["idcard"] = this.idcard ? this.idcard.toJSON() : <any>undefined;
-        data["regionId"] = this.regionId;
-        data["region"] = this.region ? this.region.toJSON() : <any>undefined;
-        data["nationalityId"] = this.nationalityId;
-        data["nationality"] = this.nationality ? this.nationality.toJSON() : <any>undefined;
-        data["residentialStatus"] = this.residentialStatus;
-        data["guardianName"] = this.guardianName;
-        data["guardianPhone"] = this.guardianPhone ? this.guardianPhone.toJSON() : <any>undefined;
-        data["guardianOccupation"] = this.guardianOccupation;
-        data["guardianRelationship"] = this.guardianRelationship;
-        data["disability"] = this.disability;
-        data["disabilityType"] = this.disabilityType;
-        data["sourceOfFinance"] = this.sourceOfFinance;
-        data["religionId"] = this.religionId;
-        data["religion"] = this.religion ? this.religion.toJSON() : <any>undefined;
-        data["denomination"] = this.denomination;
-        data["referrals"] = this.referrals;
-        data["entryMode"] = this.entryMode;
-        data["firstQualification"] = this.firstQualification;
-        data["secondQualification"] = this.secondQualification;
-        data["programmeStudied"] = this.programmeStudied;
-        data["formerSchool"] = this.formerSchool;
-        data["formerSchoolNewId"] = this.formerSchoolNewId;
-        data["formerSchoolNew"] = this.formerSchoolNew ? this.formerSchoolNew.toJSON() : <any>undefined;
-        data["programmeAdmittedId"] = this.programmeAdmittedId;
-        data["lastYearInSchool"] = this.lastYearInSchool;
-        data["awaiting"] = this.awaiting;
-        data["grade"] = this.grade;
-        data["yearOfAdmission"] = this.yearOfAdmission;
-        data["preferedHall"] = this.preferedHall;
-        data["results"] = this.results;
-        data["externalHostel"] = this.externalHostel;
-        data["elligible"] = this.elligible;
-        data["admitted"] = this.admitted;
-        data["admittedBy"] = this.admittedBy;
-        data["dateAdmitted"] = this.dateAdmitted ? this.dateAdmitted.toISOString() : <any>undefined;
-        data["admissionType"] = this.admissionType;
-        data["leveladmitted"] = this.leveladmitted;
-        data["sectionAdmitted"] = this.sectionAdmitted;
-        data["hallAdmitted"] = this.hallAdmitted;
-        data["roomNo"] = this.roomNo;
-        data["status"] = this.status;
-        data["smsSent"] = this.smsSent;
-        data["letterPrinted"] = this.letterPrinted;
-        data["firstChoiceId"] = this.firstChoiceId;
-        data["secondChoiceId"] = this.secondChoiceId;
-        data["thirdChoiceId"] = this.thirdChoiceId;
-        data["feePaying"] = this.feePaying;
-        data["reportedInSchool"] = this.reportedInSchool;
-        data["feesPaid"] = this.feesPaid ? this.feesPaid.toJSON() : <any>undefined;
-        data["hallFeesPaid"] = this.hallFeesPaid ? this.hallFeesPaid.toJSON() : <any>undefined;
-        data["reported"] = this.reported;
-        data["sponsorShip"] = this.sponsorShip;
-        data["sponsorShipCompany"] = this.sponsorShipCompany;
-        data["sponsorShipLocation"] = this.sponsorShipLocation;
-        data["sponsorShipCompanyContact"] = this.sponsorShipCompanyContact;
-        data["applicationUserId"] = this.applicationUserId;
-        data["getFullName"] = this.getFullName;
-        if (Array.isArray(this.programmes)) {
-            data["programmes"] = [];
-            for (let item of this.programmes)
-                data["programmes"].push(item.toJSON());
-        }
-        if (Array.isArray(this.resultUploads)) {
-            data["resultUploads"] = [];
-            for (let item of this.resultUploads)
-                data["resultUploads"].push(item.toJSON());
-        }
-        if (Array.isArray(this.workingExperiences)) {
-            data["workingExperiences"] = [];
-            for (let item of this.workingExperiences)
-                data["workingExperiences"].push(item.toJSON());
-        }
-        if (Array.isArray(this.academicExperiences)) {
-            data["academicExperiences"] = [];
-            for (let item of this.academicExperiences)
-                data["academicExperiences"].push(item.toJSON());
-        }
-        if (Array.isArray(this.documents)) {
-            data["documents"] = [];
-            for (let item of this.documents)
-                data["documents"].push(item.toJSON());
-        }
-        if (Array.isArray(this.referees)) {
-            data["referees"] = [];
-            for (let item of this.referees)
-                data["referees"].push(item.toJSON());
-        }
-        if (Array.isArray(this.addresses)) {
-            data["addresses"] = [];
-            for (let item of this.addresses)
-                data["addresses"].push(item.toJSON());
-        }
-        if (Array.isArray(this.languages)) {
-            data["languages"] = [];
-            for (let item of this.languages)
-                data["languages"].push(item.toJSON());
-        }
-        if (Array.isArray(this.sms)) {
-            data["sms"] = [];
-            for (let item of this.sms)
-                data["sms"].push(item.toJSON());
-        }
-        if (Array.isArray(this.applicantIssues)) {
-            data["applicantIssues"] = [];
-            for (let item of this.applicantIssues)
-                data["applicantIssues"].push(item.toJSON());
-        }
-        if (Array.isArray(this.researchModels)) {
-            data["researchModels"] = [];
-            for (let item of this.researchModels)
-                data["researchModels"].push(item.toJSON());
-        }
-        if (Array.isArray(this.researchPublications)) {
-            data["researchPublications"] = [];
-            for (let item of this.researchPublications)
-                data["researchPublications"].push(item.toJSON());
-        }
-        if (Array.isArray(this.universityAttended)) {
-            data["universityAttended"] = [];
-            for (let item of this.universityAttended)
-                data["universityAttended"].push(item.toJSON());
-        }
-        if (Array.isArray(this.shsAttend)) {
-            data["shsAttend"] = [];
-            for (let item of this.shsAttend)
-                data["shsAttend"].push(item.toJSON());
-        }
-        if (Array.isArray(this.disabilities)) {
-            data["disabilities"] = [];
-            for (let item of this.disabilities)
-                data["disabilities"].push(item.toJSON());
-        }
-        super.toJSON(data);
-        return data;
-    }
-}
-
-export interface IApplicantModel extends IBaseAuditableEntity {
-    applicationNumber?: ApplicationNumber;
-    title?: Title;
-    applicantName?: ApplicantName;
-    previousName?: ApplicantName | undefined;
-    dob?: Date;
-    gender?: Gender;
-    age?: number;
-    maritalStatus?: MaritalStatus | undefined;
-    noOfChildren?: number | undefined;
-    phone?: PhoneNumber;
-    altPhone?: PhoneNumber | undefined;
-    email?: EmailAddress;
-    postGPRS?: string | undefined;
-    emergencyContact?: PhoneNumber | undefined;
-    hometown?: string | undefined;
-    districtId?: number | undefined;
-    district?: DistrictModel | undefined;
-    hall?: HallModel | undefined;
-    idcard?: IDCard | undefined;
-    regionId?: number | undefined;
-    region?: RegionModel | undefined;
-    nationalityId?: number | undefined;
-    nationality?: CountryModel | undefined;
-    residentialStatus?: boolean | undefined;
-    guardianName?: string | undefined;
-    guardianPhone?: PhoneNumber;
-    guardianOccupation?: string | undefined;
-    guardianRelationship?: string | undefined;
-    disability?: boolean | undefined;
-    disabilityType?: Disability | undefined;
-    sourceOfFinance?: string | undefined;
-    religionId?: number | undefined;
-    religion?: ReligionModel | undefined;
-    denomination?: string | undefined;
-    referrals?: string | undefined;
-    entryMode?: Session | undefined;
-    firstQualification?: string | undefined;
-    secondQualification?: string | undefined;
-    programmeStudied?: string | undefined;
-    formerSchool?: string | undefined;
-    formerSchoolNewId?: number | undefined;
-    formerSchoolNew?: FormerSchoolModel | undefined;
-    programmeAdmittedId?: number | undefined;
-    lastYearInSchool?: number | undefined;
-    awaiting?: boolean | undefined;
-    grade?: number | undefined;
-    yearOfAdmission?: string | undefined;
-    preferedHall?: string | undefined;
-    results?: string | undefined;
-    externalHostel?: string | undefined;
-    elligible?: boolean | undefined;
-    admitted?: boolean | undefined;
-    admittedBy?: number | undefined;
-    dateAdmitted?: Date | undefined;
-    admissionType?: AdmissionType | undefined;
-    leveladmitted?: string | undefined;
-    sectionAdmitted?: string | undefined;
-    hallAdmitted?: number | undefined;
-    roomNo?: string | undefined;
-    status?: ApplicationStatus | undefined;
-    smsSent?: boolean | undefined;
-    letterPrinted?: boolean | undefined;
-    firstChoiceId?: number | undefined;
-    secondChoiceId?: number | undefined;
-    thirdChoiceId?: number | undefined;
-    feePaying?: boolean | undefined;
-    reportedInSchool?: boolean | undefined;
-    feesPaid?: Money | undefined;
-    hallFeesPaid?: Money | undefined;
-    reported?: boolean | undefined;
-    sponsorShip?: boolean | undefined;
-    sponsorShipCompany?: string | undefined;
-    sponsorShipLocation?: string | undefined;
-    sponsorShipCompanyContact?: string | undefined;
-    applicationUserId?: string | undefined;
-    getFullName?: string;
-    programmes?: ProgrammeModel[];
-    resultUploads?: ResultUploadModel[];
-    workingExperiences?: (WorkingExperienceModel | undefined)[];
-    academicExperiences?: (AcademicExperienceModel | undefined)[];
-    documents?: (DocumentUploadModel | undefined)[];
-    referees?: (RefereeModel | undefined)[];
-    addresses?: (Address | undefined)[];
-    languages?: (LanguageModel | undefined)[];
-    sms?: SMSModel[];
-    applicantIssues?: ApplicantIssueModel[] | undefined;
-    researchModels?: ResearchModel[] | undefined;
-    researchPublications?: ResearchPublicationModel[] | undefined;
-    universityAttended?: UniversityAttendedModel[] | undefined;
-    shsAttend?: SHSAttendedModel[] | undefined;
-    disabilities?: DisabilitiesModel[] | undefined;
+export enum EntryQualification {
+    WASSCE = 0,
+    SSCE = 1,
+    NVTI = 2,
+    DEGREE = 3,
+    MASTERS = 4,
+    HND = 5,
+    DIPLOMA = 6,
+    BECE = 7,
+    PhD = 8,
 }
 
 export class FormerSchoolModel implements IFormerSchoolModel {
@@ -5083,6 +4791,86 @@ export class Money extends ValueObject implements IMoney {
 export interface IMoney extends IValueObject {
     currency?: string;
     amount?: number;
+}
+
+export class ProgrammeModel implements IProgrammeModel {
+    id?: number;
+    name?: string;
+    code?: string;
+    levelAdmitted?: string;
+    runing?: boolean;
+    showOnPortal?: boolean;
+    type?: string;
+    duration?: number;
+    department?: number;
+    applicant?: ApplicantModel[];
+
+    constructor(data?: IProgrammeModel) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.code = _data["code"];
+            this.levelAdmitted = _data["levelAdmitted"];
+            this.runing = _data["runing"];
+            this.showOnPortal = _data["showOnPortal"];
+            this.type = _data["type"];
+            this.duration = _data["duration"];
+            this.department = _data["department"];
+            if (Array.isArray(_data["applicant"])) {
+                this.applicant = [] as any;
+                for (let item of _data["applicant"])
+                    this.applicant!.push(ApplicantModel.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): ProgrammeModel {
+        data = typeof data === 'object' ? data : {};
+        let result = new ProgrammeModel();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["code"] = this.code;
+        data["levelAdmitted"] = this.levelAdmitted;
+        data["runing"] = this.runing;
+        data["showOnPortal"] = this.showOnPortal;
+        data["type"] = this.type;
+        data["duration"] = this.duration;
+        data["department"] = this.department;
+        if (Array.isArray(this.applicant)) {
+            data["applicant"] = [];
+            for (let item of this.applicant)
+                data["applicant"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IProgrammeModel {
+    id?: number;
+    name?: string;
+    code?: string;
+    levelAdmitted?: string;
+    runing?: boolean;
+    showOnPortal?: boolean;
+    type?: string;
+    duration?: number;
+    department?: number;
+    applicant?: ApplicantModel[];
 }
 
 export class ResultUploadModel extends BaseEntity implements IResultUploadModel {
@@ -5536,17 +5324,16 @@ export enum RefereeStatus {
     Declined = 2,
 }
 
-export class Address implements IAddress {
+export class AddressModel implements IAddressModel {
     id?: number;
-    street?: string;
-    houseNumber?: string;
-    city?: string;
-    gprs?: string;
-    box?: string;
-    applicantModel?: number;
+    street?: string | undefined;
+    houseNumber?: string | undefined;
+    city?: string | undefined;
+    gprs?: string | undefined;
+    box?: string | undefined;
     applicant?: ApplicantModel;
 
-    constructor(data?: IAddress) {
+    constructor(data?: IAddressModel) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -5563,14 +5350,13 @@ export class Address implements IAddress {
             this.city = _data["city"];
             this.gprs = _data["gprs"];
             this.box = _data["box"];
-            this.applicantModel = _data["applicantModel"];
             this.applicant = _data["applicant"] ? ApplicantModel.fromJS(_data["applicant"]) : <any>undefined;
         }
     }
 
-    static fromJS(data: any): Address {
+    static fromJS(data: any): AddressModel {
         data = typeof data === 'object' ? data : {};
-        let result = new Address();
+        let result = new AddressModel();
         result.init(data);
         return result;
     }
@@ -5583,20 +5369,18 @@ export class Address implements IAddress {
         data["city"] = this.city;
         data["gprs"] = this.gprs;
         data["box"] = this.box;
-        data["applicantModel"] = this.applicantModel;
         data["applicant"] = this.applicant ? this.applicant.toJSON() : <any>undefined;
         return data;
     }
 }
 
-export interface IAddress {
+export interface IAddressModel {
     id?: number;
-    street?: string;
-    houseNumber?: string;
-    city?: string;
-    gprs?: string;
-    box?: string;
-    applicantModel?: number;
+    street?: string | undefined;
+    houseNumber?: string | undefined;
+    city?: string | undefined;
+    gprs?: string | undefined;
+    box?: string | undefined;
     applicant?: ApplicantModel;
 }
 
@@ -5702,87 +5486,6 @@ export interface ISMSModel {
     dateSent?: Date;
     status?: string | undefined;
     applicantModelID?: number;
-}
-
-export class ApplicantIssueModel extends BaseAuditableEntity implements IApplicantIssueModel {
-    applicantModelId?: string;
-    biodata?: boolean | undefined;
-    results?: boolean;
-    picture?: boolean;
-    age?: boolean;
-    formCompletion?: boolean;
-    qualification?: boolean;
-    documentUpload?: boolean | undefined;
-    workingExperience?: boolean | undefined;
-    academicExperience?: boolean | undefined;
-    researchInformation?: boolean | undefined;
-    researchPublication?: boolean | undefined;
-    referee?: boolean | undefined;
-
-    constructor(data?: IApplicantIssueModel) {
-        super(data);
-    }
-
-    override init(_data?: any) {
-        super.init(_data);
-        if (_data) {
-            this.applicantModelId = _data["applicantModelId"];
-            this.biodata = _data["biodata"];
-            this.results = _data["results"];
-            this.picture = _data["picture"];
-            this.age = _data["age"];
-            this.formCompletion = _data["formCompletion"];
-            this.qualification = _data["qualification"];
-            this.documentUpload = _data["documentUpload"];
-            this.workingExperience = _data["workingExperience"];
-            this.academicExperience = _data["academicExperience"];
-            this.researchInformation = _data["researchInformation"];
-            this.researchPublication = _data["researchPublication"];
-            this.referee = _data["referee"];
-        }
-    }
-
-    static override fromJS(data: any): ApplicantIssueModel {
-        data = typeof data === 'object' ? data : {};
-        let result = new ApplicantIssueModel();
-        result.init(data);
-        return result;
-    }
-
-    override toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["applicantModelId"] = this.applicantModelId;
-        data["biodata"] = this.biodata;
-        data["results"] = this.results;
-        data["picture"] = this.picture;
-        data["age"] = this.age;
-        data["formCompletion"] = this.formCompletion;
-        data["qualification"] = this.qualification;
-        data["documentUpload"] = this.documentUpload;
-        data["workingExperience"] = this.workingExperience;
-        data["academicExperience"] = this.academicExperience;
-        data["researchInformation"] = this.researchInformation;
-        data["researchPublication"] = this.researchPublication;
-        data["referee"] = this.referee;
-        super.toJSON(data);
-        return data;
-    }
-}
-
-export interface IApplicantIssueModel extends IBaseAuditableEntity {
-    applicantModelId?: string;
-    biodata?: boolean | undefined;
-    results?: boolean;
-    picture?: boolean;
-    age?: boolean;
-    formCompletion?: boolean;
-    qualification?: boolean;
-    documentUpload?: boolean | undefined;
-    workingExperience?: boolean | undefined;
-    academicExperience?: boolean | undefined;
-    researchInformation?: boolean | undefined;
-    researchPublication?: boolean | undefined;
-    referee?: boolean | undefined;
 }
 
 export class ResearchModel implements IResearchModel {
@@ -6067,6 +5770,446 @@ export class DisabilitiesModel implements IDisabilitiesModel {
 export interface IDisabilitiesModel {
     id?: number;
     name?: string;
+}
+
+export class ApplicantVm implements IApplicantVm {
+    id?: number;
+    applicationNumber?: ApplicationNumber;
+    title?: Title;
+    applicantName?: ApplicantName;
+    previousName?: ApplicantName | undefined;
+    dob?: Date;
+    gender?: Gender;
+    age?: number;
+    maritalStatus?: MaritalStatus | undefined;
+    noOfChildren?: number | undefined;
+    phone?: PhoneNumber;
+    altPhone?: PhoneNumber | undefined;
+    email?: EmailAddress;
+    postGPRS?: string | undefined;
+    emergencyContact?: PhoneNumber | undefined;
+    hometown?: string | undefined;
+    districtId?: number | undefined;
+    district?: DistrictModel | undefined;
+    hall?: HallModel | undefined;
+    idcard?: IDCard | undefined;
+    regionId?: number | undefined;
+    region?: RegionModel | undefined;
+    nationalityId?: number | undefined;
+    nationality?: CountryModel | undefined;
+    residentialStatus?: boolean | undefined;
+    guardianName?: string | undefined;
+    guardianPhone?: PhoneNumber;
+    guardianOccupation?: string | undefined;
+    guardianRelationship?: string | undefined;
+    disability?: boolean | undefined;
+    disabilityType?: Disability | undefined;
+    sourceOfFinance?: string | undefined;
+    religionId?: number | undefined;
+    religion?: ReligionModel | undefined;
+    denomination?: string | undefined;
+    referrals?: string | undefined;
+    entryMode?: Session | undefined;
+    firstQualification?: EntryQualification | undefined;
+    secondQualification?: EntryQualification | undefined;
+    programmeStudied?: string | undefined;
+    formerSchool?: string | undefined;
+    formerSchoolNewId?: number | undefined;
+    programmeAdmittedId?: number | undefined;
+    lastYearInSchool?: number | undefined;
+    awaiting?: boolean | undefined;
+    grade?: number | undefined;
+    preferedHall?: string | undefined;
+    elligible?: boolean | undefined;
+    admitted?: boolean | undefined;
+    admittedBy?: number | undefined;
+    admissionType?: string | undefined;
+    leveladmitted?: string | undefined;
+    firstChoiceId?: number | undefined;
+    secondChoiceId?: number | undefined;
+    thirdChoiceId?: number | undefined;
+    sponsorShip?: boolean | undefined;
+    sponsorShipCompany?: string | undefined;
+    sponsorShipLocation?: string | undefined;
+    sponsorShipCompanyContact?: string | undefined;
+    getFullName?: string;
+    programmes?: ProgrammeModel[];
+    resultUploads?: ResultUploadModel[];
+    workingExperiences?: (WorkingExperienceModel | undefined)[];
+    academicExperiences?: (AcademicExperienceModel | undefined)[];
+    documents?: (DocumentUploadModel | undefined)[];
+    referees?: (RefereeModel | undefined)[];
+    addresses?: (AddressModel | undefined)[];
+    languages?: (LanguageModel | undefined)[];
+    sms?: SMSModel[];
+    researchModels?: ResearchModel[] | undefined;
+    researchPublications?: ResearchPublicationModel[] | undefined;
+    universityAttended?: UniversityAttendedModel[] | undefined;
+    shsAttend?: SHSAttendedModel[] | undefined;
+    disabilities?: DisabilitiesModel[] | undefined;
+
+    constructor(data?: IApplicantVm) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.applicationNumber = _data["applicationNumber"] ? ApplicationNumber.fromJS(_data["applicationNumber"]) : <any>undefined;
+            this.title = _data["title"];
+            this.applicantName = _data["applicantName"] ? ApplicantName.fromJS(_data["applicantName"]) : <any>undefined;
+            this.previousName = _data["previousName"] ? ApplicantName.fromJS(_data["previousName"]) : <any>undefined;
+            this.dob = _data["dob"] ? new Date(_data["dob"].toString()) : <any>undefined;
+            this.gender = _data["gender"];
+            this.age = _data["age"];
+            this.maritalStatus = _data["maritalStatus"];
+            this.noOfChildren = _data["noOfChildren"];
+            this.phone = _data["phone"] ? PhoneNumber.fromJS(_data["phone"]) : <any>undefined;
+            this.altPhone = _data["altPhone"] ? PhoneNumber.fromJS(_data["altPhone"]) : <any>undefined;
+            this.email = _data["email"] ? EmailAddress.fromJS(_data["email"]) : <any>undefined;
+            this.postGPRS = _data["postGPRS"];
+            this.emergencyContact = _data["emergencyContact"] ? PhoneNumber.fromJS(_data["emergencyContact"]) : <any>undefined;
+            this.hometown = _data["hometown"];
+            this.districtId = _data["districtId"];
+            this.district = _data["district"] ? DistrictModel.fromJS(_data["district"]) : <any>undefined;
+            this.hall = _data["hall"] ? HallModel.fromJS(_data["hall"]) : <any>undefined;
+            this.idcard = _data["idcard"] ? IDCard.fromJS(_data["idcard"]) : <any>undefined;
+            this.regionId = _data["regionId"];
+            this.region = _data["region"] ? RegionModel.fromJS(_data["region"]) : <any>undefined;
+            this.nationalityId = _data["nationalityId"];
+            this.nationality = _data["nationality"] ? CountryModel.fromJS(_data["nationality"]) : <any>undefined;
+            this.residentialStatus = _data["residentialStatus"];
+            this.guardianName = _data["guardianName"];
+            this.guardianPhone = _data["guardianPhone"] ? PhoneNumber.fromJS(_data["guardianPhone"]) : <any>undefined;
+            this.guardianOccupation = _data["guardianOccupation"];
+            this.guardianRelationship = _data["guardianRelationship"];
+            this.disability = _data["disability"];
+            this.disabilityType = _data["disabilityType"];
+            this.sourceOfFinance = _data["sourceOfFinance"];
+            this.religionId = _data["religionId"];
+            this.religion = _data["religion"] ? ReligionModel.fromJS(_data["religion"]) : <any>undefined;
+            this.denomination = _data["denomination"];
+            this.referrals = _data["referrals"];
+            this.entryMode = _data["entryMode"];
+            this.firstQualification = _data["firstQualification"];
+            this.secondQualification = _data["secondQualification"];
+            this.programmeStudied = _data["programmeStudied"];
+            this.formerSchool = _data["formerSchool"];
+            this.formerSchoolNewId = _data["formerSchoolNewId"];
+            this.programmeAdmittedId = _data["programmeAdmittedId"];
+            this.lastYearInSchool = _data["lastYearInSchool"];
+            this.awaiting = _data["awaiting"];
+            this.grade = _data["grade"];
+            this.preferedHall = _data["preferedHall"];
+            this.elligible = _data["elligible"];
+            this.admitted = _data["admitted"];
+            this.admittedBy = _data["admittedBy"];
+            this.admissionType = _data["admissionType"];
+            this.leveladmitted = _data["leveladmitted"];
+            this.firstChoiceId = _data["firstChoiceId"];
+            this.secondChoiceId = _data["secondChoiceId"];
+            this.thirdChoiceId = _data["thirdChoiceId"];
+            this.sponsorShip = _data["sponsorShip"];
+            this.sponsorShipCompany = _data["sponsorShipCompany"];
+            this.sponsorShipLocation = _data["sponsorShipLocation"];
+            this.sponsorShipCompanyContact = _data["sponsorShipCompanyContact"];
+            this.getFullName = _data["getFullName"];
+            if (Array.isArray(_data["programmes"])) {
+                this.programmes = [] as any;
+                for (let item of _data["programmes"])
+                    this.programmes!.push(ProgrammeModel.fromJS(item));
+            }
+            if (Array.isArray(_data["resultUploads"])) {
+                this.resultUploads = [] as any;
+                for (let item of _data["resultUploads"])
+                    this.resultUploads!.push(ResultUploadModel.fromJS(item));
+            }
+            if (Array.isArray(_data["workingExperiences"])) {
+                this.workingExperiences = [] as any;
+                for (let item of _data["workingExperiences"])
+                    this.workingExperiences!.push(WorkingExperienceModel.fromJS(item));
+            }
+            if (Array.isArray(_data["academicExperiences"])) {
+                this.academicExperiences = [] as any;
+                for (let item of _data["academicExperiences"])
+                    this.academicExperiences!.push(AcademicExperienceModel.fromJS(item));
+            }
+            if (Array.isArray(_data["documents"])) {
+                this.documents = [] as any;
+                for (let item of _data["documents"])
+                    this.documents!.push(DocumentUploadModel.fromJS(item));
+            }
+            if (Array.isArray(_data["referees"])) {
+                this.referees = [] as any;
+                for (let item of _data["referees"])
+                    this.referees!.push(RefereeModel.fromJS(item));
+            }
+            if (Array.isArray(_data["addresses"])) {
+                this.addresses = [] as any;
+                for (let item of _data["addresses"])
+                    this.addresses!.push(AddressModel.fromJS(item));
+            }
+            if (Array.isArray(_data["languages"])) {
+                this.languages = [] as any;
+                for (let item of _data["languages"])
+                    this.languages!.push(LanguageModel.fromJS(item));
+            }
+            if (Array.isArray(_data["sms"])) {
+                this.sms = [] as any;
+                for (let item of _data["sms"])
+                    this.sms!.push(SMSModel.fromJS(item));
+            }
+            if (Array.isArray(_data["researchModels"])) {
+                this.researchModels = [] as any;
+                for (let item of _data["researchModels"])
+                    this.researchModels!.push(ResearchModel.fromJS(item));
+            }
+            if (Array.isArray(_data["researchPublications"])) {
+                this.researchPublications = [] as any;
+                for (let item of _data["researchPublications"])
+                    this.researchPublications!.push(ResearchPublicationModel.fromJS(item));
+            }
+            if (Array.isArray(_data["universityAttended"])) {
+                this.universityAttended = [] as any;
+                for (let item of _data["universityAttended"])
+                    this.universityAttended!.push(UniversityAttendedModel.fromJS(item));
+            }
+            if (Array.isArray(_data["shsAttend"])) {
+                this.shsAttend = [] as any;
+                for (let item of _data["shsAttend"])
+                    this.shsAttend!.push(SHSAttendedModel.fromJS(item));
+            }
+            if (Array.isArray(_data["disabilities"])) {
+                this.disabilities = [] as any;
+                for (let item of _data["disabilities"])
+                    this.disabilities!.push(DisabilitiesModel.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): ApplicantVm {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApplicantVm();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["applicationNumber"] = this.applicationNumber ? this.applicationNumber.toJSON() : <any>undefined;
+        data["title"] = this.title;
+        data["applicantName"] = this.applicantName ? this.applicantName.toJSON() : <any>undefined;
+        data["previousName"] = this.previousName ? this.previousName.toJSON() : <any>undefined;
+        data["dob"] = this.dob ? formatDate(this.dob) : <any>undefined;
+        data["gender"] = this.gender;
+        data["age"] = this.age;
+        data["maritalStatus"] = this.maritalStatus;
+        data["noOfChildren"] = this.noOfChildren;
+        data["phone"] = this.phone ? this.phone.toJSON() : <any>undefined;
+        data["altPhone"] = this.altPhone ? this.altPhone.toJSON() : <any>undefined;
+        data["email"] = this.email ? this.email.toJSON() : <any>undefined;
+        data["postGPRS"] = this.postGPRS;
+        data["emergencyContact"] = this.emergencyContact ? this.emergencyContact.toJSON() : <any>undefined;
+        data["hometown"] = this.hometown;
+        data["districtId"] = this.districtId;
+        data["district"] = this.district ? this.district.toJSON() : <any>undefined;
+        data["hall"] = this.hall ? this.hall.toJSON() : <any>undefined;
+        data["idcard"] = this.idcard ? this.idcard.toJSON() : <any>undefined;
+        data["regionId"] = this.regionId;
+        data["region"] = this.region ? this.region.toJSON() : <any>undefined;
+        data["nationalityId"] = this.nationalityId;
+        data["nationality"] = this.nationality ? this.nationality.toJSON() : <any>undefined;
+        data["residentialStatus"] = this.residentialStatus;
+        data["guardianName"] = this.guardianName;
+        data["guardianPhone"] = this.guardianPhone ? this.guardianPhone.toJSON() : <any>undefined;
+        data["guardianOccupation"] = this.guardianOccupation;
+        data["guardianRelationship"] = this.guardianRelationship;
+        data["disability"] = this.disability;
+        data["disabilityType"] = this.disabilityType;
+        data["sourceOfFinance"] = this.sourceOfFinance;
+        data["religionId"] = this.religionId;
+        data["religion"] = this.religion ? this.religion.toJSON() : <any>undefined;
+        data["denomination"] = this.denomination;
+        data["referrals"] = this.referrals;
+        data["entryMode"] = this.entryMode;
+        data["firstQualification"] = this.firstQualification;
+        data["secondQualification"] = this.secondQualification;
+        data["programmeStudied"] = this.programmeStudied;
+        data["formerSchool"] = this.formerSchool;
+        data["formerSchoolNewId"] = this.formerSchoolNewId;
+        data["programmeAdmittedId"] = this.programmeAdmittedId;
+        data["lastYearInSchool"] = this.lastYearInSchool;
+        data["awaiting"] = this.awaiting;
+        data["grade"] = this.grade;
+        data["preferedHall"] = this.preferedHall;
+        data["elligible"] = this.elligible;
+        data["admitted"] = this.admitted;
+        data["admittedBy"] = this.admittedBy;
+        data["admissionType"] = this.admissionType;
+        data["leveladmitted"] = this.leveladmitted;
+        data["firstChoiceId"] = this.firstChoiceId;
+        data["secondChoiceId"] = this.secondChoiceId;
+        data["thirdChoiceId"] = this.thirdChoiceId;
+        data["sponsorShip"] = this.sponsorShip;
+        data["sponsorShipCompany"] = this.sponsorShipCompany;
+        data["sponsorShipLocation"] = this.sponsorShipLocation;
+        data["sponsorShipCompanyContact"] = this.sponsorShipCompanyContact;
+        data["getFullName"] = this.getFullName;
+        if (Array.isArray(this.programmes)) {
+            data["programmes"] = [];
+            for (let item of this.programmes)
+                data["programmes"].push(item.toJSON());
+        }
+        if (Array.isArray(this.resultUploads)) {
+            data["resultUploads"] = [];
+            for (let item of this.resultUploads)
+                data["resultUploads"].push(item.toJSON());
+        }
+        if (Array.isArray(this.workingExperiences)) {
+            data["workingExperiences"] = [];
+            for (let item of this.workingExperiences)
+                data["workingExperiences"].push(item.toJSON());
+        }
+        if (Array.isArray(this.academicExperiences)) {
+            data["academicExperiences"] = [];
+            for (let item of this.academicExperiences)
+                data["academicExperiences"].push(item.toJSON());
+        }
+        if (Array.isArray(this.documents)) {
+            data["documents"] = [];
+            for (let item of this.documents)
+                data["documents"].push(item.toJSON());
+        }
+        if (Array.isArray(this.referees)) {
+            data["referees"] = [];
+            for (let item of this.referees)
+                data["referees"].push(item.toJSON());
+        }
+        if (Array.isArray(this.addresses)) {
+            data["addresses"] = [];
+            for (let item of this.addresses)
+                data["addresses"].push(item.toJSON());
+        }
+        if (Array.isArray(this.languages)) {
+            data["languages"] = [];
+            for (let item of this.languages)
+                data["languages"].push(item.toJSON());
+        }
+        if (Array.isArray(this.sms)) {
+            data["sms"] = [];
+            for (let item of this.sms)
+                data["sms"].push(item.toJSON());
+        }
+        if (Array.isArray(this.researchModels)) {
+            data["researchModels"] = [];
+            for (let item of this.researchModels)
+                data["researchModels"].push(item.toJSON());
+        }
+        if (Array.isArray(this.researchPublications)) {
+            data["researchPublications"] = [];
+            for (let item of this.researchPublications)
+                data["researchPublications"].push(item.toJSON());
+        }
+        if (Array.isArray(this.universityAttended)) {
+            data["universityAttended"] = [];
+            for (let item of this.universityAttended)
+                data["universityAttended"].push(item.toJSON());
+        }
+        if (Array.isArray(this.shsAttend)) {
+            data["shsAttend"] = [];
+            for (let item of this.shsAttend)
+                data["shsAttend"].push(item.toJSON());
+        }
+        if (Array.isArray(this.disabilities)) {
+            data["disabilities"] = [];
+            for (let item of this.disabilities)
+                data["disabilities"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IApplicantVm {
+    id?: number;
+    applicationNumber?: ApplicationNumber;
+    title?: Title;
+    applicantName?: ApplicantName;
+    previousName?: ApplicantName | undefined;
+    dob?: Date;
+    gender?: Gender;
+    age?: number;
+    maritalStatus?: MaritalStatus | undefined;
+    noOfChildren?: number | undefined;
+    phone?: PhoneNumber;
+    altPhone?: PhoneNumber | undefined;
+    email?: EmailAddress;
+    postGPRS?: string | undefined;
+    emergencyContact?: PhoneNumber | undefined;
+    hometown?: string | undefined;
+    districtId?: number | undefined;
+    district?: DistrictModel | undefined;
+    hall?: HallModel | undefined;
+    idcard?: IDCard | undefined;
+    regionId?: number | undefined;
+    region?: RegionModel | undefined;
+    nationalityId?: number | undefined;
+    nationality?: CountryModel | undefined;
+    residentialStatus?: boolean | undefined;
+    guardianName?: string | undefined;
+    guardianPhone?: PhoneNumber;
+    guardianOccupation?: string | undefined;
+    guardianRelationship?: string | undefined;
+    disability?: boolean | undefined;
+    disabilityType?: Disability | undefined;
+    sourceOfFinance?: string | undefined;
+    religionId?: number | undefined;
+    religion?: ReligionModel | undefined;
+    denomination?: string | undefined;
+    referrals?: string | undefined;
+    entryMode?: Session | undefined;
+    firstQualification?: EntryQualification | undefined;
+    secondQualification?: EntryQualification | undefined;
+    programmeStudied?: string | undefined;
+    formerSchool?: string | undefined;
+    formerSchoolNewId?: number | undefined;
+    programmeAdmittedId?: number | undefined;
+    lastYearInSchool?: number | undefined;
+    awaiting?: boolean | undefined;
+    grade?: number | undefined;
+    preferedHall?: string | undefined;
+    elligible?: boolean | undefined;
+    admitted?: boolean | undefined;
+    admittedBy?: number | undefined;
+    admissionType?: string | undefined;
+    leveladmitted?: string | undefined;
+    firstChoiceId?: number | undefined;
+    secondChoiceId?: number | undefined;
+    thirdChoiceId?: number | undefined;
+    sponsorShip?: boolean | undefined;
+    sponsorShipCompany?: string | undefined;
+    sponsorShipLocation?: string | undefined;
+    sponsorShipCompanyContact?: string | undefined;
+    getFullName?: string;
+    programmes?: ProgrammeModel[];
+    resultUploads?: ResultUploadModel[];
+    workingExperiences?: (WorkingExperienceModel | undefined)[];
+    academicExperiences?: (AcademicExperienceModel | undefined)[];
+    documents?: (DocumentUploadModel | undefined)[];
+    referees?: (RefereeModel | undefined)[];
+    addresses?: (AddressModel | undefined)[];
+    languages?: (LanguageModel | undefined)[];
+    sms?: SMSModel[];
+    researchModels?: ResearchModel[] | undefined;
+    researchPublications?: ResearchPublicationModel[] | undefined;
+    universityAttended?: UniversityAttendedModel[] | undefined;
+    shsAttend?: SHSAttendedModel[] | undefined;
+    disabilities?: DisabilitiesModel[] | undefined;
 }
 
 export enum ApplicationType {
@@ -7127,13 +7270,12 @@ export interface IUserDto {
 export class ProgrammeInfoRequest implements IProgrammeInfoRequest {
     id?: number | undefined;
     entryMode?: Session | undefined;
-    firstQualification?: string | undefined;
-    secondQualification?: string | undefined;
+    firstQualification?: EntryQualification | undefined;
+    secondQualification?: EntryQualification | undefined;
     firstChoiceId?: number | undefined;
     secondChoiceId?: number | undefined;
     thirdChoiceId?: number | undefined;
     awaiting?: boolean | undefined;
-    grade?: number | undefined;
     lastYearInSchool?: number | undefined;
 
     constructor(data?: IProgrammeInfoRequest) {
@@ -7155,7 +7297,6 @@ export class ProgrammeInfoRequest implements IProgrammeInfoRequest {
             this.secondChoiceId = _data["secondChoiceId"];
             this.thirdChoiceId = _data["thirdChoiceId"];
             this.awaiting = _data["awaiting"];
-            this.grade = _data["grade"];
             this.lastYearInSchool = _data["lastYearInSchool"];
         }
     }
@@ -7177,7 +7318,6 @@ export class ProgrammeInfoRequest implements IProgrammeInfoRequest {
         data["secondChoiceId"] = this.secondChoiceId;
         data["thirdChoiceId"] = this.thirdChoiceId;
         data["awaiting"] = this.awaiting;
-        data["grade"] = this.grade;
         data["lastYearInSchool"] = this.lastYearInSchool;
         return data;
     }
@@ -7186,13 +7326,12 @@ export class ProgrammeInfoRequest implements IProgrammeInfoRequest {
 export interface IProgrammeInfoRequest {
     id?: number | undefined;
     entryMode?: Session | undefined;
-    firstQualification?: string | undefined;
-    secondQualification?: string | undefined;
+    firstQualification?: EntryQualification | undefined;
+    secondQualification?: EntryQualification | undefined;
     firstChoiceId?: number | undefined;
     secondChoiceId?: number | undefined;
     thirdChoiceId?: number | undefined;
     awaiting?: boolean | undefined;
-    grade?: number | undefined;
     lastYearInSchool?: number | undefined;
 }
 
@@ -7874,20 +8013,15 @@ export interface IResultsDto {
 
 export class CreateResultRequest implements ICreateResultRequest {
     applicant?: number;
-    subjectID?: number;
+    subjectId?: number | undefined;
     examType?: string;
-    gradeID?: number;
-    gradeOld?: number | undefined;
-    gradeValueOld?: string;
+    gradeID?: number | undefined;
     indexNo?: string;
     sitting?: string;
     month?: string;
-    form?: number;
     center?: string;
     year?: string;
-    oldSubject?: string;
     institutionName?: string;
-    applicantModelID?: number;
 
     constructor(data?: ICreateResultRequest) {
         if (data) {
@@ -7901,20 +8035,15 @@ export class CreateResultRequest implements ICreateResultRequest {
     init(_data?: any) {
         if (_data) {
             this.applicant = _data["applicant"];
-            this.subjectID = _data["subjectID"];
+            this.subjectId = _data["subjectId"];
             this.examType = _data["examType"];
             this.gradeID = _data["gradeID"];
-            this.gradeOld = _data["gradeOld"];
-            this.gradeValueOld = _data["gradeValueOld"];
             this.indexNo = _data["indexNo"];
             this.sitting = _data["sitting"];
             this.month = _data["month"];
-            this.form = _data["form"];
             this.center = _data["center"];
             this.year = _data["year"];
-            this.oldSubject = _data["oldSubject"];
             this.institutionName = _data["institutionName"];
-            this.applicantModelID = _data["applicantModelID"];
         }
     }
 
@@ -7928,40 +8057,30 @@ export class CreateResultRequest implements ICreateResultRequest {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["applicant"] = this.applicant;
-        data["subjectID"] = this.subjectID;
+        data["subjectId"] = this.subjectId;
         data["examType"] = this.examType;
         data["gradeID"] = this.gradeID;
-        data["gradeOld"] = this.gradeOld;
-        data["gradeValueOld"] = this.gradeValueOld;
         data["indexNo"] = this.indexNo;
         data["sitting"] = this.sitting;
         data["month"] = this.month;
-        data["form"] = this.form;
         data["center"] = this.center;
         data["year"] = this.year;
-        data["oldSubject"] = this.oldSubject;
         data["institutionName"] = this.institutionName;
-        data["applicantModelID"] = this.applicantModelID;
         return data;
     }
 }
 
 export interface ICreateResultRequest {
     applicant?: number;
-    subjectID?: number;
+    subjectId?: number | undefined;
     examType?: string;
-    gradeID?: number;
-    gradeOld?: number | undefined;
-    gradeValueOld?: string;
+    gradeID?: number | undefined;
     indexNo?: string;
     sitting?: string;
     month?: string;
-    form?: number;
     center?: string;
     year?: string;
-    oldSubject?: string;
     institutionName?: string;
-    applicantModelID?: number;
 }
 
 export class ReligionDto implements IReligionDto {
@@ -8402,8 +8521,8 @@ export interface IExamDto {
 
 export class SubjectDto implements ISubjectDto {
     id?: number | undefined;
-    exam?: number | undefined;
-    type?: number | undefined;
+    exam?: string | undefined;
+    type?: string | undefined;
     name?: string | undefined;
 
     constructor(data?: ISubjectDto) {
@@ -8443,8 +8562,8 @@ export class SubjectDto implements ISubjectDto {
 
 export interface ISubjectDto {
     id?: number | undefined;
-    exam?: number | undefined;
-    type?: number | undefined;
+    exam?: string | undefined;
+    type?: string | undefined;
     name?: string | undefined;
 }
 

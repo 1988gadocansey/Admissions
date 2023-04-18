@@ -4,8 +4,8 @@ namespace OnlineApplicationSystem.Application.Common.Dtos;
 public record SubjectDto : IMapFrom<SubjectModel>
 {
     public int? Id { set; get; }
-    public int? Exam { set; get; }
-    public int? Type { set; get; }
+    public string? Exam { set; get; }
+    public string? Type { set; get; }
     public string? Name { set; get; }
 
 }

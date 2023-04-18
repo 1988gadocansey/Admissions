@@ -1109,19 +1109,15 @@
               >
                 <!----><span class="px-2">Save & Continue</span>
               </button>
-              <button
-                [disabled]="!biodataForm.valid"
-                class="mr-3 mb-3 inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded border border-orange-600 bg-orange-600 py-2 px-3 text-white ring-orange-300 transition-colors duration-150 last:mr-0 focus:outline-none focus:ring hover:border-orange-700 dark:border-orange-500 dark:bg-orange-500 dark:ring-orange-700 hover:dark:border-orange-600 hover:dark:bg-orange-600"
-                type="submit"
-              >
-                <!----><span class="px-2">Save & Exit</span>
-              </button>
-              <button
-                class="mr-3 mb-3 inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded border border-blue-600 py-2 px-3 text-blue-600 ring-blue-300 transition-colors duration-150 last:mr-0 focus:outline-none focus:ring hover:bg-blue-600 hover:text-white dark:border-blue-500 dark:text-blue-500 dark:ring-blue-700 hover:dark:border-blue-600 hover:dark:text-white"
-                type="reset"
-              >
-                <!----><span class="px-2">Previous Form</span>
-              </button>
+              <a [routerLink]="['/welcome/live']">
+                <button
+                  [disabled]="biodataForm.controls['Id'].value == ''"
+                  class="mr-3 mb-3 inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded border border-orange-600 bg-orange-600 py-2 px-3 text-white ring-orange-300 transition-colors duration-150 last:mr-0 focus:outline-none focus:ring hover:border-orange-700 dark:border-orange-500 dark:bg-orange-500 dark:ring-orange-700 hover:dark:border-orange-600 hover:dark:bg-orange-600"
+                  type="button"
+                >
+                  <!----><span class="px-2">Save & Exit</span>
+                </button>
+              </a>
             </div>
           </div>
         </div>
