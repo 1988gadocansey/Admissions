@@ -8,17 +8,20 @@ public interface IApplicantRepository
 {
 
     public Task<ApplicantVm> GetApplicantForUser(string Id, CancellationToken cancellationToken);
+    //public Task<ApplicantIssueDto> GetIssuesForUser(int Applicant, CancellationToken cancellationToken);
     public Task<ApplicantVm> GetApplicant(int Id, CancellationToken cancellationToken);
     // public Task<bool> SendSMSNotification(string phoneNumber, string message, long formNo, string appSender);
     // public Task SendEmailNotification(string Email, string Message);
     public Task<bool> ContainsDuplicates(IEnumerable<int> data);
     public Task<int> GetAge(DateOnly dateOfBirth);
+    public int getGrade(string Applicant);
     public Task<bool> QualifiesMature(int age);
-    public int CheckFailed(IEnumerable<int> gradeValues);
-    public int CheckPassed(IEnumerable<int> GradeValues);
-    public Task<IEnumerable<string>> GradesIssues(IEnumerable<int> Cores, IEnumerable<int> CoreAlt, IEnumerable<int> Electives);
-    public Task<int> GetTotalAggregate(IEnumerable<int> Cores, IEnumerable<int> CoreAlt, IEnumerable<int> Electives);
+    public int CheckFailed(List<int> GradeValues);
+    public int CheckPassed(List<int> GradeValues);
+    public string[] GradesIssues(List<int> Cores, List<int> CoreAlt, List<int> Electives);
+    public int GetTotalAggregate(List<int> Cores, List<int> CoreAlt, List<int> Electives);
     public Task<string> GetFormNo();
+    public Task<ProgressDto> GetProgress(string Applicant, CancellationToken cancellationToken);
     public Task<int> UpdateFormNo(CancellationToken cancellationToken);
 
     // for future use.. applicant has many addresses but now ive limited it to single address cos of time constraints

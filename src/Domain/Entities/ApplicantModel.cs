@@ -108,7 +108,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public IEnumerable<AddressModel?> Addresses { get; set; }
         public IEnumerable<LanguageModel?> Languages { get; set; }
         public IEnumerable<SMSModel> Sms { get; set; }
-        // public IEnumerable<ApplicantIssueModel>? ApplicantIssues { get; set; }
+        public IEnumerable<ApplicantIssueModel>? ApplicantIssues { get; set; }
         public IEnumerable<ResearchModel>? ResearchModels { get; set; }
         public IEnumerable<ResearchPublicationModel>? ResearchPublications { get; set; }
         public IEnumerable<UniversityAttendedModel>? UniversityAttended { get; set; }

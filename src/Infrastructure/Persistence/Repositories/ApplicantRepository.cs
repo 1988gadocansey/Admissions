@@ -28,8 +28,8 @@ public class ApplicantRepository : IApplicantRepository
         _userManager = userManager;
         // _client = client;
     }
-    public int CheckFailed(IEnumerable<int> gradeValues) => gradeValues.Count(values => values > 7);
-    public int CheckPassed(IEnumerable<int> gradeValues) => gradeValues.Count(values => values < 7);
+    public int CheckFailed(List<int> GradeValues) => GradeValues.Count(values => values > 7);
+    public int CheckPassed(List<int> GradeValues) => GradeValues.Count(values => values < 7);
     public Task<bool> ContainsDuplicates(IEnumerable<int> results) => results.Count() != results.Distinct().Count() ? Task.FromResult(true) : Task.FromResult(false);
 
     public Task<int> GetAge(DateOnly dateOfBirth)
@@ -75,17 +75,38 @@ public class ApplicantRepository : IApplicantRepository
         return formNumber.No.ToString();
     }
 
-    public async Task<int> GetTotalAggregate(IEnumerable<int> Cores, IEnumerable<int> CoreAlt, IEnumerable<int> Electives)
+    public int GetTotalAggregate(List<int> Cores, List<int> CoreAlt, List<int> Electives)
     {
-        if (Cores.Count() != 2 || !CoreAlt.Any() || Electives.Count() < 3) return await Task.FromResult(0);
-        var totalCores = Cores.Sum();
-        var totalCoAlt = CoreAlt.Order().Take(1).Sum();
-        var totalElective = CoreAlt.Order().Take(3).Sum();
-        var total = totalElective + totalCoAlt + totalCores;
-        return await Task.FromResult(total);
+        CoreAlt.Sort();
+
+        Cores.Sort();
+
+        Electives.Sort();
+
+        int CstartIndex = 0;
+        int Clenght = 1;
+        IEnumerable<int> SliceCoreAlt = CoreAlt.Skip(CstartIndex).Take(Clenght);
+
+
+        int EstartIndex = 0;
+        int Elenght = 3;
+        IEnumerable<int> SliceElect = Electives.Skip(EstartIndex).Take(Elenght);
+
+
+        int grade = Cores.Sum() + SliceElect.Sum() + SliceCoreAlt.Sum();
+
+
+
+        return grade;
+    }
+    public async Task<ProgressDto> GetProgress(string Applicant, CancellationToken cancellationToken)
+    {
+        var data = await _context.ProgressModels.FirstOrDefaultAsync(a => a.ApplicationUserId == Applicant);
+        return _mapper.Map<ProgressDto>(data);
+
     }
 
-    public async Task<IEnumerable<string>> GradesIssues(IEnumerable<int> Cores, IEnumerable<int> CoreAlt, IEnumerable<int> Electives)
+    public string[] GradesIssues(List<int> Cores, List<int> CoreAlt, List<int> Electives)
     {
 
         //IEnumerable<string> error = new []{ ""} ;
@@ -128,6 +149,11 @@ public class ApplicantRepository : IApplicantRepository
     {
         return await Task.FromResult((age >= 25));
     }
+    public int getGrade(string Applicant)
+    {
+        var data = _context.ApplicantModels.FirstOrDefault(a => a.ApplicationUserId == Applicant);
+        return (int)data.Grade;
+    }
     public async Task<int> UpdateFormNo(CancellationToken cancellationToken)
     {
         var configuration = _context.ConfigurationModels.OrderByDescending(b => b.Id).FirstOrDefault();
@@ -138,7 +164,7 @@ public class ApplicantRepository : IApplicantRepository
     public async Task<IEnumerable<RegionDto>> Regions(CancellationToken cancellationToken)
     {
 
-        var data = await _context.RegionModels.ToListAsync(cancellationToken);
+        var data = await _context.RegionModels.OrderBy(a => a.Name).ToListAsync(cancellationToken);
         /* var data = await _context.RegionModels.Select(b =>
         new RegionDto()
         {
@@ -152,26 +178,26 @@ public class ApplicantRepository : IApplicantRepository
     }
     public async Task<IEnumerable<ReligionDto>> Religions(CancellationToken cancellationToken)
     {
-        var data = await _context.ReligionModels.ToListAsync(cancellationToken);
+        var data = await _context.ReligionModels.OrderBy(a => a.Name).ToListAsync(cancellationToken);
         var selectBoxItem = _mapper.Map<IEnumerable<ReligionDto>>(data);
         return selectBoxItem;
 
     }
     public async Task<IEnumerable<SubjectDto>> Subjects(CancellationToken cancellationToken)
     {
-        var data = await _context.SubjectModels.ToListAsync(cancellationToken);
+        var data = await _context.SubjectModels.OrderBy(a => a.Name).ToListAsync(cancellationToken);
         var selectBoxItem = _mapper.Map<IEnumerable<SubjectDto>>(data);
         return selectBoxItem;
     }
     public async Task<IEnumerable<ExamDto>> Exams(CancellationToken cancellationToken)
     {
-        var data = await _context.ExamModels.ToListAsync(cancellationToken);
+        var data = await _context.ExamModels.OrderBy(a => a.Name).ToListAsync(cancellationToken);
         var selectBoxItem = _mapper.Map<IEnumerable<ExamDto>>(data);
         return selectBoxItem;
     }
     public async Task<IEnumerable<FormerSchoolDto>> Schools(CancellationToken cancellationToken)
     {
-        var data = await _context.FormerSchoolModels.ToListAsync(cancellationToken);
+        var data = await _context.FormerSchoolModels.OrderBy(a => a.Name).ToListAsync(cancellationToken);
         var selectBoxItem = _mapper.Map<IEnumerable<FormerSchoolDto>>(data);
         return selectBoxItem;
     }
@@ -197,7 +223,7 @@ public class ApplicantRepository : IApplicantRepository
         var formType = types.FirstOrDefault(x => x.Value == FormType).Value;
 
 
-        var programme = _context.ProgrammeModels.AsNoTracking()
+        var programme = await _context.ProgrammeModels.AsNoTracking()
             .OrderBy(n => n.Name)
             .Where(n => n.Type == formType).
             ToListAsync();

@@ -51,6 +51,12 @@ const routes: Routes = [
     path: 'stepfour',
     component: LayoutComponent,
     canActivate: [AuthorizeGuard],
+    loadChildren: () => import('../educationalbackground/educationalbackground.module').then((m) => m.EducationalbackgroundModule),
+  },
+  {
+    path: 'stepfive',
+    component: LayoutComponent,
+    canActivate: [AuthorizeGuard],
     loadChildren: () => import('../resultupload/resultupload.module').then((m) => m.ResultuploadModule),
   },
   {

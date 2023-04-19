@@ -568,6 +568,57 @@
         ]
       }
     },
+    "/api/Home/grade": {
+      "get": {
+        "tags": [
+          "Home"
+        ],
+        "operationId": "Home_GetGrade",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/api/Home/progress": {
+      "get": {
+        "tags": [
+          "Home"
+        ],
+        "operationId": "Home_GetProgress",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgressDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
     "/api/PictureUpload": {
       "post": {
         "tags": [
@@ -2120,7 +2171,8 @@
         "properties": {
           "id": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "street": {
             "type": "string",
@@ -2664,6 +2716,13 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/SMSModel"
+                }
+              },
+              "applicantIssues": {
+                "type": "array",
+                "nullable": true,
+                "items": {
+                  "$ref": "#/components/schemas/ApplicantIssueModel"
                 }
               },
               "researchModels": {
@@ -3530,6 +3589,30 @@
             "format": "int32"
           }
         }
+      },
+      "ApplicantIssueModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseAuditableEntity"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "applicantId": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "applicant": {
+                "$ref": "#/components/schemas/ApplicantModel"
+              },
+              "issue": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
       },
       "ResearchModel": {
         "type": "object",
@@ -4834,6 +4917,58 @@
           "lastLogin": {
             "type": "string",
             "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "ProgressDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "applicationUserId": {
+            "type": "string"
+          },
+          "biodata": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "results": {
+            "type": "boolean"
+          },
+          "picture": {
+            "type": "boolean"
+          },
+          "age": {
+            "type": "boolean"
+          },
+          "formCompletion": {
+            "type": "boolean"
+          },
+          "qualification": {
+            "type": "boolean"
+          },
+          "documentUpload": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "workingExperience": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "academicExperience": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "researchInformation": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "researchPublication": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "referee": {
+            "type": "boolean",
             "nullable": true
           }
         }

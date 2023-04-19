@@ -43,71 +43,50 @@ public class FinalizedCommandHandler : IRequestHandler<FinalizedRequest>
         var qualifiesMatured = await _applicantRepository.QualifiesMature(applicant.Age);
         // go through issue table to see if there are issues to prevent him from finalizing
         //lets create issue flag here
-        var applicantIssues = _context.ApplicantIssueModels.FirstOrDefault(u => u.ApplicationUserId == _currentUserService.UserId);
-        //lets do our processings
-        // check issue with results uploaded
-        // calculate total aggregate
-        // calculate totalfailed, total passed
-        // check if qualified for admission
-        // lets send sms 
-        // lets send email
-        // lets scan through all the processes.. if issues logged them in the issue table
-        // finally send preview form as pdf
-        // do this result check for undergraduates only
-        if (userFormDetails.Category == "Undergraduates")
-        {
-            var resultsData = _context.ResultUploadModels.Include(g => g.Grade)
-                .Include(s => s.Subject)
-                .Where(r => r.ApplicantModelID == applicant.Id);
-            var totalUploaded = resultsData.Count();
+        var applicantIssues = _context.ProgressModels.FirstOrDefault(u => u.ApplicationUserId == _currentUserService.UserId);
 
-            foreach (var score in resultsData)
+        if (applicantIssues != null)
+        {
+            applicantIssues.Results = true;
+            applicantIssues.FormCompletion = true;
+            _context.ProgressModels.Update(applicantIssues);
+        }
+        await _context.SaveChangesAsync(cancellationToken);
+        // grade the applicant if hes a wassce or ssce
+        if (applicant.FirstQualification == Domain.Enums.EntryQualification.WASSCE || applicant.FirstQualification == Domain.Enums.EntryQualification.SSCE)
+        {
+            var Core = new List<int>();
+            var CoreAlt = new List<int>();
+            var Electives = new List<int>();
+            var results = _context.ResultUploadModels.Include(g => g.Grade).Include(s => s.Subject).Where(r => r.ApplicantModelID == applicant.Id);
+            foreach (var score in results)
             {
-                switch (score.Subject.Type)
+                switch (score.Subject.Code)
                 {
                     case "core":
-                        Array.Fill(core, Convert.ToInt32(score.Grade.Value));
+                        Core.Add(Convert.ToInt32(score.Grade.Value));
                         break;
                     case "core_alt":
-                        Array.Fill(coreAlt, Convert.ToInt32(score.Grade.Value));
+                        CoreAlt.Add(Convert.ToInt32(score.Grade.Value));
                         break;
                     case "elective":
-                        Array.Fill(electives, Convert.ToInt32(score.Grade.Value));
+                        Electives.Add(Convert.ToInt32(score.Grade.Value)); ;
                         break;
                 }
             }
-            if (applicantIssues.Results == false || applicantIssues.Picture == false || applicantIssues.Biodata == false)
+            // check results and insert into issue table
+            if (_applicantRepository.GradesIssues(Core, CoreAlt, Electives) != null)
             {
-                throw new NotFoundException("Error finalizing form. Error results has not been uploaded.", request.Id);
-            }
-            if (core.Length >= 2 && coreAlt.Length >= 1 && electives.Length >= 3)
-            {
-                var gradeValues = new List<int>();
-                gradeValues.AddRange(core);
-                gradeValues.AddRange(coreAlt);
-                gradeValues.AddRange(electives);
-                var resultsArray = gradeValues.ToArray();
-                var failed = _applicantRepository.CheckFailed(resultsArray);
-                var passed = _applicantRepository.CheckPassed(resultsArray);
-                await _applicantRepository.GradesIssues(core, coreAlt, electives);
-                var totalGrade = await _applicantRepository.GetTotalAggregate(core, coreAlt, electives);
-                applicantIssues.Age = qualifiesMatured;
-                applicantIssues.FormCompletion = true;
-                _context.ApplicantIssueModels.Update(applicantIssues);
-                await _context.SaveChangesAsync(cancellationToken);
-                await _identityService.Finalized(_currentUserService.UserId);
-                var applicantData =
-                    await _context.ApplicantModels.FirstOrDefaultAsync(a => a.ApplicationUserId == _currentUserService.UserId, cancellationToken: cancellationToken);
-                if (applicantData != null)
+                foreach (var arg in _applicantRepository.GradesIssues(Core, CoreAlt, Electives))
                 {
-                    applicantData.Grade = totalGrade;
-                    applicantData.Results = "Total Failed: " + failed + ", Total Passed " + passed;
+                    await _context.ApplicantIssueModels.AddAsync(
+                        new ApplicantIssueModel
+                        {
+                            ApplicantId = applicant.Id,
+                            Issue = arg
+                        });
+                    await _context.SaveChangesAsync(cancellationToken);
                 }
-                await _context.SaveChangesAsync(cancellationToken);
-            }
-            else
-            {
-                throw new NotFoundException("Incomplete results. Three cores and three electives are required for admissions.", request.Id);
             }
         }
 
@@ -119,7 +98,7 @@ public class FinalizedCommandHandler : IRequestHandler<FinalizedRequest>
         // update the applicant issues
         applicantIssues.FormCompletion = true;
         applicantIssues.Age = qualifiesMatured;
-        _context.ApplicantIssueModels.Update(applicantIssues);
+        _context.ProgressModels.Update(applicantIssues);
         await _context.SaveChangesAsync(cancellationToken);
         await _identityService.Finalized(_currentUserService.UserId);
         await _emailSender.SendEmail(applicant.Email.Value, Subject, Body, From);

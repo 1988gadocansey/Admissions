@@ -16,6 +16,7 @@ public interface IApplicationDbContext
     DbSet<ResearchPublicationModel> ResearchPublicationModels { get; }
     DbSet<AddressModel> AddressModels { get; }
 
+    DbSet<ProgressModel> ProgressModels { get; }
     DbSet<ApplicantIssueModel> ApplicantIssueModels { get; }
     DbSet<FormNoModel> FormNoModels { get; }
     DbSet<RegionModel> RegionModels { get; }

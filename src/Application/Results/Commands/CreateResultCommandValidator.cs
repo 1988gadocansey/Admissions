@@ -11,11 +11,11 @@ public class CreateResultCommandValidator : AbstractValidator<CreateResultReques
     {
         _context = context;
 
-        /* RuleFor(v => v.GradeID)
-            .NotEmpty().WithMessage("Grade is required.");
-        RuleFor(v => v.SubjectID)
+        RuleFor(v => v.GradeID)
+           .NotEmpty().WithMessage("Grade is required.");
+        RuleFor(v => v.SubjectId)
       .NotEmpty().WithMessage("Subject is required.")
-      .MustAsync(BeUniqueSubject).WithMessage("The specified subject  already exists.");
+
         ;
 
         RuleFor(v => v.ExamType)
@@ -34,13 +34,9 @@ public class CreateResultCommandValidator : AbstractValidator<CreateResultReques
        .NotEmpty().WithMessage("Month is required.");
 
         RuleFor(v => v.IndexNo)
-       .NotEmpty().WithMessage("Index No is required."); */
+       .NotEmpty().WithMessage("Index No is required.");
 
     }
 
-    public async Task<bool> BeUniqueSubject(int Subject, CancellationToken cancellationToken)
-    {
-        return await _context.ResultUploadModels
-            .AllAsync(l => l.Subject.Id != Subject, cancellationToken);
-    }
+
 }

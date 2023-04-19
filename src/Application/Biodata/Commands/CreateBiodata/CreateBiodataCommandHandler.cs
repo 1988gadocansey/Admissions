@@ -131,11 +131,11 @@ public class CreateBiodataCommandHandler : IRequestHandler<CreateBiodataRequest,
         }
 
         // go to issue and update biodata done as true
-        var applicantIssues = _context.ApplicantIssueModels.FirstOrDefault(u => u.ApplicationUserId == _currentUserService.UserId);
+        var applicantIssues = _context.ProgressModels.FirstOrDefault(u => u.ApplicationUserId == _currentUserService.UserId);
         if (applicantIssues != null)
         {
             applicantIssues.Biodata = true;
-            _context.ApplicantIssueModels.Update(applicantIssues);
+            _context.ProgressModels.Update(applicantIssues);
         }
         var result = await _context.SaveChangesAsync(cancellationToken);
         if (result == 1)

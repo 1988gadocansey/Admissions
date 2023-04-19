@@ -78,10 +78,15 @@ export class ResultuploaddetailsComponent {
       this.getData()
       console.log("response is " + JSON.stringify(data))
     },
-      error => this.message = error,
-      () => this.loading = false,
+      error => {
+        this.message = JSON.parse(error.response);
 
+        this.loading = false,
+
+          setTimeout(() => document.getElementById('title').focus(), 250)
+      }
     );
+
   }
 
   getData() {
@@ -90,7 +95,13 @@ export class ResultuploaddetailsComponent {
         this.resultUploadDto = result.items;
         this.loading = false;
       },
-      error => console.error(error)
+      error => {
+        this.message = JSON.parse(error.response);
+
+        this.loading = false,
+
+          setTimeout(() => document.getElementById('title').focus(), 250);
+      }
     );
   }
 

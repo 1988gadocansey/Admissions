@@ -42,6 +42,7 @@ public class CreateAddressCommandHandler : IRequestHandler<CreateAddressRequest,
             };
             await _context.AddressModels.AddAsync(address);
 
+
         }
         else
         {
@@ -51,6 +52,7 @@ public class CreateAddressCommandHandler : IRequestHandler<CreateAddressRequest,
             address.HouseNumber = request.HouseNumber;
             address.Box = request.Box;
             address.GPRS = request.GPRS;
+            _context.AddressModels.Update(address);
         }
         var result = await _context.SaveChangesAsync(cancellationToken);
         if (result == 1)

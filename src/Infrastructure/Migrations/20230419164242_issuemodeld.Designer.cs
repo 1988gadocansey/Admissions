@@ -12,8 +12,8 @@ using OnlineApplicationSystem.Infrastructure.Persistence;
 namespace OnlineApplicationSystem.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230418074628_new")]
-    partial class @new
+    [Migration("20230419164242_issuemodeld")]
+    partial class issuemodeld
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -369,7 +369,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.ToTable("AcademicExperienceModels");
                 });
 
-            modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.Address", b =>
+            modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.AddressModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -380,34 +380,26 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.Property<int>("ApplicantId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ApplicantModel")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Box")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("GPRS")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("HouseNumber")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Street")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicantId");
 
-                    b.ToTable("Addresss");
+                    b.ToTable("AddressModels");
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ApplicantIssueModel", b =>
@@ -418,18 +410,8 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<bool?>("AcademicExperience")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("Age")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("ApplicationUserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool?>("Biodata")
-                        .HasColumnType("boolean");
+                    b.Property<int>("ApplicantId")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
@@ -437,11 +419,8 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("text");
 
-                    b.Property<bool?>("DocumentUpload")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("FormCompletion")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Issue")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("timestamp without time zone");
@@ -449,28 +428,9 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("text");
 
-                    b.Property<bool>("Picture")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("Qualification")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool?>("Referee")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool?>("ResearchInformation")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool?>("ResearchPublication")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("Results")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool?>("WorkingExperience")
-                        .HasColumnType("boolean");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicantId");
 
                     b.ToTable("ApplicantIssueModels");
                 });
@@ -549,7 +509,6 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnName("EmergencyContact");
 
                     b.Property<string>("EntryMode")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("EntryMode");
 
@@ -563,7 +522,6 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("FirstQualification")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("FirstQualification");
 
@@ -1134,6 +1092,71 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.ToTable("ProgrammeModels");
                 });
 
+            modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ProgressModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool?>("AcademicExperience")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("Age")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("Biodata")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("DocumentUpload")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("FormCompletion")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Picture")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("Qualification")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool?>("Referee")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool?>("ResearchInformation")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool?>("ResearchPublication")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("Results")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool?>("WorkingExperience")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProgressModels");
+                });
+
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.RefereeModel", b =>
                 {
                     b.Property<int>("Id")
@@ -1305,7 +1328,8 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("Id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
@@ -1318,7 +1342,8 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.Property<string>("ExamType")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("ExamType");
 
                     b.Property<int>("Form")
                         .HasColumnType("integer");
@@ -1365,7 +1390,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
                     b.HasIndex("SubjectID");
 
-                    b.ToTable("ResultUploadModels");
+                    b.ToTable("ResultUploadModels", (string)null);
                 });
 
             modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.SHSAttendedModel", b =>
@@ -1870,10 +1895,21 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.Navigation("ApplicantModel");
                 });
 
-            modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.Address", b =>
+            modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.AddressModel", b =>
                 {
                     b.HasOne("OnlineApplicationSystem.Domain.Entities.ApplicantModel", "Applicant")
                         .WithMany("Addresses")
+                        .HasForeignKey("ApplicantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Applicant");
+                });
+
+            modelBuilder.Entity("OnlineApplicationSystem.Domain.Entities.ApplicantIssueModel", b =>
+                {
+                    b.HasOne("OnlineApplicationSystem.Domain.Entities.ApplicantModel", "Applicant")
+                        .WithMany("ApplicantIssues")
                         .HasForeignKey("ApplicantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2232,6 +2268,8 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     b.Navigation("AcademicExperiences");
 
                     b.Navigation("Addresses");
+
+                    b.Navigation("ApplicantIssues");
 
                     b.Navigation("Disabilities");
 

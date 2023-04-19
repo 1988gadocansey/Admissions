@@ -35,13 +35,13 @@ public class UploadPictureCommand : IRequestHandler<UploadPictureRequest, int>
         var pictureUpload = await _photoUploadService.SendFileToServer(_currentUserService.UserId, request.Files, cancellationToken);
         await _identityService.UpdateApplicationPictureStatus(_currentUserService.UserId, request.Files, cancellationToken);
         //lets create issue flag here
-        var applicant = _context.ApplicantIssueModels.FirstOrDefault(u => u.ApplicationUserId == _currentUserService.UserId);
+        var applicant = _context.ProgressModels.FirstOrDefault(u => u.ApplicationUserId == _currentUserService.UserId);
 
         if (applicant == null)
         {
             var issueFlag = (pictureUpload == 1) ? true : false;
-            var issue = new ApplicantIssueModel { Picture = issueFlag, ApplicationUserId = _currentUserService.UserId };
-            _context.ApplicantIssueModels.Add(issue);
+            var issue = new ProgressModel { Picture = issueFlag, ApplicationUserId = _currentUserService.UserId };
+            _context.ProgressModels.Add(issue);
             await _context.SaveChangesAsync(cancellationToken);
         }
         else

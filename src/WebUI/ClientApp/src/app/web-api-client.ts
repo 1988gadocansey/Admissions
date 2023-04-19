@@ -875,6 +875,8 @@ export class EducationalBackendClient implements IEducationalBackendClient {
 
 export interface IHomeClient {
     dashboard(): Observable<UserDto>;
+    getGrade(): Observable<number>;
+    getProgress(): Observable<ProgressDto>;
 }
 
 @Injectable({
@@ -928,6 +930,103 @@ export class HomeClient implements IHomeClient {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = UserDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getGrade(): Observable<number> {
+        let url_ = this.baseUrl + "/api/Home/grade";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetGrade(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetGrade(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<number>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<number>;
+        }));
+    }
+
+    protected processGetGrade(response: HttpResponseBase): Observable<number> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getProgress(): Observable<ProgressDto> {
+        let url_ = this.baseUrl + "/api/Home/progress";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetProgress(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetProgress(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ProgressDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ProgressDto>;
+        }));
+    }
+
+    protected processGetProgress(response: HttpResponseBase): Observable<ProgressDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ProgressDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -3511,7 +3610,7 @@ export class WeatherForecastClient implements IWeatherForecastClient {
 }
 
 export class CreateAddressRequest implements ICreateAddressRequest {
-    id?: number;
+    id?: number | undefined;
     street?: string | undefined;
     houseNumber?: string | undefined;
     city?: string | undefined;
@@ -3561,7 +3660,7 @@ export class CreateAddressRequest implements ICreateAddressRequest {
 }
 
 export interface ICreateAddressRequest {
-    id?: number;
+    id?: number | undefined;
     street?: string | undefined;
     houseNumber?: string | undefined;
     city?: string | undefined;
@@ -3805,6 +3904,7 @@ export class ApplicantModel extends BaseAuditableEntity implements IApplicantMod
     addresses?: (AddressModel | undefined)[];
     languages?: (LanguageModel | undefined)[];
     sms?: SMSModel[];
+    applicantIssues?: ApplicantIssueModel[] | undefined;
     researchModels?: ResearchModel[] | undefined;
     researchPublications?: ResearchPublicationModel[] | undefined;
     universityAttended?: UniversityAttendedModel[] | undefined;
@@ -3938,6 +4038,11 @@ export class ApplicantModel extends BaseAuditableEntity implements IApplicantMod
                 this.sms = [] as any;
                 for (let item of _data["sms"])
                     this.sms!.push(SMSModel.fromJS(item));
+            }
+            if (Array.isArray(_data["applicantIssues"])) {
+                this.applicantIssues = [] as any;
+                for (let item of _data["applicantIssues"])
+                    this.applicantIssues!.push(ApplicantIssueModel.fromJS(item));
             }
             if (Array.isArray(_data["researchModels"])) {
                 this.researchModels = [] as any;
@@ -4097,6 +4202,11 @@ export class ApplicantModel extends BaseAuditableEntity implements IApplicantMod
             for (let item of this.sms)
                 data["sms"].push(item.toJSON());
         }
+        if (Array.isArray(this.applicantIssues)) {
+            data["applicantIssues"] = [];
+            for (let item of this.applicantIssues)
+                data["applicantIssues"].push(item.toJSON());
+        }
         if (Array.isArray(this.researchModels)) {
             data["researchModels"] = [];
             for (let item of this.researchModels)
@@ -4213,6 +4323,7 @@ export interface IApplicantModel extends IBaseAuditableEntity {
     addresses?: (AddressModel | undefined)[];
     languages?: (LanguageModel | undefined)[];
     sms?: SMSModel[];
+    applicantIssues?: ApplicantIssueModel[] | undefined;
     researchModels?: ResearchModel[] | undefined;
     researchPublications?: ResearchPublicationModel[] | undefined;
     universityAttended?: UniversityAttendedModel[] | undefined;
@@ -5486,6 +5597,47 @@ export interface ISMSModel {
     dateSent?: Date;
     status?: string | undefined;
     applicantModelID?: number;
+}
+
+export class ApplicantIssueModel extends BaseAuditableEntity implements IApplicantIssueModel {
+    applicantId?: number;
+    applicant?: ApplicantModel;
+    issue?: string | undefined;
+
+    constructor(data?: IApplicantIssueModel) {
+        super(data);
+    }
+
+    override init(_data?: any) {
+        super.init(_data);
+        if (_data) {
+            this.applicantId = _data["applicantId"];
+            this.applicant = _data["applicant"] ? ApplicantModel.fromJS(_data["applicant"]) : <any>undefined;
+            this.issue = _data["issue"];
+        }
+    }
+
+    static override fromJS(data: any): ApplicantIssueModel {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApplicantIssueModel();
+        result.init(data);
+        return result;
+    }
+
+    override toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["applicantId"] = this.applicantId;
+        data["applicant"] = this.applicant ? this.applicant.toJSON() : <any>undefined;
+        data["issue"] = this.issue;
+        super.toJSON(data);
+        return data;
+    }
+}
+
+export interface IApplicantIssueModel extends IBaseAuditableEntity {
+    applicantId?: number;
+    applicant?: ApplicantModel;
+    issue?: string | undefined;
 }
 
 export class ResearchModel implements IResearchModel {
@@ -7265,6 +7417,90 @@ export interface IUserDto {
     admitted?: boolean | undefined;
     foriegn?: boolean | undefined;
     lastLogin?: Date | undefined;
+}
+
+export class ProgressDto implements IProgressDto {
+    applicationUserId?: string;
+    biodata?: boolean | undefined;
+    results?: boolean;
+    picture?: boolean;
+    age?: boolean;
+    formCompletion?: boolean;
+    qualification?: boolean;
+    documentUpload?: boolean | undefined;
+    workingExperience?: boolean | undefined;
+    academicExperience?: boolean | undefined;
+    researchInformation?: boolean | undefined;
+    researchPublication?: boolean | undefined;
+    referee?: boolean | undefined;
+
+    constructor(data?: IProgressDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.applicationUserId = _data["applicationUserId"];
+            this.biodata = _data["biodata"];
+            this.results = _data["results"];
+            this.picture = _data["picture"];
+            this.age = _data["age"];
+            this.formCompletion = _data["formCompletion"];
+            this.qualification = _data["qualification"];
+            this.documentUpload = _data["documentUpload"];
+            this.workingExperience = _data["workingExperience"];
+            this.academicExperience = _data["academicExperience"];
+            this.researchInformation = _data["researchInformation"];
+            this.researchPublication = _data["researchPublication"];
+            this.referee = _data["referee"];
+        }
+    }
+
+    static fromJS(data: any): ProgressDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ProgressDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["applicationUserId"] = this.applicationUserId;
+        data["biodata"] = this.biodata;
+        data["results"] = this.results;
+        data["picture"] = this.picture;
+        data["age"] = this.age;
+        data["formCompletion"] = this.formCompletion;
+        data["qualification"] = this.qualification;
+        data["documentUpload"] = this.documentUpload;
+        data["workingExperience"] = this.workingExperience;
+        data["academicExperience"] = this.academicExperience;
+        data["researchInformation"] = this.researchInformation;
+        data["researchPublication"] = this.researchPublication;
+        data["referee"] = this.referee;
+        return data;
+    }
+}
+
+export interface IProgressDto {
+    applicationUserId?: string;
+    biodata?: boolean | undefined;
+    results?: boolean;
+    picture?: boolean;
+    age?: boolean;
+    formCompletion?: boolean;
+    qualification?: boolean;
+    documentUpload?: boolean | undefined;
+    workingExperience?: boolean | undefined;
+    academicExperience?: boolean | undefined;
+    researchInformation?: boolean | undefined;
+    researchPublication?: boolean | undefined;
+    referee?: boolean | undefined;
 }
 
 export class ProgrammeInfoRequest implements IProgrammeInfoRequest {

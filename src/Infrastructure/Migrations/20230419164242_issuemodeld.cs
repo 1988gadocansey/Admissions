@@ -7,40 +7,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace OnlineApplicationSystem.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class issuemodeld : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "ApplicantIssueModels",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ApplicationUserId = table.Column<string>(type: "text", nullable: false),
-                    Biodata = table.Column<bool>(type: "boolean", nullable: true),
-                    Results = table.Column<bool>(type: "boolean", nullable: false),
-                    Picture = table.Column<bool>(type: "boolean", nullable: false),
-                    Age = table.Column<bool>(type: "boolean", nullable: false),
-                    FormCompletion = table.Column<bool>(type: "boolean", nullable: false),
-                    Qualification = table.Column<bool>(type: "boolean", nullable: false),
-                    DocumentUpload = table.Column<bool>(type: "boolean", nullable: true),
-                    WorkingExperience = table.Column<bool>(type: "boolean", nullable: true),
-                    AcademicExperience = table.Column<bool>(type: "boolean", nullable: true),
-                    ResearchInformation = table.Column<bool>(type: "boolean", nullable: true),
-                    ResearchPublication = table.Column<bool>(type: "boolean", nullable: true),
-                    Referee = table.Column<bool>(type: "boolean", nullable: true),
-                    Created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    CreatedBy = table.Column<string>(type: "text", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ApplicantIssueModels", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -355,6 +326,35 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProgressModels",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ApplicationUserId = table.Column<string>(type: "text", nullable: false),
+                    Biodata = table.Column<bool>(type: "boolean", nullable: true),
+                    Results = table.Column<bool>(type: "boolean", nullable: false),
+                    Picture = table.Column<bool>(type: "boolean", nullable: false),
+                    Age = table.Column<bool>(type: "boolean", nullable: false),
+                    FormCompletion = table.Column<bool>(type: "boolean", nullable: false),
+                    Qualification = table.Column<bool>(type: "boolean", nullable: false),
+                    DocumentUpload = table.Column<bool>(type: "boolean", nullable: true),
+                    WorkingExperience = table.Column<bool>(type: "boolean", nullable: true),
+                    AcademicExperience = table.Column<bool>(type: "boolean", nullable: true),
+                    ResearchInformation = table.Column<bool>(type: "boolean", nullable: true),
+                    ResearchPublication = table.Column<bool>(type: "boolean", nullable: true),
+                    Referee = table.Column<bool>(type: "boolean", nullable: true),
+                    Created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreatedBy = table.Column<string>(type: "text", nullable: true),
+                    LastModified = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModifiedBy = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProgressModels", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RegionModels",
                 columns: table => new
                 {
@@ -607,8 +607,8 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                     ReligionId = table.Column<int>(type: "integer", nullable: true),
                     Denomination = table.Column<string>(type: "text", nullable: true),
                     Referrals = table.Column<string>(type: "text", nullable: true),
-                    EntryMode = table.Column<string>(type: "text", nullable: false),
-                    FirstQualification = table.Column<string>(type: "text", nullable: false),
+                    EntryMode = table.Column<string>(type: "text", nullable: true),
+                    FirstQualification = table.Column<string>(type: "text", nullable: true),
                     SecondQualification = table.Column<string>(type: "text", nullable: true),
                     ProgrammeStudied = table.Column<string>(type: "text", nullable: true),
                     FormerSchool = table.Column<string>(type: "text", nullable: true),
@@ -746,24 +746,47 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Addresss",
+                name: "AddressModels",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Street = table.Column<string>(type: "text", nullable: false),
-                    HouseNumber = table.Column<string>(type: "text", nullable: false),
-                    City = table.Column<string>(type: "text", nullable: false),
-                    GPRS = table.Column<string>(type: "text", nullable: false),
-                    Box = table.Column<string>(type: "text", nullable: false),
-                    ApplicantModel = table.Column<int>(type: "integer", nullable: false),
+                    Street = table.Column<string>(type: "text", nullable: true),
+                    HouseNumber = table.Column<string>(type: "text", nullable: true),
+                    City = table.Column<string>(type: "text", nullable: true),
+                    GPRS = table.Column<string>(type: "text", nullable: true),
+                    Box = table.Column<string>(type: "text", nullable: true),
                     ApplicantId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Addresss", x => x.Id);
+                    table.PrimaryKey("PK_AddressModels", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Addresss_ApplicantModel_ApplicantId",
+                        name: "FK_AddressModels_ApplicantModel_ApplicantId",
+                        column: x => x.ApplicantId,
+                        principalTable: "ApplicantModel",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ApplicantIssueModels",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ApplicantId = table.Column<int>(type: "integer", nullable: false),
+                    Issue = table.Column<string>(type: "text", nullable: true),
+                    Created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreatedBy = table.Column<string>(type: "text", nullable: true),
+                    LastModified = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModifiedBy = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ApplicantIssueModels", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ApplicantIssueModels_ApplicantModel_ApplicantId",
                         column: x => x.ApplicantId,
                         principalTable: "ApplicantModel",
                         principalColumn: "Id",
@@ -1094,8 +1117,13 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                 column: "ApplicantModelID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Addresss_ApplicantId",
-                table: "Addresss",
+                name: "IX_AddressModels_ApplicantId",
+                table: "AddressModels",
+                column: "ApplicantId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ApplicantIssueModels_ApplicantId",
+                table: "ApplicantIssueModels",
                 column: "ApplicantId");
 
             migrationBuilder.CreateIndex(
@@ -1299,7 +1327,7 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
                 name: "AcademicExperienceModels");
 
             migrationBuilder.DropTable(
-                name: "Addresss");
+                name: "AddressModels");
 
             migrationBuilder.DropTable(
                 name: "ApplicantIssueModels");
@@ -1360,6 +1388,9 @@ namespace OnlineApplicationSystem.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "PersistedGrants");
+
+            migrationBuilder.DropTable(
+                name: "ProgressModels");
 
             migrationBuilder.DropTable(
                 name: "RefereeModels");
