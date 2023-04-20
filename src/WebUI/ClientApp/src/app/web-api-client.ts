@@ -5823,12 +5823,12 @@ export interface IUniversityAttendedModel {
 export class SHSAttendedModel implements ISHSAttendedModel {
     id?: number;
     attendedTTU?: boolean;
-    applicant?: number;
-    applicantModel?: ApplicantModel | undefined;
+    applicant?: ApplicantModel | undefined;
     name?: FormerSchoolModel | undefined;
     location?: RegionModel | undefined;
-    startYear?: string | undefined;
-    endYear?: string | undefined;
+    startYear?: number | undefined;
+    endYear?: number | undefined;
+    programmeStudied?: string | undefined;
 
     constructor(data?: ISHSAttendedModel) {
         if (data) {
@@ -5843,12 +5843,12 @@ export class SHSAttendedModel implements ISHSAttendedModel {
         if (_data) {
             this.id = _data["id"];
             this.attendedTTU = _data["attendedTTU"];
-            this.applicant = _data["applicant"];
-            this.applicantModel = _data["applicantModel"] ? ApplicantModel.fromJS(_data["applicantModel"]) : <any>undefined;
+            this.applicant = _data["applicant"] ? ApplicantModel.fromJS(_data["applicant"]) : <any>undefined;
             this.name = _data["name"] ? FormerSchoolModel.fromJS(_data["name"]) : <any>undefined;
             this.location = _data["location"] ? RegionModel.fromJS(_data["location"]) : <any>undefined;
             this.startYear = _data["startYear"];
             this.endYear = _data["endYear"];
+            this.programmeStudied = _data["programmeStudied"];
         }
     }
 
@@ -5863,12 +5863,12 @@ export class SHSAttendedModel implements ISHSAttendedModel {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["attendedTTU"] = this.attendedTTU;
-        data["applicant"] = this.applicant;
-        data["applicantModel"] = this.applicantModel ? this.applicantModel.toJSON() : <any>undefined;
+        data["applicant"] = this.applicant ? this.applicant.toJSON() : <any>undefined;
         data["name"] = this.name ? this.name.toJSON() : <any>undefined;
         data["location"] = this.location ? this.location.toJSON() : <any>undefined;
         data["startYear"] = this.startYear;
         data["endYear"] = this.endYear;
+        data["programmeStudied"] = this.programmeStudied;
         return data;
     }
 }
@@ -5876,12 +5876,12 @@ export class SHSAttendedModel implements ISHSAttendedModel {
 export interface ISHSAttendedModel {
     id?: number;
     attendedTTU?: boolean;
-    applicant?: number;
-    applicantModel?: ApplicantModel | undefined;
+    applicant?: ApplicantModel | undefined;
     name?: FormerSchoolModel | undefined;
     location?: RegionModel | undefined;
-    startYear?: string | undefined;
-    endYear?: string | undefined;
+    startYear?: number | undefined;
+    endYear?: number | undefined;
+    programmeStudied?: string | undefined;
 }
 
 export class DisabilitiesModel implements IDisabilitiesModel {
@@ -6993,8 +6993,9 @@ export class SHSAttendedDto implements ISHSAttendedDto {
     applicant?: ApplicantModel | undefined;
     name?: FormerSchoolModel | undefined;
     location?: RegionModel | undefined;
-    startYear?: string | undefined;
-    endYear?: string | undefined;
+    startYear?: number | undefined;
+    endYear?: number | undefined;
+    programmeStudied?: string | undefined;
 
     constructor(data?: ISHSAttendedDto) {
         if (data) {
@@ -7014,6 +7015,7 @@ export class SHSAttendedDto implements ISHSAttendedDto {
             this.location = _data["location"] ? RegionModel.fromJS(_data["location"]) : <any>undefined;
             this.startYear = _data["startYear"];
             this.endYear = _data["endYear"];
+            this.programmeStudied = _data["programmeStudied"];
         }
     }
 
@@ -7033,6 +7035,7 @@ export class SHSAttendedDto implements ISHSAttendedDto {
         data["location"] = this.location ? this.location.toJSON() : <any>undefined;
         data["startYear"] = this.startYear;
         data["endYear"] = this.endYear;
+        data["programmeStudied"] = this.programmeStudied;
         return data;
     }
 }
@@ -7043,19 +7046,18 @@ export interface ISHSAttendedDto {
     applicant?: ApplicantModel | undefined;
     name?: FormerSchoolModel | undefined;
     location?: RegionModel | undefined;
-    startYear?: string | undefined;
-    endYear?: string | undefined;
+    startYear?: number | undefined;
+    endYear?: number | undefined;
+    programmeStudied?: string | undefined;
 }
 
 export class SHSAttendedRequest implements ISHSAttendedRequest {
-    id?: number;
-    attendedTTU?: boolean;
-    name?: string | undefined;
+    nameId?: number | undefined;
     programmeStudied?: string | undefined;
-    location?: number | undefined;
+    region?: number | undefined;
     applicant?: number | undefined;
-    startYear?: string | undefined;
-    endYear?: string | undefined;
+    startYear?: number | undefined;
+    endYear?: number | undefined;
 
     constructor(data?: ISHSAttendedRequest) {
         if (data) {
@@ -7068,11 +7070,9 @@ export class SHSAttendedRequest implements ISHSAttendedRequest {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.attendedTTU = _data["attendedTTU"];
-            this.name = _data["name"];
+            this.nameId = _data["nameId"];
             this.programmeStudied = _data["programmeStudied"];
-            this.location = _data["location"];
+            this.region = _data["region"];
             this.applicant = _data["applicant"];
             this.startYear = _data["startYear"];
             this.endYear = _data["endYear"];
@@ -7088,11 +7088,9 @@ export class SHSAttendedRequest implements ISHSAttendedRequest {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["attendedTTU"] = this.attendedTTU;
-        data["name"] = this.name;
+        data["nameId"] = this.nameId;
         data["programmeStudied"] = this.programmeStudied;
-        data["location"] = this.location;
+        data["region"] = this.region;
         data["applicant"] = this.applicant;
         data["startYear"] = this.startYear;
         data["endYear"] = this.endYear;
@@ -7101,14 +7099,12 @@ export class SHSAttendedRequest implements ISHSAttendedRequest {
 }
 
 export interface ISHSAttendedRequest {
-    id?: number;
-    attendedTTU?: boolean;
-    name?: string | undefined;
+    nameId?: number | undefined;
     programmeStudied?: string | undefined;
-    location?: number | undefined;
+    region?: number | undefined;
     applicant?: number | undefined;
-    startYear?: string | undefined;
-    endYear?: string | undefined;
+    startYear?: number | undefined;
+    endYear?: number | undefined;
 }
 
 export class PaginatedListOfUniversityAttendedDto implements IPaginatedListOfUniversityAttendedDto {
@@ -7176,10 +7172,10 @@ export interface IPaginatedListOfUniversityAttendedDto {
 }
 
 export class UniversityAttendedDto implements IUniversityAttendedDto {
-    id?: number;
-    applicant?: number;
+    id?: number | undefined;
+    applicant?: number | undefined;
     name?: string | undefined;
-    country?: string | undefined;
+    location?: CountryModel | undefined;
     startYear?: string | undefined;
     endYear?: string | undefined;
     studentNumber?: string | undefined;
@@ -7201,7 +7197,7 @@ export class UniversityAttendedDto implements IUniversityAttendedDto {
             this.id = _data["id"];
             this.applicant = _data["applicant"];
             this.name = _data["name"];
-            this.country = _data["country"];
+            this.location = _data["location"] ? CountryModel.fromJS(_data["location"]) : <any>undefined;
             this.startYear = _data["startYear"];
             this.endYear = _data["endYear"];
             this.studentNumber = _data["studentNumber"];
@@ -7223,7 +7219,7 @@ export class UniversityAttendedDto implements IUniversityAttendedDto {
         data["id"] = this.id;
         data["applicant"] = this.applicant;
         data["name"] = this.name;
-        data["country"] = this.country;
+        data["location"] = this.location ? this.location.toJSON() : <any>undefined;
         data["startYear"] = this.startYear;
         data["endYear"] = this.endYear;
         data["studentNumber"] = this.studentNumber;
@@ -7235,10 +7231,10 @@ export class UniversityAttendedDto implements IUniversityAttendedDto {
 }
 
 export interface IUniversityAttendedDto {
-    id?: number;
-    applicant?: number;
+    id?: number | undefined;
+    applicant?: number | undefined;
     name?: string | undefined;
-    country?: string | undefined;
+    location?: CountryModel | undefined;
     startYear?: string | undefined;
     endYear?: string | undefined;
     studentNumber?: string | undefined;
@@ -7250,7 +7246,7 @@ export interface IUniversityAttendedDto {
 export class UniversityAttendedRequest implements IUniversityAttendedRequest {
     id?: number | undefined;
     name?: string | undefined;
-    country?: number;
+    location?: number;
     startYear?: string | undefined;
     endYear?: string | undefined;
     studentNumber?: string | undefined;
@@ -7272,7 +7268,7 @@ export class UniversityAttendedRequest implements IUniversityAttendedRequest {
         if (_data) {
             this.id = _data["id"];
             this.name = _data["name"];
-            this.country = _data["country"];
+            this.location = _data["location"];
             this.startYear = _data["startYear"];
             this.endYear = _data["endYear"];
             this.studentNumber = _data["studentNumber"];
@@ -7294,7 +7290,7 @@ export class UniversityAttendedRequest implements IUniversityAttendedRequest {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["name"] = this.name;
-        data["country"] = this.country;
+        data["location"] = this.location;
         data["startYear"] = this.startYear;
         data["endYear"] = this.endYear;
         data["studentNumber"] = this.studentNumber;
@@ -7309,7 +7305,7 @@ export class UniversityAttendedRequest implements IUniversityAttendedRequest {
 export interface IUniversityAttendedRequest {
     id?: number | undefined;
     name?: string | undefined;
-    country?: number;
+    location?: number;
     startYear?: string | undefined;
     endYear?: string | undefined;
     studentNumber?: string | undefined;

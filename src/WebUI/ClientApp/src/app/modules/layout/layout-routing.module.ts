@@ -54,6 +54,12 @@ const routes: Routes = [
     loadChildren: () => import('../educationalbackground/educationalbackground.module').then((m) => m.EducationalbackgroundModule),
   },
   {
+    path: 'postgraduate',
+    component: LayoutComponent,
+    canActivate: [AuthorizeGuard],
+    loadChildren: () => import('../universityattended/universityattended.module').then((m) => m.UniversityattendedModule),
+  },
+  {
     path: 'stepfive',
     component: LayoutComponent,
     canActivate: [AuthorizeGuard],

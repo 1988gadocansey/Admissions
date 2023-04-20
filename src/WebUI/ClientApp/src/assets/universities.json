@@ -1,0 +1,268 @@
+[
+    {
+        "Code": "41",
+        "University": "Takoradi Technical University",
+        "Location": "Takoradi"
+    },
+    {
+        "Code": "01",
+        "University": "University of Ghana",
+        "Location": "Legon"
+    },
+    {
+        "Code": "02",
+        "University": "Akrofi-Christaller Institute of Theology",
+        "Location": ""
+    },
+    {
+        "Code": "03",
+        "University": "All Nations University College",
+        "Location": "Koforidua"
+    },
+    {
+        "Code": "04",
+        "University": "Ashesi University College-Ghana",
+        "Location": "Accra"
+    },
+    {
+        "Code": "05",
+        "University": "Catholic University College of Ghana",
+        "Location": "Fiapre"
+    },
+    {
+        "Code": "06",
+        "University": "Central University College",
+        "Location": "Accra"
+    },
+    {
+        "Code": "07",
+        "University": "Christian Service University College",
+        "Location": "Kumasi"
+    },
+    {
+        "Code": "08",
+        "University": "Garden City University College",
+        "Location": "Kumasi"
+    },
+    {
+        "Code": "09",
+        "University": "Ghana Baptist University College",
+        "Location": "Kumasi"
+    },
+    {
+        "Code": "10",
+        "University": "Ghana Christian University College",
+        "Location": "Dodowa"
+    },
+    {
+        "Code": "11",
+        "University": "Ghana Institute of Management and Public Administration (GIMPA)",
+        "Location": "Accra"
+    },
+    {
+        "Code": "12",
+        "University": "Ghana Telecom University College",
+        "Location": "Accra"
+    },
+    {
+        "Code": "13",
+        "University": "Islamic University College-Ghana",
+        "Location": "Accra"
+    },
+    {
+        "Code": "14",
+        "University": "Knutsford University College",
+        "Location": "Accra"
+    },
+    {
+        "Code": "15",
+        "University": "Kwame Nkrumah University of Science and Technology",
+        "Location": "Kumasi"
+    },
+    {
+        "Code": "16",
+        "University": "Maranatha University College",
+        "Location": "Accra"
+    },
+    {
+        "Code": "17",
+        "University": "Meridian University College",
+        "Location": "Accra"
+    },
+    {
+        "Code": "18",
+        "University": "Methodist University College Ghana",
+        "Location": "Accra"
+    },
+    {
+        "Code": "19",
+        "University": "Pan African Christian University College",
+        "Location": "Accra"
+    },
+    {
+        "Code": "20",
+        "University": "Pentecost University College",
+        "Location": "Accra"
+    },
+    {
+        "Code": "21",
+        "University": "Presbyterian University College",
+        "Location": "Abetifi"
+    },
+    {
+        "Code": "22",
+        "University": "Regent University College of Science and Technology",
+        "Location": "Accra"
+    },
+    {
+        "Code": "23",
+        "University": "Spiritan Institute of Philosophy",
+        "Location": "Ejisu-Ashanti"
+    },
+    {
+        "Code": "24",
+        "University": "Technical University College of Tamale",
+        "Location": "Tamale"
+    },
+    {
+        "Code": "25",
+        "University": "Trinity Theological Seminary",
+        "Location": "Accra"
+    },
+    {
+        "Code": "26",
+        "University": "University for Development Studies",
+        "Location": "Tamale"
+    },
+    {
+        "Code": "27",
+        "University": "University of Cape Coast",
+        "Location": "Cape Coast"
+    },
+    {
+        "Code": "28",
+        "University": "University of Education Winneba",
+        "Location": "Winneba"
+    },
+    {
+        "Code": "29",
+        "University": "University of Mines and Technology",
+        "Location": "Tarkwa"
+    },
+    {
+        "Code": "30",
+        "University": "Univesity College of Management Studies",
+        "Location": "Accra"
+    },
+    {
+        "Code": "31",
+        "University": "Univesity of Ghana- Atomic Campus",
+        "Location": "Accra"
+    },
+    {
+        "Code": "32",
+        "University": "University of Professional Studies",
+        "Location": "Accra"
+    },
+    {
+        "Code": "33",
+        "University": "Valley View University",
+        "Location": "Oyibi"
+    },
+    {
+        "Code": "34",
+        "University": "Wisconsin International University College",
+        "Location": ""
+    },
+    {
+        "Code": "35",
+        "University": "Accra Polytechnic",
+        "Location": "Accra"
+    },
+    {
+        "Code": "36",
+        "University": "Cape Coast Polytechnic",
+        "Location": "Cape Coast"
+    },
+    {
+        "Code": "37",
+        "University": "Ho Polytechnic",
+        "Location": "Ho"
+    },
+    {
+        "Code": "38",
+        "University": "Koforidua Polytechnic",
+        "Location": "Koforidua"
+    },
+    {
+        "Code": "39",
+        "University": "Kumasi Polytechnic",
+        "Location": "Kumasi"
+    },
+    {
+        "Code": "40",
+        "University": "Sunyani Polytechnic",
+        "Location": "Sunyani"
+    },
+    
+    {
+        "Code": "42",
+        "University": "Tamale Polytechnic",
+        "Location": "Tamale"
+    },
+    {
+        "Code": "43",
+        "University": "Bolgatanga Polytechnic",
+        "Location": "Bolgatanga"
+    },
+    {
+        "Code": "44",
+        "University": "Wa Polytechnic",
+        "Location": "Wa"
+    },
+    {
+        "Code": "45",
+        "University": "Nursing Training College",
+        "Location": "Ghana"
+    },
+    {
+        "Code": "46",
+        "University": "Other",
+        "Location": ""
+    },
+    {
+        "Code": "47",
+        "University": " Mountcrest University - College ",
+        "Location": "Accra"
+    },
+    {
+        "Code": "48",
+        "University": "University of Health and Allied Sciences",
+        "Location": "Ho"
+    },
+    {
+        "Code": "49",
+        "University": "St. Paul's Catholic Seminary",
+        "Location": "Sowutuom"
+    },
+    {
+        "Code": "50",
+        "University": "St. Gregory Seminary",
+        "Location": "Kumasi"
+    },
+    {
+        "Code": "51",
+        "University": "St. Victor's Seminary",
+        "Location": "Tamale"
+    },
+    {
+        "Code": "52",
+        "University": "University of Mines and Technology",
+        "Location": "Tarkwa"
+    },
+    {
+        "Code": "53",
+        "University": "University of Energy and Natural Resources",
+        "Location": "Sunyani"
+    }
+]

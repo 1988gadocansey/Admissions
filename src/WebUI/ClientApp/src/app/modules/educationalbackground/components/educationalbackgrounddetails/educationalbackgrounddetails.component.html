@@ -57,7 +57,7 @@
               ></label
             >
             <select
-              formControlName="Name"
+              formControlName="NameId"
               required=""
               class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
             >
@@ -68,50 +68,403 @@
             </select>
             <div
               *ngIf="
-                shsform.controls['Name'].invalid &&
-                (shsform.controls['Name'].dirty ||
-                  shsform.controls['Name'].touched)
+                shsform.controls['NameId'].invalid &&
+                (shsform.controls['NameId'].dirty ||
+                  shsform.controls['NameId'].touched)
               "
               class="text-red-600"
             >
               <div
                 class="text-sm"
-                *ngIf="shsform.controls['Name'].errors.required"
+                *ngIf="shsform.controls['NameId'].errors.required"
               >
-                Entry Mode is required
+                SHS Attended is required
               </div>
             </div>
           </div>
 
-          <div class="col-span-full">
-            <div class="align-content: center;">
-              <button
-                [disabled]="!shsform.valid"
-                class="mr-3 mb-3 inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded border border-blue-600 bg-blue-600 py-2 px-3 text-white ring-blue-300 transition-colors duration-150 last:mr-0 focus:outline-none focus:ring hover:border-blue-700 hover:bg-blue-700 dark:border-blue-500 dark:bg-blue-500 dark:ring-blue-700 hover:dark:border-blue-600 hover:dark:bg-blue-600"
-                type="submit"
+          <div class="col-span-full sm:col-span-2">
+            <label for="Title" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Region school located</span
+              ></label
+            >
+            <select
+              formControlName="Region"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Region</option>
+              <option *ngFor="let name of regions" [value]="name.id">
+                {{ name.name }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                shsform.controls['Region'].invalid &&
+                (shsform.controls['Region'].dirty ||
+                  shsform.controls['Region'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="shsform.controls['Region'].errors.required"
               >
-                <!----><span class="px-2">Save & Continue</span>
-              </button>
-              <a [routerLink]="['/welcome/live']">
-                <button
-                  [disabled]="shsform.controls['Id'].value == ''"
-                  class="mr-3 mb-3 inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded border border-orange-600 bg-orange-600 py-2 px-3 text-white ring-orange-300 transition-colors duration-150 last:mr-0 focus:outline-none focus:ring hover:border-orange-700 dark:border-orange-500 dark:bg-orange-500 dark:ring-orange-700 hover:dark:border-orange-600 hover:dark:bg-orange-600"
-                  type="button"
-                >
-                  <!----><span class="px-2">Save & Exit</span>
-                </button>
-              </a>
-              <a
-                [routerLink]="['/steptwo/address']"
-                class="mr-3 mb-3 inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded border border-blue-600 py-2 px-3 text-blue-600 ring-blue-300 transition-colors duration-150 last:mr-0 focus:outline-none focus:ring hover:bg-blue-600 hover:text-white dark:border-blue-500 dark:text-blue-500 dark:ring-blue-700 hover:dark:border-blue-600 hover:dark:text-white"
-                type="reset"
+                SHS Region is required
+              </div>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-span-2">
+            <label for="Title" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Programme Studied</span
+              ></label
+            >
+            <select
+              formControlName="ProgrammeStudied"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Programme</option>
+              <option *ngFor="let name of programmes" [value]="name.name">
+                {{ name.name }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                shsform.controls['ProgrammeStudied'].invalid &&
+                (shsform.controls['ProgrammeStudied'].dirty ||
+                  shsform.controls['ProgrammeStudied'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="shsform.controls['ProgrammeStudied'].errors.required"
               >
-                <!----><span class="px-2">Previous Form</span>
-              </a>
+                Programme is required
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-full sm:col-span-2">
+            <label for="Title" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Year Started</span
+              ></label
+            >
+            <select
+              formControlName="StartYear"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select year</option>
+              <option *ngFor="let year of years" [value]="year">
+                {{ year }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                shsform.controls['StartYear'].invalid &&
+                (shsform.controls['StartYear'].dirty ||
+                  shsform.controls['StartYear'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="shsform.controls['StartYear'].errors.required"
+              >
+                Start Year is required
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-full sm:col-span-2">
+            <label for="Title" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Year Ended</span
+              ></label
+            >
+            <select
+              formControlName="EndYear"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select year</option>
+              <option *ngFor="let year of years" [value]="year">
+                {{ year }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                shsform.controls['EndYear'].invalid &&
+                (shsform.controls['EndYear'].dirty ||
+                  shsform.controls['EndYear'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="shsform.controls['EndYear'].errors.required"
+              >
+                End Year is required
+              </div>
             </div>
           </div>
         </div>
       </fieldset>
+      <div class="mt-6 flex items-center justify-end gap-x-6">
+        <button
+          type="reset"
+          class="text-sm font-semibold leading-6 text-gray-900"
+        >
+          Cancel
+        </button>
+        <button
+          [disabled]="!shsform.valid"
+          type="submit"
+          class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:bg-indigo-500"
+        >
+          Save
+        </button>
+      </div>
     </form>
+    <br />
+    <hr />
+    <ng-container *ngIf="shsAttended.length > 0">
+      <span> SHS Attended</span>
+      <div class="flex flex-col">
+        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div
+            class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8"
+          >
+            <div
+              class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg"
+            >
+              <table
+                class="min-w-full divide-y divide-gray-200 dark:divide-gray-700"
+              >
+                <thead class="bg-gray-50 dark:bg-gray-800">
+                  <tr>
+                    <th
+                      scope="col"
+                      class="py-3.5 px-4 text-left text-sm font-normal text-gray-500 rtl:text-right dark:text-gray-400"
+                    >
+                      <div class="flex items-center gap-x-3">
+                        <button class="flex items-center gap-x-2">
+                          <span>No</span>
+                        </button>
+                      </div>
+                    </th>
+
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 rtl:text-right dark:text-gray-400"
+                    >
+                      SHS
+                    </th>
+
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 rtl:text-right dark:text-gray-400"
+                    >
+                      Location
+                    </th>
+
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 rtl:text-right dark:text-gray-400"
+                    >
+                      From
+                    </th>
+
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 rtl:text-right dark:text-gray-400"
+                    >
+                      To
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 rtl:text-right dark:text-gray-400"
+                    >
+                      Programme Studied
+                    </th>
+
+                    <th scope="col" class="relative py-3.5 px-4">
+                      <span class="sr-only">Actions</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-900"
+                >
+                  <tr *ngFor="let data of shsAttended; let i = index">
+                    <td
+                      class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200"
+                    >
+                      <div class="inline-flex items-center gap-x-3">
+                        <input
+                          type="checkbox"
+                          class="rounded border-gray-300 text-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:ring-offset-gray-900"
+                        />
+
+                        <span> {{ i + 1 }} </span>
+                      </div>
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300"
+                    >
+                      {{ data.name.name }}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300"
+                    >
+                      {{ data.location.name }}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-700"
+                    >
+                      <div
+                        class="inline-flex items-center gap-x-2 rounded-full bg-emerald-100/60 px-3 py-1 text-emerald-500 dark:bg-gray-800"
+                      >
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M10 3L4.5 8.5L2 6"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+
+                        <h2 class="text-sm font-normal">
+                          {{ data.startYear }}
+                        </h2>
+                      </div>
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300"
+                    >
+                      {{ data.endYear }}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300"
+                    >
+                      {{ data.programmeStudied }}
+                    </td>
+
+                    <td class="whitespace-nowrap px-4 py-4 text-sm">
+                      <div class="flex items-center gap-x-6">
+                        <button
+                          (click)="delete(data.id)"
+                          class="text-blue-500 transition-colors duration-200 focus:outline-none hover:text-indigo-500"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 flex items-center justify-between">
+        <!-- <a
+          href="#"
+          class="flex items-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-5 w-5 rtl:-scale-x-100"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
+            />
+          </svg>
+
+          <span> previous </span>
+        </a> -->
+
+        <!--   <div class="hidden items-center gap-x-3 md:flex">
+          <a
+            href="#"
+            class="rounded-md bg-blue-100/60 px-2 py-1 text-sm text-blue-500 dark:bg-gray-800"
+          ></a>
+          <a
+            href="#"
+            class="rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+            >2</a
+          >
+          <a
+            href="#"
+            class="rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+            >3</a
+          >
+          <a
+            href="#"
+            class="rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+            >...</a
+          >
+          <a
+            href="#"
+            class="rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+            >12</a
+          >
+          <a
+            href="#"
+            class="rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+            >13</a
+          >
+          <a
+            href="#"
+            class="rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+            >14</a
+          >
+        </div> -->
+
+        <!--  <a
+          href="#"
+          class="flex items-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800"
+        >
+          <span> Next </span>
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-5 w-5 rtl:-scale-x-100"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+            />
+          </svg>
+        </a> -->
+      </div>
+    </ng-container>
+    <ng-container *ngIf="shsAttended.length == 0">
+      No SHS uploaded(s)..</ng-container
+    >
   </div>
 </section>

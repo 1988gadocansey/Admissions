@@ -3735,10 +3735,6 @@
             "type": "boolean"
           },
           "applicant": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "applicantModel": {
             "nullable": true,
             "oneOf": [
               {
@@ -3763,10 +3759,16 @@
             ]
           },
           "startYear": {
-            "type": "string",
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
           "endYear": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "programmeStudied": {
             "type": "string",
             "nullable": true
           }
@@ -4668,10 +4670,16 @@
             ]
           },
           "startYear": {
-            "type": "string",
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
           "endYear": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "programmeStudied": {
             "type": "string",
             "nullable": true
           }
@@ -4681,22 +4689,16 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "id": {
+          "nameId": {
             "type": "integer",
-            "format": "int32"
-          },
-          "attendedTTU": {
-            "type": "boolean"
-          },
-          "name": {
-            "type": "string",
+            "format": "int32",
             "nullable": true
           },
           "programmeStudied": {
             "type": "string",
             "nullable": true
           },
-          "location": {
+          "region": {
             "type": "integer",
             "format": "int32",
             "nullable": true
@@ -4707,11 +4709,13 @@
             "nullable": true
           },
           "startYear": {
-            "type": "string",
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
           "endYear": {
-            "type": "string",
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           }
         }
@@ -4752,19 +4756,25 @@
         "properties": {
           "id": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "applicant": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "name": {
             "type": "string",
             "nullable": true
           },
-          "country": {
-            "type": "string",
-            "nullable": true
+          "location": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CountryModel"
+              }
+            ]
           },
           "startYear": {
             "type": "string",
@@ -4806,7 +4816,7 @@
             "type": "string",
             "nullable": true
           },
-          "country": {
+          "location": {
             "type": "integer",
             "format": "int32"
           },

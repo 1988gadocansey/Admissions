@@ -62,7 +62,7 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
     public DbSet<ApplicantIssueModel> ApplicantIssueModels => Set<ApplicantIssueModel>();
     public DbSet<ResearchPublicationModel> ResearchPublications => Set<ResearchPublicationModel>();
     public DbSet<ResearchModel> ResearchModels => Set<ResearchModel>();
-
+    public DbSet<UniversityModel> UniversityModels => Set<UniversityModel>();
     public DbSet<GradeModel> GradeModels => Set<GradeModel>();
 
     public DbSet<DisabilitiesModel> DisabilitiesModels => Set<DisabilitiesModel>();

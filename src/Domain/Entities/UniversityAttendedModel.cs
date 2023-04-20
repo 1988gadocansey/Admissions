@@ -12,14 +12,9 @@ namespace OnlineApplicationSystem.Domain.Entities
         public string? StartYear { set; get; }
         public string? EndYear { set; get; }
         public string? StudentNumber { set; get; }
-
         public string? DegreeObtained { set; get; }
-
         public string? DegreeClassification { set; get; }
         public decimal? CGPA { set; get; }
-
-
-
         public int Applicant { get; set; }
 
         [ForeignKey("Applicant")]

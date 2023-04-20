@@ -22,21 +22,24 @@ export class EducationalbackgrounddetailsComponent {
   years: number[] = [];
   ngOnInit() {
 
-    this.applicantClient.get().subscribe({
-      next: data => {
-        this.shsform.get("ProgrammeStudied").setValue(data.id);
-        this.shsform.get("Location").setValue(data.thirdChoiceId);
-
-      }
-    })
+    this.loading = true;
+    this.getData();
+    /*   this.applicantClient.get().subscribe({
+        next: data => {
+          this.shsform.get("ProgrammeStudied").setValue(data.id);
+          this.shsform.get("Location").setValue(data.thirdChoiceId);
+  
+        }
+      }) */
     this.shsform = this.fb.group({
       Id: [''],
-      Name: ['', Validators.required],
+      NameId: ['', Validators.required],
       ProgrammeStudied: ['', Validators.required],
-      Location: ['', Validators.required],
+      //Location: ['', Validators.required],
+      Region: ['', Validators.required],
       StartYear: ['', Validators.required],
       EndYear: ['', Validators.required],
-      FirstChoiceId: ['', Validators.required],
+
     });
 
 
@@ -68,12 +71,14 @@ export class EducationalbackgrounddetailsComponent {
   public regions: RegionDto[] = [];
   public subjects: SubjectDto[] = [];
 
+  public shsAttended: SHSAttendedDto[] = [];
+
   constructor(private fb: FormBuilder, private client: SelectBoxClient, private biodataClient: BiodataClient, private applicantClient: ApplicantClient, private academicClient: ProgrammeInformationClient, private educationalInformationClient: EducationalBackendClient) {
     this.entryModeKeys = Object.keys(this.entryModeTypes);
     this.entryQualificationKeys = Object.keys(this.entryQualificationypes);
 
     client.getRegions().subscribe((data: RegionDto[]) => {
-      this.programmes = data;
+      this.regions = data;
       console.log("regions", this.regions);
     })
     client.getSHSProgrammes().subscribe((data: SHSProgrammesDto[]) => {
@@ -82,11 +87,11 @@ export class EducationalbackgrounddetailsComponent {
     })
 
     client.getSubjects().subscribe((data: SubjectDto[]) => {
-      this.programmes = data;
+      this.subjects = data;
       console.log("subjects", this.subjects);
     })
     client.getSchools().subscribe((data: FormerSchoolDto[]) => {
-      this.programmes = data;
+      this.schools = data;
       console.log("schools", this.schools);
     })
 
@@ -104,9 +109,10 @@ export class EducationalbackgrounddetailsComponent {
     }
     this.loading = true;
     console.log("data", this.shsform.value);
-    this.academicClient.create(this.shsform.value).subscribe(data => {
+    this.educationalInformationClient.create(this.shsform.value).subscribe(data => {
       this.message = data;
       this.loading = false;
+      this.getData();
       console.log("response is " + JSON.stringify(data))
     },
       error => this.message = error,
@@ -114,24 +120,33 @@ export class EducationalbackgrounddetailsComponent {
 
     );
   }
-  getApplicant(): Observable<ApplicantVm> {
-    return this.applicantClient.get().pipe(
-      tap(data => console.log('All: ' + JSON.stringify(data))),
-      catchError(this.handleError)
+  getData() {
+    this.educationalInformationClient.get(1, 1, 100).subscribe(
+      result => {
+        this.shsAttended = result.items;
+        this.loading = false;
+      },
+      error => {
+        this.message = JSON.parse(error.response);
+
+        this.loading = false,
+
+          setTimeout(() => document.getElementById('title').focus(), 250);
+      }
     );
-
   }
-  private handleError(err: HttpErrorResponse) {
 
-    let errorMessage = '';
-    if (err.error instanceof ErrorEvent) {
+  delete(id: number): void {
 
-      errorMessage = `An error occurred: ${err.error.message}`;
-    } else {
+    var c = confirm("Are you sure you want to delete this result?");
 
-      errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
+    if (c == true) {
+      this.educationalInformationClient.delete(id).subscribe(data => {
+        this.getData();
+      }
+      );
+
     }
-    console.error(errorMessage);
-    return throwError(errorMessage);
+
   }
 }

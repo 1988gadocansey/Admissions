@@ -6,7 +6,7 @@ public record UniversityAttendedRequest : IRequest<int>
 {
     public int? Id { set; get; }
     public string? Name { set; get; }
-    public int Country { set; get; }
+    public int Location { set; get; }
     public string? StartYear { set; get; }
     public string? EndYear { set; get; }
     public string? StudentNumber { set; get; }

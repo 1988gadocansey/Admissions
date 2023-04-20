@@ -26,12 +26,12 @@ public class UniversityCommandHandler : IRequestHandler<UniversityAttendedReques
         var userId = _currentUserService.UserId;
         var userDetails = await _identityService.GetApplicationUserDetails(userId, cancellationToken);
         var applicantDetails = await _applicantRepository.GetApplicantForUser(userId, cancellationToken);
-        var country = _context.CountryModels.FirstOrDefault(a => a.ID == request.Country);
+        var country = _context.CountryModels.FirstOrDefault(a => a.ID == request.Location);
         if (userDetails.Category == "Undergraduate") throw new NotFoundException("Only postgraduates allowed", request.Id); ;
-        var data = new UniversityAttendedDto
+        var data = new UniversityAttendedModel
         {
             Name = request.Name,
-            Country = country.Name,
+            Location = country,
             Applicant = applicantDetails.Id,
             CGPA = request.CGPA,
             StartYear = request.StartYear,
@@ -40,9 +40,9 @@ public class UniversityCommandHandler : IRequestHandler<UniversityAttendedReques
             DegreeObtained = request.DegreeObtained,
             DegreeClassification = request.DegreeClassification
         };
-        var dataMapped = _mapper.Map<UniversityAttendedModel>(data);
-        await _context.UniversityAttendedModels.AddAsync(dataMapped, cancellationToken);
+        // var dataMapped = _mapper.Map<UniversityAttendedModel>(data);
+        await _context.UniversityAttendedModels.AddAsync(data, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
-        return data.Id;
+        return 200;
     }
 }

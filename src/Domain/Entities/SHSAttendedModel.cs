@@ -8,14 +8,12 @@ namespace OnlineApplicationSystem.Domain.Entities
         [Key]
         public int Id { set; get; }
         public bool AttendedTTU { get; set; }
-        public int Applicant { get; set; }
-
-        [ForeignKey("Applicant")]
-        public ApplicantModel? ApplicantModel { get; set; }
+        public ApplicantModel? Applicant { get; set; }
         public FormerSchoolModel? Name { set; get; }
         public RegionModel? Location { set; get; }
-        public string? StartYear { set; get; }
-        public string? EndYear { set; get; }
+        public int? StartYear { set; get; }
+        public int? EndYear { set; get; }
+        public string? ProgrammeStudied { get; set; }
 
 
 

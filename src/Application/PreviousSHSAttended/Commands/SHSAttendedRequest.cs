@@ -4,15 +4,14 @@ namespace OnlineApplicationSystem.Application.PreviousSHSAttended.Commands;
 
 public record SHSAttendedRequest : IRequest<int>
 {
-    public int Id { set; get; }
-    public bool AttendedTTU { get; set; }
-    public string? Name { set; get; }
-    public string? ProgrammeStudied { get; init; }
 
-    public int? Location { set; get; }
+    public int? NameId { set; get; }
+    public string? ProgrammeStudied { get; set; }
+
+    public int? Region { set; get; }
     public int? Applicant { set; get; }
-    public string? StartYear { set; get; }
-    public string? EndYear { set; get; }
+    public int? StartYear { set; get; }
+    public int? EndYear { set; get; }
 
 
 }

@@ -1,0 +1,626 @@
+<div class="flex items-center justify-start">
+  <ngx-loading [show]="loading"></ngx-loading>
+  <span
+    class="mr-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-black dark:bg-slate-900/70 dark:text-white"
+    ><svg viewBox="0 0 24 24" width="24" height="24" class="inline-block">
+      <path
+        fill="currentColor"
+        d="M13,7.5H18V9.5H13V7.5M13,14.5H18V16.5H13V14.5M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M19,19V5H5V19H19M11,6V11H6V6H11M10,10V7H7V10H10M11,13V18H6V13H11M10,17V14H7V17H10Z"
+      ></path>
+    </svg>
+  </span>
+  <h1 class="text-2xl leading-tight">Postgraduate Admissions</h1>
+</div>
+<span>&nbsp;</span>
+<ng-container *ngIf="message == 200">
+  <div
+    class="mb-4 rounded-lg bg-green-50 p-4 text-center text-sm text-green-800 dark:bg-gray-800 dark:text-green-400"
+    role="alert"
+  >
+    data saved Successfully!
+  </div>
+</ng-container>
+<ng-container *ngIf="message && message == 500">
+  <div
+    class="mb-4 rounded-lg bg-red-50 p-4 text-center text-sm text-red-800 dark:bg-gray-800 dark:text-red-400"
+    role="alert"
+  >
+    Error Saving data.
+  </div>
+</ng-container>
+<section class="bg-white dark:bg-gray-900">
+  <div class="mx-auto max-w-screen-xl py-8 px-4 lg:py-16 lg:px-6">
+    <p class="text-center text-sm">
+      <span class="text-red-500">PLEASE NOTE</span> : All fields marked with
+      <span class="text-red-500">*</span> are required to be filled.
+    </p>
+    <form
+      (ngSubmit)="onSubmit()"
+      [formGroup]="universityForm"
+      autocomplete="off"
+      class="ng-untouched ng-pristine ng-valid container mx-auto flex flex-col space-y-12"
+    >
+      <input type="hidden" formControlName="Id" />
+      <fieldset
+        class="grid grid-cols-4 gap-6 rounded-md p-6 shadow-sm dark:bg-gray-900"
+      >
+        <div class="col-span-full space-y-2 lg:col-span-1">
+          <p class="font-medium">University Attended</p>
+          <p class="text-xs">Collecting programme data!</p>
+        </div>
+
+        <div class="col-span-full grid grid-cols-6 gap-4 lg:col-span-3">
+          <div class="col-span-full sm:col-span-2">
+            <label for="Title" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Name of University</span
+              ></label
+            >
+            <select
+              #university
+              formControlName="Name"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Schools</option>
+              <option
+                *ngFor="let name of universityData"
+                [value]="name.University"
+              >
+                {{ name.University }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                universityForm.controls['Name'].invalid &&
+                (universityForm.controls['Name'].dirty ||
+                  universityForm.controls['Name'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="universityForm.controls['Name'].errors.required"
+              >
+                University Attended is required
+              </div>
+            </div>
+          </div>
+          <!-- available if user select other-->
+
+          <div
+            class="col-span-full sm:col-span-2"
+            *ngIf="university.value == 'Other'"
+          >
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']">
+                Please Specify University</span
+              ></label
+            >
+            <input
+              type="text"
+              required=""
+              oninput="this.value = this.value.toUpperCase()"
+              formControlName="Name"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                universityForm.controls['Name'].invalid &&
+                (universityForm.controls['Name'].dirty ||
+                  universityForm.controls['Name'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="universityForm.controls['Name'].errors.required"
+              >
+                Name is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-full sm:col-span-2">
+            <label for="Title" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Country</span
+              ></label
+            >
+            <select
+              formControlName="Location"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Country</option>
+              <option *ngFor="let name of countries" [value]="name.id">
+                {{ name.name }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                universityForm.controls['Location'].invalid &&
+                (universityForm.controls['Location'].dirty ||
+                  universityForm.controls['Location'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="universityForm.controls['Location'].errors.required"
+              >
+                Country is required
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-full sm:col-span-2">
+            <label for="Title" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Year Started</span
+              ></label
+            >
+            <select
+              formControlName="StartYear"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select year</option>
+              <option *ngFor="let year of years" [value]="year">
+                {{ year }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                universityForm.controls['StartYear'].invalid &&
+                (universityForm.controls['StartYear'].dirty ||
+                  universityForm.controls['StartYear'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="universityForm.controls['StartYear'].errors.required"
+              >
+                Start Year is required
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-full sm:col-span-2">
+            <label for="Title" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Year Ended</span
+              ></label
+            >
+            <select
+              formControlName="EndYear"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Select year</option>
+              <option *ngFor="let year of years" [value]="year">
+                {{ year }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                universityForm.controls['EndYear'].invalid &&
+                (universityForm.controls['EndYear'].dirty ||
+                  universityForm.controls['EndYear'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="universityForm.controls['EndYear'].errors.required"
+              >
+                End Year is required
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']">
+                Student Number</span
+              ></label
+            >
+            <input
+              type="text"
+              required=""
+              oninput="this.value = this.value.toUpperCase()"
+              formControlName="StudentNumber"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                universityForm.controls['StudentNumber'].invalid &&
+                (universityForm.controls['StudentNumber'].dirty ||
+                  universityForm.controls['StudentNumber'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="universityForm.controls['StudentNumber'].errors.required"
+              >
+                Index no is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-full sm:col-span-2">
+            <label for="Title" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Degree Obtained</span
+              ></label
+            >
+            <select
+              formControlName="DegreeObtained"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Degrees</option>
+              <option *ngFor="let name of degreeData" [value]="name.degrees">
+                {{ name.degrees }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                universityForm.controls['DegreeObtained'].invalid &&
+                (universityForm.controls['DegreeObtained'].dirty ||
+                  universityForm.controls['DegreeObtained'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="
+                  universityForm.controls['DegreeObtained'].errors.required
+                "
+              >
+                Degree Obtained is required
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-full sm:col-span-2">
+            <label for="Title" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']"
+                >Class Obtained</span
+              ></label
+            >
+            <select
+              formControlName="DegreeClassification"
+              required=""
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="" selected>Classes</option>
+
+              <option>First Class</option>
+              <option>Second Class(Upper Division)</option>
+              <option>Second Class(Lower Division)</option>
+              <option>Third Class</option>
+              <option>Pass</option>
+              <option>Competent with Distinction</option>
+              <option>Competent with Merit</option>
+            </select>
+            <div
+              *ngIf="
+                universityForm.controls['DegreeClassification'].invalid &&
+                (universityForm.controls['DegreeClassification'].dirty ||
+                  universityForm.controls['DegreeClassification'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="
+                  universityForm.controls['DegreeClassification'].errors
+                    .required
+                "
+              >
+                Degree Classificationis required
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-full sm:col-span-2">
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']">
+                CGPA/CWA Obtained</span
+              ></label
+            >
+            <input
+              type="text"
+              required=""
+              oninput="this.value = this.value.toUpperCase()"
+              formControlName="CGPA"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                universityForm.controls['CGPA'].invalid &&
+                (universityForm.controls['CGPA'].dirty ||
+                  universityForm.controls['CGPA'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="universityForm.controls['CGPA'].errors.required"
+              >
+                CGPA is required.
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <div class="mt-6 flex items-center justify-end gap-x-6">
+        <button
+          type="reset"
+          class="text-sm font-semibold leading-6 text-gray-900"
+        >
+          Cancel
+        </button>
+        <button
+          [disabled]="!universityForm.valid"
+          type="submit"
+          class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:bg-indigo-500"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+    <br />
+    <hr />
+    <ng-container *ngIf="universityAttended.length > 0">
+      <span> University Attended</span>
+      <div class="flex flex-col">
+        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div
+            class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8"
+          >
+            <div
+              class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg"
+            >
+              <table
+                class="min-w-full divide-y divide-gray-200 dark:divide-gray-700"
+              >
+                <thead class="bg-gray-50 dark:bg-gray-800">
+                  <tr>
+                    <th
+                      scope="col"
+                      class="py-3.5 px-4 text-left text-sm font-normal text-gray-500 rtl:text-right dark:text-gray-400"
+                    >
+                      <div class="flex items-center gap-x-3">
+                        <button class="flex items-center gap-x-2">
+                          <span>No</span>
+                        </button>
+                      </div>
+                    </th>
+
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 rtl:text-right dark:text-gray-400"
+                    >
+                      University
+                    </th>
+
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 rtl:text-right dark:text-gray-400"
+                    >
+                      Location
+                    </th>
+
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 rtl:text-right dark:text-gray-400"
+                    >
+                      From
+                    </th>
+
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 rtl:text-right dark:text-gray-400"
+                    >
+                      To
+                    </th>
+
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 rtl:text-right dark:text-gray-400"
+                    >
+                      Student ID No.
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 rtl:text-right dark:text-gray-400"
+                    >
+                      Degree
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 rtl:text-right dark:text-gray-400"
+                    >
+                      Classification
+                    </th>
+
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 rtl:text-right dark:text-gray-400"
+                    >
+                      CGPA
+                    </th>
+
+                    <th scope="col" class="relative py-3.5 px-4">
+                      <span class="sr-only">Actions</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-900"
+                >
+                  <tr *ngFor="let data of universityAttended; let i = index">
+                    <td
+                      class="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200"
+                    >
+                      <div class="inline-flex items-center gap-x-3">
+                        <input
+                          type="checkbox"
+                          class="rounded border-gray-300 text-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:ring-offset-gray-900"
+                        />
+
+                        <span> {{ i + 1 }} </span>
+                      </div>
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300"
+                    >
+                      {{ data.name }}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300"
+                    >
+                      {{ data.location.name }}
+                    </td>
+
+                    <td
+                      class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300"
+                    >
+                      {{ data.startYear }}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300"
+                    >
+                      {{ data.endYear }}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300"
+                    >
+                      {{ data.studentNumber }}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300"
+                    >
+                      {{ data.degreeObtained }}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300"
+                    >
+                      {{ data.degreeClassification }}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300"
+                    >
+                      {{ data.cgpa }}
+                    </td>
+
+                    <td class="whitespace-nowrap px-4 py-4 text-sm">
+                      <div class="flex items-center gap-x-6">
+                        <button
+                          (click)="delete(data.id)"
+                          class="text-blue-500 transition-colors duration-200 focus:outline-none hover:text-indigo-500"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 flex items-center justify-between">
+        <!-- <a
+            href="#"
+            class="flex items-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="h-5 w-5 rtl:-scale-x-100"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
+              />
+            </svg>
+  
+            <span> previous </span>
+          </a> -->
+
+        <!--   <div class="hidden items-center gap-x-3 md:flex">
+            <a
+              href="#"
+              class="rounded-md bg-blue-100/60 px-2 py-1 text-sm text-blue-500 dark:bg-gray-800"
+            ></a>
+            <a
+              href="#"
+              class="rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+              >2</a
+            >
+            <a
+              href="#"
+              class="rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+              >3</a
+            >
+            <a
+              href="#"
+              class="rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+              >...</a
+            >
+            <a
+              href="#"
+              class="rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+              >12</a
+            >
+            <a
+              href="#"
+              class="rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+              >13</a
+            >
+            <a
+              href="#"
+              class="rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+              >14</a
+            >
+          </div> -->
+
+        <!--  <a
+            href="#"
+            class="flex items-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800"
+          >
+            <span> Next </span>
+  
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="h-5 w-5 rtl:-scale-x-100"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+              />
+            </svg>
+          </a> -->
+      </div>
+    </ng-container>
+    <ng-container *ngIf="universityAttended.length == 0">
+      No university uploaded..</ng-container
+    >
+  </div>
+</section>

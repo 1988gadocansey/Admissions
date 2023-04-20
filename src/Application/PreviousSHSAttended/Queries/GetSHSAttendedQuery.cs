@@ -40,8 +40,9 @@ public class GetResultQueryHandler : IRequestHandler<GetSHSAttendedQuery, Pagina
 
         var results = await _context.SHSAttendedModels.Include(g => g.Applicant)
                      .Include(s => s.Location)
-                     .Where(r => r.Applicant == applicantDetails.Id).OrderBy(s => s.StartYear).OrderBy(s => s.Location.Name)
+                     .Where(r => r.Applicant.Id == applicantDetails.Id).OrderBy(s => s.StartYear).OrderBy(s => s.Location)
                      .ProjectTo<SHSAttendedDto>(_mapper.ConfigurationProvider)
+
                      .PaginatedListAsync(request.PageNumber, request.PageSize);
         return results;
     }

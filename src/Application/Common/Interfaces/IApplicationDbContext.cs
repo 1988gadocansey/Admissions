@@ -39,6 +39,7 @@ public interface IApplicationDbContext
     DbSet<SHSProgrammes> SHSProgrammes { get; }
     DbSet<SHSAttendedModel> SHSAttendedModels { get; }
     DbSet<UniversityAttendedModel> UniversityAttendedModels { get; }
+    DbSet<UniversityModel> UniversityModels { get; }
     public Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
     // Task<int> CommitAsync(CancellationToken cancellationToken);
