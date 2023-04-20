@@ -12,12 +12,11 @@ public class ApplicantVm : IMapFrom<ApplicantModel>
 
     public int Id { get; init; }
     public ApplicationNumber ApplicationNumber { get; set; }
-    public Title Title { set; get; }
+    public string Title { set; get; }
     public ApplicantName ApplicantName { get; set; }
     public ApplicantName? PreviousName { get; set; }
-
     public DateOnly Dob { get; set; }
-    public Gender Gender { get; set; }
+    public string Gender { get; set; }
     public int Age { get; set; }
     public MaritalStatus? MaritalStatus { get; set; } = Domain.Enums.MaritalStatus.Single;
     public int? NoOfChildren { get; set; }
@@ -43,15 +42,15 @@ public class ApplicantVm : IMapFrom<ApplicantModel>
     public string? GuardianOccupation { get; set; }
     public string? GuardianRelationship { get; set; }
     public bool? Disability { get; set; }
-    public Disability? DisabilityType { get; set; }
+    public string? DisabilityType { get; set; }
     public string? SourceOfFinance { get; set; }
     public int? ReligionId { get; set; }
     public virtual ReligionModel? Religion { get; set; }
     public string? Denomination { get; set; }
     public string? Referrals { get; set; }
-    public Session? EntryMode { get; set; }
-    public EntryQualification? FirstQualification { get; init; }
-    public EntryQualification? SecondQualification { get; init; }
+    public string? EntryMode { get; set; }
+    public string? FirstQualification { get; init; }
+    public string? SecondQualification { get; init; }
     public string? ProgrammeStudied { get; init; }
     public string? FormerSchool { get; init; }
     public int? FormerSchoolNewId { get; init; }

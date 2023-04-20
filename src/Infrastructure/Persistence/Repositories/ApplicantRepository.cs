@@ -40,9 +40,13 @@ public class ApplicantRepository : IApplicantRepository
         var age = (a - b) / 10000;
         return Task.FromResult(age);
     }
-    public async Task<ApplicantVm> GetApplicant(int Id, CancellationToken cancellationToken)
+    public async Task<ApplicantVm> GetApplicant(string UserId, CancellationToken cancellationToken)
     {
-        var applicant = await _context.ApplicantModels.FirstOrDefaultAsync(a => a.Id == Id, cancellationToken);
+        var applicant = await _context.ApplicantModels
+        .Include(a => a.Addresses)
+        .Include(a => a.UniversityAttended)
+         .Include(a => a.SHSAttend)
+        .FirstOrDefaultAsync(a => a.ApplicationUserId == UserId, cancellationToken);
         var applicantDetails = _mapper.Map<ApplicantVm>(applicant);
         return applicantDetails;
     }

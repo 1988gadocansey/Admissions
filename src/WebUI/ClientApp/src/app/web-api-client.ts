@@ -5927,11 +5927,11 @@ export interface IDisabilitiesModel {
 export class ApplicantVm implements IApplicantVm {
     id?: number;
     applicationNumber?: ApplicationNumber;
-    title?: Title;
+    title?: string;
     applicantName?: ApplicantName;
     previousName?: ApplicantName | undefined;
     dob?: Date;
-    gender?: Gender;
+    gender?: string;
     age?: number;
     maritalStatus?: MaritalStatus | undefined;
     noOfChildren?: number | undefined;
@@ -5955,15 +5955,15 @@ export class ApplicantVm implements IApplicantVm {
     guardianOccupation?: string | undefined;
     guardianRelationship?: string | undefined;
     disability?: boolean | undefined;
-    disabilityType?: Disability | undefined;
+    disabilityType?: string | undefined;
     sourceOfFinance?: string | undefined;
     religionId?: number | undefined;
     religion?: ReligionModel | undefined;
     denomination?: string | undefined;
     referrals?: string | undefined;
-    entryMode?: Session | undefined;
-    firstQualification?: EntryQualification | undefined;
-    secondQualification?: EntryQualification | undefined;
+    entryMode?: string | undefined;
+    firstQualification?: string | undefined;
+    secondQualification?: string | undefined;
     programmeStudied?: string | undefined;
     formerSchool?: string | undefined;
     formerSchoolNewId?: number | undefined;
@@ -6290,11 +6290,11 @@ export class ApplicantVm implements IApplicantVm {
 export interface IApplicantVm {
     id?: number;
     applicationNumber?: ApplicationNumber;
-    title?: Title;
+    title?: string;
     applicantName?: ApplicantName;
     previousName?: ApplicantName | undefined;
     dob?: Date;
-    gender?: Gender;
+    gender?: string;
     age?: number;
     maritalStatus?: MaritalStatus | undefined;
     noOfChildren?: number | undefined;
@@ -6318,15 +6318,15 @@ export interface IApplicantVm {
     guardianOccupation?: string | undefined;
     guardianRelationship?: string | undefined;
     disability?: boolean | undefined;
-    disabilityType?: Disability | undefined;
+    disabilityType?: string | undefined;
     sourceOfFinance?: string | undefined;
     religionId?: number | undefined;
     religion?: ReligionModel | undefined;
     denomination?: string | undefined;
     referrals?: string | undefined;
-    entryMode?: Session | undefined;
-    firstQualification?: EntryQualification | undefined;
-    secondQualification?: EntryQualification | undefined;
+    entryMode?: string | undefined;
+    firstQualification?: string | undefined;
+    secondQualification?: string | undefined;
     programmeStudied?: string | undefined;
     formerSchool?: string | undefined;
     formerSchoolNewId?: number | undefined;

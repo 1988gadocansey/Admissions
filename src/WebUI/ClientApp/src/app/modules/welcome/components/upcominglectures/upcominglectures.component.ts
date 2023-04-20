@@ -13,6 +13,7 @@ import { RepositoryService } from '../../../../core/services/repository.service'
 
 export class UpcominglecturesComponent {
   @Input() lectures: any;
+  @Input() timeline: any;
   constructor(private repository: RepositoryService) { }
 
 }

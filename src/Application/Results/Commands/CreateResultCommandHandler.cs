@@ -67,7 +67,7 @@ public class CreateResultCommandHandler : IRequestHandler<CreateResultRequest, i
                 }
                 await _context.SaveChangesAsync(cancellationToken);
                 // grade the applicant if hes a wassce or ssce
-                if (applicantDetails.FirstQualification == Domain.Enums.EntryQualification.WASSCE || applicantDetails.FirstQualification == Domain.Enums.EntryQualification.SSCE)
+                if (applicantDetails.FirstQualification == "WASSCE" || applicantDetails.FirstQualification == "SSCE")
                 {
                     var Core = new List<int>();
                     var CoreAlt = new List<int>();

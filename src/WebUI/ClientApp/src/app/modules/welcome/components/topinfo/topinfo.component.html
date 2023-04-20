@@ -335,24 +335,18 @@
                         ? "Form Completed"
                         : "Form incomplete"
                     }}
+                    <ng-container *ngIf="profile?.formCompleted == 1">
+                      <a routerLink="/upload/passport">
+                        <button
+                          class="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
+                        >
+                          Click to Finalize Form
+                        </button></a
+                      >
+                    </ng-container>
                   </div>
                 </h1>
               </div>
-            </div>
-            <div class="flex items-center justify-center">
-              <span
-                class="inline-flex h-16 items-center justify-center text-yellow-500"
-                ><svg
-                  viewBox="0 0 24 24"
-                  width="48"
-                  height="48"
-                  class="inline-block"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21"
-                  ></path></svg
-              ></span>
             </div>
           </div>
         </div>
@@ -413,14 +407,25 @@
               </p>
               <p class="text-1xl">
                 Application Type
-                <b>{{
-                  profile?.type != "MTECH" ? "Undergraduate" : "Postgraduate"
-                }}</b>
+                <b>{{ profile?.category }}</b>
               </p>
+              <!--  <ng-container *ngIf="grade <= 24">
+                <p>
+                  Best Six Grade <b>{{ grade }} | Qualified</b>
+                </p>
+              </ng-container>
+              <ng-container *ngIf="grade > 24">
+                <p>
+                  Grade <b>{{ grade }} |Disqualified</b>
+                </p>
+              </ng-container> -->
 
-              <p>
-                Last login <b>{{ profile?.lastLogin | dateAsAgo }}</b>
-              </p>
+              <ng-container *ngIf="profile?.category == 'Undergraduate'">
+                <p>
+                  Best Six Grade <b>{{ grade }} </b>
+                </p>
+              </ng-container>
+
               <div class="flex justify-center md:block">
                 <div
                   class="inline-flex items-center rounded-full border border-blue-500 bg-blue-500 py-1.5 px-4 text-sm capitalize leading-none text-white"
@@ -451,7 +456,10 @@
       </div>
       <!---->
     </div>
-    <app-upcominglectures [lectures]="profile"></app-upcominglectures>
+    <app-upcominglectures
+      [timeline]="progress"
+      [lectures]="profile"
+    ></app-upcominglectures>
   </div>
 
   <!-- <app-issues [issues]="profile" [accounting]="profile"></app-issues> -->

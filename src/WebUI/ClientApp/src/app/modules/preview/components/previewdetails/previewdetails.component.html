@@ -18,10 +18,11 @@
         </div>
         <div style="">
           <h2 class="center colorme" style="margin: auto; text-align: center">
-            UNDERGRADUATE ONLINE APPLICATION SUMMARY
+            ONLINE APPLICATION SUMMARY
           </h2>
           <h3 class="center colorme" style="margin: auto; text-align: center">
-            {{ applicant.applicationNumber.applicantNumber }} - MATURED
+            {{ applicant.applicationNumber.applicantNumber }} -
+            {{ applicant.entryMode | uppercase }}
           </h3>
         </div>
         <br />
@@ -53,18 +54,24 @@
               <p></p>
               <p>Gender: &nbsp;{{ applicant.gender }}</p>
               <p></p>
-              <p>Address: &nbsp;{{ applicant.getFullName }}</p>
-              <p></p>
+              <p>Physically Challenged: &nbsp;{{ applicant.disability }}</p>
               <p>Phone: &nbsp;{{ applicant.phone.number }}</p>
               <p>Email: &nbsp;{{ applicant.email.value }}</p>
               <p>Hometown: &nbsp;{{ applicant.hometown }}</p>
-              <p>Nationality: &nbsp;{{ applicant.nationality }}</p>
+              <p>Nationality: &nbsp;{{ applicant.nationalityId }}</p>
             </div>
           </div>
           <br />
           <div class="grid h-48 grid-cols-2 place-content-center gap-2">
             <div><h4 class="font-thin">EDUCATIONAL BACKGROUND</h4></div>
             <div style="margin-left: -20%">
+              <p>
+                <ng-container *ngIf="user?.category == 'Undergraduate'">
+                  <p>
+                    Grade: <b>{{ grade }} </b>
+                  </p>
+                </ng-container>
+              </p>
               <p>SHS Attended: &nbsp;{{ applicant.getFullName }}</p>
               <p></p>
               <p>Programme Studied: &nbsp;{{ applicant.dob | date }}</p>

@@ -9,7 +9,7 @@ public interface IApplicantRepository
 
     public Task<ApplicantVm> GetApplicantForUser(string Id, CancellationToken cancellationToken);
     //public Task<ApplicantIssueDto> GetIssuesForUser(int Applicant, CancellationToken cancellationToken);
-    public Task<ApplicantVm> GetApplicant(int Id, CancellationToken cancellationToken);
+    public Task<ApplicantVm> GetApplicant(string UserId, CancellationToken cancellationToken);
     // public Task<bool> SendSMSNotification(string phoneNumber, string message, long formNo, string appSender);
     // public Task SendEmailNotification(string Email, string Message);
     public Task<bool> ContainsDuplicates(IEnumerable<int> data);

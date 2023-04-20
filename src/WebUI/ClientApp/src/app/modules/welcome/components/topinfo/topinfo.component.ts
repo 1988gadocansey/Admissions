@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DateAsAgoPipe } from 'src/app/core/pipes/datePipe';
-import { HomeClient, UserDto } from 'src/app/web-api-client';
+import { HomeClient, ProgressDto, UserDto } from 'src/app/web-api-client';
 
 import { RepositoryService } from '../../../../core/services/repository.service';
 
@@ -17,6 +17,8 @@ export class TopinfoComponent {
   public imgurl: string;
   public imgurlAlt: string;
   loading: boolean = false; // Flag variable
+  progress: ProgressDto
+  grade: any = null;
 
   constructor(private client: HomeClient, private dateago: DateAsAgoPipe) {
     client.dashboard().subscribe(result => {
@@ -29,8 +31,23 @@ export class TopinfoComponent {
       this.loading = false;
       // console.log("user is " + this.imgurl);
     }, error => console.error(error)), this.loading = false;
-
+    this.getProgress();
+    this.getGrade()
   }
 
+  getProgress() {
+    this.client.getProgress().subscribe({
+      next: data => {
+        this.progress = data;
+      }
+    })
+  }
 
+  getGrade() {
+    this.client.getGrade().subscribe({
+      next: data => {
+        this.grade = data;
+      }
+    })
+  }
 }

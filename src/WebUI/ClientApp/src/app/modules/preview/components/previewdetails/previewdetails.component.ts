@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ApplicantClient, ApplicantVm } from 'src/app/web-api-client';
+import { ApplicantClient, ApplicantVm, HomeClient, UserDto } from 'src/app/web-api-client';
 
 @Component({
   selector: 'app-previewdetails',
@@ -13,11 +13,15 @@ export class PreviewdetailsComponent {
   applicant: ApplicantVm;
   public imgurl: string;
   public imgurlAlt: string;
-  constructor(private applicantClient: ApplicantClient) {
+  grade: any = null;
+  user: UserDto;
+  constructor(private applicantClient: ApplicantClient, private client: HomeClient) {
 
   }
   ngOnInit() {
     this.loading = true;
+    this.getGrade();
+    this.getUser();
     this.applicantClient.get().subscribe(data => {
       this.message = data;
       this.loading = false;
@@ -32,5 +36,20 @@ export class PreviewdetailsComponent {
       () => this.loading = false,
 
     );
+  }
+
+  getGrade() {
+    this.client.getGrade().subscribe({
+      next: data => {
+        this.grade = data;
+      }
+    })
+  }
+  getUser() {
+    this.client.dashboard().subscribe({
+      next: data => {
+        this.user = data;
+      }
+    })
   }
 }

@@ -7,6 +7,7 @@ using OnlineApplicationSystem.Application.Common.Interfaces;
 using OnlineApplicationSystem.Infrastructure.Identity;
 using Renci.SshNet;
 using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
 
 namespace OnlineApplicationSystem.Infrastructure.Services;
@@ -25,7 +26,6 @@ public class PhotoUploadService : IPhotoUploadService
         _userManager = userManager;
         _applicantRepository = applicantRepository;
     }
-
 
 
     string IPhotoUploadService.UserId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -54,6 +54,53 @@ public class PhotoUploadService : IPhotoUploadService
 
         return Task.FromResult(new UrlsDto(urls));
     }
+    /* 
+        public static Rgba32 GetDominantBackgroundColor(string imagePath)
+        {
+            using (var image = Image.Load(imagePath))
+            {
+                // Get the pixel memory of the image
+                var pixelMemoryGroup = image.GetPixelMemoryGroup();
+
+                // Create a dictionary to count the occurrence of each color
+                var colorCount = new Dictionary<Rgba32, int>();
+
+                // Loop through each pixel memory in the image
+                foreach (var pixelMemory in pixelMemoryGroup.PixelMemoryGroup.MemoryGroup)
+                {
+                    if (pixelMemory.TryGetPixelSpan(out var pixelSpan))
+                    {
+                        // Loop through each pixel in the span
+                        for (int i = 0; i < pixelSpan.Length; i++)
+                        {
+                            var color = pixelSpan[i];
+
+                            // Skip transparent pixels
+                            if (color.A == 0)
+                            {
+                                continue;
+                            }
+
+                            // Add the color to the dictionary or increment its count
+                            if (colorCount.ContainsKey(color))
+                            {
+                                colorCount[color]++;
+                            }
+                            else
+                            {
+                                colorCount.Add(color, 1);
+                            }
+                        }
+                    }
+                }
+
+                // Get the color with the highest count
+                var dominantColor = colorCount.OrderByDescending(x => x.Value).FirstOrDefault().Key;
+
+                // Return the dominant color
+                return dominantColor;
+            }
+        } */
     public async Task<int> SendFileToServer(string applicant, IEnumerable<FileDto> files, CancellationToken cancellationToken)
     {
 

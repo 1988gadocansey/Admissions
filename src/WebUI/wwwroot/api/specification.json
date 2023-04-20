@@ -3799,7 +3799,7 @@
             "$ref": "#/components/schemas/ApplicationNumber"
           },
           "title": {
-            "$ref": "#/components/schemas/Title"
+            "type": "string"
           },
           "applicantName": {
             "$ref": "#/components/schemas/ApplicantName"
@@ -3817,7 +3817,7 @@
             "format": "date"
           },
           "gender": {
-            "$ref": "#/components/schemas/Gender"
+            "type": "string"
           },
           "age": {
             "type": "integer",
@@ -3945,12 +3945,8 @@
             "nullable": true
           },
           "disabilityType": {
-            "nullable": true,
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/Disability"
-              }
-            ]
+            "type": "string",
+            "nullable": true
           },
           "sourceOfFinance": {
             "type": "string",
@@ -3978,28 +3974,16 @@
             "nullable": true
           },
           "entryMode": {
-            "nullable": true,
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/Session"
-              }
-            ]
+            "type": "string",
+            "nullable": true
           },
           "firstQualification": {
-            "nullable": true,
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/EntryQualification"
-              }
-            ]
+            "type": "string",
+            "nullable": true
           },
           "secondQualification": {
-            "nullable": true,
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/EntryQualification"
-              }
-            ]
+            "type": "string",
+            "nullable": true
           },
           "programmeStudied": {
             "type": "string",
