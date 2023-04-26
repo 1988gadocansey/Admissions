@@ -16,7 +16,7 @@ public record ProgrammeInfoRequest : IRequest<int>
     public int? ThirdChoiceId { get; init; }
     public bool? Awaiting { get; init; }
     public int? LastYearInSchool { get; init; }
-
+    public string? IndexNo { get; init; }
 
 
 }

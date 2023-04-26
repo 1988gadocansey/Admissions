@@ -26,6 +26,7 @@
           "Npgsql": "7.0.2",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.3",
           "OnlineApplicationSystem.Application": "1.0.0",
+          "RazorEngine": "3.10.0",
           "SSH.NET": "2020.0.2",
           "Syncfusion.Pdf.Net.Core": "20.4.0.54",
           "Coravel": "4.2.1",
@@ -272,6 +273,14 @@
           "lib/netstandard2.0/MediatR.Extensions.Microsoft.DependencyInjection.dll": {
             "assemblyVersion": "9.0.0.0",
             "fileVersion": "9.0.0.0"
+          }
+        }
+      },
+      "Microsoft.AspNet.Razor/3.0.0": {
+        "runtime": {
+          "lib/net45/System.Web.Razor.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.11001.0"
           }
         }
       },
@@ -887,6 +896,17 @@
           }
         }
       },
+      "RazorEngine/3.10.0": {
+        "dependencies": {
+          "Microsoft.AspNet.Razor": "3.0.0"
+        },
+        "runtime": {
+          "lib/net45/RazorEngine.dll": {
+            "assemblyVersion": "3.10.0.0",
+            "fileVersion": "3.10.0.0"
+          }
+        }
+      },
       "RestSharp/109.0.1": {
         "runtime": {
           "lib/net7.0/RestSharp.dll": {
@@ -1378,6 +1398,13 @@
       "path": "mediatr.extensions.microsoft.dependencyinjection/9.0.0",
       "hashPath": "mediatr.extensions.microsoft.dependencyinjection.9.0.0.nupkg.sha512"
     },
+    "Microsoft.AspNet.Razor/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mU1W0PRd1uQAb+triRGp51YYkw26RQ9q1tWPX57eHqxDqjx1smRHhejQhhnoAGr3bZDkl8AoUxegGR3tNM+YKA==",
+      "path": "microsoft.aspnet.razor/3.0.0",
+      "hashPath": "microsoft.aspnet.razor.3.0.0.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.ApiAuthorization.IdentityServer/7.0.4": {
       "type": "package",
       "serviceable": true,
@@ -1804,6 +1831,13 @@
       "sha512": "sha512-eZZBCABzVOek+id9Xy04HhmgykF0wZg9wpByzrWN7q8qEI0Qen9b7tfd7w8VA3dOeesumMG7C5ZPy0jk7PSRHw==",
       "path": "portable.bouncycastle/1.9.0",
       "hashPath": "portable.bouncycastle.1.9.0.nupkg.sha512"
+    },
+    "RazorEngine/3.10.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xWjGSjhMTM+Qzh3kabsRXR7kpCZQALbYGGYrOPc7wf6IBeDee4OVuO/LRTgWpgIFA8W/widTfszLBm0MfVHRGg==",
+      "path": "razorengine/3.10.0",
+      "hashPath": "razorengine.3.10.0.nupkg.sha512"
     },
     "RestSharp/109.0.1": {
       "type": "package",

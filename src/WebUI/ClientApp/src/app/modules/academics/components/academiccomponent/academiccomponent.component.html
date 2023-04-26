@@ -275,6 +275,7 @@
             >
             <select
               formControlName="awaiting"
+              #awaiting
               required=""
               class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
             >
@@ -292,11 +293,41 @@
             >
               <div
                 class="text-sm"
-                *ngIf="
-                  programmeInfo.controls['lastYearInSchool'].errors.required
-                "
+                *ngIf="programmeInfo.controls['awaiting'].errors.required"
               >
                 awaiting is required.
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-span-full sm:col-span-2"
+            *ngIf="awaiting.selectedIndex === 2"
+          >
+            <label for="city" class="text-sm"
+              ><span class="after:text-red-500 after:content-['*']">
+                WASSCE Index No</span
+              ></label
+            >
+            <input
+              type="text"
+              formControlName="indexNo"
+              required=""
+              oninput="this.value = this.value.toUpperCase()"
+              class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                programmeInfo.controls['indexNo'].invalid &&
+                (programmeInfo.controls['indexNo'].dirty ||
+                  programmeInfo.controls['indexNo'].touched)
+              "
+              class="text-red-600"
+            >
+              <div
+                class="text-sm"
+                *ngIf="programmeInfo.controls['indexNo'].errors.required"
+              >
+                Index no is required.
               </div>
             </div>
           </div>

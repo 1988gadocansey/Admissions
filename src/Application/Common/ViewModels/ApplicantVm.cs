@@ -12,11 +12,11 @@ public class ApplicantVm : IMapFrom<ApplicantModel>
 
     public int Id { get; init; }
     public ApplicationNumber ApplicationNumber { get; set; }
-    public string Title { set; get; }
+    public Title Title { set; get; }
     public ApplicantName ApplicantName { get; set; }
     public ApplicantName? PreviousName { get; set; }
     public DateOnly Dob { get; set; }
-    public string Gender { get; set; }
+    public Gender Gender { get; set; }
     public int Age { get; set; }
     public MaritalStatus? MaritalStatus { get; set; } = Domain.Enums.MaritalStatus.Single;
     public int? NoOfChildren { get; set; }
@@ -35,14 +35,14 @@ public class ApplicantVm : IMapFrom<ApplicantModel>
     public int? RegionId { get; set; }
     public virtual RegionModel? Region { get; set; }
     public int? NationalityId { get; set; }
-    public virtual CountryModel? Nationality { get; set; }
+    public CountryModel? Nationality { get; set; }
     public bool? ResidentialStatus { get; set; }
     public string? GuardianName { get; set; }
     public PhoneNumber GuardianPhone { get; set; }
     public string? GuardianOccupation { get; set; }
     public string? GuardianRelationship { get; set; }
     public bool? Disability { get; set; }
-    public string? DisabilityType { get; set; }
+    public Disability? DisabilityType { get; set; }
     public string? SourceOfFinance { get; set; }
     public int? ReligionId { get; set; }
     public virtual ReligionModel? Religion { get; set; }
@@ -57,6 +57,7 @@ public class ApplicantVm : IMapFrom<ApplicantModel>
     public int? ProgrammeAdmittedId { get; init; }
     public int? LastYearInSchool { get; init; }
     public bool? Awaiting { get; init; }
+    public string? IndexNo { get; set; }
     public int? Grade { get; init; }
     public string? PreferedHall { get; init; }
     public bool? Elligible { get; init; }

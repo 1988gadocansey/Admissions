@@ -25,7 +25,7 @@ public class GetGradeQueryyHandler : IRequestHandler<GetGradeQuery, int>
 
     }
 
-    public async Task<int> Handle(GetGradeQuery request, CancellationToken cancellationToken) => _applicantRepository.getGrade(_currentUserService.UserId);
+    public Task<int> Handle(GetGradeQuery request, CancellationToken cancellationToken) => Task.FromResult(_applicantRepository.getGrade(_currentUserService.UserId));
     /* public async Task<ApplicantVm> Handle(GetApplicantQuery request, CancellationToken cancellationToken)
     {
         return await _applicantRepository.GetApplicantForUser(_currentUserService.UserId, cancellationToken);

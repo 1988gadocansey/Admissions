@@ -15,9 +15,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public string? DegreeObtained { set; get; }
         public string? DegreeClassification { set; get; }
         public decimal? CGPA { set; get; }
-        public int Applicant { get; set; }
 
-        [ForeignKey("Applicant")]
-        public virtual ApplicantModel? ApplicantModel { get; set; }
+        public virtual ApplicantModel? Applicant { get; set; }
     }
 }

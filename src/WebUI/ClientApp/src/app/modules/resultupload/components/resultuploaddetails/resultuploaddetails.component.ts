@@ -107,7 +107,7 @@ export class ResultuploaddetailsComponent {
 
   delete(id: number): void {
 
-    var c = confirm("Are you sure you want to delete this result?");
+    const c = confirm("Are you sure you want to delete this result?");
 
     if (c == true) {
       this.resultUploadClient.delete(id).subscribe(data => {

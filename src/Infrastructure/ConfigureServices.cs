@@ -12,6 +12,7 @@ using OnlineApplicationSystem.Infrastructure.Persistence.Repositories;
 using OnlineApplicationSystem.Infrastructure.Mails;
 using OnlineApplicationSystem.Infrastructure.SMS;
 using Coravel;
+using OnlineApplicationSystem.Infrastructure.Common;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -60,6 +61,11 @@ public static class ConfigureServices
         services.AddAuthorization(options =>
             options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator")));
         //services.AddScheduler();
+
+        services.Configure<MailSettings>(configuration.GetSection(nameof(MailSettings)));
+
         return services;
+
+
     }
 }

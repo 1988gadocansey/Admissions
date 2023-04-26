@@ -62,15 +62,12 @@ public class ApplicantRepository : IApplicantRepository
         var applicant = await _context.ApplicantModels.FirstOrDefaultAsync(a => a.ApplicationUserId == Id, cancellationToken);
         var applicantDetails = _mapper.Map<ApplicantVm>(applicant);
         return applicantDetails;
-
     }
-
     public async Task<ConfigurationModel?> GetConfiguration()
     {
         return await _context.ConfigurationModels.OrderByDescending(b => b.Id)
             .FirstOrDefaultAsync();
     }
-
     public async Task<string> GetFormNo()
     {
         var configuration = await _context.ConfigurationModels.OrderByDescending(b => b.Id)
@@ -78,36 +75,24 @@ public class ApplicantRepository : IApplicantRepository
         var formNumber = await _context.FormNoModels.FirstAsync(n => n.Year == configuration.Year);
         return formNumber.No.ToString();
     }
-
     public int GetTotalAggregate(List<int> Cores, List<int> CoreAlt, List<int> Electives)
     {
         CoreAlt.Sort();
-
         Cores.Sort();
-
         Electives.Sort();
-
-        int CstartIndex = 0;
-        int Clenght = 1;
-        IEnumerable<int> SliceCoreAlt = CoreAlt.Skip(CstartIndex).Take(Clenght);
-
-
-        int EstartIndex = 0;
-        int Elenght = 3;
-        IEnumerable<int> SliceElect = Electives.Skip(EstartIndex).Take(Elenght);
-
-
-        int grade = Cores.Sum() + SliceElect.Sum() + SliceCoreAlt.Sum();
-
-
-
+        var CstartIndex = 0;
+        var Clenght = 1;
+        var SliceCoreAlt = CoreAlt.Skip(CstartIndex).Take(Clenght) ?? throw new ArgumentNullException("CoreAlt.Skip(CstartIndex).Take(Clenght)");
+        const int EstartIndex = 0;
+        const int Elenght = 3;
+        var SliceElect = Electives.Skip(EstartIndex).Take(Elenght);
+        var grade = Cores.Sum() + SliceElect.Sum() + SliceCoreAlt.Sum();
         return grade;
     }
     public async Task<ProgressDto> GetProgress(string Applicant, CancellationToken cancellationToken)
     {
-        var data = await _context.ProgressModels.FirstOrDefaultAsync(a => a.ApplicationUserId == Applicant);
+        var data = await _context.ProgressModels.FirstOrDefaultAsync(a => a.ApplicationUserId == Applicant, cancellationToken: cancellationToken);
         return _mapper.Map<ProgressDto>(data);
-
     }
 
     public string[] GradesIssues(List<int> Cores, List<int> CoreAlt, List<int> Electives)
@@ -120,7 +105,7 @@ public class ApplicantRepository : IApplicantRepository
         var applicant = await _context.ApplicantModels.FirstOrDefaultAsync(a => a.ApplicationUserId == userId);
         var results = _context.ResultUploadModels.Where(a => a.ApplicantModelID == applicant.Id);
         */
-        if (Cores.Count() + CoreAlt.Count() + Electives.Count() != 6)
+        if (Cores.Count + CoreAlt.Count() + Electives.Count() != 6)
         {
             const string msg = "Results not completed.";
             Array.Fill(error, msg);
@@ -156,7 +141,11 @@ public class ApplicantRepository : IApplicantRepository
     public int getGrade(string Applicant)
     {
         var data = _context.ApplicantModels.FirstOrDefault(a => a.ApplicationUserId == Applicant);
-        return (int)data.Grade;
+        if (data != null)
+        {
+            return (int)data.Grade;
+        }
+        return 0;
     }
     public async Task<int> UpdateFormNo(CancellationToken cancellationToken)
     {
@@ -298,6 +287,18 @@ public class ApplicantRepository : IApplicantRepository
         var data = await _context.AddressModels.FirstOrDefaultAsync(a => a.Applicant.Id == applicant, cancellationToken);
 
         return _mapper.Map<AddressDto>(data);
+    }
+    public async Task<SHSAttendedDto> GetSingleSHSAttended(int applicant, CancellationToken cancellationToken)
+    {
+        var data = await _context.SHSAttendedModels.Include(a => a.Name).Include(a => a.Location).FirstOrDefaultAsync(a => a.Applicant.Id == applicant, cancellationToken);
+
+        return _mapper.Map<SHSAttendedDto>(data);
+    }
+    public async Task<UniversityAttendedDto> GetSingleUniversityAttended(int applicant, CancellationToken cancellationToken)
+    {
+        var data = await _context.UniversityAttendedModels.FirstOrDefaultAsync(a => a.Applicant.Id == applicant, cancellationToken);
+
+        return _mapper.Map<UniversityAttendedDto>(data);
     }
     public async Task<IEnumerable<SHSAttendedDto>> SHSAttendeds(CancellationToken cancellationToken)
     {

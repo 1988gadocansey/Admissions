@@ -55,6 +55,7 @@ public class ApplicantDto : IMapFrom<ApplicantModel>
     public int? ProgrammeAdmittedId { get; set; }
     public int? LastYearInSchool { get; set; }
     public bool? Awaiting { get; set; }
+    public string? IndexNo { get; set; }
     public int? Grade { get; set; }
     public string? YearOfAdmission { get; set; }
     public string? PreferedHall { get; set; }

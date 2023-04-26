@@ -18,7 +18,7 @@ export class NavbarMenuComponent implements OnInit {
     this.pagesMenu$ = this.menuService.pagesMenu$;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   public toggleMenu(menu: MenuItem): void {
     menu.selected = !menu.selected;

@@ -335,14 +335,26 @@
                         ? "Form Completed"
                         : "Form incomplete"
                     }}
-                    <ng-container *ngIf="profile?.formCompleted == 1">
-                      <a routerLink="/upload/passport">
-                        <button
-                          class="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
-                        >
-                          Click to Finalize Form
-                        </button></a
+
+                    <p>&nbsp;</p>
+                    <div class="text-orange-500">
+                      {{
+                        profile?.finalized == 1
+                          ? "Form finalized"
+                          : "Form not finalized"
+                      }}
+                    </div>
+                    <ng-container
+                      *ngIf="
+                        profile?.formCompleted == 1 && profile?.finalized == 0
+                      "
+                    >
+                      <button
+                        (click)="getfinalize()"
+                        class="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
                       >
+                        Click to Finalize Form
+                      </button>
                     </ng-container>
                   </div>
                 </h1>

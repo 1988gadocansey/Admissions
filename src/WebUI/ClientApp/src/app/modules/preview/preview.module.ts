@@ -9,13 +9,16 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { PreviewpageComponent } from './pages/previewpage/previewpage.component';
 import { PreviewdetailsComponent } from './components/previewdetails/previewdetails.component';
 import { NgxLoadingModule } from 'ngx-loading';
+import { ProgrammePipePipe } from './components/programme-pipe.pipe';
 
 
 @NgModule({
   declarations: [
     PreviewComponent,
     PreviewpageComponent,
-    PreviewdetailsComponent
+    PreviewdetailsComponent,
+    ProgrammePipePipe
+
   ],
   imports: [
     CommonModule,

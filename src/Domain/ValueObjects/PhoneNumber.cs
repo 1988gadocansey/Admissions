@@ -24,7 +24,8 @@ public class PhoneNumber : ValueObject
 
     public string FullNumber()
     {
-        return $"+{AreaCode} {Number}";
+        // return $"{AreaCode} {Number}";
+        return $"{Number}";
     }
     protected override IEnumerable<object> GetEqualityComponents()
     {

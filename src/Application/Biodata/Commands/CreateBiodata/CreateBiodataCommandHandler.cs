@@ -34,7 +34,7 @@ public class CreateBiodataCommandHandler : IRequestHandler<CreateBiodataRequest,
         var calender = await _applicantRepository.GetConfiguration();
         // var FormerSchool = _context.FormerSchoolModels.FirstOrDefault(s => s.Id == request.SC);
         var applicantSearch = _context.ApplicantModels.Where(s => s.ApplicationUserId == userId);
-        if (applicantSearch.Count() == 0)
+        if (!applicantSearch.Any())
         {
             var applicant = new ApplicantModel
             {
@@ -65,7 +65,7 @@ public class CreateBiodataCommandHandler : IRequestHandler<CreateBiodataRequest,
                 ResidentialStatus = request.ResidentialStatus,
                 SourceOfFinance = request.SourceOfFinance.ToUpper(),
                 Hometown = request.Hometown.ToUpper(),
-                GuardianName = request.GuardianName.ToUpper(),
+                GuardianName = request.GuardianName?.ToUpper(),
                 GuardianOccupation = request.GuardianOccupation.ToUpper(),
                 GuardianPhone = PhoneNumber.Create(request.GuardianPhone),
                 GuardianRelationship = request.GuardianRelationship,
@@ -138,10 +138,6 @@ public class CreateBiodataCommandHandler : IRequestHandler<CreateBiodataRequest,
             _context.ProgressModels.Update(applicantIssues);
         }
         var result = await _context.SaveChangesAsync(cancellationToken);
-        if (result == 1)
-        {
-            return 200;
-        }
-        return 500;
+        return result == 1 ? 200 : 500;
     }
 }

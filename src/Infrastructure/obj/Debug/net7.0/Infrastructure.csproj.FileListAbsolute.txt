@@ -33,6 +33,7 @@
 /Users/gadocansey/Projects/TTU_ADMISSIONS/src/Infrastructure/obj/Debug/net7.0/OnlineApplicationSystem.Infrastructure.pdb
 /Users/gadocansey/Projects/TTU_ADMISSIONS/src/Infrastructure/obj/Debug/net7.0/ref/OnlineApplicationSystem.Infrastructure.dll
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/Infrastructure/bin/Debug/net7.0/OnlineApplicationSystem.Infrastructure.deps.json
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/Infrastructure/bin/Debug/net7.0/OnlineApplicationSystem.Infrastructure.runtimeconfig.json
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/Infrastructure/bin/Debug/net7.0/OnlineApplicationSystem.Infrastructure.dll
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/Infrastructure/bin/Debug/net7.0/OnlineApplicationSystem.Infrastructure.pdb
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/Infrastructure/bin/Debug/net7.0/OnlineApplicationSystem.Application.dll
@@ -48,6 +49,5 @@
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/Infrastructure/obj/Debug/net7.0/OnlineApplicationSystem.Infrastructure.dll
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/Infrastructure/obj/Debug/net7.0/refint/OnlineApplicationSystem.Infrastructure.dll
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/Infrastructure/obj/Debug/net7.0/OnlineApplicationSystem.Infrastructure.pdb
-/Users/gadocansey/Projects/OnlineApplicationSystem/src/Infrastructure/obj/Debug/net7.0/ref/OnlineApplicationSystem.Infrastructure.dll
-/Users/gadocansey/Projects/OnlineApplicationSystem/src/Infrastructure/bin/Debug/net7.0/OnlineApplicationSystem.Infrastructure.runtimeconfig.json
 /Users/gadocansey/Projects/OnlineApplicationSystem/src/Infrastructure/obj/Debug/net7.0/Infrastructure.genruntimeconfig.cache
+/Users/gadocansey/Projects/OnlineApplicationSystem/src/Infrastructure/obj/Debug/net7.0/ref/OnlineApplicationSystem.Infrastructure.dll

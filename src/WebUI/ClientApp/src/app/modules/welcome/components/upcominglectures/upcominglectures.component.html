@@ -29,7 +29,7 @@
                 class="mr-2 inline-flex h-4 w-4 items-center justify-center"
               >
               </span>
-              <ng-container *ngIf="timeline.picture">
+              <ng-container *ngIf="timeline?.picture">
                 <label class="checkbox undefined mr-6 mb-3 last:mr-0"
                   ><input
                     name="checkboxes"
@@ -40,7 +40,7 @@
                   /><span class="check"></span>
                 </label>
               </ng-container>
-              <ng-container *ngIf="timeline.picture == false">
+              <ng-container *ngIf="timeline?.picture == false">
                 <span> Not completed</span>
               </ng-container>
             </div>
@@ -79,7 +79,7 @@
                 class="mr-2 inline-flex h-4 w-4 items-center justify-center"
               >
               </span>
-              <ng-container *ngIf="timeline.biodata">
+              <ng-container *ngIf="timeline?.biodata">
                 <label class="checkbox undefined mr-6 mb-3 last:mr-0"
                   ><input
                     name="checkboxes"

@@ -8,6 +8,10 @@ module.exports = {
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
+      screens: {
+        'print': {'raw': 'print'},
+        // => @media  print { ... }
+      },
 
       keyframes: {
         wiggle: {

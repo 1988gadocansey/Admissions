@@ -28,7 +28,7 @@ export class EducationalbackgrounddetailsComponent {
         next: data => {
           this.shsform.get("ProgrammeStudied").setValue(data.id);
           this.shsform.get("Location").setValue(data.thirdChoiceId);
-  
+
         }
       }) */
     this.shsform = this.fb.group({
@@ -43,7 +43,7 @@ export class EducationalbackgrounddetailsComponent {
     });
 
 
-    this.universityForm = this.fb.group({
+    /* this.universityForm = this.fb.group({
       Id: [''],
       UniversityAttended: ['', Validators.required],
       Country: ['', Validators.required],
@@ -54,7 +54,7 @@ export class EducationalbackgrounddetailsComponent {
       DegreeClassification: ['', Validators.required],
       CGPA: ['', Validators.required],
 
-    });
+    }); */
 
   }
   entryMode = Session;
@@ -138,7 +138,7 @@ export class EducationalbackgrounddetailsComponent {
 
   delete(id: number): void {
 
-    var c = confirm("Are you sure you want to delete this result?");
+    const c = confirm("Are you sure you want to delete this result?");
 
     if (c == true) {
       this.educationalInformationClient.delete(id).subscribe(data => {

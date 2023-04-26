@@ -13,6 +13,7 @@ public class UserDto
     public string? FullName { get; set; }
     public string? Type { get; set; }
     public string? SoldBy { set; get; }
+    public string? Pin { set; get; }
     public string? Branch { set; get; }
     public string? Category { set; get; }
     public int? FormCompleted { set; get; }

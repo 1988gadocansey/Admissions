@@ -28,6 +28,8 @@ public interface IApplicantRepository
     // public Task<IEnumerable<AddressDto>> GetAddresses(int applicant, CancellationToken cancellationToken);
 
     public Task<AddressDto> GetAddresses(int applicant, CancellationToken cancellationToken);
+    public Task<SHSAttendedDto> GetSingleSHSAttended(int applicant, CancellationToken cancellationToken);
+    public Task<UniversityAttendedDto> GetSingleUniversityAttended(int applicant, CancellationToken cancellationToken);
     public Task<IEnumerable<ReligionDto>> Religions(CancellationToken cancellationToken);
     public Task<IEnumerable<CountryDto>> Countries(CancellationToken cancellationToken);
     public Task<IEnumerable<RegionDto>> Regions(CancellationToken cancellationToken);

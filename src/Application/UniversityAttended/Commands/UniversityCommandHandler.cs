@@ -25,14 +25,14 @@ public class UniversityCommandHandler : IRequestHandler<UniversityAttendedReques
     {
         var userId = _currentUserService.UserId;
         var userDetails = await _identityService.GetApplicationUserDetails(userId, cancellationToken);
-        var applicantDetails = await _applicantRepository.GetApplicantForUser(userId, cancellationToken);
+        var applicantDetails = _context.ApplicantModels.FirstOrDefault(a => a.ApplicationUserId == userId);
         var country = _context.CountryModels.FirstOrDefault(a => a.ID == request.Location);
         if (userDetails.Category == "Undergraduate") throw new NotFoundException("Only postgraduates allowed", request.Id); ;
         var data = new UniversityAttendedModel
         {
             Name = request.Name,
             Location = country,
-            Applicant = applicantDetails.Id,
+            Applicant = applicantDetails,
             CGPA = request.CGPA,
             StartYear = request.StartYear,
             EndYear = request.EndYear,

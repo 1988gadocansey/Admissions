@@ -5,7 +5,7 @@ public record UniversityAttendedDto : IMapFrom<UniversityAttendedModel>
 {
 
     public int? Id { set; get; }
-    public int? Applicant { set; get; }
+    public ApplicantModel? Applicant { get; set; }
     public string? Name { set; get; }
     public CountryModel? Location { set; get; }
     public string? StartYear { set; get; }

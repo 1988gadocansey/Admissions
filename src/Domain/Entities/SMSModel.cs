@@ -23,7 +23,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public int Id { set; get; }
         public string Message { set; get; }
         public string SentBy { get; set; }
-        public int Recipient { get; set; }
+        public long Recipient { get; set; }
         public DateTime DateSent { get; set; }
         public string? Status { get; set; }
         public int ApplicantModelID { set; get; }

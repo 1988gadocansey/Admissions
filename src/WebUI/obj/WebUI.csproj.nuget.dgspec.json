@@ -279,6 +279,10 @@
               "target": "Package",
               "version": "[7.0.3, )"
             },
+            "RazorEngine": {
+              "target": "Package",
+              "version": "[3.10.0, )"
+            },
             "SSH.NET": {
               "target": "Package",
               "version": "[2020.0.2, )"

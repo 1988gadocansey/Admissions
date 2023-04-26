@@ -1115,6 +1115,11 @@ export class PictureUploadClient implements IPictureUploadClient {
 
 export interface IPreviewClient {
     dashboard(): Observable<ApplicantVm>;
+    getPreview(): Observable<ApplicantVm>;
+    getSHS(): Observable<SHSAttendedDto>;
+    getUniversity(): Observable<UniversityAttendedDto>;
+    finalize(command: FinalizedRequest): Observable<number>;
+    getProgrammeById(id: number): Observable<ProgrammeDto>;
 }
 
 @Injectable({
@@ -1168,6 +1173,254 @@ export class PreviewClient implements IPreviewClient {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = ApplicantVm.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getPreview(): Observable<ApplicantVm> {
+        let url_ = this.baseUrl + "/api/Preview/finalpreview";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetPreview(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetPreview(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApplicantVm>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApplicantVm>;
+        }));
+    }
+
+    protected processGetPreview(response: HttpResponseBase): Observable<ApplicantVm> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApplicantVm.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getSHS(): Observable<SHSAttendedDto> {
+        let url_ = this.baseUrl + "/api/Preview/getshspreview";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetSHS(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetSHS(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<SHSAttendedDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<SHSAttendedDto>;
+        }));
+    }
+
+    protected processGetSHS(response: HttpResponseBase): Observable<SHSAttendedDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = SHSAttendedDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getUniversity(): Observable<UniversityAttendedDto> {
+        let url_ = this.baseUrl + "/api/Preview/getuniversitypreview";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetUniversity(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetUniversity(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<UniversityAttendedDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<UniversityAttendedDto>;
+        }));
+    }
+
+    protected processGetUniversity(response: HttpResponseBase): Observable<UniversityAttendedDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = UniversityAttendedDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    finalize(command: FinalizedRequest): Observable<number> {
+        let url_ = this.baseUrl + "/api/Preview/finalize";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processFinalize(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processFinalize(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<number>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<number>;
+        }));
+    }
+
+    protected processFinalize(response: HttpResponseBase): Observable<number> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    getProgrammeById(id: number): Observable<ProgrammeDto> {
+        let url_ = this.baseUrl + "/api/Preview/getprogramme/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetProgrammeById(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetProgrammeById(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ProgrammeDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ProgrammeDto>;
+        }));
+    }
+
+    protected processGetProgrammeById(response: HttpResponseBase): Observable<ProgrammeDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ProgrammeDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -3864,6 +4117,7 @@ export class ApplicantModel extends BaseAuditableEntity implements IApplicantMod
     programmeAdmittedId?: number | undefined;
     lastYearInSchool?: number | undefined;
     awaiting?: boolean | undefined;
+    indexNo?: string | undefined;
     grade?: number | undefined;
     yearOfAdmission?: string | undefined;
     preferedHall?: string | undefined;
@@ -3963,6 +4217,7 @@ export class ApplicantModel extends BaseAuditableEntity implements IApplicantMod
             this.programmeAdmittedId = _data["programmeAdmittedId"];
             this.lastYearInSchool = _data["lastYearInSchool"];
             this.awaiting = _data["awaiting"];
+            this.indexNo = _data["indexNo"];
             this.grade = _data["grade"];
             this.yearOfAdmission = _data["yearOfAdmission"];
             this.preferedHall = _data["preferedHall"];
@@ -4126,6 +4381,7 @@ export class ApplicantModel extends BaseAuditableEntity implements IApplicantMod
         data["programmeAdmittedId"] = this.programmeAdmittedId;
         data["lastYearInSchool"] = this.lastYearInSchool;
         data["awaiting"] = this.awaiting;
+        data["indexNo"] = this.indexNo;
         data["grade"] = this.grade;
         data["yearOfAdmission"] = this.yearOfAdmission;
         data["preferedHall"] = this.preferedHall;
@@ -4283,6 +4539,7 @@ export interface IApplicantModel extends IBaseAuditableEntity {
     programmeAdmittedId?: number | undefined;
     lastYearInSchool?: number | undefined;
     awaiting?: boolean | undefined;
+    indexNo?: string | undefined;
     grade?: number | undefined;
     yearOfAdmission?: string | undefined;
     preferedHall?: string | undefined;
@@ -5754,8 +6011,7 @@ export class UniversityAttendedModel implements IUniversityAttendedModel {
     degreeObtained?: string | undefined;
     degreeClassification?: string | undefined;
     cgpa?: number | undefined;
-    applicant?: number;
-    applicantModel?: ApplicantModel | undefined;
+    applicant?: ApplicantModel | undefined;
 
     constructor(data?: IUniversityAttendedModel) {
         if (data) {
@@ -5777,8 +6033,7 @@ export class UniversityAttendedModel implements IUniversityAttendedModel {
             this.degreeObtained = _data["degreeObtained"];
             this.degreeClassification = _data["degreeClassification"];
             this.cgpa = _data["cgpa"];
-            this.applicant = _data["applicant"];
-            this.applicantModel = _data["applicantModel"] ? ApplicantModel.fromJS(_data["applicantModel"]) : <any>undefined;
+            this.applicant = _data["applicant"] ? ApplicantModel.fromJS(_data["applicant"]) : <any>undefined;
         }
     }
 
@@ -5800,8 +6055,7 @@ export class UniversityAttendedModel implements IUniversityAttendedModel {
         data["degreeObtained"] = this.degreeObtained;
         data["degreeClassification"] = this.degreeClassification;
         data["cgpa"] = this.cgpa;
-        data["applicant"] = this.applicant;
-        data["applicantModel"] = this.applicantModel ? this.applicantModel.toJSON() : <any>undefined;
+        data["applicant"] = this.applicant ? this.applicant.toJSON() : <any>undefined;
         return data;
     }
 }
@@ -5816,8 +6070,7 @@ export interface IUniversityAttendedModel {
     degreeObtained?: string | undefined;
     degreeClassification?: string | undefined;
     cgpa?: number | undefined;
-    applicant?: number;
-    applicantModel?: ApplicantModel | undefined;
+    applicant?: ApplicantModel | undefined;
 }
 
 export class SHSAttendedModel implements ISHSAttendedModel {
@@ -5927,11 +6180,11 @@ export interface IDisabilitiesModel {
 export class ApplicantVm implements IApplicantVm {
     id?: number;
     applicationNumber?: ApplicationNumber;
-    title?: string;
+    title?: Title;
     applicantName?: ApplicantName;
     previousName?: ApplicantName | undefined;
     dob?: Date;
-    gender?: string;
+    gender?: Gender;
     age?: number;
     maritalStatus?: MaritalStatus | undefined;
     noOfChildren?: number | undefined;
@@ -5955,7 +6208,7 @@ export class ApplicantVm implements IApplicantVm {
     guardianOccupation?: string | undefined;
     guardianRelationship?: string | undefined;
     disability?: boolean | undefined;
-    disabilityType?: string | undefined;
+    disabilityType?: Disability | undefined;
     sourceOfFinance?: string | undefined;
     religionId?: number | undefined;
     religion?: ReligionModel | undefined;
@@ -5970,6 +6223,7 @@ export class ApplicantVm implements IApplicantVm {
     programmeAdmittedId?: number | undefined;
     lastYearInSchool?: number | undefined;
     awaiting?: boolean | undefined;
+    indexNo?: string | undefined;
     grade?: number | undefined;
     preferedHall?: string | undefined;
     elligible?: boolean | undefined;
@@ -6056,6 +6310,7 @@ export class ApplicantVm implements IApplicantVm {
             this.programmeAdmittedId = _data["programmeAdmittedId"];
             this.lastYearInSchool = _data["lastYearInSchool"];
             this.awaiting = _data["awaiting"];
+            this.indexNo = _data["indexNo"];
             this.grade = _data["grade"];
             this.preferedHall = _data["preferedHall"];
             this.elligible = _data["elligible"];
@@ -6198,6 +6453,7 @@ export class ApplicantVm implements IApplicantVm {
         data["programmeAdmittedId"] = this.programmeAdmittedId;
         data["lastYearInSchool"] = this.lastYearInSchool;
         data["awaiting"] = this.awaiting;
+        data["indexNo"] = this.indexNo;
         data["grade"] = this.grade;
         data["preferedHall"] = this.preferedHall;
         data["elligible"] = this.elligible;
@@ -6290,11 +6546,11 @@ export class ApplicantVm implements IApplicantVm {
 export interface IApplicantVm {
     id?: number;
     applicationNumber?: ApplicationNumber;
-    title?: string;
+    title?: Title;
     applicantName?: ApplicantName;
     previousName?: ApplicantName | undefined;
     dob?: Date;
-    gender?: string;
+    gender?: Gender;
     age?: number;
     maritalStatus?: MaritalStatus | undefined;
     noOfChildren?: number | undefined;
@@ -6318,7 +6574,7 @@ export interface IApplicantVm {
     guardianOccupation?: string | undefined;
     guardianRelationship?: string | undefined;
     disability?: boolean | undefined;
-    disabilityType?: string | undefined;
+    disabilityType?: Disability | undefined;
     sourceOfFinance?: string | undefined;
     religionId?: number | undefined;
     religion?: ReligionModel | undefined;
@@ -6333,6 +6589,7 @@ export interface IApplicantVm {
     programmeAdmittedId?: number | undefined;
     lastYearInSchool?: number | undefined;
     awaiting?: boolean | undefined;
+    indexNo?: string | undefined;
     grade?: number | undefined;
     preferedHall?: string | undefined;
     elligible?: boolean | undefined;
@@ -7173,7 +7430,7 @@ export interface IPaginatedListOfUniversityAttendedDto {
 
 export class UniversityAttendedDto implements IUniversityAttendedDto {
     id?: number | undefined;
-    applicant?: number | undefined;
+    applicant?: ApplicantModel | undefined;
     name?: string | undefined;
     location?: CountryModel | undefined;
     startYear?: string | undefined;
@@ -7195,7 +7452,7 @@ export class UniversityAttendedDto implements IUniversityAttendedDto {
     init(_data?: any) {
         if (_data) {
             this.id = _data["id"];
-            this.applicant = _data["applicant"];
+            this.applicant = _data["applicant"] ? ApplicantModel.fromJS(_data["applicant"]) : <any>undefined;
             this.name = _data["name"];
             this.location = _data["location"] ? CountryModel.fromJS(_data["location"]) : <any>undefined;
             this.startYear = _data["startYear"];
@@ -7217,7 +7474,7 @@ export class UniversityAttendedDto implements IUniversityAttendedDto {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        data["applicant"] = this.applicant;
+        data["applicant"] = this.applicant ? this.applicant.toJSON() : <any>undefined;
         data["name"] = this.name;
         data["location"] = this.location ? this.location.toJSON() : <any>undefined;
         data["startYear"] = this.startYear;
@@ -7232,7 +7489,7 @@ export class UniversityAttendedDto implements IUniversityAttendedDto {
 
 export interface IUniversityAttendedDto {
     id?: number | undefined;
-    applicant?: number | undefined;
+    applicant?: ApplicantModel | undefined;
     name?: string | undefined;
     location?: CountryModel | undefined;
     startYear?: string | undefined;
@@ -7323,6 +7580,7 @@ export class UserDto implements IUserDto {
     fullName?: string | undefined;
     type?: string | undefined;
     soldBy?: string | undefined;
+    pin?: string | undefined;
     branch?: string | undefined;
     category?: string | undefined;
     formCompleted?: number | undefined;
@@ -7352,6 +7610,7 @@ export class UserDto implements IUserDto {
             this.fullName = _data["fullName"];
             this.type = _data["type"];
             this.soldBy = _data["soldBy"];
+            this.pin = _data["pin"];
             this.branch = _data["branch"];
             this.category = _data["category"];
             this.formCompleted = _data["formCompleted"];
@@ -7381,6 +7640,7 @@ export class UserDto implements IUserDto {
         data["fullName"] = this.fullName;
         data["type"] = this.type;
         data["soldBy"] = this.soldBy;
+        data["pin"] = this.pin;
         data["branch"] = this.branch;
         data["category"] = this.category;
         data["formCompleted"] = this.formCompleted;
@@ -7403,6 +7663,7 @@ export interface IUserDto {
     fullName?: string | undefined;
     type?: string | undefined;
     soldBy?: string | undefined;
+    pin?: string | undefined;
     branch?: string | undefined;
     category?: string | undefined;
     formCompleted?: number | undefined;
@@ -7499,6 +7760,110 @@ export interface IProgressDto {
     referee?: boolean | undefined;
 }
 
+export class FinalizedRequest implements IFinalizedRequest {
+    id?: string;
+
+    constructor(data?: IFinalizedRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+        }
+    }
+
+    static fromJS(data: any): FinalizedRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new FinalizedRequest();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        return data;
+    }
+}
+
+export interface IFinalizedRequest {
+    id?: string;
+}
+
+export class ProgrammeDto implements IProgrammeDto {
+    id?: number;
+    name?: string;
+    code?: string;
+    levelAdmitted?: string;
+    runing?: boolean;
+    showOnPortal?: boolean;
+    type?: string;
+    duration?: number;
+    department?: number;
+
+    constructor(data?: IProgrammeDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.code = _data["code"];
+            this.levelAdmitted = _data["levelAdmitted"];
+            this.runing = _data["runing"];
+            this.showOnPortal = _data["showOnPortal"];
+            this.type = _data["type"];
+            this.duration = _data["duration"];
+            this.department = _data["department"];
+        }
+    }
+
+    static fromJS(data: any): ProgrammeDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ProgrammeDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["code"] = this.code;
+        data["levelAdmitted"] = this.levelAdmitted;
+        data["runing"] = this.runing;
+        data["showOnPortal"] = this.showOnPortal;
+        data["type"] = this.type;
+        data["duration"] = this.duration;
+        data["department"] = this.department;
+        return data;
+    }
+}
+
+export interface IProgrammeDto {
+    id?: number;
+    name?: string;
+    code?: string;
+    levelAdmitted?: string;
+    runing?: boolean;
+    showOnPortal?: boolean;
+    type?: string;
+    duration?: number;
+    department?: number;
+}
+
 export class ProgrammeInfoRequest implements IProgrammeInfoRequest {
     id?: number | undefined;
     entryMode?: Session | undefined;
@@ -7509,6 +7874,7 @@ export class ProgrammeInfoRequest implements IProgrammeInfoRequest {
     thirdChoiceId?: number | undefined;
     awaiting?: boolean | undefined;
     lastYearInSchool?: number | undefined;
+    indexNo?: string | undefined;
 
     constructor(data?: IProgrammeInfoRequest) {
         if (data) {
@@ -7530,6 +7896,7 @@ export class ProgrammeInfoRequest implements IProgrammeInfoRequest {
             this.thirdChoiceId = _data["thirdChoiceId"];
             this.awaiting = _data["awaiting"];
             this.lastYearInSchool = _data["lastYearInSchool"];
+            this.indexNo = _data["indexNo"];
         }
     }
 
@@ -7551,6 +7918,7 @@ export class ProgrammeInfoRequest implements IProgrammeInfoRequest {
         data["thirdChoiceId"] = this.thirdChoiceId;
         data["awaiting"] = this.awaiting;
         data["lastYearInSchool"] = this.lastYearInSchool;
+        data["indexNo"] = this.indexNo;
         return data;
     }
 }
@@ -7565,6 +7933,7 @@ export interface IProgrammeInfoRequest {
     thirdChoiceId?: number | undefined;
     awaiting?: boolean | undefined;
     lastYearInSchool?: number | undefined;
+    indexNo?: string | undefined;
 }
 
 export class PaginatedListOfRefereeDto implements IPaginatedListOfRefereeDto {
@@ -8437,74 +8806,6 @@ export class DenominationDto implements IDenominationDto {
 export interface IDenominationDto {
     id?: number | undefined;
     name?: string | undefined;
-}
-
-export class ProgrammeDto implements IProgrammeDto {
-    id?: number;
-    name?: string;
-    code?: string;
-    levelAdmitted?: string;
-    runing?: boolean;
-    showOnPortal?: boolean;
-    type?: string;
-    duration?: number;
-    department?: number;
-
-    constructor(data?: IProgrammeDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.id = _data["id"];
-            this.name = _data["name"];
-            this.code = _data["code"];
-            this.levelAdmitted = _data["levelAdmitted"];
-            this.runing = _data["runing"];
-            this.showOnPortal = _data["showOnPortal"];
-            this.type = _data["type"];
-            this.duration = _data["duration"];
-            this.department = _data["department"];
-        }
-    }
-
-    static fromJS(data: any): ProgrammeDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new ProgrammeDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
-        data["code"] = this.code;
-        data["levelAdmitted"] = this.levelAdmitted;
-        data["runing"] = this.runing;
-        data["showOnPortal"] = this.showOnPortal;
-        data["type"] = this.type;
-        data["duration"] = this.duration;
-        data["department"] = this.department;
-        return data;
-    }
-}
-
-export interface IProgrammeDto {
-    id?: number;
-    name?: string;
-    code?: string;
-    levelAdmitted?: string;
-    runing?: boolean;
-    showOnPortal?: boolean;
-    type?: string;
-    duration?: number;
-    department?: number;
 }
 
 export class LanguageDto implements ILanguageDto {

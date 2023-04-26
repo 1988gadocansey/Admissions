@@ -1,0 +1,20 @@
+{
+  "SerializedFilePath": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/Infrastructure/obj/Debug/net7.0/project.razor.json",
+  "FilePath": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/Infrastructure/Infrastructure.csproj",
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  },
+  "ProjectWorkspaceState": {
+    "TagHelpers": [],
+    "CSharpLanguageVersion": 1100
+  },
+  "RootNamespace": null,
+  "Documents": [],
+  "SerializationFormat": "0.3"
+}

@@ -53,6 +53,7 @@ namespace OnlineApplicationSystem.Domain.Entities
         public int? ProgrammeAdmittedId { get; set; }
         public int? LastYearInSchool { get; set; }
         public bool? Awaiting { get; set; }
+        public string? IndexNo { get; set; }
         public int? Grade { get; set; }
         public string? YearOfAdmission { get; set; }
         public string? PreferedHall { get; set; }
@@ -74,6 +75,9 @@ namespace OnlineApplicationSystem.Domain.Entities
         public int? FirstChoiceId { get; set; }
         public int? SecondChoiceId { get; set; }
         public int? ThirdChoiceId { get; set; }
+        /*  public ProgrammeModel? FirstChoice { get; init; }
+         public ProgrammeModel? SecondChoice { get; init; }
+         public ProgrammeModel? ThirdChoice { get; init; } */
         public bool? FeePaying { get; set; }
         public bool? ReportedInSchool { get; set; }
         public Money? FeesPaid { get; set; }

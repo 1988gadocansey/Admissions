@@ -121,7 +121,17 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<ApplicantModel>
            nameBuilder.Property(p => p.NationalIDType).HasColumnName("NationalIDType").IsRequired();
 
        });
+        /*   builder.HasOne(x => x.FirstChoice)
+             .WithMany(x => x.Applicant)
+             .HasForeignKey(x => x.FirstChoiceId);
 
+          builder.HasOne(x => x.SecondChoice)
+        .WithMany(x => x.Applicant)
+        .HasForeignKey(x => x.SecondChoiceId);
+
+          builder.HasOne(x => x.ThirdChoice)
+          .WithMany(x => x.Applicant)
+          .HasForeignKey(x => x.ThirdChoiceId); */
 
         builder.Property(x => x.MaritalStatus)
             .HasColumnName("MaritalStatus")

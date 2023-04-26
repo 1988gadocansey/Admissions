@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "++v1JOp77qqbGXGZgfqnaEBSvSJj58G3iJOjbLDFsvmjmQvtHeViu9KBkSZLKwWrBxl3PQcYDplL/lqeoijcAw==",
+  "dgSpecHash": "L0+zFhbMZjmWXpWo4EicStkFKUCF4WuhSgF73sL+EJ6VbulU+uxdtCj7/BnI8exgGJoTqlfEMi0TIa5F9fHtQA==",
   "success": true,
   "projectFilePath": "/Users/gadocansey/Projects/OnlineApplicationSystem/src/Infrastructure/Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -25,6 +25,7 @@
     "/Users/gadocansey/.nuget/packages/mailkit/3.2.0/mailkit.3.2.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/mediatr/9.0.0/mediatr.9.0.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/mediatr.extensions.microsoft.dependencyinjection/9.0.0/mediatr.extensions.microsoft.dependencyinjection.9.0.0.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/microsoft.aspnet.razor/3.0.0/microsoft.aspnet.razor.3.0.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/microsoft.aspnetcore.apiauthorization.identityserver/7.0.4/microsoft.aspnetcore.apiauthorization.identityserver.7.0.4.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/7.0.4/microsoft.aspnetcore.authentication.jwtbearer.7.0.4.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/microsoft.aspnetcore.authentication.openidconnect/6.0.0/microsoft.aspnetcore.authentication.openidconnect.6.0.0.nupkg.sha512",
@@ -86,6 +87,7 @@
     "/Users/gadocansey/.nuget/packages/npgsql/7.0.2/npgsql.7.0.2.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/npgsql.entityframeworkcore.postgresql/7.0.3/npgsql.entityframeworkcore.postgresql.7.0.3.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/portable.bouncycastle/1.9.0/portable.bouncycastle.1.9.0.nupkg.sha512",
+    "/Users/gadocansey/.nuget/packages/razorengine/3.10.0/razorengine.3.10.0.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/restsharp/109.0.1/restsharp.109.0.1.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/sixlabors.imagesharp/2.1.4/sixlabors.imagesharp.2.1.4.nupkg.sha512",
     "/Users/gadocansey/.nuget/packages/ssh.net/2020.0.2/ssh.net.2020.0.2.nupkg.sha512",
@@ -152,6 +154,26 @@
       "warningLevel": 1,
       "message": "Package 'AForge.Math 2.2.5' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
       "libraryId": "AForge.Math",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.Razor 3.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.Razor",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'RazorEngine 3.10.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "RazorEngine",
       "targetGraphs": [
         "net7.0"
       ]

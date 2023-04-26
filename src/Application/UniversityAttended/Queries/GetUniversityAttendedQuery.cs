@@ -38,10 +38,10 @@ public class GetResearchExperienceHandler : IRequestHandler<GetUniversityAttende
     {
         var userId = _currentUserService.UserId;
         var userDetails = await _identityService.GetApplicationUserDetails(userId, cancellationToken);
-        var applicantDetails = await _applicantRepository.GetApplicantForUser(_currentUserService.UserId, cancellationToken);
+        var applicantDetails = _context.ApplicantModels.FirstOrDefault(a => a.ApplicationUserId == userId);
 
         var results = await _context.UniversityAttendedModels
-                     .Where(r => r.Applicant == applicantDetails.Id).OrderBy(s => s.StartYear)
+                     .Where(r => r.Applicant == applicantDetails).OrderBy(s => s.StartYear)
                      .ProjectTo<UniversityAttendedDto>(_mapper.ConfigurationProvider)
                      .PaginatedListAsync(request.PageNumber, request.PageSize);
         return results;

@@ -116,6 +116,7 @@ public class IdentityService : IIdentityService
             Branch = b.Branch,
             Started = b.Started,
             Year = b.Year,
+            Pin = b.Pin,
             PictureUploaded = b.PictureUploaded,
             FormNo = b.FormNo,
             FullName = b.FullName,

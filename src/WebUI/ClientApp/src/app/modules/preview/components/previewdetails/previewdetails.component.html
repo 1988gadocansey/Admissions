@@ -6,6 +6,7 @@
   >
     Print This Page
   </button>
+
   <div class="mx-auto max-w-screen-xl py-8 px-4 lg:py-16 lg:px-6">
     <div id="print">
       <div class="page1">
@@ -18,7 +19,7 @@
         </div>
         <div style="">
           <h2 class="center colorme" style="margin: auto; text-align: center">
-            ONLINE APPLICATION SUMMARY
+            {{ user.category | uppercase }} ONLINE APPLICATION SUMMARY
           </h2>
           <h3 class="center colorme" style="margin: auto; text-align: center">
             {{ applicant.applicationNumber.applicantNumber }} -
@@ -41,6 +42,7 @@
           />
         </div>
       </div>
+      <p>&nbsp;</p>
       <br />
       <hr />
       <div class="page2">
@@ -52,16 +54,39 @@
               <p></p>
               <p>Dob: &nbsp;{{ applicant.dob | date }}</p>
               <p></p>
-              <p>Gender: &nbsp;{{ applicant.gender }}</p>
+              <p>
+                Gender: &nbsp;
+                <ng-container *ngIf="applicant.gender.toString() == '0'">
+                  Male
+                </ng-container>
+                <ng-container *ngIf="applicant.gender.toString() == '1'">
+                  Female
+                </ng-container>
+              </p>
               <p></p>
-              <p>Physically Challenged: &nbsp;{{ applicant.disability }}</p>
+              <p>
+                Address: &nbsp;{{ addressDto.box }},
+                {{ addressDto.houseNumber }}
+                {{ addressDto.city }}
+              </p>
+              <p></p>
+              <p>
+                Physically Challenged:
+
+                <ng-container *ngIf="applicant.disability == true">
+                  Yes
+                </ng-container>
+                <ng-container *ngIf="applicant.disability == false">
+                  No
+                </ng-container>
+              </p>
               <p>Phone: &nbsp;{{ applicant.phone.number }}</p>
               <p>Email: &nbsp;{{ applicant.email.value }}</p>
               <p>Hometown: &nbsp;{{ applicant.hometown }}</p>
-              <p>Nationality: &nbsp;{{ applicant.nationalityId }}</p>
+              <p>Nationality: &nbsp;{{ applicant.nationalityId }} Ghanaian</p>
             </div>
           </div>
-          <br />
+
           <div class="grid h-48 grid-cols-2 place-content-center gap-2">
             <div><h4 class="font-thin">EDUCATIONAL BACKGROUND</h4></div>
             <div style="margin-left: -20%">
@@ -72,46 +97,140 @@
                   </p>
                 </ng-container>
               </p>
-              <p>SHS Attended: &nbsp;{{ applicant.getFullName }}</p>
+              <p>School Attended: &nbsp;{{ shsAttended.name.name }}</p>
               <p></p>
-              <p>Programme Studied: &nbsp;{{ applicant.dob | date }}</p>
+              <p>Programme Studied: &nbsp;{{ shsAttended.programmeStudied }}</p>
+              <p>Year Completed: &nbsp;{{ shsAttended.endYear }}</p>
               <p></p>
-              <p>School Attended: &nbsp;{{ applicant.gender }}</p>
-              <p></p>
-              <p>Year Completed: &nbsp;{{ applicant.getFullName }}</p>
-              <p></p>
-              <p>Entry Qualification: &nbsp;{{ applicant.phone.number }}</p>
-            </div>
-          </div>
-          <br />
-          <div class="grid h-48 grid-cols-2 place-content-center gap-2">
-            <div><h4 class="font-thin">PROGRAMME INFORMATION</h4></div>
-            <div style="margin-left: -20%">
-              <p>First Choice: &nbsp;{{ applicant.getFullName }}</p>
-              <p></p>
-              <p>Entry Year: &nbsp;{{ applicant.dob | date }}</p>
-              <p></p>
-              <p>Schedule: &nbsp;{{ applicant.gender }}</p>
-              <p></p>
-              <p>Waiting: &nbsp;{{ applicant.getFullName }}</p>
-              <p></p>
+              <p>Entry Certificate: &nbsp;{{ applicant.firstQualification }}</p>
             </div>
           </div>
 
-          <br />
           <div class="grid h-48 grid-cols-2 place-content-center gap-2">
-            <div><h4 class="font-thin">RESULTS</h4></div>
+            <div><h4 class="font-thin">PROGRAMME INFORMATION</h4></div>
             <div style="margin-left: -20%">
-              <p>SHS Attended: &nbsp;{{ applicant.getFullName }}</p>
+              <p>
+                First Choice: &nbsp;
+
+                {{ applicant.firstChoiceId | programmePipe | async }}
+              </p>
+              <p>
+                Second Choice: &nbsp;
+                {{ applicant.secondChoiceId | programmePipe | async }}
+              </p>
               <p></p>
-              <p>Programme Studied: &nbsp;{{ applicant.dob | date }}</p>
+              <p>Entry Year: &nbsp;{{ user.year }}</p>
               <p></p>
-              <p>School Attended: &nbsp;{{ applicant.gender }}</p>
-              <p></p>
-              <p>Year Completed: &nbsp;{{ applicant.getFullName }}</p>
-              <p></p>
-              <p>Entry Qualification: &nbsp;{{ applicant.phone.number }}</p>
+              <ng-container *ngIf="applicant.awaiting == true">
+                <p>Applied as Waiting: &nbsp; Yes</p>
+                <p>Exams IndexNo: &nbsp; {{ applicant.indexNo }}</p>
+              </ng-container>
             </div>
+          </div>
+
+          <div class=" ">
+            <div><h4 class="font-thin">RESULTS</h4></div>
+
+            <ng-container *ngIf="resultUploadDto.length > 0">
+              <table class=" ">
+                <thead class="results table-auto border">
+                  <tr>
+                    <th>No</th>
+
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400"
+                    >
+                      Index No
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400"
+                    >
+                      Exam
+                    </th>
+
+                    <th
+                      scope="col"
+                      class="t px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400"
+                    >
+                      Subject
+                    </th>
+
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400"
+                    >
+                      Grade
+                    </th>
+
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400"
+                    >
+                      Center
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400"
+                    >
+                      Sitting
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400"
+                    >
+                      Month
+                    </th>
+
+                    <th
+                      scope="col"
+                      class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400"
+                    >
+                      Year
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class=" ">
+                  <tr *ngFor="let data of resultUploadDto; let i = index">
+                    <td>
+                      <span> {{ i + 1 }} </span>
+                    </td>
+                    <td>
+                      {{ data.indexNo }}
+                    </td>
+                    <td>
+                      {{ data.examType }}
+                    </td>
+                    <td>
+                      <h2 class="text-sm font-normal">
+                        {{ data.subject.name }}
+                      </h2>
+                    </td>
+                    <td>
+                      {{ data.grade.name }}
+
+                      , Value {{ data.grade.value }}
+                    </td>
+                    <td>
+                      {{ data.center }}
+                    </td>
+                    <td>
+                      {{ data.sitting }}
+                    </td>
+                    <td>
+                      {{ data.month }}
+                    </td>
+                    <td>
+                      {{ data.year }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </ng-container>
+            <ng-container *ngIf="resultUploadDto.length == 0">
+              No Result uploaded(s)..</ng-container
+            >
           </div>
         </div>
       </div>

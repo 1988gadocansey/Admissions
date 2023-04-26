@@ -28,11 +28,12 @@ export class AcademiccomponentComponent implements OnInit {
         this.programmeInfo.get("ThirdChoiceId").setValue(data.thirdChoiceId);
         this.programmeInfo.get("FirstChoiceId").setValue(data.thirdChoiceId);
         this.programmeInfo.get("SecondChoiceId").setValue(data.secondChoiceId);
-        this.programmeInfo.get("entryMode").setValue(data.entryMode);
+        this.programmeInfo.get("entryMode").setValue(this.entryMode[data.entryMode]);
         this.programmeInfo.get("awaiting").setValue(data.awaiting);
+        this.programmeInfo.get("indexNo").setValue(data.indexNo);
         this.programmeInfo.get("lastYearInSchool").setValue(data.lastYearInSchool);
-        this.programmeInfo.get("firstQualification").setValue(data.firstQualification);
-        this.programmeInfo.get("secondQualification").setValue(data.secondQualification);
+        this.programmeInfo.get("firstQualification").setValue(this.entryQualification[data.firstQualification]);
+        this.programmeInfo.get("secondQualification").setValue(this.entryQualification[data.secondQualification]);
       }
     })
 
@@ -43,6 +44,8 @@ export class AcademiccomponentComponent implements OnInit {
       secondQualification: ['', Validators.required],
 
       entryMode: ['', Validators.required],
+
+      indexNo: [''],
 
       ThirdChoiceId: ['', Validators.required],
       SecondChoiceId: ['', Validators.required],
@@ -93,6 +96,7 @@ export class AcademiccomponentComponent implements OnInit {
     this.academicClient.create(this.programmeInfo.value).subscribe(data => {
       this.message = data;
       this.loading = false;
+      window.location.href = '/stepfour/educationalbackground';
       console.log("response is " + JSON.stringify(data))
     },
       error => this.message = error,

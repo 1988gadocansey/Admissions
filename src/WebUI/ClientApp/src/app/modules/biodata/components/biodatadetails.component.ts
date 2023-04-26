@@ -55,7 +55,7 @@ export class BiodatadetailsComponent implements OnInit {
         this.biodataForm.get("emergencyContact").setValue(data.emergencyContact.number);
         this.biodataForm.get("referrals").setValue(data.referrals);
         this.biodataForm.get("district").setValue(data.districtId);
-        this.biodataForm.get("nationalIDType").setValue(data.idcard.nationalIDType);
+        this.biodataForm.get("nationalIDType").setValue(this.IdCard[data.idcard.nationalIDType]);
         this.biodataForm.get("nationalIDNo").setValue(data.idcard.nationalIDNo);
         this.biodataForm.get("sponsorShip").setValue(data.sponsorShip);
         this.biodataForm.get("sponsorShipCompany").setValue(data.sponsorShipCompany);
@@ -192,7 +192,7 @@ export class BiodatadetailsComponent implements OnInit {
       this.districts = data;
       console.log("districts", this.districts);
     })
-
+    console.log("id cards", this.IdCard);
     client.getDenominations().subscribe((data: DenominationDto[]) => {
       this.denominations = data;
       console.log("denomination", this.denominations);
