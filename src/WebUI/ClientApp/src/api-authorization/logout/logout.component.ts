@@ -39,6 +39,8 @@ export class LogoutComponent implements OnInit {
       case LogoutActions.LoggedOut:
         // this.message.next('You successfully logged out!');
         //this.router.navigate(['/Identity/Account/Login']);
+
+        localStorage.removeItem('menus');
         document.location.href = '/Identity/Account/Login';
         break;
       default:

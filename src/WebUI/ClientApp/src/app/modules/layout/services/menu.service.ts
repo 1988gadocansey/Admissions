@@ -12,16 +12,20 @@ export class MenuService implements OnDestroy {
   private _showMobileMenu$ = new BehaviorSubject<boolean>(false);
   public _pagesMenu$ = new BehaviorSubject<MenuItem[]>([]);
   private subscription = new Subscription();
-
+  public user: any;
   constructor(private router: Router) {
+    // console.log(localStorage.getItem('gad'));
     /** Set dynamic menu */
-    this._pagesMenu$.next(Menu.pages);
+    var menu = new Menu();
+    this._pagesMenu$.next(Menu.getMenuData());
 
     let sub = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         /** Expand menu base on active route */
         this._pagesMenu$.forEach((menuItem) => {
           menuItem.forEach((menu) => {
+            // console.log("menuItem: " + menu.items)
+
             let activeGroup = false;
             menu.items.forEach((subMenu) => {
               const active = this.isActive(subMenu.route);

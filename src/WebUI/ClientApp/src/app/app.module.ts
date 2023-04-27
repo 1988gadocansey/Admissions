@@ -22,12 +22,13 @@ import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './store/reducers/user.reducer';
 import { TryStoreComponent } from './try-store/try-store.component';
+import { PrintModule } from './modules/print/print.module';
 
 @NgModule({
   declarations: [AppComponent, SpinnerComponent, FetchDataComponent, TokenComponent, TodoComponent, TryStoreComponent],
   imports: [BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule, SharedModule, CommonModule, ApiAuthorizationModule, AppRoutingModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule, PrintModule,
   NgxLoadingModule.forRoot({
     animationType: ngxLoadingAnimationTypes.circle,
     backdropBackgroundColour: 'rgba(192,192,192,0.4)',

@@ -34,6 +34,7 @@ export class TopinfoComponent {
     client.dashboard().subscribe(result => {
       this.loading = true;
       this.profile = result;
+      localStorage.setItem('menus', this.profile.type);
       this.imgurl = "https://photos.ttuportal.com/public/albums/thumbnails/" +
         this.profile?.formNo + ".jpg";
       this.imgurlAlt = "https://photos.ttuportal.com/public/albums/thumbnails/" +

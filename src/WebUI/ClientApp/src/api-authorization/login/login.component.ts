@@ -3,6 +3,7 @@ import { AuthorizeService, AuthenticationResultStatus } from '../authorize.servi
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { LoginActions, QueryParameterNames, ApplicationPaths, ReturnUrlType } from '../api-authorization.constants';
+import { HomeClient, UserDto } from 'src/app/web-api-client';
 
 // The main responsibility of this component is to handle the user's login process.
 // This is the starting point for the login process. Any component that needs to authenticate
@@ -15,11 +16,13 @@ import { LoginActions, QueryParameterNames, ApplicationPaths, ReturnUrlType } fr
 })
 export class LoginComponent implements OnInit {
   public message = new BehaviorSubject<string | null | undefined>(null);
-
+  public UserData: UserDto | any;
   constructor(
     private authorizeService: AuthorizeService,
     private activatedRoute: ActivatedRoute,
-    private router: Router) { }
+    private router: Router, private homeclient: HomeClient) {
+
+  }
 
   async ngOnInit() {
     const action = this.activatedRoute.snapshot.url[1];
@@ -55,8 +58,11 @@ export class LoginComponent implements OnInit {
         break;
       case AuthenticationResultStatus.Success:
         await this.navigateToReturnUrl(returnUrl);
-        document.location.href = '/welcome';
+
+        document.location.href = '/welcome/live';
         // await this.router.navigate(['/welcome']);
+
+
         break;
       case AuthenticationResultStatus.Fail:
         await this.router.navigate(ApplicationPaths.LoginFailedPathComponents, {
